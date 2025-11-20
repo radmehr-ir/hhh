@@ -14,34 +14,64 @@ window.addEventListener("DOMContentLoaded", function(){
     // ---- CSS ----
     const css = `
         #avaj-chat-box{
-            position:fixed;bottom:20px;right:20px;
-            width:320px;height:420px;
-            background:#F3E9D2;border-radius:14px;
+            position:fixed;
+            top:50%;
+            left:50%;
+            transform:translate(-50%,-50%);
+            width:360px;
+            height:420px;
+            background:#F3E9D2;
+            border-radius:14px;
             box-shadow:0 4px 12px rgba(0,0,0,0.25);
-            display:flex;flex-direction:column;
-            overflow:hidden;z-index:9999999;
-            transition:all .3s;
+            display:flex;
+            flex-direction:column;
+            overflow:hidden;
+            z-index:9999999;
             font-family:sans-serif;
         }
-        #avaj-full{position:absolute;top:6px;left:6px;
-            background:#B89B72;color:#fff;border:none;
-            padding:4px 8px;border-radius:6px;
-            font-size:12px;cursor:pointer;}
-        #avaj-messages{flex:1;padding:12px;overflow-y:auto;
-            display:flex;flex-direction:column;gap:8px;}
-        .avaj-msg{padding:8px 12px;border-radius:10px;
-            max-width:70%;}
+        #avaj-messages{
+            flex:1;
+            padding:12px;
+            overflow-y:auto;
+            display:flex;
+            flex-direction:column;
+            gap:8px;
+        }
+        .avaj-msg{
+            padding:8px 12px;
+            border-radius:10px;
+            max-width:70%;
+            word-break: break-word;
+        }
         .avaj-user{align-self:flex-end;background:#E8D9C1;}
         .avaj-bot{align-self:flex-start;background:#DCCEB6;}
-        #avaj-inputArea{display:flex;padding:10px;background:#E8D9C1;}
-        #avaj-text{flex:1;padding:6px;border-radius:6px;
-            border:1px solid #BDAA8C;background:#FFF9EE;}
-        #avaj-send{padding:6px 14px;background:#B89B72;
-            color:#fff;border:none;border-radius:6px;cursor:pointer;}
-        /* Fullscreen mode */
-        #avaj-chat-box.fullscreen{
-            width:100vw;height:100vh;bottom:0;right:0;
-            border-radius:0;
+        #avaj-inputArea{
+            display:flex;
+            padding:8px;
+            background:#E8D9C1;
+        }
+        #avaj-text{
+            flex:1;
+            padding:6px;
+            border-radius:6px;
+            border:1px solid #BDAA8C;
+            background:#FFF9EE;
+        }
+        #avaj-send{
+            padding:6px 14px;
+            background:#B89B72;
+            color:#fff;
+            border:none;
+            border-radius:6px;
+            cursor:pointer;
+        }
+        #avaj-footer{
+            text-align:center;
+            padding:4px;
+            font-size:12px;
+            color:#5A4A3A;
+            background:#E8D9C1;
+            border-top:1px solid #C9B79A;
         }
     `;
     const style = document.createElement("style");
@@ -52,32 +82,18 @@ window.addEventListener("DOMContentLoaded", function(){
     const box = document.createElement("div");
     box.id = "avaj-chat-box";
     box.innerHTML = `
-        <button id="avaj-full">⛶</button>
         <div id="avaj-messages"></div>
         <div id="avaj-inputArea">
             <input id="avaj-text" placeholder="پیام بنویس...">
             <button id="avaj-send">ارسال</button>
         </div>
+        <div id="avaj-footer">قدرت گرفته شده از <b>آواج</b></div>
     `;
     document.body.appendChild(box);
 
     const msgs = document.getElementById("avaj-messages");
     const txt = document.getElementById("avaj-text");
     const send = document.getElementById("avaj-send");
-    const full = document.getElementById("avaj-full");
-
-    // ---- Fullscreen Toggle ----
-    let fs = false;
-    full.onclick = ()=>{
-        fs = !fs;
-        if(fs){
-            box.classList.add("fullscreen");
-            full.innerText = "✖";
-        }else{
-            box.classList.remove("fullscreen");
-            full.innerText = "⛶";
-        }
-    };
 
     // ---- Chat Functions ----
     function addMsg(type,text){
