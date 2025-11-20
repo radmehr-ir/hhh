@@ -28,6 +28,20 @@ window.addEventListener("DOMContentLoaded", function(){
             overflow:hidden;
             z-index:9999999;
             font-family:sans-serif;
+            transition: all 0.3s ease;
+        }
+        #avaj-fullscreen-btn{
+            position:absolute;
+            top:8px;
+            left:8px;
+            background:#B89B72;
+            color:#fff;
+            border:none;
+            padding:4px 8px;
+            border-radius:6px;
+            font-size:12px;
+            cursor:pointer;
+            z-index:10;
         }
         #avaj-messages{
             flex:1;
@@ -36,6 +50,7 @@ window.addEventListener("DOMContentLoaded", function(){
             display:flex;
             flex-direction:column;
             gap:8px;
+            margin-top:30px; /* فاصله برای دکمه fullscreen */
         }
         .avaj-msg{
             padding:8px 12px;
@@ -73,6 +88,18 @@ window.addEventListener("DOMContentLoaded", function(){
             background:#E8D9C1;
             border-top:1px solid #C9B79A;
         }
+        /* حالت تمام صفحه */
+        #avaj-chat-box.fullscreen{
+            top:0;
+            left:0;
+            transform:none;
+            width:100vw;
+            height:100vh;
+            border-radius:0;
+        }
+        #avaj-chat-box.fullscreen #avaj-messages{
+            margin-top:0;
+        }
     `;
     const style = document.createElement("style");
     style.innerHTML = css;
@@ -82,6 +109,7 @@ window.addEventListener("DOMContentLoaded", function(){
     const box = document.createElement("div");
     box.id = "avaj-chat-box";
     box.innerHTML = `
+        <button id="avaj-fullscreen-btn">⛶</button>
         <div id="avaj-messages"></div>
         <div id="avaj-inputArea">
             <input id="avaj-text" placeholder="پیام بنویس...">
@@ -94,6 +122,20 @@ window.addEventListener("DOMContentLoaded", function(){
     const msgs = document.getElementById("avaj-messages");
     const txt = document.getElementById("avaj-text");
     const send = document.getElementById("avaj-send");
+    const fullscreenBtn = document.getElementById("avaj-fullscreen-btn");
+
+    // ---- Fullscreen Toggle ----
+    let fs = false;
+    fullscreenBtn.onclick = ()=>{
+        fs = !fs;
+        if(fs){
+            box.classList.add("fullscreen");
+            fullscreenBtn.innerText = "✖";
+        }else{
+            box.classList.remove("fullscreen");
+            fullscreenBtn.innerText = "⛶";
+        }
+    };
 
     // ---- Chat Functions ----
     function addMsg(type,text){
