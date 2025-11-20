@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>چت بات آواج</title>
+</head>
+<body>
+<script>
+window.addEventListener("DOMContentLoaded", function(){
+
+    const KEY = "Bearer sk-b855a785d191a49b634143adee34f6d2";
+    const URL = "https://api.talkbot.ir/v1/chat/completions";
+
+    // ---- CSS ----
+    const css = `
+        #avaj-chat-box{
+            position:fixed;bottom:20px;right:20px;
+            width:320px;height:420px;
+            background:#F3E9D2;border-radius:14px;
+            box-shadow:0 4px 12px rgba(0,0,0,0.25);
+            display:flex;flex-direction:column;
+            overflow:hidden;z-index:9999999;
+            transition:all .3s;
+            font-family:sans-serif;
+        }
+        #avaj-full{position:absolute;top:6px;left:6px;
+            background:#B89B72;color:#fff;border:none;
+            padding:4px 8px;border-radius:6px;
+            font-size:12px;cursor:pointer;}
+        #avaj-messages{flex:1;padding:12px;overflow-y:auto;
+            display:flex;flex-direction:column;gap:8px;}
+        .avaj-msg{padding:8px 12px;border-radius:10px;
+            max-width:70%;}
+        .avaj-user{align-self:flex-end;background:#E8D9C1;}
+        .avaj-bot{align-self:flex-start;background:#DCCEB6;}
+        #avaj-inputArea{display:flex;padding:10px;background:#E8D9C1;}
+        #avaj-text{flex:1;padding:6px;border-radius:6px;
+            border:1px solid #BDAA8C;background:#FFF9EE;}
+        #avaj-send{padding:6px 14px;background:#B89B72;
+            color:#fff;border:none;border-radius:6px;cursor:pointer;}
+        /* Fullscreen mode */
+        #avaj-chat-box.fullscreen{
+            width:100vw;height:100vh;bottom:0;right:0;
+            border-radius:0;
+        }
+    `;
+    const style = document.createElement("style");
+    style.innerHTML = css;
+    document.head.appendChild(style);
+
+    // ---- HTML ----
+    const box = document.createElement("div");
+    box.id = "avaj-chat-box";
+    box.innerHTML = `
+        <button id="avaj-full">⛶</button>
+        <div id="avaj-messages"></div>
+        <div id="avaj-inputArea">
+            <input id="avaj-text" placeholder="پیام بنویس...">
+            <button id="avaj-send">ارسال</button>
+        </div>
+    `;
+    document.body.appendChild(box);
+
+    const msgs = document.getElementById("avaj-messages");
+    const txt = document.getElementById("avaj-text");
+    const send = document.getElementById("avaj-send");
+    const full = document.getElementById("avaj-full");
+
+    // ---- Fullscreen Toggle ----
+    let fs = false;
+    full.onclick = ()=>{
+        fs = !fs;
+        if(fs){
+            box.classList.add("fullscreen");
+            full.innerText = "✖";
+        }else{
+            box.classList.remove("fullscreen");
+            full.innerText = "⛶";
+        }
+    };
+
+    // ---- Chat Functions ----
+    function addMsg(type,text){
+        const m = document.createElement("div");
+        m.className = "avaj-msg avaj-" + type;
+        m.textContent = text;
+        msgs.appendChild(m);
+        msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    send.onclick = async ()=>{
+        const text = txt.value.trim();
+        if(!text) return;
+
+        addMsg("user",text);
+        txt.value = "";
+
+        addMsg("bot","در حال تایپ...");
+
+        try{
+            const res = await fetch(URL,{
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json",
+                    "Authorization":KEY
+                },
+                body:JSON.stringify({
+                    model:"o3-mini-2025-01-31",
+                    messages:[{role:"user",content:text}]
+                })
+            });
+
+            msgs.lastChild.remove(); // حذف "در حال تایپ..."
+
+            const data = await res.json();
+            const answer = data?.choices?.[0]?.message?.content || "خطا!";
+            addMsg("bot",answer);
+
+        } catch(e){
+            msgs.lastChild.remove();
+            addMsg("bot","❌ اتصال برقرار نشد!");
+        }
+    };
+
+});
+</script>
+</body>
+</html>
