@@ -50,7 +50,7 @@ window.addEventListener("DOMContentLoaded", function(){
             display:flex;
             flex-direction:column;
             gap:8px;
-            margin-top:30px; /* فاصله برای دکمه fullscreen */
+            margin-top:30px; 
         }
         .avaj-msg{
             padding:8px 12px;
@@ -100,6 +100,28 @@ window.addEventListener("DOMContentLoaded", function(){
         #avaj-chat-box.fullscreen #avaj-messages{
             margin-top:0;
         }
+        /* Typing Dots */
+        .typing-dots{
+            display:flex;
+            gap:4px;
+            align-items:center;
+            justify-content:flex-start;
+            height:20px;
+            margin-bottom:4px;
+        }
+        .typing-dot{
+            width:6px;
+            height:6px;
+            background:#7A6A52;
+            border-radius:50%;
+            animation:dot-bounce 1.2s infinite;
+        }
+        .typing-dot:nth-child(2){animation-delay:0.2s;}
+        .typing-dot:nth-child(3){animation-delay:0.4s;}
+        @keyframes dot-bounce{
+            0%,100%{transform:translateY(0);}
+            50%{transform:translateY(-6px);}
+        }
     `;
     const style = document.createElement("style");
     style.innerHTML = css;
@@ -146,6 +168,26 @@ window.addEventListener("DOMContentLoaded", function(){
         msgs.scrollTop = msgs.scrollHeight;
     }
 
+    function addTyping(){
+        const typing = document.createElement("div");
+        typing.className = "avaj-msg avaj-bot";
+        typing.id = "typing";
+        typing.innerHTML = `
+            <div class="typing-dots">
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            </div>
+        `;
+        msgs.appendChild(typing);
+        msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    function removeTyping(){
+        const t = document.getElementById("typing");
+        if(t) t.remove();
+    }
+
     send.onclick = async ()=>{
         const text = txt.value.trim();
         if(!text) return;
@@ -153,7 +195,7 @@ window.addEventListener("DOMContentLoaded", function(){
         addMsg("user",text);
         txt.value = "";
 
-        addMsg("bot","در حال تایپ...");
+        addTyping();
 
         try{
             const res = await fetch(URL,{
@@ -168,14 +210,14 @@ window.addEventListener("DOMContentLoaded", function(){
                 })
             });
 
-            msgs.lastChild.remove(); // حذف "در حال تایپ..."
+            removeTyping();
 
             const data = await res.json();
             const answer = data?.choices?.[0]?.message?.content || "خطا!";
             addMsg("bot",answer);
 
         } catch(e){
-            msgs.lastChild.remove();
+            removeTyping();
             addMsg("bot","❌ اتصال برقرار نشد!");
         }
     };
