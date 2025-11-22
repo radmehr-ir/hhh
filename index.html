@@ -2,28 +2,27 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>چت بات آواج با والپیپر و بازگشت</title>
+<title>چت بات آواج پیشرفته با تاریخچه چت‌ها</title>
 <style>
+body{margin:0; font-family:sans-serif;}
 #avaj-chat-box{
     position:fixed; top:50%; left:50%; transform:translate(-50%,-50%);
-    width:420px; height:550px; border-radius:14px; display:flex;
+    width:420px; height:600px; border-radius:14px; display:flex;
     flex-direction:column; overflow:hidden; z-index:9999999;
-    font-family:sans-serif; box-shadow:0 4px 12px rgba(0,0,0,0.25);
+    box-shadow:0 4px 12px rgba(0,0,0,0.25);
     background-image:url('https://static.vecteezy.com/system/resources/previews/026/757/331/non_2x/books-seamless-pattern-on-craft-paper-background-with-hand-drawn-elements-doodles-for-wrapping-paper-scrapbooking-prints-packaging-wallpaper-stationary-etc-eps-10-vector.jpg');
     background-size:cover; background-position:center;
 }
 #avaj-top-bar{
     display:flex; justify-content:space-between; align-items:center;
-    padding:6px 12px; background:rgba(255,255,255,0.7); backdrop-filter:blur(6px);
+    padding:6px 12px; background:rgba(255,255,255,0.8); backdrop-filter:blur(6px);
 }
-#avaj-back-btn{
-    padding:4px 8px; background:#7A6A52; color:#fff; border:none;
-    border-radius:6px; cursor:pointer; font-size:12px;
+#avaj-back-btn,#avaj-history-btn,#avaj-fullscreen-btn{
+    padding:4px 8px; border:none; border-radius:6px; cursor:pointer; font-size:12px;
 }
-#avaj-fullscreen-btn{
-    padding:4px 8px; background:#B89B72; color:#fff; border:none;
-    border-radius:6px; cursor:pointer; font-size:12px;
-}
+#avaj-back-btn{background:#7A6A52; color:#fff;}
+#avaj-history-btn{background:#BDAA8C; color:#fff; margin:0 6px;}
+#avaj-fullscreen-btn{background:#B89B72; color:#fff;}
 #avaj-messages{
     flex:1; padding:12px; overflow-y:auto; display:flex;
     flex-direction:column; gap:8px; margin-top:0;
@@ -46,6 +45,13 @@
 .typing-dot:nth-child(3){animation-delay:0.4s;}
 @keyframes dot-bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
 #avaj-newchat{ margin-top:4px; padding:4px; background:#7A6A52; color:#fff; border:none; border-radius:6px; cursor:pointer; font-size:12px;}
+#avaj-history-panel{
+    position:absolute; top:40px; right:0; width:150px; max-height:300px;
+    background:rgba(255,255,255,0.9); backdrop-filter:blur(6px); overflow-y:auto;
+    display:none; flex-direction:column; z-index:99999999; border-left:1px solid #BDAA8C;
+}
+.history-item{ padding:6px; cursor:pointer; border-bottom:1px solid #C9B79A; font-size:12px; }
+.history-item:hover{background:#BDAA8C; color:#fff;}
 </style>
 </head>
 <body>
@@ -53,8 +59,10 @@
 <div id="avaj-chat-box">
     <div id="avaj-top-bar">
         <button id="avaj-back-btn">🔙 بازگشت</button>
+        <button id="avaj-history-btn">📂 تاریخچه چت‌ها</button>
         <button id="avaj-fullscreen-btn">⛶</button>
     </div>
+    <div id="avaj-history-panel"></div>
     <div id="avaj-messages"></div>
     <div id="avaj-inputArea">
         <input id="avaj-text" placeholder="پیام بنویس...">
@@ -74,24 +82,30 @@ const send = document.getElementById("avaj-send");
 const fullscreenBtn = document.getElementById("avaj-fullscreen-btn");
 const newChatBtn = document.getElementById("avaj-newchat");
 const backBtn = document.getElementById("avaj-back-btn");
+const historyBtn = document.getElementById("avaj-history-btn");
+const historyPanel = document.getElementById("avaj-history-panel");
 
-/* ---------------- دکمه بازگشت ---------------- */
-backBtn.onclick = ()=>{ window.location.href="https://avage.ir"; };
-
-/* ---------------- Fullscreen ---------------- */
 let fs = false;
 fullscreenBtn.onclick = ()=>{ fs = !fs; document.getElementById("avaj-chat-box").classList.toggle("fullscreen"); fullscreenBtn.innerText = fs?"✖":"⛶"; };
+backBtn.onclick = ()=>{ window.location.href="https://avage.ir"; };
 
-/* ---------------- تاریخچه ---------------- */
+/* ---------------- ذخیره تمام چت‌ها ---------------- */
+function getAllChats(){ return JSON.parse(localStorage.getItem("avajAllChats")||"[]"); }
+function saveAllChats(chats){ localStorage.setItem("avajAllChats",JSON.stringify(chats)); }
+
+let currentChatIndex = 0;
+
 function saveMessage(role,text){
-    let history = JSON.parse(localStorage.getItem("avajHistory")||"[]");
-    history.push({role,text});
-    localStorage.setItem("avajHistory",JSON.stringify(history));
+    let chats = getAllChats();
+    if(!chats[currentChatIndex]) chats[currentChatIndex]=[];
+    chats[currentChatIndex].push({role,text});
+    saveAllChats(chats);
 }
 function loadHistory(){
     msgs.innerHTML="";
-    let history = JSON.parse(localStorage.getItem("avajHistory")||"[]");
-    history.forEach(msg=>{
+    let chats = getAllChats();
+    if(!chats[currentChatIndex]) chats[currentChatIndex]=[];
+    chats[currentChatIndex].forEach(msg=>{
         const bubble = document.createElement("div");
         bubble.className="avaj-msg "+(msg.role=="user"?"avaj-user":"avaj-bot");
         bubble.textContent=msg.text;
@@ -101,12 +115,31 @@ function loadHistory(){
 }
 loadHistory();
 
+/* ---------------- لیست چت‌ها ---------------- */
+function renderChatList(){
+    historyPanel.innerHTML="";
+    let chats = getAllChats();
+    chats.forEach((chat,i)=>{
+        const item = document.createElement("div");
+        item.className="history-item";
+        item.textContent="چت "+(i+1);
+        item.onclick=()=>{
+            currentChatIndex=i;
+            historyPanel.style.display="none";
+            loadHistory();
+        };
+        historyPanel.appendChild(item);
+    });
+}
+historyBtn.onclick=()=>{
+    historyPanel.style.display = historyPanel.style.display=="flex" ? "none" : "flex";
+    renderChatList();
+};
+
 /* ---------------- انیمیشن تایپ ---------------- */
 function typeWriterEffect(text, element, speed=25){
     let i=0;
-    function next(){
-        if(i<text.length){ element.textContent+=text.charAt(i); i++; setTimeout(next,speed); }
-    }
+    function next(){ if(i<text.length){ element.textContent+=text.charAt(i); i++; setTimeout(next,speed); } }
     next();
 }
 function addBotTypingMessage(text){
@@ -164,7 +197,13 @@ send.onclick = ()=>sendMessage(txt.value.trim());
 txt.addEventListener("keydown",e=>{ if(e.key==="Enter") sendMessage(txt.value.trim()); });
 
 /* ---------------- چت جدید ---------------- */
-newChatBtn.onclick=()=>{ localStorage.removeItem("avajHistory"); loadHistory(); };
+newChatBtn.onclick=()=>{
+    let chats = getAllChats();
+    chats.push([]);
+    currentChatIndex = chats.length-1;
+    saveAllChats(chats);
+    loadHistory();
+};
 </script>
 </body>
 </html>
