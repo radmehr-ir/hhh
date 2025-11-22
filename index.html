@@ -2,14 +2,15 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>چت بات آواج پیشرفته</title>
+<title>چت بات آواج با والپیپر</title>
 <style>
 #avaj-chat-box{
     position:fixed; top:50%; left:50%; transform:translate(-50%,-50%);
     width:420px; height:520px; border-radius:14px; display:flex;
     flex-direction:column; overflow:hidden; z-index:9999999;
     font-family:sans-serif; box-shadow:0 4px 12px rgba(0,0,0,0.25);
-    background:#f7f4ef;
+    background-image:url('https://static.vecteezy.com/system/resources/previews/026/757/331/non_2x/books-seamless-pattern-on-craft-paper-background-with-hand-drawn-elements-doodles-for-wrapping-paper-scrapbooking-prints-packaging-wallpaper-stationary-etc-eps-10-vector.jpg');
+    background-size:cover; background-position:center;
 }
 #avaj-fullscreen-btn{
     position:absolute; top:8px; left:8px; background:#B89B72;
@@ -37,8 +38,6 @@
 .typing-dot:nth-child(2){animation-delay:0.2s;}
 .typing-dot:nth-child(3){animation-delay:0.4s;}
 @keyframes dot-bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
-#avaj-quick-btns{ display:flex; gap:6px; flex-wrap:wrap; padding:4px; background:#f0ede4;}
-.quick-btn{ padding:4px 8px; background:#B89B72; color:#fff; border:none; border-radius:6px; cursor:pointer; font-size:12px;}
 #avaj-newchat{ margin-top:4px; padding:4px; background:#7A6A52; color:#fff; border:none; border-radius:6px; cursor:pointer; font-size:12px;}
 </style>
 </head>
@@ -47,7 +46,6 @@
 <div id="avaj-chat-box">
     <button id="avaj-fullscreen-btn">⛶</button>
     <div id="avaj-messages"></div>
-    <div id="avaj-quick-btns"></div>
     <div id="avaj-inputArea">
         <input id="avaj-text" placeholder="پیام بنویس...">
         <button id="avaj-send">ارسال</button>
@@ -64,7 +62,6 @@ const msgs = document.getElementById("avaj-messages");
 const txt = document.getElementById("avaj-text");
 const send = document.getElementById("avaj-send");
 const fullscreenBtn = document.getElementById("avaj-fullscreen-btn");
-const quickBtns = document.getElementById("avaj-quick-btns");
 const newChatBtn = document.getElementById("avaj-newchat");
 
 /* ---------------- Fullscreen ---------------- */
@@ -77,7 +74,6 @@ function saveMessage(role,text){
     history.push({role,text});
     localStorage.setItem("avajHistory",JSON.stringify(history));
 }
-
 function loadHistory(){
     msgs.innerHTML="";
     let history = JSON.parse(localStorage.getItem("avajHistory")||"[]");
@@ -152,15 +148,6 @@ async function sendMessage(text){
 /* ارسال با دکمه و اینتر */
 send.onclick = ()=>sendMessage(txt.value.trim());
 txt.addEventListener("keydown",e=>{ if(e.key==="Enter") sendMessage(txt.value.trim()); });
-
-/* ---------------- سوال‌های آماده ---------------- */
-const presetQuestions=["سلام","کتاب‌های جدید چی هستند؟","چطور می‌توانم حساب بسازم؟"];
-presetQuestions.forEach(q=>{
-    const b=document.createElement("button");
-    b.className="quick-btn"; b.textContent=q;
-    b.onclick=()=>sendMessage(q);
-    quickBtns.appendChild(b);
-});
 
 /* ---------------- چت جدید ---------------- */
 newChatBtn.onclick=()=>{ localStorage.removeItem("avajHistory"); loadHistory(); };
