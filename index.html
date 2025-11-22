@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>چت بات آواج</title>
+<title>چت بات آواج با تاریخچه</title>
 </head>
 <body>
 
@@ -29,7 +29,6 @@ window.addEventListener("DOMContentLoaded", function(){
             font-family:sans-serif;
             transition: all 0.3s ease;
             box-shadow:0 4px 12px rgba(0,0,0,0.25);
-
             background-image:url('https://static.vecteezy.com/system/resources/previews/006/188/164/non_2x/seamless-pattern-doodle-many-icons-of-books-scattered-background-for-education-elearning-school-concept-pile-of-paper-books-open-book-book-on-computer-screen-ebooks-glasses-heart-vector.jpg');
             background-size:cover;
             background-position:center;
@@ -87,14 +86,8 @@ window.addEventListener("DOMContentLoaded", function(){
             outline:none;
         }
 
-        /* glow هنگام تایپ */
-        #avaj-text:focus {
-            animation: inputGlow 1s infinite alternate;
-        }
-        @keyframes inputGlow {
-            from { box-shadow: 0 0 0px #B89B72; }
-            to   { box-shadow: 0 0 8px #B89B72; }
-        }
+        #avaj-text:focus { animation: inputGlow 1s infinite alternate; }
+        @keyframes inputGlow { from { box-shadow: 0 0 0px #B89B72; } to { box-shadow: 0 0 8px #B89B72; } }
 
         #avaj-send{
             padding:6px 14px;
@@ -122,11 +115,8 @@ window.addEventListener("DOMContentLoaded", function(){
             height:100vh;
             border-radius:0;
         }
-        #avaj-chat-box.fullscreen #avaj-messages{
-            margin-top:0;
-        }
+        #avaj-chat-box.fullscreen #avaj-messages{ margin-top:0; }
 
-        /* انیمیشن نقطه‌ها */
         .typing-dots{
             display:flex;
             gap:4px;
@@ -142,11 +132,7 @@ window.addEventListener("DOMContentLoaded", function(){
         }
         .typing-dot:nth-child(2){animation-delay:0.2s;}
         .typing-dot:nth-child(3){animation-delay:0.4s;}
-
-        @keyframes dot-bounce{
-            0%,100%{transform:translateY(0);}
-            50%{transform:translateY(-6px);}
-        }
+        @keyframes dot-bounce{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-6px);} }
     `;
     const style = document.createElement("style");
     style.innerHTML = css;
@@ -167,26 +153,14 @@ window.addEventListener("DOMContentLoaded", function(){
     `;
     document.body.appendChild(box);
 
-
     const msgs = document.getElementById("avaj-messages");
     const txt = document.getElementById("avaj-text");
     const send = document.getElementById("avaj-send");
     const fullscreenBtn = document.getElementById("avaj-fullscreen-btn");
 
-
     /* ---------------- Fullscreen ---------------- */
     let fs = false;
-    fullscreenBtn.onclick = ()=>{
-        fs = !fs;
-        if(fs){
-            box.classList.add("fullscreen");
-            fullscreenBtn.innerText = "✖";
-        }else{
-            box.classList.remove("fullscreen");
-            fullscreenBtn.innerText = "⛶";
-        }
-    };
-
+    fullscreenBtn.onclick = ()=>{ fs = !fs; box.classList.toggle("fullscreen"); fullscreenBtn.innerText = fs?"✖":"⛶"; };
 
     /* ---------------- انیمیشن تایپ ---------------- */
     function typeWriterEffect(text, element, speed = 25) {
@@ -201,27 +175,24 @@ window.addEventListener("DOMContentLoaded", function(){
         typeNext();
     }
 
-    function addBotTypingMessage(fullText) {
+    function addBotTypingMessage(fullText){
         const bubble = document.createElement("div");
         bubble.className = "avaj-msg avaj-bot";
         msgs.appendChild(bubble);
         msgs.scrollTop = msgs.scrollHeight;
-
         typeWriterEffect(fullText, bubble, 25);
+        saveMessage("bot", fullText);
     }
 
-
-    /* ---------------- پیام‌های معمولی ---------------- */
     function addUserMsg(text){
         const m = document.createElement("div");
         m.className = "avaj-msg avaj-user";
         m.textContent = text;
         msgs.appendChild(m);
         msgs.scrollTop = msgs.scrollHeight;
+        saveMessage("user", text);
     }
 
-
-    /* ---------------- نقطه‌های تایپ ---------------- */
     function addTyping(){
         const typing = document.createElement("div");
         typing.className = "avaj-msg avaj-bot";
@@ -237,20 +208,34 @@ window.addEventListener("DOMContentLoaded", function(){
         msgs.scrollTop = msgs.scrollHeight;
     }
 
-    function removeTyping(){
-        const t = document.getElementById("typing");
-        if(t) t.remove();
+    function removeTyping(){ const t = document.getElementById("typing"); if(t) t.remove(); }
+
+    /* ---------------- LocalStorage تاریخچه ---------------- */
+    function saveMessage(role, text){
+        let history = JSON.parse(localStorage.getItem("avajHistory")||"[]");
+        history.push({role,text});
+        localStorage.setItem("avajHistory", JSON.stringify(history));
     }
 
+    function loadHistory(){
+        let history = JSON.parse(localStorage.getItem("avajHistory")||"[]");
+        history.forEach(msg=>{
+            const bubble = document.createElement("div");
+            bubble.className = "avaj-msg " + (msg.role=="user"?"avaj-user":"avaj-bot");
+            bubble.textContent = msg.text;
+            msgs.appendChild(bubble);
+        });
+        msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    loadHistory(); // بارگذاری تاریخچه هنگام باز شدن
 
     /* ---------------- ارسال ---------------- */
     send.onclick = async ()=>{
         const text = txt.value.trim();
         if(!text) return;
-
         addUserMsg(text);
         txt.value = "";
-
         addTyping();
 
         try{
@@ -267,7 +252,6 @@ window.addEventListener("DOMContentLoaded", function(){
             });
 
             removeTyping();
-
             const data = await res.json();
             const answer = data?.choices?.[0]?.message?.content || "خطا!";
             addBotTypingMessage(answer);
