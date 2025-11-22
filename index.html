@@ -2,24 +2,31 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>چت بات آواج با والپیپر</title>
+<title>چت بات آواج با والپیپر و بازگشت</title>
 <style>
 #avaj-chat-box{
     position:fixed; top:50%; left:50%; transform:translate(-50%,-50%);
-    width:420px; height:520px; border-radius:14px; display:flex;
+    width:420px; height:550px; border-radius:14px; display:flex;
     flex-direction:column; overflow:hidden; z-index:9999999;
     font-family:sans-serif; box-shadow:0 4px 12px rgba(0,0,0,0.25);
     background-image:url('https://static.vecteezy.com/system/resources/previews/026/757/331/non_2x/books-seamless-pattern-on-craft-paper-background-with-hand-drawn-elements-doodles-for-wrapping-paper-scrapbooking-prints-packaging-wallpaper-stationary-etc-eps-10-vector.jpg');
     background-size:cover; background-position:center;
 }
+#avaj-top-bar{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:6px 12px; background:rgba(255,255,255,0.7); backdrop-filter:blur(6px);
+}
+#avaj-back-btn{
+    padding:4px 8px; background:#7A6A52; color:#fff; border:none;
+    border-radius:6px; cursor:pointer; font-size:12px;
+}
 #avaj-fullscreen-btn{
-    position:absolute; top:8px; left:8px; background:#B89B72;
-    color:#fff; border:none; padding:4px 8px; border-radius:6px;
-    font-size:12px; cursor:pointer; z-index:10;
+    padding:4px 8px; background:#B89B72; color:#fff; border:none;
+    border-radius:6px; cursor:pointer; font-size:12px;
 }
 #avaj-messages{
     flex:1; padding:12px; overflow-y:auto; display:flex;
-    flex-direction:column; gap:8px; margin-top:30px;
+    flex-direction:column; gap:8px; margin-top:0;
 }
 .avaj-msg{ padding:8px 12px; border-radius:10px;
     max-width:70%; word-break: break-word; background:rgba(255,255,255,0.7);
@@ -44,7 +51,10 @@
 <body>
 
 <div id="avaj-chat-box">
-    <button id="avaj-fullscreen-btn">⛶</button>
+    <div id="avaj-top-bar">
+        <button id="avaj-back-btn">🔙 بازگشت</button>
+        <button id="avaj-fullscreen-btn">⛶</button>
+    </div>
     <div id="avaj-messages"></div>
     <div id="avaj-inputArea">
         <input id="avaj-text" placeholder="پیام بنویس...">
@@ -63,6 +73,10 @@ const txt = document.getElementById("avaj-text");
 const send = document.getElementById("avaj-send");
 const fullscreenBtn = document.getElementById("avaj-fullscreen-btn");
 const newChatBtn = document.getElementById("avaj-newchat");
+const backBtn = document.getElementById("avaj-back-btn");
+
+/* ---------------- دکمه بازگشت ---------------- */
+backBtn.onclick = ()=>{ window.location.href="https://avage.ir"; };
 
 /* ---------------- Fullscreen ---------------- */
 let fs = false;
