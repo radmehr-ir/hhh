@@ -1309,7 +1309,12 @@ if ($action === 'send_message') {
     // Encrypt the message body before storing it.
     // Previous build accidentally defined $bodyForDb inside open_chat,
     // so send_message could reach INSERT with an undefined variable and fail.
-    $bodyForDb = encrypt_message_body($body);
+    try {
+        $bodyForDb = encrypt_message_body($body);
+    } catch (Throwable $e) {
+        error_log('send_message encryption unavailable: ' . $e->getMessage());
+        json_out(['ok' => false, 'error' => 'message_encryption_unavailable'], 503);
+    }
 
     $pdo = db();
     $pdo->beginTransaction();
@@ -1505,8 +1510,14 @@ if ($action === 'edit_message') {
     if (!empty($m['deleted_at'])) json_out(['ok'=>false,'error'=>'message_deleted'],422);
     if (($m['msg_type'] ?? 'text') !== 'text') json_out(['ok'=>false,'error'=>'only_text_can_be_edited'],422);
 
+    try {
+        $encryptedBody = encrypt_message_body($body);
+    } catch (Throwable $e) {
+        error_log('edit_message encryption unavailable: ' . $e->getMessage());
+        json_out(['ok' => false, 'error' => 'message_encryption_unavailable'], 503);
+    }
     db()->prepare('UPDATE messages SET body = ?, edited_at = NOW() WHERE id = ? AND sender_id = ?')
-       ->execute([encrypt_message_body($body), $mid, $uid]);
+       ->execute([$encryptedBody, $mid, $uid]);
     $q = db()->prepare('SELECT id, conversation_id, sender_id, body, msg_type, created_at, edited_at FROM messages WHERE id = ?');
     $q->execute([$mid]);
     $out = $q->fetch();
