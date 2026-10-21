@@ -4427,7 +4427,7 @@ function openStickerPicker() {
   };
 }
 
-// ---- E2E message encryption (AES-GCM + ECDH P-256) ----
+// ---- Browser-side direct-chat text encryption (AES-GCM + ECDH P-256; key verification pending) ----
 const CRYPTO_PREFIX = 'ENC1:';
 let _cryptoReady = null;
 let _privKey = null;
@@ -4510,14 +4510,6 @@ async function getSharedAesKey(peerUserId) {
   } catch (e) {
     return null;
   }
-}
-
-// Fallback symmetric key from conversation id (for groups / when peer has no key yet)
-async function getConvFallbackKey(conversationId) {
-  if (!_privKey) await ensureCryptoIdentity();
-  const material = new TextEncoder().encode('mouj-conv-' + conversationId + '-' + (user && user.id));
-  const hash = await crypto.subtle.digest('SHA-256', material);
-  return crypto.subtle.importKey('raw', hash, { name: 'AES-GCM' }, false, ['encrypt', 'decrypt']);
 }
 
 async function encryptBody(plain, conversationId, peerUserId) {
