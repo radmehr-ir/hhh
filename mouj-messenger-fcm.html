@@ -3738,6 +3738,19 @@ function bindMsgActions(el, m) {
   };
 
   el.addEventListener('contextmenu', openMenu);
+  // Android WebView and touch browsers do not always dispatch contextmenu on long-press.
+  el.addEventListener('pointerdown', ev => {
+    if (ev.pointerType !== 'touch') return;
+    clearTimeout(longPressTimer);
+    const px=ev.clientX, py=ev.clientY;
+    longPressTimer=setTimeout(()=>{
+      const fakeEvent={preventDefault(){},stopPropagation(){}};
+      if(Math.abs((window.__moujLastTouchX??px)-px)<14 && Math.abs((window.__moujLastTouchY??py)-py)<14) openMenu(fakeEvent);
+    },520);
+  }, {passive:true});
+  el.addEventListener('pointermove', ev => { if(ev.pointerType==='touch'){window.__moujLastTouchX=ev.clientX;window.__moujLastTouchY=ev.clientY;} }, {passive:true});
+  el.addEventListener('pointerup', () => clearTimeout(longPressTimer), {passive:true});
+  el.addEventListener('pointercancel', () => clearTimeout(longPressTimer), {passive:true});
 
   // Mobile: swipe the message to the visual right to reply.
   let sx = 0, sy = 0, swiping = false, swipeDistance = 0;
@@ -4892,8 +4905,15 @@ $('chatHead').onclick = async (e) => {
   else if (currentConvInfo) await openConversationProfile(currentConvInfo);
 };
 // The name/avatar are explicitly clickable so opening contact information never navigates away from the chat.
-$('chatName').onclick = async e => { e.stopPropagation(); if(currentChatUser) await openPrivateProfile(currentChatUser); else if(currentConvInfo) await openConversationProfile(currentConvInfo); };
-$('chatAv').onclick = async e => { e.stopPropagation(); if(currentChatUser) await openPrivateProfile(currentChatUser); else if(currentConvInfo) await openConversationProfile(currentConvInfo); };
+async function openChatIdentityFromHeader(e){
+  e.preventDefault(); e.stopPropagation();
+  const person=currentChatUser ? {...currentChatUser} : null;
+  const conv=currentConvInfo ? {...currentConvInfo} : null;
+  if(person){ closeChat(); await loadTab('contacts'); await openPrivateProfile(person); }
+  else if(conv){ closeChat(); await loadTab('chats'); openConversationProfile(conv); }
+}
+$('chatName').onclick = openChatIdentityFromHeader;
+$('chatAv').onclick = openChatIdentityFromHeader;
 
 async function openPrivateProfile(current) {
   showLoader();
@@ -5361,5 +5381,85 @@ img,video,canvas,svg{max-width:100%}
     const key=kind==='channel'?'c':kind==='user'?'u':'m';
     return base.split('#')[0].split('?')[0]+'?'+key+'='+encodeURIComponent(String(value||''));
   };
+})();
+</script>
+
+
+<!-- Strict light theme and Android/WebView compatibility fixes -->
+<style id="mouj-light-android-fixes-2026-10-21">
+:root,html[data-theme="dark"],html[data-theme="light"]{
+ color-scheme:light!important;
+ --bg:#f5f7fb!important;--glass:rgba(30,55,90,.055)!important;--line:rgba(45,65,95,.14)!important;
+ --text:#172033!important;--dim:#69758a!important;--v:#367bf5!important;--c:#20bda7!important;
+ --danger:#df3f59!important;--panel:#fff!important;
+}
+html,html[data-theme="dark"],html[data-theme="light"],body,body.auth-mode{background:#f5f7fb!important;color:#172033!important}
+body{color-scheme:light!important}
+.bg{background:#f5f7fb!important;opacity:.22!important}
+.bg .blob{display:none!important}
+.app{background:#fff!important;border-color:#e3e8f0!important;box-shadow:0 14px 60px rgba(35,55,85,.10)!important}
+.screen,.preview-screen{background:#fff!important;color:#172033!important}
+.chathead,.preview-head,.chat-search,.chat-search-results{background:#fff!important;color:#172033!important;border-color:#e6eaf1!important}
+input,textarea,select,.pin-input{background:#fff!important;color:#172033!important;border-color:#dce3ed!important;color-scheme:light!important}
+button{color:inherit}
+.bubble{color:#172033!important}
+.bubble:not(.me){background:#f0f3f8!important;border-color:#e3e8f0!important}
+.bubble.me{background:#dff7eb!important;color:#17372c!important;border-color:#c7efdd!important}
+.bubble .file-card{background:#edf1f7!important;color:#172033!important}
+.preview-screen{z-index:100!important;position:absolute!important;inset:0!important;width:100%!important;height:100%!important;min-height:0!important;overflow:hidden!important;display:none;flex-direction:column!important}
+.preview-screen.on{display:flex!important}
+.preview-body{display:block!important;min-height:0!important;flex:1 1 auto!important;overflow-y:auto!important;-webkit-overflow-scrolling:touch!important;padding:18px 14px calc(110px + env(safe-area-inset-bottom))!important;background:#fff!important}
+.preview-info,.preview-title,.preview-meta,.preview-desc,.section-label{color:#172033!important}
+.preview-join{position:absolute!important;bottom:0!important;left:0!important;right:0!important;padding:12px 15px max(12px,env(safe-area-inset-bottom))!important;background:rgba(255,255,255,.97)!important;border-top:1px solid #e8edf4!important}
+.preview-join button{background:#367bf5!important;color:#fff!important;box-shadow:0 5px 18px rgba(54,123,245,.18)!important}
+#ctxMenu{display:none!important;position:fixed!important;top:50%!important;left:50%!important;right:auto!important;bottom:auto!important;transform:translate(-50%,-46%) scale(.92)!important;width:min(360px,calc(100vw - 24px))!important;max-width:calc(100vw - 24px)!important;max-height:76dvh!important;overflow-y:auto!important;background:#fff!important;color:#172033!important;border:1px solid #e1e7f0!important;border-radius:22px!important;box-shadow:0 20px 65px rgba(30,50,80,.22)!important;z-index:100002!important;opacity:0;pointer-events:none!important;padding:12px!important}
+#ctxMenu.on{display:block!important;opacity:1!important;pointer-events:auto!important;transform:translate(-50%,-50%) scale(1)!important;animation:moujContextPop .28s ease-out both}
+#ctxMenu button{background:transparent!important;color:#172033!important;border:0!important;text-align:right!important}
+#ctxMenu button:hover,#ctxMenu button:focus{background:#f0f4fa!important}
+#ctxMenu .mouj-selected-message{background:#f0f5ff!important;border:1px solid #dce8ff!important;color:#172033!important}
+#ctxMenu .mouj-selected-sender{color:#2868d8!important}
+#ctxMenu .mouj-selected-text{color:#172033!important}
+#ctxMenu .mouj-selected-hint{color:#718096!important}
+#ctxMenu .ctx-reactions button{background:#f4f6fa!important}
+#ctxMenu button.danger{color:#cf334a!important}
+.mouj-ctx-backdrop{z-index:100001!important;background:rgba(35,50,75,.22)!important;backdrop-filter:blur(5px)!important}
+#profileModal,.modal,.sheet{color:#172033}
+html[data-theme="dark"] .tg-card{background:#fff!important;border-color:#e6eaf1!important;box-shadow:0 8px 28px rgba(40,50,80,.06)!important}
+html[data-theme="dark"] .detail-head{background:rgba(255,255,255,.96)!important}
+html[data-theme="dark"] .chat-bottom-fab{background:#fff!important;color:#2868d8!important}
+@media(max-width:520px){.preview-screen{border-radius:0!important}.preview-body{padding-bottom:calc(120px + env(safe-area-inset-bottom))!important}#ctxMenu{max-height:72dvh!important}}
+</style>
+<script id="mouj-light-android-fixes-2026-10-21-js">
+(function(){
+  // This build is intentionally light-only. Ignore previously saved dark/system preferences.
+  try{localStorage.setItem('mouj_theme','light');}catch(e){}
+  if(typeof applyTheme==='function'){
+    applyTheme=function(theme,animate=false){
+      const root=document.documentElement;
+      root.classList.remove('theme-animate');
+      root.setAttribute('data-theme','light');
+      root.setAttribute('data-theme-mode','light');
+      try{localStorage.setItem('mouj_theme','light');}catch(e){}
+      const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.setAttribute('content','#f5f7fb');
+      document.querySelectorAll('[data-theme-choice]').forEach(b=>b.classList.toggle('active',b.dataset.themeChoice==='light'));
+    };
+    applyTheme('light',false);
+  }
+  // Reassert the preview as a visible screen after async content arrives (Android WebView safe).
+  const preview=document.getElementById('publicPreview');
+  if(preview){
+    const originalShow=window.show;
+    if(typeof originalShow==='function'){
+      window.show=function(id){
+        originalShow(id);
+        if(id==='publicPreview'){
+          preview.classList.add('on');
+          preview.style.display='flex';
+          preview.style.flexDirection='column';
+          preview.style.zIndex='100';
+        }
+      };
+    }
+  }
 })();
 </script>
