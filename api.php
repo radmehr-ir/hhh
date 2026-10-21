@@ -1099,14 +1099,14 @@ if ($action === 'messages') {
 
     if ($hasMediaCols) {
         $sql = 'SELECT m.id, m.body, m.msg_type, m.file_path, m.file_mime, m.file_name, m.file_size,
-                       m.created_at, m.edited_at, m.sender_id, m.reply_to_id, u.first_name, u.last_name
+                       m.created_at, m.edited_at, m.deleted_at, m.sender_id, m.reply_to_id, u.first_name, u.last_name, u.avatar_path
                 FROM messages m JOIN users u ON u.id = m.sender_id
-                WHERE m.conversation_id = ? AND m.deleted_at IS NULL AND m.id > ?
+                WHERE m.conversation_id = ? AND m.id > ?
                 ORDER BY m.id ASC LIMIT 200';
     } else {
-        $sql = 'SELECT m.id, m.body, m.created_at, m.sender_id, u.first_name, u.last_name
+        $sql = 'SELECT m.id, m.body, m.created_at, m.deleted_at, m.sender_id, u.first_name, u.last_name, u.avatar_path
                 FROM messages m JOIN users u ON u.id = m.sender_id
-                WHERE m.conversation_id = ? AND m.deleted_at IS NULL AND m.id > ?
+                WHERE m.conversation_id = ? AND m.id > ?
                 ORDER BY m.id ASC LIMIT 200';
     }
     $q = db()->prepare($sql);
@@ -1133,6 +1133,8 @@ if ($action === 'messages') {
             'file_size' => ($hasMediaCols && $r['file_size'] !== null) ? (int)$r['file_size'] : null,
             'created_at' => $r['created_at'],
             'edited_at' => $r['edited_at'] ?? null,
+            'deleted_at' => $r['deleted_at'] ?? null,
+            'avatar_path' => absolute_url($r['avatar_path'] ?? null),
             'sender_id' => (int)$r['sender_id'],
             'reply_to_id' => isset($r['reply_to_id']) && $r['reply_to_id'] ? (int)$r['reply_to_id'] : null,
             'first_name' => $r['first_name'],
