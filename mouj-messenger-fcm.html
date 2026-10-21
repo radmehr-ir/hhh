@@ -4133,6 +4133,12 @@ async function loadMessages(options = {}) {
       for (const m of r.messages) {
         const existingMsg = document.querySelector(`[data-mid="${m.id}"]`);
         if (existingMsg) {
+          if (m.deleted_at && !existingMsg.classList.contains('deleted')) {
+            moujDustDelete(existingMsg);
+            existingMsg.classList.add('deleted');
+            const stamp = existingMsg.querySelector('small')?.outerHTML || '';
+            existingMsg.innerHTML = '<span class="deleted-message-text">این پیام حذف شد</span>' + stamp;
+          }
           const oldEdited = existingMsg.dataset.edited || '';
           if (m.edited_at && m.edited_at !== oldEdited) {
             lastId = 0;
