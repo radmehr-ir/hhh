@@ -4,34 +4,20 @@ declare(strict_types=1);
 // اطمینان از یکسان بودن منطقه‌ی زمانی PHP با ساعت سرور (جلوگیری از اختلاف زمانی در محاسبات OTP)
 date_default_timezone_set('Asia/Tehran');
 
-// --- موقت: نمایش خطاهای PHP برای عیب‌یابی (بعد از رفع مشکل حذف شود) ---
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
-
-// --- موقت: نوشتن خطاها در یک فایل مشخص داخل همین پوشه (چون display_errors
-// ممکن است روی برخی هاست‌ها توسط تنظیمات سرور قفل شده باشد) ---
+// Production-safe error handling: keep diagnostics in the host's protected PHP error log.
+ini_set('display_errors', '0');
+ini_set('display_startup_errors', '0');
 ini_set('log_errors', '1');
-ini_set('error_log', __DIR__ . '/debug_errors.log');
-register_shutdown_function(function () {
-    $err = error_get_last();
-    if ($err && in_array($err['type'], [E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR], true)) {
-        @file_put_contents(
-            __DIR__ . '/debug_errors.log',
-            date('Y-m-d H:i:s') . ' FATAL: ' . $err['message'] . ' in ' . $err['file'] . ' on line ' . $err['line'] . PHP_EOL,
-            FILE_APPEND
-        );
-    }
-});
+error_reporting(E_ALL);
 
 define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
 define('DB_NAME', getenv('DB_NAME') ?: 'radmehr3_telegram_lite');
 define('DB_USER', getenv('DB_USER') ?: 'radmehr3_telegram_lite');
-define('DB_PASS', getenv('DB_PASS') ?: 'Radmehr1390');
+define('DB_PASS', getenv('DB_PASS') ?: '');
 
 define('APP_BASE_URL', getenv('APP_BASE_URL') ?: 'https://chat.radmehrweb.ir');
 
-define('SMSIR_API_KEY', getenv('SMSIR_API_KEY') ?: 'jeFhLa4ipargWQ7S3yFim5IBOrMe4Oot8wuyilb4twysVvl0');
+define('SMSIR_API_KEY', getenv('SMSIR_API_KEY') ?: '');
 define('SMSIR_TEMPLATE_ID', (int) (getenv('SMSIR_TEMPLATE_ID') ?: 248498));
 define('SMSIR_SEND_URL', 'https://api.sms.ir/v1/send/verify');
 
