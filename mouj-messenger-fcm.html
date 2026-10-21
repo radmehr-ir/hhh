@@ -1800,8 +1800,7 @@ function renderMediaBlock(m) {
     </div>`;
   }
   if (mt === 'video_message') {
-    const src = cached || m.file_path;
-    if (src) {
+    if (cached) {
       return `<div class="vm-wrap" data-vm="1"><video src="${esc(src)}" playsinline preload="metadata"></video>
         <svg class="vm-ring" viewBox="0 0 198 198"><circle cx="99" cy="99" r="95"/><circle class="vm-prog" cx="99" cy="99" r="95"/></svg>
         <div class="vm-play">▶</div></div>`;
@@ -3439,7 +3438,13 @@ async function openPublicPreview(slug) {
       html+=d.outerHTML;
     });
     $('previewBody').innerHTML=html;
-    $('previewJoinBtn').onclick=async()=>{ await joinBySlug(previewSlug); };
+    $('previewJoinBtn').onclick=async()=>{
+      const btn=$('previewJoinBtn');
+      if(btn.dataset.busy==='1') return;
+      btn.dataset.busy='1'; btn.disabled=true; btn.textContent='در حال عضویت…';
+      try { await joinBySlug(previewSlug); }
+      finally { btn.dataset.busy='0'; btn.disabled=false; btn.textContent='عضو شوید'; }
+    };
     show('publicPreview');
   } catch(e){ toast('خطا در دریافت پیش‌نمایش'); } finally { hideLoader(); }
 }
@@ -3698,12 +3703,14 @@ function bindMsgActions(el, m) {
     backdrop.classList.add('on');
     document.body.appendChild(menu);
     const rect = el.getBoundingClientRect();
-    const app = document.querySelector('.app').getBoundingClientRect();
-    let top = rect.top - app.top - 8;
-    let left = rect.left - app.left;
-    if (left + 170 > app.width) left = app.width - 180;
-    if (top < 60) top = rect.bottom - app.top + 4;
-    menu.style.top = top + 'px';
+    const menuWidth = Math.min(260, window.innerWidth - 24);
+    let top = rect.top - 8;
+    let left = Math.max(12, Math.min(rect.left, window.innerWidth - menuWidth - 12));
+    if (top < 12) top = Math.min(window.innerHeight - 220, rect.bottom + 8);
+    menu.style.position = 'fixed';
+    menu.style.width = 'max-content';
+    menu.style.maxWidth = menuWidth + 'px';
+    menu.style.top = Math.max(8, Math.min(top, window.innerHeight - 300)) + 'px';
     menu.style.left = left + 'px';
     menu.onclick = async (e) => {
       const btn = e.target.closest('button[data-a],button[data-react]');
@@ -3728,8 +3735,9 @@ function bindMsgActions(el, m) {
         try {
           let r = await api('delete_message', { message_id: m.id, scope: 'everyone' });
           if (r.ok) {
+            moujDustDelete(el);
             el.classList.add('deleted');
-            el.querySelector('small') && (el.innerHTML = 'این پیام حذف شد' + el.querySelector('small').outerHTML);
+            el.querySelector('small') && (el.innerHTML = '<span class="deleted-message-text">این پیام حذف شد</span>' + el.querySelector('small').outerHTML);
             toast('حذف شد');
           } else toast('حذف ناموفق');
         } catch (err) { toast('خطا'); }
@@ -4176,6 +4184,11 @@ async function loadMessages(options = {}) {
         d.dataset.mid = m.id;
         msgCache[m.id] = m;
         let content = '';
+        const isGroupOrChannel = !!(currentConvInfo && ['group','channel'].includes(currentConvInfo.type));
+        if (isGroupOrChannel && m.sender_id != user.id && !m.deleted_at && m.body !== 'این پیام حذف شد') {
+          const senderName = ((m.first_name || '') + ' ' + (m.last_name || '')).trim() || 'کاربر';
+          content += '<div class="channel-sender-line">' + av({id:m.sender_id,first_name:m.first_name,last_name:m.last_name,avatar_path:m.avatar_path}) + '<b>' + esc(senderName) + '</b></div>';
+        }
         if (m.reply_to_id && msgCache[m.reply_to_id]) {
           const rm = msgCache[m.reply_to_id];
           const rb = rm._plain || rm.body || '';
@@ -4184,21 +4197,23 @@ async function loadMessages(options = {}) {
           content += `<div class="reply-quote" data-reply-target="${Number(m.reply_to_id)}" role="button" tabindex="0" title="رفتن به پیام اصلی">↩ پاسخ به پیام</div>`;
         }
         const mt = m.msg_type || 'text';
+        const isDeletedMessage = !!(m.deleted_at || displayBody === 'این پیام حذف شد');
+        if (isDeletedMessage) { d.classList.add('deleted'); content = '<span class="deleted-message-text">این پیام حذف شد</span>'; }
         const stickerKey = (typeof displayBody === 'string' && displayBody.startsWith('svg:')) ? displayBody.slice(4) : (mt === 'sticker' && displayBody && !m.file_path ? displayBody : '');
-        if (stickerKey && stickerSvg(stickerKey)) {
+        if (!isDeletedMessage && stickerKey && stickerSvg(stickerKey)) {
           content += `<div class="sticker-msg">${stickerSvg(stickerKey)}</div>`;
           d.classList.add('sticker-bubble');
-        } else if (m.file_path && mt !== 'text') {
+        } else if (!isDeletedMessage && m.file_path && mt !== 'text') {
           content += `<div class="msg-media" id="mm-${m.id}">${renderMediaBlock(m)}</div>`;
         }
         const isDefaultCap = /^(📷 عکس|🎬 ویدیو|استیکر|📎 فایل|این پیام حذف شد)$/.test(displayBody || '');
         const isSvgSticker = !!(stickerKey && stickerSvg(stickerKey));
-        if (!isSvgSticker && displayBody && !(mt !== 'text' && isDefaultCap)) {
+        if (!isDeletedMessage && !isSvgSticker && displayBody && !(mt !== 'text' && isDefaultCap)) {
           content += linkifyText(displayBody);
-        } else if (!isSvgSticker && mt === 'text') {
+        } else if (!isDeletedMessage && !isSvgSticker && mt === 'text') {
           content += linkifyText(displayBody || '');
         }
-        if (displayBody === 'این پیام حذف شد' || m.body === 'این پیام حذف شد') d.classList.add('deleted');
+        if (isDeletedMessage) d.classList.add('deleted');
         const ticks = (m.sender_id == user.id)
           ? `<span class="ticks ${m.status === 'seen' ? 'seen' : ''}">${m.status === 'seen' ? '✓✓' : '✓'}</span>`
           : '';
@@ -4242,10 +4257,11 @@ async function loadMessages(options = {}) {
     const tb = $('typingBar');
     if (tb) {
       if (r.typing && r.typing.length) {
-        const names = r.typing.map(t => t.first_name).join('، ');
-        tb.textContent = names + ' در حال نوشتن…';
+        tb.innerHTML = '<span class="typing-dots" role="status" aria-label="در حال نوشتن"><i></i><i></i><i></i></span>';
+        tb.classList.add('typing-active');
       } else {
-        tb.textContent = '';
+        tb.innerHTML = '';
+        tb.classList.remove('typing-active');
       }
     }
   } catch (e) {}
@@ -5314,6 +5330,14 @@ img,video,canvas,svg{max-width:100%}
   *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
 </style>
+<script id="mouj-delete-dust-animation">
+function moujDustDelete(el){
+ if(!el||el.dataset.dusting==='1')return;el.dataset.dusting='1';
+ const r=el.getBoundingClientRect();
+ for(let i=0;i<26;i++){const p=document.createElement('i');p.className='mouj-dust-particle';p.style.left=(r.left+Math.random()*Math.max(8,r.width))+'px';p.style.top=(r.top+Math.random()*Math.max(8,r.height))+'px';p.style.setProperty('--dx',((Math.random()-.5)*150)+'px');p.style.setProperty('--dy',(-25-Math.random()*110)+'px');p.style.setProperty('--dust-color',['#9aa9bf','#b6c3d5','#d5deea','#83cfc1'][i%4]);document.body.appendChild(p);setTimeout(()=>p.remove(),750);}
+ el.animate([{opacity:1,filter:'blur(0px)',transform:'scale(1)'},{opacity:.12,filter:'blur(5px)',transform:'scale(.96)'}],{duration:320,easing:'ease-out'});
+}
+</script>
 </body>
 </html>
 /* Final chat scroll safety override */
