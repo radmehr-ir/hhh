@@ -2172,7 +2172,7 @@ async function loadTab(tab) {
   if (tab === 'chats') loadChats();
   else if (tab === 'contacts') loadContacts();
   else if (tab === 'calls') loadCalls();
-  else loadSettings();
+  else { loadSettings(); setTimeout(checkMoujUpdate, 0); }
 }
 
 
@@ -2497,7 +2497,7 @@ function initTheme(){
 }
 function bindThemePicker(){document.querySelectorAll('[data-theme-choice]').forEach(b=>b.onclick=()=>applyTheme(b.dataset.themeChoice,true));}
 
-const MOUJ_VERSION='8.4.0';
+const MOUJ_VERSION='8.5.0';
 async function checkMoujUpdate(){
   const text=$('updateText'), actions=$('updateActions'); if(!text||!actions)return;
   try{
@@ -2520,7 +2520,7 @@ async function checkMoujUpdate(){
       text.textContent=hasNew && alreadySeen ? `نسخه ${latest} قبلاً بررسی شد.` : `نسخه فعلی موج ${MOUJ_VERSION} است و بروزرسانی جدیدی نیست.`;
       actions.style.display='none';
     }
-  }catch(e){setNavBadge('settings',0);text.textContent=`نسخه فعلی موج ${MOUJ_VERSION}`;actions.style.display='none';}
+  }catch(e){setNavBadge('settings',0);text.textContent=`نسخه ${MOUJ_VERSION} · بررسی آنلاین ناموفق بود؛ برای تلاش دوباره وارد بخش دیگری شوید و دوباره تنظیمات را باز کنید.`;actions.style.display='none';}
 }
 function compareVersions(a,b){const A=String(a).split('.').map(x=>parseInt(x)||0),B=String(b).split('.').map(x=>parseInt(x)||0);for(let i=0;i<Math.max(A.length,B.length);i++){if((A[i]||0)!==(B[i]||0))return (A[i]||0)>(B[i]||0)?1:-1}return 0;}
 
@@ -5234,6 +5234,52 @@ const _oldCheckUpdate=checkMoujUpdate;checkMoujUpdate=async function(){try{const
 
 // Settings profile / update interactions are intentionally client-side except profile changes.
 </script>
+
+<style id="mouj-responsive-fixes-2026-10-21">
+/* Responsive layout and settings/update-card fixes. Preserve existing app behavior. */
+html{min-height:100%;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{min-width:0;min-height:100%;overflow-x:hidden}
+button,input,textarea,select{font:inherit;max-width:100%}
+img,video,canvas,svg{max-width:100%}
+#appRoot,.app,.shell,.layout,.main,.page,.content,.settings,.settings-list{min-width:0;max-width:100%}
+.settings-card{min-width:0;overflow-wrap:anywhere}
+.settings-card .name,.settings-card .muted,.settings-card .last{overflow-wrap:anywhere}
+#updateCard{display:block;width:100%;max-width:100%;min-width:0}
+#updateText{white-space:normal;overflow-wrap:anywhere;line-height:1.9}
+#updateActions{flex-wrap:wrap}
+#updateActions button{flex:1 1 130px;min-width:0}
+.field{min-width:0;max-width:100%}
+.field input,.field textarea,.field select{min-width:0;width:100%}
+.row{min-width:0;max-width:100%}
+.row .mid{min-width:0;overflow-wrap:anywhere}
+@media(max-width:899px){
+  html,body{width:100%;min-height:100%;overflow-x:hidden}
+  body{overscroll-behavior-y:contain}
+  #appRoot,.app{width:100%;max-width:100%;min-height:100dvh}
+  .settings-card{margin-inline:0!important;padding:clamp(12px,3.6vw,18px)!important;border-radius:18px}
+  .settings-card .row{gap:10px}
+  .settings-card button{min-height:42px}
+  #updateActions{display:flex;gap:8px;flex-wrap:wrap}
+  #updateActions[style*="display:none"]{display:none!important}
+  .theme-picker{display:flex;flex-wrap:wrap;gap:8px}
+  .theme-picker button{flex:1 1 120px}
+}
+@media(max-width:520px){
+  .settings-card{border-radius:16px!important}
+  .settings-card [style*="display:flex"]{max-width:100%;flex-wrap:wrap}
+  #settingsAvatarBox{flex:0 0 64px!important;width:64px!important;height:64px!important}
+  #updateActions button{flex:1 1 100%;width:100%}
+  .field label{max-width:100%;overflow-wrap:anywhere}
+  input,textarea,select{font-size:16px!important}
+}
+@media(max-width:360px){
+  .settings-card{padding:11px!important}
+  #updateActions button{font-size:13px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+</style>
 </body>
 </html>
 /* Final chat scroll safety override */
