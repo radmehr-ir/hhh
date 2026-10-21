@@ -3869,7 +3869,7 @@ function peekUserMessagesHtml(messages, otherId){
   return messages.map(m=>{
     const me=Number(m.sender_id)===Number(user?.id);
     let body=String(m.body||'');
-    if(body.startsWith(CRYPTO_PREFIX)) body='پیام رمزنگاری‌شده';
+    if(body.startsWith(CRYPTO_PREFIX) || body.startsWith(LEGACY_CRYPTO_PREFIX)) body='پیام رمزنگاری‌شده';
     const media=peekMediaHtml(m);
     const cap=/^(📷 عکس|🎬 ویدیو|استیکر|📎 فایل|این پیام حذف شد)$/.test(body)?'':body;
     return `<div class="peek-msg ${me?'me':''}">${media}${cap?linkifyText(cap):''}<time>${new Date(String(m.created_at).replace(' ','T')).toLocaleTimeString('fa-IR',{hour:'2-digit',minute:'2-digit'})}</time></div>`;
@@ -4152,7 +4152,7 @@ async function loadMessages(options = {}) {
         if (m.reply_to_id && msgCache[m.reply_to_id]) {
           const rm = msgCache[m.reply_to_id];
           const rb = rm._plain || rm.body || '';
-          content += `<div class="reply-quote" data-reply-target="${Number(m.reply_to_id)}" role="button" tabindex="0" title="رفتن به پیام اصلی">↩ ${esc(String(rb).startsWith(CRYPTO_PREFIX) ? 'پیام رمزنگاری‌شده' : String(rb).slice(0, 80))}</div>`;
+          content += `<div class="reply-quote" data-reply-target="${Number(m.reply_to_id)}" role="button" tabindex="0" title="رفتن به پیام اصلی">↩ ${esc((String(rb).startsWith(CRYPTO_PREFIX) || String(rb).startsWith(LEGACY_CRYPTO_PREFIX)) ? 'پیام رمزنگاری‌شده' : String(rb).slice(0, 80))}</div>`;
         } else if (m.reply_to_id) {
           content += `<div class="reply-quote" data-reply-target="${Number(m.reply_to_id)}" role="button" tabindex="0" title="رفتن به پیام اصلی">↩ پاسخ به پیام</div>`;
         }
