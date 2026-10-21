@@ -1447,7 +1447,7 @@ function isDesktop() {
 function formatLastBody(body) {
   const s = String(body || '');
   if (s.startsWith('svg:')) return 'استیکر';
-  if (s.startsWith('ENC1:')) return '🔒 پیام رمزنگاری‌شده';
+  if (s.startsWith('ENC1:') || s.startsWith('ENC2:')) return '🔒 پیام رمزنگاری‌شده';
   return s;
 }
 function show(id) {
@@ -4139,7 +4139,7 @@ async function loadMessages(options = {}) {
         }
         // decrypt text body if encrypted
         let displayBody = m.body || '';
-        if (displayBody.startsWith(CRYPTO_PREFIX)) {
+        if (displayBody.startsWith(CRYPTO_PREFIX) || displayBody.startsWith(LEGACY_CRYPTO_PREFIX)) {
           const peer = (m.sender_id == user.id) ? peerIdForCurrentChat() : m.sender_id;
           displayBody = await decryptBody(displayBody, currentChat, peer);
           m._plain = displayBody;
@@ -4428,7 +4428,8 @@ function openStickerPicker() {
 }
 
 // ---- Browser-side direct-chat text encryption (AES-GCM + ECDH P-256; key verification pending) ----
-const CRYPTO_PREFIX = 'ENC1:';
+const CRYPTO_PREFIX = 'ENC2:';
+const LEGACY_CRYPTO_PREFIX = 'ENC1:';
 let _cryptoReady = null;
 let _privKey = null;
 let _pubJwk = null;
@@ -4521,13 +4522,14 @@ async function encryptBody(plain, conversationId, peerUserId) {
   const key = await getSharedAesKey(peerUserId);
   if (!key) throw new Error('peer_key_unavailable');
   const iv = crypto.getRandomValues(new Uint8Array(12));
+  const aad = new TextEncoder().encode('mouj|ENC2|conversation:' + String(conversationId));
   const ciphertext = await crypto.subtle.encrypt(
-    { name: 'AES-GCM', iv },
+    { name: 'AES-GCM', iv, additionalData: aad },
     key,
     new TextEncoder().encode(text)
   );
   const envelope = {
-    v: 1,
+    v: 2,
     iv: Array.from(iv),
     ct: Array.from(new Uint8Array(ciphertext))
   };
@@ -4536,18 +4538,22 @@ async function encryptBody(plain, conversationId, peerUserId) {
 
 async function decryptBody(body, conversationId, peerUserId) {
   const value = String(body || '');
-  // Legacy messages remain readable. Only ENC1 payloads are decrypted on the client.
-  if (!value.startsWith(CRYPTO_PREFIX)) return value;
+  // Legacy ENC1 messages remain readable; ENC2 binds ciphertext to its conversation.
+  const isV2 = value.startsWith(CRYPTO_PREFIX);
+  const prefix = isV2 ? CRYPTO_PREFIX : (value.startsWith(LEGACY_CRYPTO_PREFIX) ? LEGACY_CRYPTO_PREFIX : null);
+  if (!prefix) return value;
   try {
     if (!peerUserId || !await ensureCryptoIdentity()) throw new Error('crypto_unavailable');
     const key = await getSharedAesKey(peerUserId);
     if (!key) throw new Error('peer_key_unavailable');
-    const envelope = JSON.parse(atob(value.slice(CRYPTO_PREFIX.length)));
-    if (envelope.v !== 1 || !Array.isArray(envelope.iv) || !Array.isArray(envelope.ct)) {
+    const envelope = JSON.parse(atob(value.slice(prefix.length)));
+    if (envelope.v !== (isV2 ? 2 : 1) || !Array.isArray(envelope.iv) || !Array.isArray(envelope.ct)) {
       throw new Error('invalid_envelope');
     }
+    const decryptParams = { name: 'AES-GCM', iv: new Uint8Array(envelope.iv) };
+    if (isV2) decryptParams.additionalData = new TextEncoder().encode('mouj|ENC2|conversation:' + String(conversationId));
     const plaintext = await crypto.subtle.decrypt(
-      { name: 'AES-GCM', iv: new Uint8Array(envelope.iv) },
+      decryptParams,
       key,
       new Uint8Array(envelope.ct)
     );
