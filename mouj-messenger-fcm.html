@@ -1568,7 +1568,7 @@ async function openUserByUsername(username) {
     const u = r.user;
     const letter = initials(u);
     const cols = colorFromString((u.id||'') + (u.first_name||''));
-    const profileLink = (SITE_URL || location.href.split('#')[0]) + '#u/' + encodeURIComponent(u.username);
+    const profileLink = (SITE_URL || location.href.split('#')[0].split('?')[0]) + '?u=' + encodeURIComponent(u.username);
     $('profileModalCard').innerHTML = `
       <div class="sheet-handle"></div>
       <div class="modal-av" style="${u.avatar_path ? '' : `--av1:${cols.c1};--av2:${cols.c2};background:linear-gradient(135deg,var(--av1),var(--av2))`}">${u.avatar_path ? `<img src="${esc(u.avatar_path)}">` : letter}</div>
@@ -3520,7 +3520,7 @@ if ($('replyBarClose')) $('replyBarClose').onclick = clearReply;
 
 function messageLink(mid) {
   const base = (typeof SITE_URL !== 'undefined' && SITE_URL) ? SITE_URL : (location.origin + location.pathname);
-  return base.replace(/\/$/, '') + '#m/' + mid;
+  return base.replace(/\/$/, '') + '?m=' + encodeURIComponent(mid);
 }
 
 async function openMessageById(mid) {
@@ -3680,7 +3680,10 @@ function bindMsgActions(el, m) {
     ev.stopPropagation();
     const menu = $('ctxMenu');
     const isMe = m.sender_id == user.id;
+    const previewText = String(m._plain || m.body || (m.file_path ? 'رسانه' : 'پیام')).slice(0,220);
+    const previewSender = isMe ? 'پیام شما' : (currentChatUser ? (((currentChatUser.first_name||'')+' '+(currentChatUser.last_name||'')).trim() || currentChatUser.username || 'پیام') : 'پیام');
     menu.innerHTML = `
+      <div class="mouj-selected-message"><div class="mouj-selected-sender">${esc(previewSender)}</div><div class="mouj-selected-text">${esc(previewText)}</div><div class="mouj-selected-hint">پیام انتخاب‌شده</div></div>
       <div class="ctx-reactions">${['👍','❤️','😂','😮','😢','🔥','👏'].map(x=>`<button type="button" data-react="${x}" aria-label="واکنش ${x}">${x}</button>`).join('')}</div>
       <button type="button" data-a="reply">پاسخ</button>
       <button type="button" data-a="forward">فوروارد</button>
@@ -3690,6 +3693,10 @@ function bindMsgActions(el, m) {
       <button type="button" data-a="copy">کپی متن</button>
     `;
     menu.classList.add('on');
+    let backdrop = $('moujCtxBackdrop');
+    if (!backdrop) { backdrop = document.createElement('div'); backdrop.id = 'moujCtxBackdrop'; backdrop.className = 'mouj-ctx-backdrop'; backdrop.addEventListener('click', () => { menu.classList.remove('on'); backdrop.classList.remove('on'); }); document.body.appendChild(backdrop); }
+    backdrop.classList.add('on');
+    document.body.appendChild(menu);
     const rect = el.getBoundingClientRect();
     const app = document.querySelector('.app').getBoundingClientRect();
     let top = rect.top - app.top - 8;
@@ -3702,6 +3709,7 @@ function bindMsgActions(el, m) {
       const btn = e.target.closest('button[data-a],button[data-react]');
       if (!btn) return;
       menu.classList.remove('on');
+      const backdrop = $('moujCtxBackdrop'); if (backdrop) backdrop.classList.remove('on');
       const a = btn.dataset.a;
       const reaction = btn.dataset.react;
       if (reaction) { await reactToMessage(m, reaction); return; }
@@ -3780,7 +3788,7 @@ function bindMsgActions(el, m) {
   el.addEventListener('touchcancel', () => { clearTimeout(longPressTimer); resetSwipe(); }, { passive: true });
 }
 document.addEventListener('click', (e) => {
-  if (!$('ctxMenu').contains(e.target)) $('ctxMenu').classList.remove('on');
+  if (!$('ctxMenu').contains(e.target)) { $('ctxMenu').classList.remove('on'); const b=$('moujCtxBackdrop'); if(b)b.classList.remove('on'); }
 });
 
 function saveArchivedChats(){ localStorage.setItem('mouj_archived_chats', JSON.stringify([...archivedChatIds])); }
@@ -4893,7 +4901,7 @@ async function openPrivateProfile(current) {
     let r = await api('user_profile', { user_id: current.id });
     const u = r.user || current;
     const letter = initials(u), cols = colorFromString((u.id||'') + (u.first_name||''));
-    const profileLink = (SITE_URL || location.href.split('#')[0]) + '#u/' + encodeURIComponent(u.username || '');
+    const profileLink = (SITE_URL || location.href.split('#')[0].split('?')[0]) + '?u=' + encodeURIComponent(u.username || '');
     $('profileModalCard').innerHTML = `
       <div class="sheet-handle"></div>
       <div class="modal-av" style="${u.avatar_path ? '' : `--av1:${cols.c1};--av2:${cols.c2};background:linear-gradient(135deg,var(--av1),var(--av2))`} ">${u.avatar_path ? `<img src="${esc(u.avatar_path)}">` : letter}</div>
@@ -5230,7 +5238,7 @@ async function registerBiometric(){
 const _oldLoadSettings=loadSettings;loadSettings=function(){renderSettingsTelegram();};
 
 // Update checker: once a version is seen, never ask again for that same version.
-const _oldCheckUpdate=checkMoujUpdate;checkMoujUpdate=async function(){try{const r=await fetch('mouj-version.json?ts='+Date.now(),{cache:'no-store'}).then(x=>x.ok?x.json():null);const latest=r?.version||MOUJ_VERSION;const seen=localStorage.getItem('mouj_version_seen')||'';if(compareVersions(latest,MOUJ_VERSION)>0&&(!seen||compareVersions(latest,seen)>0)){localStorage.setItem('mouj_version_seen',latest);toast('نسخه جدید موج آماده است؛ وارد تنظیمات شوید.');}}catch(e){}};
+const _oldCheckUpdate=checkMoujUpdate;checkMoujUpdate=async function(){try{await _oldCheckUpdate();}catch(e){const t=$('updateText');if(t)t.textContent='بررسی نسخه ناموفق بود؛ اتصال اینترنت را بررسی و دوباره تلاش کنید.';}};
 
 // Settings profile / update interactions are intentionally client-side except profile changes.
 </script>
@@ -5286,3 +5294,72 @@ img,video,canvas,svg{max-width:100%}
 .chat{display:flex!important;flex-direction:column!important;min-height:0!important;height:100%!important;overflow:hidden!important}
 .chat .messages{display:flex!important;flex:1 1 auto!important;min-height:0!important;overflow-y:auto!important;overflow-x:hidden!important;-webkit-overflow-scrolling:touch!important;overscroll-behavior:contain!important}
 .chat .composer{flex:0 0 auto!important}
+
+
+<!-- Mouj UX polish: Telegram-like message selection, in-chat profile preview, swipe-back and deep links -->
+<style id="mouj-telegram-ux-2026-10-21">
+.mouj-ctx-backdrop{position:fixed;inset:0;background:rgba(4,10,20,.58);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);opacity:0;pointer-events:none;z-index:99990;transition:opacity .22s ease}
+.mouj-ctx-backdrop.on{opacity:1;pointer-events:auto}
+#ctxMenu{position:fixed!important;top:50%!important;left:50%!important;right:auto!important;bottom:auto!important;transform:translate(-50%,-46%) scale(.88)!important;transform-origin:center!important;width:min(360px,calc(100vw - 28px))!important;max-width:calc(100vw - 28px)!important;max-height:min(78dvh,680px)!important;overflow-y:auto!important;overscroll-behavior:contain;z-index:99991!important;border:1px solid rgba(255,255,255,.16)!important;border-radius:24px!important;padding:12px!important;background:color-mix(in srgb,var(--panel,#17202d) 92%,transparent)!important;box-shadow:0 24px 80px rgba(0,0,0,.42)!important;opacity:0;pointer-events:none;transition:transform .26s cubic-bezier(.2,.9,.25,1.25),opacity .2s ease!important}
+#ctxMenu.on{opacity:1!important;pointer-events:auto!important;transform:translate(-50%,-50%) scale(1)!important;animation:moujContextPop .34s cubic-bezier(.2,.9,.25,1.25) both}
+#ctxMenu .mouj-selected-message{padding:14px 15px 12px;margin:0 0 10px;border-radius:17px;background:linear-gradient(135deg,rgba(91,141,239,.19),rgba(73,209,171,.12));border:1px solid rgba(130,170,255,.2);overflow-wrap:anywhere}
+#ctxMenu .mouj-selected-sender{font-size:12px;font-weight:800;color:var(--accent,#78a9ff);margin-bottom:7px}
+#ctxMenu .mouj-selected-text{font-size:14px;line-height:1.9;max-height:110px;overflow:hidden;white-space:pre-wrap;word-break:break-word}
+#ctxMenu .mouj-selected-hint{font-size:10px;color:var(--dim,#9aa7b8);margin-top:5px}
+#ctxMenu .ctx-reactions{display:flex;justify-content:space-between;gap:4px;padding:5px 0 10px}
+#ctxMenu .ctx-reactions button{flex:1;min-width:0;min-height:42px;border-radius:14px;font-size:22px;transition:transform .16s ease,background .16s ease}
+#ctxMenu .ctx-reactions button:active{transform:scale(1.2)}
+#ctxMenu>button[data-a]{display:flex;align-items:center;width:100%;min-height:45px;text-align:right;border-radius:13px;padding:10px 13px;margin-top:3px;white-space:normal;overflow-wrap:anywhere}
+#ctxMenu>button[data-a]:active{transform:scale(.985)}
+#chatName,#chatAv{cursor:pointer}
+#chatName{border-radius:8px;transition:background .15s ease}
+#chatName:active{background:rgba(120,160,255,.12)}
+@keyframes moujContextPop{0%{opacity:0;transform:translate(-50%,-46%) scale(.82)}65%{opacity:1;transform:translate(-50%,-50%) scale(1.025)}100%{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+@media(max-width:520px){#ctxMenu{width:calc(100vw - 24px)!important;max-height:76dvh!important;border-radius:22px!important;padding:10px!important}#ctxMenu .mouj-selected-text{max-height:88px}}
+@media(prefers-reduced-motion:reduce){#ctxMenu,.mouj-ctx-backdrop{animation:none!important;transition:none!important}}
+</style>
+<script id="mouj-telegram-ux-2026-10-21-js">
+(function(){
+  function previewCurrentChatUser(ev){
+    const u=(typeof currentChatUser!=='undefined')?currentChatUser:null;
+    const cid=(typeof currentChat!=='undefined')?currentChat:0;
+    if(!u||!u.id||!cid)return;
+    ev.preventDefault();ev.stopPropagation();
+    if(u.username && typeof openUserByUsername==='function') openUserByUsername(u.username);
+    else if(typeof openUserPeek==='function') openUserPeek(Number(u.id),null);
+  }
+  ['chatName','chatAv'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el&&!el.dataset.moujProfileTap){el.dataset.moujProfileTap='1';el.addEventListener('click',previewCurrentChatUser);el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){previewCurrentChatUser(e);}});}
+  });
+  let startX=0,startY=0,lastX=0,lastY=0,eligible=false,swiping=false;
+  document.addEventListener('touchstart',e=>{
+    const t=e.touches&&e.touches[0];if(!t)return;
+    const chat=document.getElementById('chat');
+    const inChat=chat&&chat.classList.contains('on')&&chat.getBoundingClientRect().width>0;
+    eligible=!!inChat&&t.clientX<=34&&!e.target.closest('input,textarea,select,button,[contenteditable="true"],video,audio');
+    startX=lastX=t.clientX;startY=lastY=t.clientY;swiping=false;
+  },{passive:true,capture:true});
+  document.addEventListener('touchmove',e=>{
+    const t=e.touches&&e.touches[0];if(!eligible||!t)return;
+    lastX=t.clientX;lastY=t.clientY;
+    const dx=lastX-startX,dy=lastY-startY;
+    if(dx>18&&Math.abs(dx)>Math.abs(dy)*1.25)swiping=true;
+  },{passive:true,capture:true});
+  document.addEventListener('touchend',e=>{
+    if(!eligible||!swiping){eligible=false;swiping=false;return;}
+    const t=e.changedTouches&&e.changedTouches[0];const dx=t?t.clientX-startX:lastX-startX;const dy=t?t.clientY-startY:lastY-startY;
+    eligible=false;swiping=false;
+    if(dx>115&&Math.abs(dy)<90){
+      if(typeof clearReply==='function')clearReply();
+      if(typeof closeChat==='function')closeChat();
+      if(navigator.vibrate)navigator.vibrate(8);
+    }
+  },{passive:true,capture:true});
+  window.moujDeepLink=function(kind,value){
+    const base=(typeof SITE_URL!=='undefined'&&SITE_URL)?SITE_URL:(location.origin+location.pathname);
+    const key=kind==='channel'?'c':kind==='user'?'u':'m';
+    return base.split('#')[0].split('?')[0]+'?'+key+'='+encodeURIComponent(String(value||''));
+  };
+})();
+</script>
