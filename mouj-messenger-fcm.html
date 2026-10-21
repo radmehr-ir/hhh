@@ -3630,10 +3630,11 @@ async function editMessage(m) {
   if (next === null) return;
   const body = next.trim();
   if (!body) { toast('متن پیام نمی‌تواند خالی باشد'); return; }
-  if (body === (m.body || '').trim()) return;
+  if (body === (m._plain || m.body || '').trim()) return;
   try {
     showLoader('در حال ویرایش پیام…');
-    const r = await api('edit_message', { message_id: m.id, body });
+    const bodyForApi = await encryptBody(body, currentChat, peerIdForCurrentChat());
+    const r = await api('edit_message', { message_id: m.id, body: bodyForApi });
     if (!r.ok) {
       toast(r.error === 'only_text_can_be_edited' ? 'فقط پیام متنی قابل ویرایش است' : 'ویرایش ناموفق بود');
       return;
@@ -4520,14 +4521,49 @@ async function getConvFallbackKey(conversationId) {
 }
 
 async function encryptBody(plain, conversationId, peerUserId) {
-  // Encryption is performed on the server before database INSERT.
-  // The browser sends plaintext over HTTPS; the database never stores plaintext.
-  return String(plain || '');
+  const text = String(plain || '');
+  // This first rollout encrypts direct-chat text only. Groups and media are not E2EE yet.
+  // Fail closed for direct chats: never silently send plaintext if the peer key is missing.
+  if (!peerUserId) return text;
+  if (!await ensureCryptoIdentity()) throw new Error('crypto_unavailable');
+  const key = await getSharedAesKey(peerUserId);
+  if (!key) throw new Error('peer_key_unavailable');
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const ciphertext = await crypto.subtle.encrypt(
+    { name: 'AES-GCM', iv },
+    key,
+    new TextEncoder().encode(text)
+  );
+  const envelope = {
+    v: 1,
+    iv: Array.from(iv),
+    ct: Array.from(new Uint8Array(ciphertext))
+  };
+  return CRYPTO_PREFIX + btoa(JSON.stringify(envelope));
 }
 
 async function decryptBody(body, conversationId, peerUserId) {
-  // api.php decrypts database ciphertext before returning messages to an authorized member.
-  return String(body || '');
+  const value = String(body || '');
+  // Legacy messages remain readable. Only ENC1 payloads are decrypted on the client.
+  if (!value.startsWith(CRYPTO_PREFIX)) return value;
+  try {
+    if (!peerUserId || !await ensureCryptoIdentity()) throw new Error('crypto_unavailable');
+    const key = await getSharedAesKey(peerUserId);
+    if (!key) throw new Error('peer_key_unavailable');
+    const envelope = JSON.parse(atob(value.slice(CRYPTO_PREFIX.length)));
+    if (envelope.v !== 1 || !Array.isArray(envelope.iv) || !Array.isArray(envelope.ct)) {
+      throw new Error('invalid_envelope');
+    }
+    const plaintext = await crypto.subtle.decrypt(
+      { name: 'AES-GCM', iv: new Uint8Array(envelope.iv) },
+      key,
+      new Uint8Array(envelope.ct)
+    );
+    return new TextDecoder().decode(plaintext);
+  } catch (e) {
+    console.warn('message decryption failed', e);
+    return '🔒 این پیام روی این دستگاه قابل رمزگشایی نیست';
+  }
 }
 
 function peerIdForCurrentChat() {
@@ -4832,7 +4868,15 @@ $('composer').onsubmit = async e => {
     if (r.ok) { $('messageInput').value = ''; saveChatDraft(currentChat, ''); clearReply(); setTimeout(loadMessages, 80); }
     else if (r && r.error === 'only_admin_can_post') toast('فقط ادمین کانال می‌تواند پیام بفرستد');
     else toast('ارسال پیام ناموفق بود');
-  } catch (e) { toast('خطا در ارسال'); }
+  } catch (e) {
+    if (e && e.message === 'peer_key_unavailable') {
+      toast('برای رمزنگاری، مخاطب باید یک‌بار نسخهٔ جدید موج را باز کند؛ پیام ارسال نشد');
+    } else if (e && e.message === 'crypto_unavailable') {
+      toast('رمزنگاری این دستگاه در دسترس نیست؛ پیام ارسال نشد');
+    } else {
+      toast('خطا در ارسال');
+    }
+  }
 };
 
 // ---- Profile modal on chat header click ----
