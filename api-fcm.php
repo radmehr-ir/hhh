@@ -1,1443 +1,1799 @@
-PS D:\Mouj> $adb = "D:\sdkk\platform-tools\adb.exe"
-PS D:\Mouj> 
-PS D:\Mouj> & $adb logcat -v time |
->>     Select-String -Pattern "MoujWebConsole|MoujPageDebug|PermissionRequest|Permission Denial|AudioRecord|Camera|camera|microphone|getUserMedia|WebChromeClient|AndroidRuntime"
+<?php
+declare(strict_types=1);
+require_once __DIR__.'/config.php';
 
-10-21 11:06:29.553 I/adbd    (24727): adbd service requested 'shell,v2,TERM=xterm,raw:cmd appops get ir.mouj CAMERA'
-10-21 11:06:54.538 I/CameraService( 1449): onUidStateChanged: uid=10046, procState is changed. (0 -> 1)
-10-21 11:06:54.550 I/CameraService( 1449): onUidStateChanged: uid=10046, procState is changed. (1 -> 0)
-10-21 11:06:54.592 I/CameraService( 1449): onUidStateChanged: uid=10372, procState is changed. (20 -> 2)
-10-21 11:06:54.972 I/CameraService( 1449): onUidStateChanged: uid=10372, procState is changed. (2 -> 15)
-10-21 11:06:54.973 I/CameraService( 1449): onUidStateChanged: uid=10233, procState is changed. (3 -> 5)
-10-21 11:06:55.528 I/CameraService( 1449): onUidStateChanged: uid=10372, procState is changed. (15 -> 19)
-10-21 11:07:03.859 V/WindowManagerShell( 2562): Transition requested: android.os.BinderProxy@21cfb0f TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=17515 displayId=0 isRunning=true 
-baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.HOME] flg=0x10000100 cmp=com.sec.android.app.launcher/.activities.LauncherActivity } 
-baseActivity=ComponentInfo{com.sec.android.app.launcher/com.sec.android.app.launcher.Launcher} topActivity=ComponentInfo{com.sec.android.app.launcher/com.sec.android.app.launcher.Launcher} 
-origActivity=ComponentInfo{com.sec.android.app.launcher/com.sec.android.app.launcher.activities.LauncherActivity} realActivity=ComponentInfo{com.sec.android.app.launcher/com.sec.android.app.launcher.Launcher} numActivities=1 
-lastActiveTime=1781163871 supportsMultiWindow=true resizeMode=2 isResizeable=true minWidth=-1 minHeight=-1 maxWidth=-1 maxHeight=-1 defaultMinSize=220 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@76fa79c} 
-topActivityType=2 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=null topActivityInfo=ActivityInfo{e4415a5 
-com.sec.android.app.launcher.activities.LauncherActivity} launchCookies=[android.os.BinderProxy@a49998f] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=false isVisibleRequested=true isSleeping=false 
-topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 
-topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden originallySupportedMultiWindow=true hasWallpaper=false topActivityInFixedAspectRatio=false 
-rootAffinity=null topActivityInDisplayCompat=false topActivityInBoundsCompat=false topActivityBounds=null singleTapFromLetterbox=false isTopTaskInStage=false topActivityUiMode=17 CoverLauncherWidgetTask=false 
-CoverScreenTask=false isAllowedSeamlessRotation=false isTopTransparentActivity=true hasPopOver=false}, remoteTransition = null, displayChange = null }
-10-21 11:07:03.909 V/WindowManager( 1407): Sent Transition #17533 createdAt=█▒█░-█▓█▒ █▒█▒:█░█╖:█░█│.█╕█╡█░ via request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=17515 displayId=0 
-isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.HOME] flg=0x10000100 cmp=com.sec.android.app.launcher/.activities.LauncherActivity } 
-baseActivity=ComponentInfo{com.sec.android.app.launcher/com.sec.android.app.launcher.Launcher} topActivity=ComponentInfo{com.sec.android.app.launcher/com.sec.android.app.launcher.Launcher} 
-origActivity=ComponentInfo{com.sec.android.app.launcher/com.sec.android.app.launcher.activities.LauncherActivity} realActivity=ComponentInfo{com.sec.android.app.launcher/com.sec.android.app.launcher.Launcher} numActivities=1 
-lastActiveTime=1781163871 supportsMultiWindow=true resizeMode=2 isResizeable=true minWidth=-1 minHeight=-1 maxWidth=-1 maxHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{bced249 Task{ae102cc #17515 type=home 
-I=com.sec.android.app.launcher/.activities.LauncherActivity}}} topActivityType=2 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=null 
-topActivityInfo=ActivityInfo{50d182c com.sec.android.app.launcher.activities.LauncherActivity} launchCookies=[android.os.BinderProxy@a24de0] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=false 
-isVisibleRequested=true isSleeping=false topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 
-topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden originallySupportedMultiWindow=true hasWallpaper=false 
-topActivityInFixedAspectRatio=false rootAffinity=null topActivityInDisplayCompat=false topActivityInBoundsCompat=false topActivityBounds=null singleTapFromLetterbox=false isTopTaskInStage=false topActivityUiMode=17 
-CoverLauncherWidgetTask=false CoverScreenTask=false isAllowedSeamlessRotation=false isTopTransparentActivity=true hasPopOver=false}, remoteTransition = null, displayChange = null }
-10-21 11:07:03.910 I/CameraService( 1449): onUidStateChanged: uid=10046, procState is changed. (0 -> 1)
-10-21 11:07:03.920 I/CameraService( 1449): onUidStateChanged: uid=10235, procState is changed. (5 -> 3)
-10-21 11:07:03.921 I/CameraService( 1449): onUidStateChanged: uid=10233, procState is changed. (5 -> 3)
-10-21 11:07:03.933 I/CameraService( 1449): onUidStateChanged: uid=10046, procState is changed. (1 -> 0)
-10-21 11:07:05.577 I/CameraService( 1449): onUidStateChanged: uid=10046, procState is changed. (0 -> 1)
-10-21 11:07:05.581 V/WindowManagerShell( 2562): Transition requested: android.os.BinderProxy@34e2cc4 TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=19713 displayId=0 isRunning=true 
-baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=ir.mouj/.MainActivity } baseActivity=ComponentInfo{ir.mouj/ir.mouj.MainActivity} 
-topActivity=ComponentInfo{ir.mouj/ir.mouj.MainActivity} origActivity=null realActivity=ComponentInfo{ir.mouj/ir.mouj.MainActivity} numActivities=1 lastActiveTime=1781165592 supportsMultiWindow=true resizeMode=1 
-isResizeable=true minWidth=-1 minHeight=-1 maxWidth=-1 maxHeight=-1 defaultMinSize=220 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@d84f7ad} topActivityType=1 pictureInPictureParams=null 
-shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 88 - 0, 0) topActivityInfo=ActivityInfo{1e25ae2 ir.mouj.MainActivity} 
-launchCookies=[android.os.BinderProxy@1ddbe73] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isSleeping=false topActivityInSizeCompat=false 
-topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 
-topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden originallySupportedMultiWindow=true hasWallpaper=false topActivityInFixedAspectRatio=false rootAffinity=10372:ir.mouj 
-topActivityInDisplayCompat=false topActivityInBoundsCompat=false topActivityBounds=null singleTapFromLetterbox=false isTopTaskInStage=false topActivityUiMode=17 CoverLauncherWidgetTask=false CoverScreenTask=false 
-isAllowedSeamlessRotation=false isTopTransparentActivity=false hasPopOver=false}, remoteTransition = RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@b635130, appThread = 
-android.app.IApplicationThread$Stub$Proxy@72661a9, debugName = QuickstepLaunch }, displayChange = null }
-10-21 11:07:05.635 V/WindowManager( 1407): Sent Transition #17534 createdAt=█▒█░-█▓█▒ █▒█▒:█░█╖:█░█╡.█╡█╢█╡ via request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=19713 displayId=0 
-isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=ir.mouj/.MainActivity } baseActivity=ComponentInfo{ir.mouj/ir.mouj.MainActivity} 
-topActivity=ComponentInfo{ir.mouj/ir.mouj.MainActivity} origActivity=null realActivity=ComponentInfo{ir.mouj/ir.mouj.MainActivity} numActivities=1 lastActiveTime=1781165592 supportsMultiWindow=true resizeMode=1 
-isResizeable=true minWidth=-1 minHeight=-1 maxWidth=-1 maxHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{c8a1790 Task{b551ad0 #19713 type=standard A=10372:ir.mouj}}} topActivityType=1 pictureInPictureParams=null 
-shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 88 - 0, 0) topActivityInfo=ActivityInfo{3cc608e ir.mouj.MainActivity} 
-launchCookies=[android.os.BinderProxy@f4490af] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isSleeping=false topActivityInSizeCompat=false 
-topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 
-topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden originallySupportedMultiWindow=true hasWallpaper=false topActivityInFixedAspectRatio=false rootAffinity=10372:ir.mouj 
-topActivityInDisplayCompat=false topActivityInBoundsCompat=false topActivityBounds=null singleTapFromLetterbox=false isTopTaskInStage=false topActivityUiMode=17 CoverLauncherWidgetTask=false CoverScreenTask=false 
-isAllowedSeamlessRotation=false isTopTransparentActivity=false hasPopOver=false}, remoteTransition = RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@aa11cbc, appThread = 
-android.app.IApplicationThread$Stub$Proxy@2c2b445, debugName = QuickstepLaunch }, displayChange = null }
-10-21 11:07:06.534 I/CameraManagerGlobal( 8100): Connecting to camera service
-10-21 11:07:06.543 D/CameraService( 1449): addListenerHelper: Add listener 0xb400007b94abe190
-10-21 11:07:06.544 D/CameraService( 1449): addListenerHelper: CameraDeviceState for CameraManager
-10-21 11:07:06.550 I/CameraManagerGlobal( 8100): Camera 0 facing CAMERA_FACING_BACK state now CAMERA_STATE_CLOSED for client com.sec.android.app.camera API Level 2 User Id 0
-10-21 11:07:06.551 I/CameraManagerGlobal( 8100): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0
-10-21 11:07:06.551 I/CameraManagerGlobal( 8100): Camera 2 facing CAMERA_FACING_BACK state now CAMERA_STATE_CLOSED for client com.thecat.messenger API Level 1 User Id 0
-10-21 11:07:06.551 I/CameraManagerGlobal( 8100): Camera 20 facing CAMERA_FACING_BACK state now CAMERA_STATE_CLOSED for client android.system API Level 2 User Id 0
-10-21 11:07:06.551 I/CameraManagerGlobal( 8100): Camera 21 facing CAMERA_FACING_BACK state now CAMERA_STATE_CLOSED for client com.sec.android.app.camera API Level 2 User Id 0
-10-21 11:07:06.551 I/CameraManagerGlobal( 8100): Camera 23 facing CAMERA_FACING_BACK state now CAMERA_STATE_CLOSED for client android.system API Level 2 User Id 0
-10-21 11:07:06.551 I/CameraManagerGlobal( 8100): Camera 3 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client com.thecat.messenger API Level 1 User Id 0
-10-21 11:07:06.551 I/CameraManagerGlobal( 8100): Camera 4 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client client.pid<1589> API Level 2 User Id 0
-10-21 11:07:06.552 I/CameraManagerGlobal( 8100): Camera 52 facing CAMERA_FACING_BACK state now CAMERA_STATE_CLOSED for client android.system API Level 2 User Id 0
-10-21 11:07:06.552 I/CameraManagerGlobal( 8100): Camera 54 facing CAMERA_FACING_BACK state now CAMERA_STATE_CLOSED for client android.system API Level 2 User Id 0
-10-21 11:07:06.555 I/CameraManager( 8100): registerAvailabilityCallback: Is device callback = false
-10-21 11:07:06.555 I/CameraManagerGlobal( 8100): postSingleUpdate device: camera id 0 status STATUS_PRESENT
-10-21 11:07:06.556 I/CameraManagerGlobal( 8100): postSingleUpdate device: camera id 1 status STATUS_PRESENT
-10-21 11:07:06.556 I/CameraManagerGlobal( 8100): postSingleUpdate device: camera id 2 status STATUS_PRESENT
-10-21 11:07:06.556 I/CameraManagerGlobal( 8100): postSingleUpdate device: camera id 3 status STATUS_PRESENT
-10-21 11:07:06.604 I/CameraService( 1449): onUidStateChanged: uid=10235, procState is changed. (3 -> 5)
-10-21 11:07:06.682 I/CameraService( 1449): onUidStateChanged: uid=10046, procState is changed. (1 -> 0)
-10-21 11:07:06.781 E/MoujPageDebug( 8100): PAGE_FINISHED url=https://chat.radmehrweb.ir/mouj-messenger.html title=┘à┘ê╪¼ | ┘╛█î╪º┘àΓÇî╪▒╪│╪º┘å
-10-21 11:07:06.798 E/MoujPageDebug( 8100): GEOMETRY "{\"innerHeight\":800,\"innerWidth\":360,\"viewport\":{\"height\":800,\"width\":360,\"scale\":1},\"screen\":{\"height\":800,\"width\":360},\"doc\":{\"id\":\"\",\"cls\":\"mouj-
-android\",\"inline\":null,\"display\":\"block\",\"position\":\"static\",\"height\":\"0px\",\"minHeight\":\"100%\",\"maxHeight\":\"none\",\"offsetHeight\":0,\"clientHeight\":800,\"rect\":{\"x\":0,\"y\":0,\"w\":360,\"h\":0}},\"bo
-dy\":{\"id\":\"\",\"cls\":\"auth-mode\",\"inline\":null,\"display\":\"block\",\"position\":\"static\",\"height\":\"0px\",\"minHeight\":\"100%\",\"maxHeight\":\"none\",\"offsetHeight\":0,\"clientHeight\":0,\"rect\":{\"x\":0,\"y\
-":0,\"w\":360,\"h\":0}},\"app\":{\"id\":\"appRoot\",\"cls\":\"app\",\"inline\":null,\"display\":\"block\",\"position\":\"relative\",\"height\":\"0px\",\"minHeight\":\"0px\",\"maxHeight\":\"none\",\"offsetHeight\":0,\"clientHeig
-ht\":0,\"rect\":{\"x\":0,\"y\":0,\"w\":360,\"h\":0}},\"phone\":{\"id\":\"phone\",\"cls\":\"screen on auth\",\"inline\":null,\"display\":\"flex\",\"position\":\"relative\",\"height\":\"54px\",\"minHeight\":\"0px\",\"maxHeight\":
-\"none\",\"offsetHeight\":54,\"clientHeight\":54,\"rect\":{\"x\":0,\"y\":0,\"w\":360,\"h\":54}},\"bodyClass\":\"auth-mode\",\"appClass\":\"app\"}"
-10-21 11:07:06.798 E/MoujPageDebug( 8100): CSS_RULES "{\"rules\":[{\"error\":\"SecurityError: Failed to read the 'cssRules' property from 'CSSStyleSheet': Cannot access rules\"},{\"selector\":\"html, 
-body\",\"css\":{\"height\":\"100%\"}},{\"selector\":\"body\",\"css\":{\"display\":\"grid\",\"overflow\":\"hidden\",\"place-items\":\"center\",\"align-items\":\"center\"}},{\"selector\":\".app\",\"css\":{\"height\":\"min(920px, 
-96vh)\",\"position\":\"relative\",\"overflow\":\"hidden\"}},{\"selector\":\"body.auth-mode .app > #home, body.auth-mode .app > #chat, body.auth-mode .app > 
-.desktop-empty\",\"css\":{\"display\":\"none\"}},{\"selector\":\"body.auth-mode #phone.screen.on, body.auth-mode #otp.screen.on, body.auth-mode 
-#profile.screen.on\",\"css\":{\"height\":\"100%\",\"display\":\"flex\",\"position\":\"relative\"}},{\"selector\":\".preview-body\",\"css\":{\"overflow\":\"auto\"}},{\"selector\":\".app\",\"css\":{\"height\":\"min(920px, 
-100dvh, 100vh)\"}},{\"selector\":\".reply-bar .rb-body\",\"css\":{\"overflow\":\"hidden\"}},{\"selector\":\"html, body, 
-#appRoot\",\"css\":{\"min-height\":\"0px\"}},{\"selector\":\"body\",\"css\":{\"min-height\":\"100dvh\"}},{\"selector\":\"html.mouj-archive-settings 
-.desktop-archive-setting\",\"css\":{\"display\":\"flex\"}},{\"selector\":\"html.mouj-android .desktop-archive-setting\",\"css\":{\"display\":\"none\"}},{\"selector\":\"html.mouj-android 
-.android-shake-setting\",\"css\":{\"display\":\"flex\"}},{\"selector\":\"html:not(.mouj-android) .android-shake-setting\",\"css\":{\"display\":\"none\"}},{\"selector\":\"html, body\",\"css\":{\"min-height\":\"100%\",\"overflow\
-":\"hidden\"}},{\"selector\":\".app\",\"css\":{\"height\":\"100dvh\",\"max-height\":\"100dvh\"}},{\"selector\":\".detail-body\",\"css\":{\"overflow\":\"auto\"}}],\"htmlStyle\":null,\"bodyStyle\":null,\"appStyle\":null}"
-10-21 11:07:06.798 E/MoujPageDebug( 8100): HEIGHT_TEST "{\"html\":\"0px\",\"body\":\"0px\",\"app\":\"0px\",\"phone\":\"54px\"}"
-10-21 11:07:06.798 E/MoujPageDebug( 8100): HEIGHT_DEBUG2 "{\"styleExists\":true,\"styleText\":\"html,body{height:100%!important;min-height:100dvh!important}#appRoot{height:100dvh!important;min-height:100dvh!important;width:100%
-!important}\",\"html\":{\"height\":\"0px\",\"minHeight\":\"0px\",\"offsetHeight\":0,\"clientHeight\":800},\"body\":{\"height\":\"0px\",\"minHeight\":\"0px\",\"offsetHeight\":0,\"clientHeight\":0},\"elements\":[{\"id\":\"appRoot
-\",\"cssHeight\":\"0px\",\"cssMinHeight\":\"0px\",\"inline\":\"\",\"offsetHeight\":0,\"rectHeight\":0},{\"id\":\"phone\",\"cssHeight\":\"54px\",\"cssMinHeight\":\"0px\",\"inline\":\"\",\"offsetHeight\":54,\"rectHeight\":54}],\"
-viewport\":800}"
-10-21 11:07:06.798 E/MoujPageDebug( 8100): HEIGHT_DEBUG3 "{\"before\":{\"h\":\"\",\"b\":\"\",\"a\":\"\"},\"after\":{\"html\":{\"inline\":\"height: 800px 
-!important;\",\"height\":\"800px\",\"minHeight\":\"0px\",\"offsetHeight\":800,\"rect\":800},\"body\":{\"inline\":\"height: 800px 
-!important;\",\"height\":\"800px\",\"minHeight\":\"0px\",\"offsetHeight\":800,\"rect\":800},\"app\":{\"inline\":\"height: 800px !important;\",\"height\":\"800px\",\"minHeight\":\"0px\",\"offsetHeight\":800,\"rect\":800},\"phone
-\":{\"inline\":\"\",\"height\":\"800px\",\"minHeight\":\"0px\",\"offsetHeight\":800,\"rect\":800}},\"viewport\":800,\"errors\":[]}"
-10-21 11:07:06.798 E/MoujPageDebug( 8100): PAGE_STATE "{\"url\":\"https://chat.radmehrweb.ir/mouj-messenger.html\",\"readyState\":\"complete\",\"title\":\"┘à┘ê╪¼ | 
-┘╛█î╪º┘àΓÇî╪▒╪│╪º┘å\",\"bodyLength\":700,\"htmlLength\":308707,\"bodyBackground\":\"rgb(244, 247, 251)\",\"bodyText\":\"┘à┘ê╪¼\\n┘╛█î╪º┘àΓÇî╪▒╪│╪º┘å█î ┘ê╪º┘é╪╣█î╪î ╪│╪▒█î╪╣ ┘ê ╪▒┘ê╪º┘å\\n╪┤┘à╪º╪▒┘ç ┘à┘ê╪¿╪º█î┘ä\\n╪¿╪▒╪º█î 
-┘ê╪▒┘ê╪»╪î ┌⌐╪» ╪¬╪º█î█î╪» ╪¿┘ç ╪┤┘à╪º╪▒┘ç ╪┤┘à╪º ╪º╪▒╪│╪º┘ä ┘à█îΓÇî╪┤┘ê╪».\\n+98\\n╪º╪»╪º┘à┘ç\\n≡ƒÆ¼\\n┌å╪¬ ╪¼╪»█î╪»\\n╪┤╪▒┘ê╪╣ ┌»┘ü╪¬┌»┘ê ╪¿╪º █î┌⌐ ┘å┘ü╪▒\\n≡ƒæñ\\n╪º┘ü╪▓┘ê╪»┘å ┘à╪«╪º╪╖╪¿\\n╪¿╪º ╪┤┘à╪º╪▒┘ç 
-┘à┘ê╪¿╪º█î┘ä\\n≡ƒæÑ\\n╪º█î╪¼╪º╪» ┌»╪▒┘ê┘ç\\n┌»┘ü╪¬┌»┘ê█î ┌»╪▒┘ê┘ç█î\\n≡ƒôó\\n╪º█î╪¼╪º╪» ┌⌐╪º┘å╪º┘ä\\n╪º┘å╪¬╪┤╪º╪▒ ┘à╪¡╪¬┘ê╪º\\n≡ƒô▒\\n┘ç┘à┌»╪º┘àΓÇî╪│╪º╪▓█î ┘à╪«╪º╪╖╪¿█î┘å\\n╪º╪▓ ╪»┘ü╪¬╪▒┌å┘ç ╪¬┘ä┘ü┘å ┌»┘ê╪┤█î\\n/* Final chat 
-scroll safety override */ .chat{display:flex!important;flex-direction:column!important;min-height:0!important;height:100%!important;overflow:hidden!important} .chat .messages{display:flex!important;flex:1 1 auto!important\",\"n
-odes\":[{\"id\":\"appRoot\",\"exists\":true,\"display\":\"block\",\"visibility\":\"visible\",\"rect\":\"{\\\"x\\\":0,\\\"y\\\":0,\\\"width\\\":360,\\\"height\\\":800,\\\"top\\\":0,\\\"right\\\":360,\\\"bottom\\\":800,\\\"left\\
-\":0}\"},{\"id\":\"phone\",\"exists\":true,\"display\":\"flex\",\"visibility\":\"visible\",\"rect\":\"{\\\"x\\\":0,\\\"y\\\":0,\\\"width\\\":360,\\\"height\\\":800,\\\"top\\\":0,\\\"right\\\":360,\\\"bottom\\\":800,\\\"left\\\"
-:0}\"},{\"id\":\"otp\",\"exists\":true,\"display\":\"none\",\"visibility\":\"visible\",\"rect\":\"{\\\"x\\\":0,\\\"y\\\":0,\\\"width\\\":0,\\\"height\\\":0,\\\"top\\\":0,\\\"right\\\":0,\\\"bottom\\\":0,\\\"left\\\":0}\"},{\"id
-\":\"profile\",\"exists\":true,\"display\":\"none\",\"visibility\":\"visible\",\"rect\":\"{\\\"x\\\":0,\\\"y\\\":0,\\\"width\\\":0,\\\"height\\\":0,\\\"top\\\":0,\\\"right\\\":0,\\\"bottom\\\":0,\\\"left\\\":0}\"},{\"id\":\"hom
-e\",\"exists\":true,\"display\":\"none\",\"visibility\":\"visible\",\"rect\":\"{\\\"x\\\":0,\\\"y\\\":0,\\\"width\\\":0,\\\"height\\\":0,\\\"top\\\":0,\\\"right\\\":0,\\\"bottom\\\":0,\\\"left\\\":0}\"},{\"id\":\"chat\",\"exist
-s\":true,\"display\":\"none\",\"visibility\":\"visible\",\"rect\":\"{\\\"x\\\":0,\\\"y\\\":0,\\\"width\\\":0,\\\"height\\\":0,\\\"top\\\":0,\\\"right\\\":0,\\\"bottom\\\":0,\\\"left\\\":0}\"},{\"id\":\"desktopEmpty\",\"exists\"
-:true,\"display\":\"none\",\"visibility\":\"visible\",\"rect\":\"{\\\"x\\\":0,\\\"y\\\":0,\\\"width\\\":0,\\\"height\\\":0,\\\"top\\\":0,\\\"right\\\":0,\\\"bottom\\\":0,\\\"left\\\":0}\"}]}"
-10-21 11:07:07.424 I/CameraService( 1449): CameraService::connect call (PID 8100 "ir.mouj", camera ID 1) and Camera API version 2
-10-21 11:07:07.424 I/CameraService( 1449): isUidActiveLocked E: uid 10372, callingPackage ir.mouj, isRegistered true
-10-21 11:07:07.424 I/CameraService( 1449): isUidActiveLocked X: uid 10372, callingPackage ir.mouj, isActive true.
-10-21 11:07:07.425 I/EDMNativeHelperService( 1407): isCameraEnabled
-10-21 11:07:07.425 D/EDMNativeHelper( 1407): isCameraEnabled
-10-21 11:07:07.426 D/EDMNativeHelper( 1407): checking for camera in EnterpriseDeviceManagerService
-10-21 11:07:07.426 D/EnterpriseDeviceManagerService( 1407): isCameraEnabledNative
-10-21 11:07:07.426 D/EnterpriseDeviceManagerService( 1407): checking for camera in restriction policy
-10-21 11:07:07.426 D/RestrictionPolicy( 1407): isCameraEnabled ret(true) userId(0) cxtInfo.mCallerUid(10372) cxtInfo.mContainerId(0)
-10-21 11:07:07.427 I/CameraService( 1449): CameraService::validateClientPermissionsLocked is ok : calling pid 8100, calling uid 10372, client ir.mouj , cameraservice pid=1449, device user 0, currently allowed device users: 0
-10-21 11:07:07.427 I/CameraService( 1449): CameraService::handleEvictionsLocked
-10-21 11:07:07.428 I/CameraService( 1449): wouldEvictLocked: [incoming client] owner = 8100, priority-score=0, cost=100, returnIncompatibleClients=false
-10-21 11:07:07.428 I/CameraService( 1449): wouldEvictLocked: [cost info] current cost=0, adding cost=100, total cost=100, max cost=100
-10-21 11:07:07.428 I/CameraService( 1449): wouldEvictLocked: [highestPriority] owner=8100, score=0
-10-21 11:07:07.428 I/CameraFlashlight( 1449): prepareDeviceOpen: prepare for device open(cameraId=1)
-10-21 11:07:07.428 I/Camera2ClientBase( 1449): Camera 1: Opened. Client: ir.mouj (PID 8100, UID 10372)
-10-21 11:07:07.428 I/CameraDeviceClient( 1449): CameraDeviceClient 1: Opened
-10-21 11:07:07.428 I/CameraService( 1449): isNoSALoggingPackage: ir.mouj is a third party package.
-10-21 11:07:07.428 I/CameraService( 1449): makeClient: Camera2 API, override to portrait 0
-10-21 11:07:07.429 I/CameraService( 1449): service.camera.client set to ir.mouj
-10-21 11:07:07.429 I/CameraManagerGlobal( 2562): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.429 I/Camera2ClientBase( 1449): initializeImpl: Initializing client for camera 1
-10-21 11:07:07.429 D/ijt/Camera3-RequestInjector( 1449): RequestInjector[1] Mapper created
-10-21 11:07:07.429 I/Camera3-Device( 1449): Camera3Device: Created device for camera 1
-10-21 11:07:07.429 I/CameraManagerGlobal( 4699): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.429 D/HidlCamera3-Device( 1449): CameraPerf: initialize E
-10-21 11:07:07.429 D/HidlCamera3-Device( 1449): initialize: mInterfaceLock.lock()
-10-21 11:07:07.429 I/CameraManagerGlobal( 4699): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:07.430 I/CameraManagerGlobal( 4699): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:07.430 I/CameraManagerGlobal(14831): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.430 I/CameraManagerGlobal( 5245): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.430 I/CameraManagerGlobal(10793): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.430 I/CameraManagerGlobal( 2806): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.430 I/CameraProviderManager( 1449): openHidlSession, using trampoline for v5.0
-10-21 11:07:07.430 D/CameraProviderManager( 1449): CameraPerf: openHidlSession E
-10-21 11:07:07.430 I/CameraManagerGlobal( 6629): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.430 I/SehCamDev@5.0-impl( 1108): [CAMKPI] camera3->open : E
-10-21 11:07:07.430 I/Unihal  ( 1108): UniHal3InterfaceEntry.cpp: uni_open_camera_hardware: 550: E cameraName: 1
-10-21 11:07:07.430 I/Unihal  ( 1108): UniHal3InterfaceEntry.cpp: uni_open_camera_hardware: 552: UNIHAL_VERSION = "2.15"
-10-21 11:07:07.430 I/Unihal  ( 1108): CameraDevice.cpp: OpenCameraHardware_v3: 401: name : 1 camera id : 1
-10-21 11:07:07.430 I/CameraManagerGlobal(18970): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.430 I/CameraManagerGlobal( 6368): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.430 I/CameraProviderManager( 1449): Camera device device@3.5/legacy/1 torch status is now NOT_AVAILABLE
-10-21 11:07:07.430 I/CameraService( 1449): onTorchStatusChangedLocked: Torch status changed for cameraId=1, newStatus=0
-10-21 11:07:07.430 E/CameraService( 1449): onTorchStatusChangedLocked: cannot get torch status of camera 1: No such file or directory (-2)
-10-21 11:07:07.432 I/CameraManagerGlobal( 1407): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.432 I/CameraManagerGlobal( 1407): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:07.432 I/CameraManagerGlobal( 1407): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:07.433 I/CameraManagerGlobal( 8100): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.434 I/RequestInjectorService( 1407): Camera is opening. Start VT Camera Setting. cameraId(1), displayId(█░)
-10-21 11:07:07.440 W/VSET/ObserveCameraStateService( 6368): onCreate
-10-21 11:07:07.440 I/VSET/ObserveCameraStateService( 6368): initAppRepository 
-10-21 11:07:07.441 I/VSET/ObserveCameraStateService( 6368): initViewModels: X
-10-21 11:07:07.441 I/VSET/ObserveCameraStateService( 6368): onCreate : unihal 3.01
-10-21 11:07:07.441 I/VSET/ObserveCameraStateService( 6368): onStartCommand : unihal 3.01
-10-21 11:07:07.441 I/VSET/ObserveCameraStateService( 6368): initAppRepository is created already
-10-21 11:07:07.443 I/VSET/ObserveCameraStateService( 6368): onStartCommand: true
-10-21 11:07:07.444 D/PackageManager( 1407): setEnabledSetting : userId = 0 packageName = com.samsung.android.vtcamerasettings cmp = com.samsung.android.vtcamerasettings.settings.SettingsActivity newState = 1 callingPackage = 
-com.samsung.android.vtcamerasettings
-10-21 11:07:07.447 I/Unihal  ( 1108): ParameterManager.cpp: SetCameraCharacteristics: 116: Registered camera characteristics successfully. : cameraId=1, characteristics=0xb400007c150dd560
-10-21 11:07:07.447 I/Unihal  ( 1108): UniHal3InterfaceEntry.cpp: uni_open_camera_hardware: 578: X (0)
-10-21 11:07:07.447 I/SehCamDev@5.0-impl( 1108): [CAMKPI] camera3->open : X
-10-21 11:07:07.450 D/ApplicationPolicy( 1407): getApplicationStateEnabled : pkg = com.samsung.android.vtcamerasettings userId : 0
-10-21 11:07:07.452 D/ApplicationPolicy( 1407): getApplicationComponentState : pkg = com.samsung.android.vtcamerasettings userId : 0
-10-21 11:07:07.457 I/VSET/ObserveCameraStateService( 6368): onStartCommand: update SALogging status
-10-21 11:07:07.458 I/VSET/ObserveCameraStateService( 6368): processDeviceInjectorIntent: not supported device injector
-10-21 11:07:07.465 D/CameraProviderManager( 1449): CameraPerf: openHidlSession X (35ms)
-10-21 11:07:07.467 I/VSET/ObserveCameraStateService( 6368): updateAppInfoRepository: E 
-10-21 11:07:07.467 I/VSET/ObserveCameraStateService( 6368): initAppRepository is created already
-10-21 11:07:07.470 D/HidlCamera3-Device( 1449): CameraPerf: initialize X (40ms)
-10-21 11:07:07.470 D/Camera3-Device( 1449): CameraPerf: initializeCommonLocked: E
-10-21 11:07:07.472 I/Camera3-Status( 1449): addComponent: Adding new component 0 - InflightRequests
-10-21 11:07:07.472 I/Camera3-Status( 1449): addComponent: Adding new component 1 - RequestThread
-10-21 11:07:07.472 D/Camera3-Device( 1449): initializeCommonLocked mTimestampOffset = 1155765056712711ns.
-10-21 11:07:07.473 D/Camera3-Device( 1449): CameraPerf: initializeCommonLocked: X (2ms)
-10-21 11:07:07.473 I/CameraService( 1449): startCameraOps: Start camera ops, package name = ir.mouj, client UID = 10372
-10-21 11:07:07.475 I/VSET/ObserveCameraStateService( 6368): requestStopService
-10-21 11:07:07.476 I/VSET/RemoteCameraStatusPreferenceLiveData( 6368): updatePreferenceValue: !!!
-10-21 11:07:07.477 I/VSET/ObserveCameraStateService( 6368): getRemoteCameraStatusPreferenceLiveData: null
-10-21 11:07:07.477 W/VSET/ObserveCameraStateService( 6368): getRemoteCameraStatusPreferenceLiveData: maybe not ready.
-10-21 11:07:07.477 I/VSET/RemoteCameraStatusPreferenceLiveData( 6368): setPreferenceValue: null
-10-21 11:07:07.485 W/VSET/RemoteCameraStatusPreferenceLiveData( 6368): onActive failed start observer java.lang.SecurityException: Failed to find provider com.samsung.android.hwresourceshare.RemoteCameraInfoProvider for user 
-0; expected to find a valid ContentProvider for this authority
-10-21 11:07:07.486 I/CameraService( 1449): increaseCamConnRef: ref=1
-10-21 11:07:07.487 I/CameraService( 1449): increaseCamConnRef: service.camera.running set to 1
-10-21 11:07:07.487 I/VSET/ObserveCameraStateService( 6368): getFloatingViewStatusLiveData: 4
-10-21 11:07:07.488 I/CameraManagerGlobal( 4699): postSingleUpdate device: camera id 1 status STATUS_NOT_AVAILABLE
-10-21 11:07:07.488 I/CameraManagerGlobal(14831): postSingleUpdate device: camera id 1 status STATUS_NOT_AVAILABLE
-10-21 11:07:07.488 I/CameraManagerGlobal( 4699): postSingleUpdate device: camera id 1 status STATUS_NOT_AVAILABLE
-10-21 11:07:07.488 I/CameraManagerGlobal(10793): postSingleUpdate device: camera id 1 status STATUS_NOT_AVAILABLE
-10-21 11:07:07.489 I/CameraManagerGlobal(18970): postSingleUpdate device: camera id 1 status STATUS_NOT_AVAILABLE
-10-21 11:07:07.489 I/CameraManagerGlobal( 8100): postSingleUpdate device: camera id 1 status STATUS_NOT_AVAILABLE
-10-21 11:07:07.489 I/CameraManagerGlobal( 6629): postSingleUpdate device: camera id 1 status STATUS_NOT_AVAILABLE
-10-21 11:07:07.489 E/Camera2-FrameProcessorBase( 1449): FrameProcessorBase: created
-10-21 11:07:07.490 I/IC_Service[1.2.93]( 6629): onCameraUnavailable(1)
-10-21 11:07:07.490 E/Camera2-FrameProcessorBase( 1449): registerListener: Registering listener for frame id range 0 - 2147483647
-10-21 11:07:07.492 I/CameraService( 1449): connectHelper: overrideCameraMuteMode = false, isCameraPrivacyEnabled = false
-10-21 11:07:07.492 I/Camera3-Device( 1449): setCameraMute, enabled = false, supported = true
-10-21 11:07:07.492 I/CameraService( 1449): CameraService::finishConnectLocked E
-10-21 11:07:07.492 I/CameraService( 1449): wouldEvictLocked: [incoming client] owner = 8100, priority-score=0, cost=100, returnIncompatibleClients=false
-10-21 11:07:07.492 I/CameraService( 1449): wouldEvictLocked: [cost info] current cost=0, adding cost=100, total cost=100, max cost=100
-10-21 11:07:07.492 I/CameraService( 1449): wouldEvictLocked: [highestPriority] owner=8100, score=0
-10-21 11:07:07.492 I/CameraManagerGlobal( 5245): postSingleUpdate device: camera id 1 status STATUS_NOT_AVAILABLE
-10-21 11:07:07.494 D/BatteryExternalStatsWorker( 1407): update stats : camera-on (64)
-10-21 11:07:07.494 I/CameraService_worker( 1407): DeviceInjector, onSemCameraDeviceRawStatus 1 -2
-10-21 11:07:07.494 I/CameraService( 1449): addAndEvict: push the client(owner 8100, priorityScore 0, state 2) to mClients
-10-21 11:07:07.494 I/CameraService( 1449): CameraService::finishConnectLocked X
-10-21 11:07:07.495 I/CameraDeviceClient( 1449): notifyAppPackageName
-10-21 11:07:07.495 D/HidlCamera3-Device( 1449): CameraPerf: setParameters E
-10-21 11:07:07.496 D/HidlCamera3-Device( 1449): CameraPerf: setParameters X (0ms)
-10-21 11:07:07.496 I/CameraService( 1449): Notified package name to HAL.
-10-21 11:07:07.496 I/CameraService( 1449): connectHelper: Skip Request Injector ExtraRequests to new client(ir.mouj)
-10-21 11:07:07.496 I/CameraServiceProxyWrapper( 1449): updateProxyDeviceState: notifyCameraState for Camera ID 1, newState 0, facing 1, clientName ir.mouj, apiLevel 2
-10-21 11:07:07.496 I/CameraManagerGlobal( 1407): postSingleUpdate device: camera id 1 status STATUS_NOT_AVAILABLE
-10-21 11:07:07.496 I/CameraManagerGlobal( 1407): postSingleUpdate device: camera id 1 status STATUS_NOT_AVAILABLE
-10-21 11:07:07.496 I/CameraManagerGlobal( 2806): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.497 I/CameraManagerGlobal( 4699): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.497 I/CameraManagerGlobal( 4699): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:07.497 I/AudioManager( 1407): setParameters keyValuePairs = cameraFacing=front
-10-21 11:07:07.497 I/CameraManagerGlobal( 4699): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:07.497 I/CameraManagerGlobal(18970): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.498 I/CameraManagerGlobal(14831): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.498 I/CameraManagerGlobal( 8100): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.498 D/audio_hw_primary( 1075): adev_set_parameters: enter: cameraFacing=front
-10-21 11:07:07.498 I/CameraService( 1449): isNoSALoggingPackage: ir.mouj is a third party package.
-10-21 11:07:07.498 I/CameraManagerGlobal( 6368): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.499 D/cameraserver( 1449): FGS Logger Transaction failed
-10-21 11:07:07.499 D/cameraserver( 1449): -129
-10-21 11:07:07.499 I/CameraManagerGlobal( 6629): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.501 E/cr_VideoCapture( 8100): CameraDevice.StateCallback onOpened
-10-21 11:07:07.499 I/CameraManagerGlobal(10793): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.502 I/CameraManagerGlobal( 2562): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.503 D/CameraAvailabilityListener( 2562): onCameraDeviceStateChanged: id=1, facing=1, state=CAMERA_STATE_OPEN, client=ir.mouj
-10-21 11:07:07.504 I/HBD     ( 5245): k Camera is used by another app, camId = 1 
-10-21 11:07:07.504 I/CameraManagerGlobal( 5245): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.505 I/CameraManagerGlobal( 1407): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.505 I/CameraManagerGlobal( 1407): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:07.506 I/CameraManagerGlobal( 1407): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:07.509 I/lmkd    (  629): check CAMERA OPEN -12548, memlimit: 83524, other_free: 33594, saved_ion_idle_camera: 0, cameraprocsize: 62478, kgsl: 103303, vmallocapi: 59372, diff_available: -20702 
-10-21 11:07:07.509 I/lmkd    (  629): check finished camerakillboostmode
-10-21 11:07:07.512 I/CameraService_proxy( 1407): Notify nfc service : camera open was(false) -> now(true) = polling(false)
-10-21 11:07:07.517 D/HidlCamera3-Device( 1449): CameraPerf: constructDefaultRequestSettings templateId: 1 E
-10-21 11:07:07.518 D/NfcService( 2807): setReaderMode: uid=1000, packageName: com.samsung.android.cameraxservice, flags: 4096
-10-21 11:07:07.520 D/HidlCamera3-Device( 1449): CameraPerf: constructDefaultRequestSettings X (2ms)
-10-21 11:07:07.528 I/WindowManager( 2562): WindowManagerGlobal#addView, ty=2024, view=com.android.systemui.RegionInterceptingFrameLayout{1ed9ae9 V.E...... ......I. 0,0-0,0}, caller=android.view.WindowManagerImpl.addView:150 
-com.android.systemui.ScreenDecorations.setupDecorations:804 com.android.systemui.ScreenDecorations$1.onApplyCameraProtection:54 
-10-21 11:07:07.554 D/Camera3-Device( 1449): waitUntilDrained: mInterfaceLock.unlock()
-10-21 11:07:07.557 D/CameraDeviceClient( 1449): createStream E
-10-21 11:07:07.557 D/SessionConfigUtils( 1449): createSurfaceFromGbp E: logicalCameraId=1, isStreamInfoValid=0, useCase=0, option=0x0, mirrorMode=0
-10-21 11:07:07.561 D/Camera3-Device( 1449): createStream: mInterfaceLock.lock()
-10-21 11:07:07.561 D/Camera3-Device( 1449): createStream: Camera 1: Creating new stream 0: 640 x 480, format 0x23(YUV_420_888), dataspace 146931712 rotation 0 consumer usage 0, isShared 0, physicalCameraId , isMultiResolution 
-0 dynamicRangeProfile 0x1, streamUseCase 0, option 0x0, timestampBase 0, mirrorMode 0, colorSpace -1, useReadoutTimestamp 0
-10-21 11:07:07.565 D/Camera3-Device( 1449): createStream: mInterfaceLock.unlock()
-10-21 11:07:07.565 D/CameraDeviceClient( 1449): createStream: Camera 1: Successfully created a new stream ID 0 for output surface (640 x 480) with format 0x23.
-10-21 11:07:07.565 D/Camera3-Device( 1449): setStreamTransform: mInterfaceLock.lock()
-10-21 11:07:07.565 D/CameraDeviceClient( 1449): createStream X
-10-21 11:07:07.566 D/Camera3-Device( 1449): filterParamsAndConfigureLocked : operatingMode=0
-10-21 11:07:07.566 D/Camera3-Device( 1449): CameraPerf: configureStreamsLocked: Camera 1: Stream configuration E
-10-21 11:07:07.567 I/HidlCamera3-Device( 1449): configureStreams Before configuration Stream[0] : [640 x 480], usage: 0x3
-10-21 11:07:07.568 I/SehCamDevSession@5.0-impl( 1108): [CAMKPI] camera3->configure_streams : E
-10-21 11:07:07.568 I/Unihal  ( 1108): CameraHalUnit.cpp: ConfigureStreams: 232: cameraId=1, GetIsAlreadyCreated=0
-10-21 11:07:07.568 I/Unihal  ( 1108): ScenarioManager.cpp: FindScenarioInfo: 2072: Current shootingMode=0x0001000c(UNI_SHOOTING_MODE_3RD_PARTY_BYPASS), cameraId=1(UNI_FWK_CAMERA_ID_FRONT)
-10-21 11:07:07.568 I/Unihal  ( 1108): ScenarioManager.cpp: CheckEnableCondition: 2222: Unihal is disabled. : isSamsungCamera=false, isFactoryTest=false, isGalaxyRaw = false, isAllowed3rdParty=true, foundScenario=false, 
-isValidStreamConfiguration=false, isSamsungVdisEnabled=false, isTestPatternMode=false, shootingMode=UNI_SHOOTING_MODE_3RD_PARTY_BYPASS
-10-21 11:07:07.568 I/Unihal  ( 1108): CameraHalUnit.cpp: ConfigureStreams: 260: Unihal is bypass mode in current scenario.
-10-21 11:07:07.568 E/CamX    ( 1108): [ERROR][HAL    ] camxhal3.cpp:1535 configure_streams() HalOp: Begin CONFIG: 0xb400007ac39e2730, logicalCameraId: 3, cameraId: 1
-10-21 11:07:07.568 E/CamX    ( 1108): [ERROR][HAL    ] camxhal3.cpp:1568 configure_streams()             stream_type  : 00000000, CAMERA3_STREAM_OUTPUT
-10-21 11:07:07.568 E/CamX    ( 1108): [ERROR][HAL    ] camxhal3.cpp:1575 configure_streams()             rotation     : 00000000, CAMERA3_STREAM_ROTATION_0
-10-21 11:07:07.568 E/CamX    ( 1108): [ERROR][HAL    ] camxhal3.cpp:1583 configure_streams()        physical_camera_id         : 
-10-21 11:07:07.570 I/CHIUSECASE( 1108): [CONFIG ] chxextensionmodule.cpp:1187 SetHALOps() SetHALOps being set for CameraID:3
-10-21 11:07:07.579 E/CHIUSECASE( 1108): [ERROR  ] chxsensorselectmode_a52s.cpp:864 FindBestSensorMode() Selected Usecase: 8, cameraId:5 sensorId:13, SelectedMode W=3264, H=2448, FPS:30, NumBatchedFrames:1, modeIndex:2
-10-21 11:07:07.584 W/CHIUSECASE( 1108): [WARN   ] chifeature2graphmanager.cpp:345 LoadFeatureGraphSelectorOps() No graph selector library files found in the path /vendor/lib64/camera/components/feature2/oem
-10-21 11:07:07.594 E/CHIUSECASE( 1108): [ERROR  ] chxsensorselectmode_a52s.cpp:864 FindBestSensorMode() Selected Usecase: 8, cameraId:5 sensorId:13, SelectedMode W=3264, H=2448, FPS:30, NumBatchedFrames:1, modeIndex:2
-10-21 11:07:07.594 E/CHIUSECASE( 1108): [ERROR  ] chxsensorselectmode_a52s.cpp:864 FindBestSensorMode() Selected Usecase: 8, cameraId:5 sensorId:13, SelectedMode W=3264, H=2448, FPS:30, NumBatchedFrames:1, modeIndex:2
-10-21 11:07:07.594 E/CHIUSECASE( 1108): [ERROR  ] chxsensorselectmode_a52s.cpp:864 FindBestSensorMode() Selected Usecase: 8, cameraId:5 sensorId:13, SelectedMode W=3264, H=2448, FPS:30, NumBatchedFrames:1, modeIndex:2
-10-21 11:07:07.594 E/CHIUSECASE( 1108): [ERROR  ] chxsensorselectmode_a52s.cpp:864 FindBestSensorMode() Selected Usecase: 8, cameraId:5 sensorId:13, SelectedMode W=3264, H=2448, FPS:30, NumBatchedFrames:1, modeIndex:2
-10-21 11:07:07.598 E/CHIUSECASE( 1108): [ERROR  ] chxsensorselectmode_a52s.cpp:864 FindBestSensorMode() Selected Usecase: 8, cameraId:5 sensorId:13, SelectedMode W=3264, H=2448, FPS:30, NumBatchedFrames:1, modeIndex:2
-10-21 11:07:07.600 E/CHIUSECASE( 1108): [ERROR  ] chxsensorselectmode_a52s.cpp:864 FindBestSensorMode() Selected Usecase: 8, cameraId:5 sensorId:13, SelectedMode W=3264, H=2448, FPS:30, NumBatchedFrames:1, modeIndex:2
-10-21 11:07:07.603 E/CHIUSECASE( 1108): [ERROR  ] chxsensorselectmode_a52s.cpp:864 FindBestSensorMode() Selected Usecase: 8, cameraId:5 sensorId:13, SelectedMode W=3264, H=2448, FPS:30, NumBatchedFrames:1, modeIndex:2
-10-21 11:07:07.605 E/CHIUSECASE( 1108): [ERROR  ] chxsensorselectmode_a52s.cpp:864 FindBestSensorMode() Selected Usecase: 8, cameraId:5 sensorId:13, SelectedMode W=3264, H=2448, FPS:30, NumBatchedFrames:1, modeIndex:2
-10-21 11:07:07.617 E/CHIUSECASE( 1108): [ERROR  ] chxsensorselectmode_a52s.cpp:864 FindBestSensorMode() Selected Usecase: 8, cameraId:5 sensorId:13, SelectedMode W=3264, H=2448, FPS:30, NumBatchedFrames:1, modeIndex:2
-10-21 11:07:07.617 W/CHIUSECASE( 1108): [WARN   ] chxsession.cpp:154 Initialize() flags.flags.u.FASTAEC = 0 , isFastAECState = 0 (logicalCameraId 12)
-10-21 11:07:07.630 I/QC_3A   ( 1108):  INFO: AEC: CreateAECAlgorithm: 948: StaticAEC algo create: camera open mask 32 
-10-21 11:07:07.630 I/QC_3A   ( 1108):  INFO: AEC: CreateAECAlgorithm: 841: Given Camera role=0, camera id=5
-10-21 11:07:07.630 I/QC_3A   ( 1108):  INFO: AEC: CreateAECAlgorithm: 958: CameraOpenIndicator : 1
-10-21 11:07:07.630 I/QC_3A   ( 1108):  INFO: AEC: QcWrapperCommonFillSensorIdMap: 26: Already filled, cameraId(5) driverSensorId(13)
-10-21 11:07:07.630 I/QC_3A   ( 1108):  INFO: AEC: CreateAECAlgorithm: 978: Internal camera id = 1
-10-21 11:07:07.638 I/QC_3A   ( 1108):  INFO: AEC: QcAecLoadTuningParamsFromDAT: 73: /data/vendor/camera/QcAecWrapperTuned_Front.dat : No such file or directory
-10-21 11:07:07.640 E/QC_3A   ( 1108): ERROR: AEC: QcAecWrapperInitData: 660: Motion Library loading error: dlopen failed: library "/vendor/lib64/camera/components/libMOTION.so" not found
-10-21 11:07:07.640 I/QC_3A   ( 1108):  INFO: AEC: CreateAECAlgorithm: 1101: AEC Wrapper is created - InstanceCnt=1, algo=0xb400007b75031450, wrapper data=0xb400007b7505e690, curCameraID=1
-10-21 11:07:07.641 I/QC_3A   ( 1108):  INFO: AEC: QcAecGetParamFillOutputPointers: 337: AECAlgoGetParamStartExposure - reqID: 0, cameraId: 1
-10-21 11:07:07.651 I/QC_3A   ( 1108):  INFO: AWB: CreateAWBAlgorithm: 602: StaticAWB algo create: camera open mask 32 
-10-21 11:07:07.651 I/QC_3A   ( 1108):  INFO: AWB: CreateAWBAlgorithm: 530: Given Camera role=0, camera id=5
-10-21 11:07:07.651 I/QC_3A   ( 1108):  INFO: AWB: CreateAWBAlgorithm: 677: CameraOpenIndicator : 1
-10-21 11:07:07.651 I/QC_3A   ( 1108):  INFO: AWB: QcWrapperCommonFillSensorIdMap: 26: Already filled, cameraId(5) driverSensorId(13)
-10-21 11:07:07.651 I/QC_3A   ( 1108):  INFO: AWB: CreateAWBAlgorithm: 697: Internal camera id = 1
-10-21 11:07:07.655 I/QC_3A   ( 1108):  INFO: AWB: CreateAWBAlgorithm: 823: AWB Wrapper is created - InstanceCnt=1, algo=0xb400007b5507f6e0, wrapper data=0xb400007b7502e090, curCameraID 1
-10-21 11:07:07.655 I/QC_3A   ( 1108):  INFO: AWB: QcAwbSetSingleParamToAlgo: 61: [AWB-WARMSTART] Previous CameraID: FRONT(1) Current CameraID: FRONT(1)
-10-21 11:07:07.660 I/QC_3A   ( 1108):  INFO:  AF: CreateAFAlgorithm: 615: StaticAF algo create: camera open mask 32 
-10-21 11:07:07.660 I/QC_3A   ( 1108):  INFO:  AF: CreateAFAlgorithm: 543: Given Camera role=0, camera id=5
-10-21 11:07:07.660 I/QC_3A   ( 1108):  INFO:  AF: QcWrapperCommonFillSensorIdMap: 26: Already filled, cameraId(5) driverSensorId(13)
-10-21 11:07:07.660 I/QC_3A   ( 1108):  INFO:  AF: CreateAFAlgorithm: 651: Internal camera id = 1
-10-21 11:07:07.662 I/QC_3A   ( 1108):  INFO:  AF: CreateAFAlgorithm: 778: AEC Wrapper is created - InstanceCnt=1, algo=0xb400007b5505f110, wrapper data=0xb400007b75021c10, curCameraID=1
-10-21 11:07:07.667 E/CamX    ( 1108): [ERROR][HAL    ] camxhal3.cpp:1699 configure_streams()             stream_type  : 00000000, CAMERA3_STREAM_OUTPUT
-10-21 11:07:07.667 E/CamX    ( 1108): [ERROR][HAL    ] camxhal3.cpp:1706 configure_streams()             rotation     : 00000000, CAMERA3_STREAM_ROTATION_0
-10-21 11:07:07.667 I/SehCamDevSession@5.0-impl( 1108): [CAMKPI] camera3->configure_streams : X
-10-21 11:07:07.668 D/HidlCamera3-Device( 1449): configureStreams : stream[0] : format = 0x23(YUV_420_888), data_space = 146931712, color_space = -1 usage flag = 0x20003 max_buffers = 8, physical_camera_id = 
-10-21 11:07:07.668 D/Camera3-Device( 1449): CameraPerf: Connect Streams E
-10-21 11:07:07.668 I/Camera3-Status( 1449): addComponent: Adding new component 2 - streamId = 0, format = 0x23(YUV_420_888), width = 640, height = 480, option = 0x0, type = OUTPUT
-10-21 11:07:07.670 D/Camera3-OutputStream( 1449): configureConsumerQueueLocked: Consumer wants 2 buffers, HAL wants 8
-10-21 11:07:07.671 D/Camera3-Device( 1449): CameraPerf: Connect Streams X (2ms)
-10-21 11:07:07.672 D/Camera3-Device( 1449): Set real time priority for request queue thread (tid 8259)
-10-21 11:07:07.672 D/Camera3-Device( 1449): CameraPerf: configureStreamsLocked: Camera 1: Stream configuration X (106ms)
-10-21 11:07:07.677 D/Camera3-Device( 1449): setStreamingRequestList: Enter: calling submitRequestsHelper: repeating = true
-10-21 11:07:07.677 D/Camera3-Device( 1449): submitRequestsHelper: mInterfaceLock.lock()
-10-21 11:07:07.677 I/Camera3-Device( 1449): Submit request type: 0x1, repeating(true), burst(false)
-10-21 11:07:07.677 D/Camera3-Device( 1449): setRepeatingRequests: lastFrameNumber 0.
-10-21 11:07:07.677 I/Camera3-Status( 1449): markComponent: Component 1 is now active - RequestThread
-10-21 11:07:07.677 D/Camera3-Device( 1449): CameraPerf: PrepareHALRequests E
-10-21 11:07:07.677 I/CameraService( 1449): startCameraStreamingOps: Start camera streaming ops, package name = ir.mouj, client UID = 10372
-10-21 11:07:07.678 I/CameraServiceProxyWrapper( 1449): updateProxyDeviceState: notifyCameraState for Camera ID 1, newState 1, facing 1, clientName ir.mouj, apiLevel 2
-10-21 11:07:07.678 I/Camera3-Status( 1449): markComponent: Component 2 is now active - streamId = 0, format = 0x23(YUV_420_888), width = 640, height = 480, option = 0x0, type = OUTPUT
-10-21 11:07:07.678 I/Camera3-Status( 1449): markComponent: Component 0 is now active - InflightRequests
-10-21 11:07:07.678 D/Camera3-Device( 1449): CameraPerf: PrepareHALRequests X (1ms)
-10-21 11:07:07.678 D/Camera3-Device( 1449): CameraPerf: sendRequestsBatch E
-10-21 11:07:07.678 I/CameraService_proxy( 1407): wmi.addRefreshRateRangeForPackage minFPS = 30.000002, maxFPS = 60.0, clientName = ir.mouj
-10-21 11:07:07.678 I/CameraManagerGlobal( 2806): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.679 I/CameraManagerGlobal( 2562): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.679 I/CameraManagerGlobal( 5245): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.679 I/CameraManagerGlobal(18970): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.679 I/CameraManagerGlobal(14831): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.679 I/CameraManagerGlobal( 1407): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.679 I/CameraManagerGlobal(10793): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.679 I/CameraManagerGlobal( 1407): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:07.680 I/CameraManagerGlobal( 1407): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:07.680 I/CameraManagerGlobal( 6368): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.680 I/SehCamDevSession@5.0-impl( 1108): [CAMKPI] camera3->process_capture_request : E
-10-21 11:07:07.680 I/CameraManagerGlobal( 6629): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.680 I/CameraManagerGlobal( 4699): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.680 I/CameraManagerGlobal( 4699): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:07.680 D/CameraAvailabilityListener( 2562): onCameraDeviceStateChanged: id=1, facing=1, state=CAMERA_STATE_ACTIVE, client=ir.mouj
-10-21 11:07:07.680 I/CameraManagerGlobal( 4699): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:07.681 E/CHIUSECASE( 1108): [ERROR  ] chxadvancedcamerausecase.cpp:6617 SetPriorityMetadata() [3rd party DBG][ISO] ERROR, Check, please(37)
-10-21 11:07:07.682 D/Camera3-Device( 1449): submitRequestsHelper: mInterfaceLock.unlock()
-10-21 11:07:07.682 I/lmkd    (  629): check finished camerakillboostmode
-10-21 11:07:07.682 I/SehCamDevSession@5.0-impl( 1108): [CAMKPI] camera3->process_capture_request : X
-10-21 11:07:07.682 D/Camera3-Device( 1449): CameraPerf: sendRequestsBatch X (4ms)
-10-21 11:07:07.683 I/CameraManagerGlobal( 8100): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.684 I/EDMNativeHelperService( 1407): isCameraEnabled
-10-21 11:07:07.685 D/EDMNativeHelper( 1407): isCameraEnabled
-10-21 11:07:07.685 E/CHIUSECASE( 1108): [ERROR  ] chxadvancedcamerausecase.cpp:6617 SetPriorityMetadata() [3rd party DBG][ISO] ERROR, Check, please(37)
-10-21 11:07:07.686 D/EDMNativeHelper( 1407): checking for camera in EnterpriseDeviceManagerService
-10-21 11:07:07.686 D/EnterpriseDeviceManagerService( 1407): isCameraEnabledNative
-10-21 11:07:07.686 D/EnterpriseDeviceManagerService( 1407): checking for camera in restriction policy
-10-21 11:07:07.686 D/RestrictionPolicy( 1407): isCameraEnabled ret(true) userId(0) cxtInfo.mCallerUid(10372) cxtInfo.mContainerId(0)
-10-21 11:07:07.691 E/CHIUSECASE( 1108): [ERROR  ] chxadvancedcamerausecase.cpp:6617 SetPriorityMetadata() [3rd party DBG][ISO] ERROR, Check, please(37)
-10-21 11:07:07.692 I/Camera2ClientBase( 1449): Creating CameraServiceWatchDog for disconnect with cycles=80, cycleLength=100ms, timer=8000ms
-10-21 11:07:07.692 I/Camera2ClientBase( 1449): CameraServiceWatchDog::watchThread for disconnect with cycles=80, cycleLength=100ms, timer=8000ms
-10-21 11:07:07.692 D/Camera2ClientBase( 1449): Camera 1: start to disconnect
-10-21 11:07:07.692 D/Camera2ClientBase( 1449): Camera 1: serializationLock acquired
-10-21 11:07:07.692 D/Camera2ClientBase( 1449): Camera 1: Shutting down
-10-21 11:07:07.692 D/Camera2ClientBase( 1449): Camera 1: start to cacheDump
-10-21 11:07:07.692 E/camera_metadata( 1449): validate_camera_metadata_structure: metadata is null!
-10-21 11:07:07.692 E/Camera2-Metadata( 1449): acquire: Failed to validate metadata structure 0x0
-10-21 11:07:07.694 E/Camera2-FrameProcessorBase( 1449): removeListener: 
-10-21 11:07:07.696 D/Camera3-Device( 1449): flush: mInterfaceLock.lock()
-10-21 11:07:07.696 I/Camera3-Device( 1449): Creating CameraServiceWatchDog for flush with cycles=80, cycleLength=100ms, timer=8000ms
-10-21 11:07:07.696 I/Camera3-Device( 1449): CameraServiceWatchDog::watchThread for flush with cycles=80, cycleLength=100ms, timer=8000ms
-10-21 11:07:07.696 D/HidlCamera3-Device( 1449): CameraPerf: flush E
-10-21 11:07:07.696 I/Unihal  ( 1108): CameraHalUnit.cpp: Flush: 545: HAL flush - Start
-10-21 11:07:07.700 E/CameraDeviceClient( 1449): notifyError: pid=8100, errorCode=3, errorStreamId=0, frameNumber=3
-10-21 11:07:07.700 E/CameraDeviceClient( 1449): notifyError: pid=8100, skipClientNotification=false
-10-21 11:07:07.701 E/Camera3-OutputStream( 1449): returnBufferCheckedLocked: A frame is dropped for stream 0 frame 3 , due to buffer error.
-10-21 11:07:07.701 I/Camera3-Status( 1449): markComponent: Component 1 is now idle - RequestThread
-10-21 11:07:07.733 E/CameraDeviceClient( 1449): notifyError: pid=8100, errorCode=4, errorStreamId=0, frameNumber=0
-10-21 11:07:07.733 E/CameraDeviceClient( 1449): notifyError: pid=8100, skipClientNotification=false
-10-21 11:07:07.733 E/CameraDeviceClient( 1449): notifyError: pid=8100, errorCode=5, errorStreamId=0, frameNumber=0
-10-21 11:07:07.733 E/CameraDeviceClient( 1449): notifyError: pid=8100, skipClientNotification=false
-10-21 11:07:07.734 E/CameraDeviceClient( 1449): notifyError: pid=8100, errorCode=4, errorStreamId=0, frameNumber=1
-10-21 11:07:07.734 E/CameraDeviceClient( 1449): notifyError: pid=8100, skipClientNotification=false
-10-21 11:07:07.735 E/CameraDeviceClient( 1449): notifyError: pid=8100, errorCode=5, errorStreamId=0, frameNumber=1
-10-21 11:07:07.735 E/CameraDeviceClient( 1449): notifyError: pid=8100, skipClientNotification=false
-10-21 11:07:07.735 E/Camera3-OutputStream( 1449): returnBufferCheckedLocked: A frame is dropped for stream 0 frame 1 , due to buffer error.
-10-21 11:07:07.735 E/CameraDeviceClient( 1449): notifyError: pid=8100, errorCode=4, errorStreamId=0, frameNumber=2
-10-21 11:07:07.735 E/CameraDeviceClient( 1449): notifyError: pid=8100, skipClientNotification=false
-10-21 11:07:07.736 E/CameraDeviceClient( 1449): notifyError: pid=8100, errorCode=5, errorStreamId=0, frameNumber=2
-10-21 11:07:07.736 E/CameraDeviceClient( 1449): notifyError: pid=8100, skipClientNotification=false
-10-21 11:07:07.736 E/Camera3-OutputStream( 1449): returnBufferCheckedLocked: A frame is dropped for stream 0 frame 2 , due to buffer error.
-10-21 11:07:07.736 I/Camera3-Status( 1449): markComponent: Component 2 is now idle - streamId = 0, format = 0x23(YUV_420_888), width = 640, height = 480, option = 0x0, type = OUTPUT
-10-21 11:07:07.736 I/Camera3-IOStreamBase( 1449): FpsStats: stream 0, requested=4, received=4, valid=0, invalid=4
-10-21 11:07:07.737 I/Camera3-Status( 1449): markComponent: Component 0 is now idle - InflightRequests
-10-21 11:07:07.737 I/CameraService( 1449): finishCameraStreamingOps: finish camera streaming ops, package name = ir.mouj, client UID = 10372
-10-21 11:07:07.737 I/Unihal  ( 1108): CameraHalUnit.cpp: Flush: 549: HAL flush - End
-10-21 11:07:07.737 D/HidlCamera3-Device( 1449): CameraPerf: flush X (41ms)
-10-21 11:07:07.737 D/Camera3-Device( 1449): waitUntilDrainedLocked: Camera 1: Waiting until idle (5000000000ns)
-10-21 11:07:07.737 D/Camera3-Device( 1449): waitUntilDrained: mInterfaceLock.unlock()
-10-21 11:07:07.737 I/Camera3-Device( 1449): disconnectImpl: E
-10-21 11:07:07.737 I/CameraLatencyHistogram( 1449): ProcessCaptureRequest latency histogram (4) samples:
-10-21 11:07:07.737 I/CameraLatencyHistogram( 1449):        20     40     60     80    100    120    140    160    180    inf (max ms)
-10-21 11:07:07.737 I/CameraLatencyHistogram( 1449):      100.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00 (%)
-10-21 11:07:07.737 I/CameraServiceProxyWrapper( 1449): updateProxyDeviceState: notifyCameraState for Camera ID 1, newState 2, facing 1, clientName ir.mouj, apiLevel 2
-10-21 11:07:07.737 I/CameraService_proxy( 1407): wmi.removeRefreshRateRangeForPackage clientName = ir.mouj
-10-21 11:07:07.737 I/CameraManagerGlobal( 1407): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.737 I/CameraManagerGlobal( 2806): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.737 I/CameraManagerGlobal( 1407): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:07.737 I/CameraManagerGlobal( 1407): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:07.738 I/CameraManagerGlobal( 4699): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.738 I/CameraManagerGlobal( 5245): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.738 I/CameraManagerGlobal( 4699): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:07.738 I/CameraManagerGlobal( 4699): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:07.738 I/CameraManagerGlobal( 2562): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.738 I/CameraManagerGlobal(14831): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.738 I/CameraManagerGlobal( 6368): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.738 D/CameraAvailabilityListener( 2562): onCameraDeviceStateChanged: id=1, facing=1, state=CAMERA_STATE_IDLE, client=ir.mouj
-10-21 11:07:07.738 I/lmkd    (  629): check finished camerakillboostmode
-10-21 11:07:07.738 I/CameraManagerGlobal(18970): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.738 I/CameraManagerGlobal( 6629): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.738 I/CameraManagerGlobal(10793): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.739 I/CameraManagerGlobal( 8100): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.739 I/Camera3-Device( 1449): CameraServiceWatchDog::watchThread for disconnectImpl with cycles=100, cycleLength=100ms, timer=10000ms
-10-21 11:07:07.740 D/HidlCamera3-Device( 1449): CameraPerf: close E
-10-21 11:07:07.740 I/Unihal  ( 1108): UniHal3InterfaceEntry.cpp: uni_close_camera_hardware: 479: E
-10-21 11:07:07.741 I/Unihal  ( 1108): CameraHalManager.cpp: CloseCamera: 275: HAL close - Start
-10-21 11:07:07.743 E/CamX    ( 1108): [ERROR][HAL    ] camxhal3.cpp:1319 close() after process camera close
-10-21 11:07:07.743 E/CamX    ( 1108): [ERROR][HAL    ] camxhal3.cpp:1331 close() Close: overrideCameraClose is 47 , overrideCameraOpen is 0 
-10-21 11:07:07.819 I/QC_3A   ( 1108):  INFO: AEC: AECDestroy: 457: Received Camera close mask 0x2f
-10-21 11:07:07.819 I/QC_3A   ( 1108):  INFO: AEC: AECDestroy: 465: Received CameraID: 5  Internal CameraID : 1
-10-21 11:07:07.819 I/QC_3A   ( 1108):  INFO: AEC: AECDestroy: 487: isCameraClose: 1
-10-21 11:07:07.821 I/QC_3A   ( 1108):  INFO: AWB: AWBDestroy: 333: Received Camera close mask 0x2f
-10-21 11:07:07.821 I/QC_3A   ( 1108):  INFO: AWB: AWBDestroy: 341: Received CameraID: 5  Internal CameraID : 1
-10-21 11:07:07.822 I/QC_3A   ( 1108):  INFO: AWB: AWBDestroy: 359: isCameraClose: 1
-10-21 11:07:07.824 I/QC_3A   ( 1108):  INFO:  AF: AFDestroy: 258: Received Camera close mask 0x2f
-10-21 11:07:07.824 I/QC_3A   ( 1108):  INFO:  AF: AFDestroy: 266: Received CameraID: 5  Internal CameraID : 1
-10-21 11:07:07.824 I/QC_3A   ( 1108):  INFO:  AF: AFDestroy: 276: isCameraClose: 1
-10-21 11:07:07.855 I/CameraProviderManager( 1449): Camera device device@3.5/legacy/1 torch status is now AVAILABLE_OFF
-10-21 11:07:07.856 I/CameraService( 1449): onTorchStatusChangedLocked: Torch status changed for cameraId=1, newStatus=1
-10-21 11:07:07.856 E/CameraService( 1449): onTorchStatusChangedLocked: cannot get torch status of camera 1: No such file or directory (-2)
-10-21 11:07:07.856 E/CamX    ( 1108): [ERROR][HAL    ] camxhal3.cpp:1335 close() Close done on cameraId 3
-10-21 11:07:07.856 I/Unihal  ( 1108): CameraHalManager.cpp: CloseCamera: 279: HAL close - End
-10-21 11:07:07.856 I/Unihal  ( 1108): UniHal3InterfaceEntry.cpp: uni_close_camera_hardware: 493: X (0)
-10-21 11:07:07.856 D/HidlCamera3-Device( 1449): CameraPerf: close X (116ms)
-10-21 11:07:07.856 D/Camera3-OutputStream( 1449): disconnectLocked: disconnecting stream 0 from native window
-10-21 11:07:07.857 I/CameraLatencyHistogram( 1449): Stream 0 dequeueBuffer latency histogram (4) samples:
-10-21 11:07:07.857 I/CameraLatencyHistogram( 1449):         5     10     15     20     25     30     35     40     45    inf (max ms)
-10-21 11:07:07.857 I/CameraLatencyHistogram( 1449):      75.00   25.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00 (%)
-10-21 11:07:07.858 I/Camera3-Device( 1449): disconnectImpl: X
-10-21 11:07:07.858 I/CameraServiceProxyWrapper( 1449): updateProxyDeviceState: notifyCameraState for Camera ID 1, newState 3, facing 1, clientName ir.mouj, apiLevel 2
-10-21 11:07:07.858 I/Camera3-Device( 1449): setDeviceInjector
-10-21 11:07:07.858 D/CameraService( 1449): BasicClient::disconnect E
-10-21 11:07:07.859 W/CameraService_proxy( 1407): Unknown extension type: -1
-10-21 11:07:07.859 D/BatteryExternalStatsWorker( 1407): update stats : camera-off (64)
-10-21 11:07:07.860 I/CameraService( 1449): finishCameraOps: Finish camera ops, package name = ir.mouj, client UID = 10372
-10-21 11:07:07.860 I/CameraService( 1449): decreaseCamConnRef: ref=0
-10-21 11:07:07.861 I/CameraService( 1449): decreaseCamConnRef: service.camera.running set to 0
-10-21 11:07:07.861 I/CameraManagerGlobal( 1407): postSingleUpdate device: camera id 1 status STATUS_PRESENT
-10-21 11:07:07.861 I/CameraManagerGlobal( 1407): postSingleUpdate device: camera id 1 status STATUS_PRESENT
-10-21 11:07:07.861 I/CameraManagerGlobal( 5245): postSingleUpdate device: camera id 1 status STATUS_PRESENT
-10-21 11:07:07.861 I/CameraManagerGlobal(14831): postSingleUpdate device: camera id 1 status STATUS_PRESENT
-10-21 11:07:07.862 I/CameraManagerGlobal(10793): postSingleUpdate device: camera id 1 status STATUS_PRESENT
-10-21 11:07:07.862 I/CameraManagerGlobal( 5245): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.862 I/HBD     ( 5245): k Camera is available, camId = 1 
-10-21 11:07:07.862 I/HBD     ( 5245): k All camera is available, so, ExtractText will be enabled 
-10-21 11:07:07.862 I/CameraManagerGlobal(10793): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.862 I/CameraManagerGlobal( 6368): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.862 I/CameraManagerGlobal(14831): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.862 I/CameraManagerGlobal(18970): postSingleUpdate device: camera id 1 status STATUS_PRESENT
-10-21 11:07:07.862 I/CameraManagerGlobal( 2806): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.862 I/CameraManagerGlobal(18970): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.862 I/CameraManagerGlobal( 6629): postSingleUpdate device: camera id 1 status STATUS_PRESENT
-10-21 11:07:07.862 I/CameraManagerGlobal( 4699): postSingleUpdate device: camera id 1 status STATUS_PRESENT
-10-21 11:07:07.862 I/CameraManagerGlobal( 4699): postSingleUpdate device: camera id 1 status STATUS_PRESENT
-10-21 11:07:07.862 I/CameraManagerGlobal( 4699): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.862 I/CameraManagerGlobal( 6629): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.862 I/CameraManagerGlobal( 4699): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:07.862 I/CameraManagerGlobal( 4699): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:07.862 I/CameraManagerGlobal( 1407): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.863 I/CameraManagerGlobal( 1407): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:07.863 I/CameraService_worker( 1407): DeviceInjector, onSemCameraDeviceRawStatus 1 1
-10-21 11:07:07.862 I/IC_Service[1.2.93]( 6629): onCameraAvailable(1)
-10-21 11:07:07.863 I/RequestInjectorService( 1407): Camera is closed. cameraId(1), state(█│)
-10-21 11:07:07.864 I/CameraManagerGlobal( 8100): postSingleUpdate device: camera id 1 status STATUS_PRESENT
-10-21 11:07:07.864 I/CameraManagerGlobal( 8100): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.864 I/lmkd    (  629): check finished camerakillboostmode
-10-21 11:07:07.865 I/CameraManagerGlobal( 2562): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.865 I/CameraFlashlight( 1449): deviceClosed: device 1 is closed
-10-21 11:07:07.865 I/CameraService( 1449): disconnect: Disconnected client for camera 1 for PID 8100
-10-21 11:07:07.865 D/cameraserver( 1449): FGS Logger Transaction failed
-10-21 11:07:07.865 D/cameraserver( 1449): -129
-10-21 11:07:07.865 D/CameraService( 1449): BasicClient::disconnect X
-10-21 11:07:07.866 W/ir.mouj ( 8100): Long monitor contention with owner VideoCaptureCamera2_CameraThread (8254) at void android.hardware.camera2.impl.CameraDeviceImpl.close()(CameraDeviceImpl.java:1492) waiters=0 in void 
-android.hardware.camera2.impl.CameraDeviceImpl.onDeviceError(int, android.hardware.camera2.impl.CaptureResultExtras) for 164ms
-10-21 11:07:07.866 I/CameraManagerGlobal( 1407): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:07.866 D/CameraAvailabilityListener( 2562): onCameraDeviceStateChanged: id=1, facing=1, state=CAMERA_STATE_CLOSED, client=ir.mouj
-10-21 11:07:07.873 I/VSET/ObserveCameraStateService( 6368): onStartCommand : unihal 3.01
-10-21 11:07:07.873 I/VSET/ObserveCameraStateService( 6368): initAppRepository is created already
-10-21 11:07:07.874 I/VSET/ObserveCameraStateService( 6368): onStartCommand: true
-10-21 11:07:07.877 I/CameraService_proxy( 1407): Notify nfc service : camera open was(true) -> now(false) = polling(true)
-10-21 11:07:07.877 D/PackageManager( 1407): setEnabledSetting : userId = 0 packageName = com.samsung.android.vtcamerasettings cmp = com.samsung.android.vtcamerasettings.settings.SettingsActivity newState = 1 callingPackage = 
-com.samsung.android.vtcamerasettings
-10-21 11:07:07.878 D/ApplicationPolicy( 1407): getApplicationStateEnabled : pkg = com.samsung.android.vtcamerasettings userId : 0
-10-21 11:07:07.879 D/ApplicationPolicy( 1407): getApplicationComponentState : pkg = com.samsung.android.vtcamerasettings userId : 0
-10-21 11:07:07.879 E/ScreenDecorations( 2562): CutoutView not initialized hideCameraProtection
-10-21 11:07:07.880 D/NfcService( 2807): setReaderMode: uid=1000, packageName: com.samsung.android.cameraxservice, flags: 0
-10-21 11:07:07.883 I/VSET/ObserveCameraStateService( 6368): onStartCommand: update SALogging status
-10-21 11:07:07.883 I/VSET/ObserveCameraStateService( 6368): processDeviceInjectorIntent: not supported device injector
-10-21 11:07:07.884 I/VSET/ObserveCameraStateService( 6368): updateAppInfoRepository: E 
-10-21 11:07:07.884 I/VSET/ObserveCameraStateService( 6368): initAppRepository is created already
-10-21 11:07:07.886 I/VSET/ObserveCameraStateService( 6368): requestStopService
-10-21 11:07:07.953 I/CameraService( 1449): CameraService::connect call (PID 8100 "ir.mouj", camera ID 1) and Camera API version 2
-10-21 11:07:07.954 I/CameraService( 1449): isUidActiveLocked E: uid 10372, callingPackage ir.mouj, isRegistered true
-10-21 11:07:07.954 I/CameraService( 1449): isUidActiveLocked X: uid 10372, callingPackage ir.mouj, isActive true.
-10-21 11:07:07.954 I/EDMNativeHelperService( 1407): isCameraEnabled
-10-21 11:07:07.955 D/EDMNativeHelper( 1407): isCameraEnabled
-10-21 11:07:07.955 D/EDMNativeHelper( 1407): checking for camera in EnterpriseDeviceManagerService
-10-21 11:07:07.955 D/EnterpriseDeviceManagerService( 1407): isCameraEnabledNative
-10-21 11:07:07.955 D/EnterpriseDeviceManagerService( 1407): checking for camera in restriction policy
-10-21 11:07:07.955 D/RestrictionPolicy( 1407): isCameraEnabled ret(true) userId(0) cxtInfo.mCallerUid(10372) cxtInfo.mContainerId(0)
-10-21 11:07:07.956 I/CameraService( 1449): CameraService::validateClientPermissionsLocked is ok : calling pid 8100, calling uid 10372, client ir.mouj , cameraservice pid=1449, device user 0, currently allowed device users: 0
-10-21 11:07:07.956 I/CameraService( 1449): CameraService::handleEvictionsLocked
-10-21 11:07:07.956 I/CameraService( 1449): wouldEvictLocked: [incoming client] owner = 8100, priority-score=0, cost=100, returnIncompatibleClients=false
-10-21 11:07:07.956 I/CameraService( 1449): wouldEvictLocked: [cost info] current cost=0, adding cost=100, total cost=100, max cost=100
-10-21 11:07:07.956 I/CameraService( 1449): wouldEvictLocked: [highestPriority] owner=8100, score=0
-10-21 11:07:07.956 I/CameraFlashlight( 1449): prepareDeviceOpen: prepare for device open(cameraId=1)
-10-21 11:07:07.956 I/Camera2ClientBase( 1449): Camera 1: Opened. Client: ir.mouj (PID 8100, UID 10372)
-10-21 11:07:07.956 I/CameraDeviceClient( 1449): CameraDeviceClient 1: Opened
-10-21 11:07:07.956 I/CameraService( 1449): isNoSALoggingPackage: ir.mouj is a third party package.
-10-21 11:07:07.956 I/CameraService( 1449): makeClient: Camera2 API, override to portrait 0
-10-21 11:07:07.957 I/CameraService( 1449): service.camera.client set to ir.mouj
-10-21 11:07:07.957 I/CameraManagerGlobal( 4699): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.957 I/CameraManagerGlobal( 2562): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.957 I/CameraManagerGlobal( 4699): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:07.957 I/CameraManagerGlobal( 4699): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:07.957 I/CameraManagerGlobal( 1407): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.957 I/CameraManagerGlobal( 2806): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.958 I/CameraManagerGlobal( 5245): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.958 I/CameraManagerGlobal( 1407): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:07.958 I/CameraManagerGlobal( 1407): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:07.958 I/CameraManagerGlobal(14831): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.958 I/CameraManagerGlobal(18970): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.958 I/RequestInjectorService( 1407): Camera is opening. Start VT Camera Setting. cameraId(1), displayId(█░)
-10-21 11:07:07.958 I/CameraManagerGlobal(10793): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.959 I/Camera2ClientBase( 1449): initializeImpl: Initializing client for camera 1
-10-21 11:07:07.959 D/ijt/Camera3-RequestInjector( 1449): RequestInjector[1] Mapper created
-10-21 11:07:07.959 I/Camera3-Device( 1449): Camera3Device: Created device for camera 1
-10-21 11:07:07.959 D/HidlCamera3-Device( 1449): CameraPerf: initialize E
-10-21 11:07:07.959 D/HidlCamera3-Device( 1449): initialize: mInterfaceLock.lock()
-10-21 11:07:07.959 I/CameraManagerGlobal( 6368): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.959 I/CameraProviderManager( 1449): openHidlSession, using trampoline for v5.0
-10-21 11:07:07.959 D/CameraProviderManager( 1449): CameraPerf: openHidlSession E
-10-21 11:07:07.959 I/SehCamDev@5.0-impl( 1108): [CAMKPI] camera3->open : E
-10-21 11:07:07.959 I/Unihal  ( 1108): UniHal3InterfaceEntry.cpp: uni_open_camera_hardware: 550: E cameraName: 1
-10-21 11:07:07.959 I/CameraManagerGlobal( 6629): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.959 I/Unihal  ( 1108): UniHal3InterfaceEntry.cpp: uni_open_camera_hardware: 552: UNIHAL_VERSION = "2.15"
-10-21 11:07:07.959 I/Unihal  ( 1108): CameraDevice.cpp: OpenCameraHardware_v3: 401: name : 1 camera id : 1
-10-21 11:07:07.959 I/CameraProviderManager( 1449): Camera device device@3.5/legacy/1 torch status is now NOT_AVAILABLE
-10-21 11:07:07.959 I/CameraService( 1449): onTorchStatusChangedLocked: Torch status changed for cameraId=1, newStatus=0
-10-21 11:07:07.959 E/CameraService( 1449): onTorchStatusChangedLocked: cannot get torch status of camera 1: No such file or directory (-2)
-10-21 11:07:07.960 I/CameraManagerGlobal( 8100): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.960 I/VSET/ObserveCameraStateService( 6368): onStartCommand : unihal 3.01
-10-21 11:07:07.960 I/VSET/ObserveCameraStateService( 6368): initAppRepository is created already
-10-21 11:07:07.960 I/VSET/ObserveCameraStateService( 6368): onStartCommand: true
-10-21 11:07:07.960 W/CameraService_proxy( 1407): Unknown extension type: -1
-10-21 11:07:07.962 D/PackageManager( 1407): setEnabledSetting : userId = 0 packageName = com.samsung.android.vtcamerasettings cmp = com.samsung.android.vtcamerasettings.settings.SettingsActivity newState = 1 callingPackage = 
-com.samsung.android.vtcamerasettings
-10-21 11:07:07.962 D/ApplicationPolicy( 1407): getApplicationStateEnabled : pkg = com.samsung.android.vtcamerasettings userId : 0
-10-21 11:07:07.963 D/ApplicationPolicy( 1407): getApplicationComponentState : pkg = com.samsung.android.vtcamerasettings userId : 0
-10-21 11:07:07.965 I/VSET/ObserveCameraStateService( 6368): onStartCommand: update SALogging status
-10-21 11:07:07.965 I/VSET/ObserveCameraStateService( 6368): processDeviceInjectorIntent: not supported device injector
-10-21 11:07:07.966 I/VSET/ObserveCameraStateService( 6368): updateAppInfoRepository: E 
-10-21 11:07:07.966 I/VSET/ObserveCameraStateService( 6368): initAppRepository is created already
-10-21 11:07:07.969 I/Unihal  ( 1108): ParameterManager.cpp: SetCameraCharacteristics: 116: Registered camera characteristics successfully. : cameraId=1, characteristics=0xb400007c150dd560
-10-21 11:07:07.969 I/Unihal  ( 1108): UniHal3InterfaceEntry.cpp: uni_open_camera_hardware: 578: X (0)
-10-21 11:07:07.969 I/SehCamDev@5.0-impl( 1108): [CAMKPI] camera3->open : X
-10-21 11:07:07.970 I/VSET/ObserveCameraStateService( 6368): requestStopService
-10-21 11:07:07.975 D/CameraProviderManager( 1449): CameraPerf: openHidlSession X (15ms)
-10-21 11:07:07.978 D/HidlCamera3-Device( 1449): CameraPerf: initialize X (19ms)
-10-21 11:07:07.978 D/Camera3-Device( 1449): CameraPerf: initializeCommonLocked: E
-10-21 11:07:07.978 I/Camera3-Status( 1449): addComponent: Adding new component 0 - InflightRequests
-10-21 11:07:07.978 I/Camera3-Status( 1449): addComponent: Adding new component 1 - RequestThread
-10-21 11:07:07.979 D/Camera3-Device( 1449): initializeCommonLocked mTimestampOffset = 1155765056712737ns.
-10-21 11:07:07.979 D/Camera3-Device( 1449): CameraPerf: initializeCommonLocked: X (0ms)
-10-21 11:07:07.979 I/CameraService( 1449): startCameraOps: Start camera ops, package name = ir.mouj, client UID = 10372
-10-21 11:07:07.982 I/CameraService( 1449): increaseCamConnRef: ref=1
-10-21 11:07:07.983 I/CameraService( 1449): increaseCamConnRef: service.camera.running set to 1
-10-21 11:07:07.983 I/CameraManagerGlobal( 4699): postSingleUpdate device: camera id 1 status STATUS_NOT_AVAILABLE
-10-21 11:07:07.983 I/CameraManagerGlobal(10793): postSingleUpdate device: camera id 1 status STATUS_NOT_AVAILABLE
-10-21 11:07:07.983 I/CameraManagerGlobal(14831): postSingleUpdate device: camera id 1 status STATUS_NOT_AVAILABLE
-10-21 11:07:07.983 I/CameraManagerGlobal( 4699): postSingleUpdate device: camera id 1 status STATUS_NOT_AVAILABLE
-10-21 11:07:07.983 I/CameraManagerGlobal( 5245): postSingleUpdate device: camera id 1 status STATUS_NOT_AVAILABLE
-10-21 11:07:07.984 I/CameraManagerGlobal( 6629): postSingleUpdate device: camera id 1 status STATUS_NOT_AVAILABLE
-10-21 11:07:07.984 I/HBD     ( 5245): k Camera is used by another app, camId = 1 
-10-21 11:07:07.984 I/IC_Service[1.2.93]( 6629): onCameraUnavailable(1)
-10-21 11:07:07.984 I/CameraManagerGlobal( 8100): postSingleUpdate device: camera id 1 status STATUS_NOT_AVAILABLE
-10-21 11:07:07.984 E/Camera2-FrameProcessorBase( 1449): FrameProcessorBase: created
-10-21 11:07:07.984 I/CameraService_worker( 1407): DeviceInjector, onSemCameraDeviceRawStatus 1 -2
-10-21 11:07:07.984 I/CameraManagerGlobal(18970): postSingleUpdate device: camera id 1 status STATUS_NOT_AVAILABLE
-10-21 11:07:07.984 I/CameraManagerGlobal( 1407): postSingleUpdate device: camera id 1 status STATUS_NOT_AVAILABLE
-10-21 11:07:07.984 E/Camera2-FrameProcessorBase( 1449): registerListener: Registering listener for frame id range 0 - 2147483647
-10-21 11:07:07.985 I/CameraService( 1449): connectHelper: overrideCameraMuteMode = false, isCameraPrivacyEnabled = false
-10-21 11:07:07.985 I/Camera3-Device( 1449): setCameraMute, enabled = false, supported = true
-10-21 11:07:07.985 I/CameraService( 1449): CameraService::finishConnectLocked E
-10-21 11:07:07.985 I/CameraService( 1449): wouldEvictLocked: [incoming client] owner = 8100, priority-score=0, cost=100, returnIncompatibleClients=false
-10-21 11:07:07.985 I/CameraService( 1449): wouldEvictLocked: [cost info] current cost=0, adding cost=100, total cost=100, max cost=100
-10-21 11:07:07.985 I/CameraService( 1449): wouldEvictLocked: [highestPriority] owner=8100, score=0
-10-21 11:07:07.985 I/CameraManagerGlobal( 1407): postSingleUpdate device: camera id 1 status STATUS_NOT_AVAILABLE
-10-21 11:07:07.985 I/CameraService( 1449): addAndEvict: push the client(owner 8100, priorityScore 0, state 2) to mClients
-10-21 11:07:07.985 D/BatteryExternalStatsWorker( 1407): update stats : camera-on (64)
-10-21 11:07:07.985 I/CameraService( 1449): CameraService::finishConnectLocked X
-10-21 11:07:07.986 I/CameraDeviceClient( 1449): notifyAppPackageName
-10-21 11:07:07.986 D/HidlCamera3-Device( 1449): CameraPerf: setParameters E
-10-21 11:07:07.986 D/HidlCamera3-Device( 1449): CameraPerf: setParameters X (0ms)
-10-21 11:07:07.986 I/CameraService( 1449): Notified package name to HAL.
-10-21 11:07:07.986 I/CameraService( 1449): connectHelper: Skip Request Injector ExtraRequests to new client(ir.mouj)
-10-21 11:07:07.986 I/CameraServiceProxyWrapper( 1449): updateProxyDeviceState: notifyCameraState for Camera ID 1, newState 0, facing 1, clientName ir.mouj, apiLevel 2
-10-21 11:07:07.986 I/CameraManagerGlobal( 1407): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.986 I/CameraManagerGlobal( 2562): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.987 I/CameraManagerGlobal( 1407): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:07.987 I/CameraManagerGlobal( 1407): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:07.987 I/AudioManager( 1407): setParameters keyValuePairs = cameraFacing=front
-10-21 11:07:07.987 D/CameraAvailabilityListener( 2562): onCameraDeviceStateChanged: id=1, facing=1, state=CAMERA_STATE_OPEN, client=ir.mouj
-10-21 11:07:07.987 I/CameraManagerGlobal( 4699): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.987 I/CameraManagerGlobal( 4699): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:07.987 I/CameraManagerGlobal(14831): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.987 I/CameraManagerGlobal( 4699): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:07.987 I/CameraService( 1449): isNoSALoggingPackage: ir.mouj is a third party package.
-10-21 11:07:07.987 I/CameraManagerGlobal( 5245): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.987 I/CameraManagerGlobal( 6368): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.987 D/cameraserver( 1449): FGS Logger Transaction failed
-10-21 11:07:07.987 D/cameraserver( 1449): -129
-10-21 11:07:07.988 I/CameraManagerGlobal(18970): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.988 D/audio_hw_primary( 1075): adev_set_parameters: enter: cameraFacing=front
-10-21 11:07:07.988 I/CameraManagerGlobal( 8100): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.988 I/CameraManagerGlobal( 2806): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.988 I/lmkd    (  629): check CAMERA OPEN but time within 500ms, skip to active
-10-21 11:07:07.988 I/lmkd    (  629): check finished camerakillboostmode
-10-21 11:07:07.988 I/CameraManagerGlobal(10793): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.989 I/CameraManagerGlobal( 6629): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0
-10-21 11:07:07.990 I/CameraService_proxy( 1407): Notify nfc service : camera open was(false) -> now(true) = polling(false)
-10-21 11:07:07.991 D/NfcService( 2807): setReaderMode: uid=1000, packageName: com.samsung.android.cameraxservice, flags: 4096
-10-21 11:07:07.992 E/cr_VideoCapture( 8100): CameraDevice.StateCallback onOpened
-10-21 11:07:07.993 I/WindowManager( 2562): WindowManagerGlobal#addView, ty=2024, view=com.android.systemui.RegionInterceptingFrameLayout{122cf47 V.E...... ......I. 0,0-0,0}, caller=android.view.WindowManagerImpl.addView:150 
-com.android.systemui.ScreenDecorations.setupDecorations:804 com.android.systemui.ScreenDecorations$1.onApplyCameraProtection:54 
-10-21 11:07:07.994 D/HidlCamera3-Device( 1449): CameraPerf: constructDefaultRequestSettings templateId: 1 E
-10-21 11:07:07.996 D/HidlCamera3-Device( 1449): CameraPerf: constructDefaultRequestSettings X (1ms)
-10-21 11:07:08.014 D/Camera3-Device( 1449): waitUntilDrained: mInterfaceLock.unlock()
-10-21 11:07:08.016 D/CameraDeviceClient( 1449): createStream E
-10-21 11:07:08.016 D/SessionConfigUtils( 1449): createSurfaceFromGbp E: logicalCameraId=1, isStreamInfoValid=0, useCase=0, option=0x0, mirrorMode=0
-10-21 11:07:08.018 D/Camera3-Device( 1449): createStream: mInterfaceLock.lock()
-10-21 11:07:08.018 D/Camera3-Device( 1449): createStream: Camera 1: Creating new stream 0: 640 x 480, format 0x23(YUV_420_888), dataspace 146931712 rotation 0 consumer usage 0, isShared 0, physicalCameraId , isMultiResolution 
-0 dynamicRangeProfile 0x1, streamUseCase 0, option 0x0, timestampBase 0, mirrorMode 0, colorSpace -1, useReadoutTimestamp 0
-10-21 11:07:08.022 D/Camera3-Device( 1449): createStream: mInterfaceLock.unlock()
-10-21 11:07:08.022 D/CameraDeviceClient( 1449): createStream: Camera 1: Successfully created a new stream ID 0 for output surface (640 x 480) with format 0x23.
-10-21 11:07:08.022 D/Camera3-Device( 1449): setStreamTransform: mInterfaceLock.lock()
-10-21 11:07:08.022 D/CameraDeviceClient( 1449): createStream X
-10-21 11:07:08.022 D/Camera3-Device( 1449): filterParamsAndConfigureLocked : operatingMode=0
-10-21 11:07:08.025 D/Camera3-Device( 1449): CameraPerf: configureStreamsLocked: Camera 1: Stream configuration E
-10-21 11:07:08.025 I/HidlCamera3-Device( 1449): configureStreams Before configuration Stream[0] : [640 x 480], usage: 0x3
-10-21 11:07:08.026 I/SehCamDevSession@5.0-impl( 1108): [CAMKPI] camera3->configure_streams : E
-10-21 11:07:08.026 I/Unihal  ( 1108): CameraHalUnit.cpp: ConfigureStreams: 232: cameraId=1, GetIsAlreadyCreated=0
-10-21 11:07:08.026 I/Unihal  ( 1108): ScenarioManager.cpp: FindScenarioInfo: 2072: Current shootingMode=0x0001000c(UNI_SHOOTING_MODE_3RD_PARTY_BYPASS), cameraId=1(UNI_FWK_CAMERA_ID_FRONT)
-10-21 11:07:08.026 I/Unihal  ( 1108): ScenarioManager.cpp: CheckEnableCondition: 2222: Unihal is disabled. : isSamsungCamera=false, isFactoryTest=false, isGalaxyRaw = false, isAllowed3rdParty=true, foundScenario=false, 
-isValidStreamConfiguration=false, isSamsungVdisEnabled=false, isTestPatternMode=false, shootingMode=UNI_SHOOTING_MODE_3RD_PARTY_BYPASS
-10-21 11:07:08.026 I/Unihal  ( 1108): CameraHalUnit.cpp: ConfigureStreams: 260: Unihal is bypass mode in current scenario.
-10-21 11:07:08.026 E/CamX    ( 1108): [ERROR][HAL    ] camxhal3.cpp:1535 configure_streams() HalOp: Begin CONFIG: 0xb400007ac39e2730, logicalCameraId: 3, cameraId: 1
-10-21 11:07:08.026 E/CamX    ( 1108): [ERROR][HAL    ] camxhal3.cpp:1568 configure_streams()             stream_type  : 00000000, CAMERA3_STREAM_OUTPUT
-10-21 11:07:08.026 E/CamX    ( 1108): [ERROR][HAL    ] camxhal3.cpp:1575 configure_streams()             rotation     : 00000000, CAMERA3_STREAM_ROTATION_0
-10-21 11:07:08.026 E/CamX    ( 1108): [ERROR][HAL    ] camxhal3.cpp:1583 configure_streams()        physical_camera_id         : 
-10-21 11:07:08.026 I/CHIUSECASE( 1108): [CONFIG ] chxextensionmodule.cpp:1187 SetHALOps() SetHALOps being set for CameraID:3
-10-21 11:07:08.030 E/CHIUSECASE( 1108): [ERROR  ] chxsensorselectmode_a52s.cpp:864 FindBestSensorMode() Selected Usecase: 8, cameraId:5 sensorId:13, SelectedMode W=3264, H=2448, FPS:30, NumBatchedFrames:1, modeIndex:2
-10-21 11:07:08.039 W/CHIUSECASE( 1108): [WARN   ] chifeature2graphmanager.cpp:345 LoadFeatureGraphSelectorOps() No graph selector library files found in the path /vendor/lib64/camera/components/feature2/oem
-10-21 11:07:08.048 E/CHIUSECASE( 1108): [ERROR  ] chxsensorselectmode_a52s.cpp:864 FindBestSensorMode() Selected Usecase: 8, cameraId:5 sensorId:13, SelectedMode W=3264, H=2448, FPS:30, NumBatchedFrames:1, modeIndex:2
-10-21 11:07:08.049 E/CHIUSECASE( 1108): [ERROR  ] chxsensorselectmode_a52s.cpp:864 FindBestSensorMode() Selected Usecase: 8, cameraId:5 sensorId:13, SelectedMode W=3264, H=2448, FPS:30, NumBatchedFrames:1, modeIndex:2
-10-21 11:07:08.049 E/CHIUSECASE( 1108): [ERROR  ] chxsensorselectmode_a52s.cpp:864 FindBestSensorMode() Selected Usecase: 8, cameraId:5 sensorId:13, SelectedMode W=3264, H=2448, FPS:30, NumBatchedFrames:1, modeIndex:2
-10-21 11:07:08.049 E/CHIUSECASE( 1108): [ERROR  ] chxsensorselectmode_a52s.cpp:864 FindBestSensorMode() Selected Usecase: 8, cameraId:5 sensorId:13, SelectedMode W=3264, H=2448, FPS:30, NumBatchedFrames:1, modeIndex:2
-10-21 11:07:08.054 E/CHIUSECASE( 1108): [ERROR  ] chxsensorselectmode_a52s.cpp:864 FindBestSensorMode() Selected Usecase: 8, cameraId:5 sensorId:13, SelectedMode W=3264, H=2448, FPS:30, NumBatchedFrames:1, modeIndex:2
-10-21 11:07:08.057 E/CHIUSECASE( 1108): [ERROR  ] chxsensorselectmode_a52s.cpp:864 FindBestSensorMode() Selected Usecase: 8, cameraId:5 sensorId:13, SelectedMode W=3264, H=2448, FPS:30, NumBatchedFrames:1, modeIndex:2
-10-21 11:07:08.060 E/CHIUSECASE( 1108): [ERROR  ] chxsensorselectmode_a52s.cpp:864 FindBestSensorMode() Selected Usecase: 8, cameraId:5 sensorId:13, SelectedMode W=3264, H=2448, FPS:30, NumBatchedFrames:1, modeIndex:2
-10-21 11:07:08.062 E/CHIUSECASE( 1108): [ERROR  ] chxsensorselectmode_a52s.cpp:864 FindBestSensorMode() Selected Usecase: 8, cameraId:5 sensorId:13, SelectedMode W=3264, H=2448, FPS:30, NumBatchedFrames:1, modeIndex:2
-10-21 11:07:08.076 E/CHIUSECASE( 1108): [ERROR  ] chxsensorselectmode_a52s.cpp:864 FindBestSensorMode() Selected Usecase: 8, cameraId:5 sensorId:13, SelectedMode W=3264, H=2448, FPS:30, NumBatchedFrames:1, modeIndex:2
-10-21 11:07:08.076 W/CHIUSECASE( 1108): [WARN   ] chxsession.cpp:154 Initialize() flags.flags.u.FASTAEC = 0 , isFastAECState = 0 (logicalCameraId 12)
-10-21 11:07:08.092 I/QC_3A   ( 1108):  INFO: AEC: CreateAECAlgorithm: 948: StaticAEC algo create: camera open mask 32 
-10-21 11:07:08.092 I/QC_3A   ( 1108):  INFO: AEC: CreateAECAlgorithm: 841: Given Camera role=0, camera id=5
-10-21 11:07:08.094 I/QC_3A   ( 1108):  INFO: AEC: CreateAECAlgorithm: 958: CameraOpenIndicator : 1
-10-21 11:07:08.094 I/QC_3A   ( 1108):  INFO: AEC: QcWrapperCommonFillSensorIdMap: 26: Already filled, cameraId(5) driverSensorId(13)
-10-21 11:07:08.094 I/QC_3A   ( 1108):  INFO: AEC: CreateAECAlgorithm: 978: Internal camera id = 1
-10-21 11:07:08.100 I/QC_3A   ( 1108):  INFO: AEC: QcAecLoadTuningParamsFromDAT: 73: /data/vendor/camera/QcAecWrapperTuned_Front.dat : No such file or directory
-10-21 11:07:08.100 E/QC_3A   ( 1108): ERROR: AEC: QcAecWrapperInitData: 660: Motion Library loading error: dlopen failed: library "/vendor/lib64/camera/components/libMOTION.so" not found
-10-21 11:07:08.100 I/QC_3A   ( 1108):  INFO: AEC: CreateAECAlgorithm: 1101: AEC Wrapper is created - InstanceCnt=1, algo=0xb400007b7508bbd0, wrapper data=0xb400007b7504ee50, curCameraID=1
-10-21 11:07:08.101 I/QC_3A   ( 1108):  INFO: AEC: QcAecGetParamFillOutputPointers: 337: AECAlgoGetParamStartExposure - reqID: 0, cameraId: 1
-10-21 11:07:08.109 I/QC_3A   ( 1108):  INFO: AWB: CreateAWBAlgorithm: 602: StaticAWB algo create: camera open mask 32 
-10-21 11:07:08.109 I/QC_3A   ( 1108):  INFO: AWB: CreateAWBAlgorithm: 530: Given Camera role=0, camera id=5
-10-21 11:07:08.109 I/QC_3A   ( 1108):  INFO: AWB: CreateAWBAlgorithm: 677: CameraOpenIndicator : 1
-10-21 11:07:08.109 I/QC_3A   ( 1108):  INFO: AWB: QcWrapperCommonFillSensorIdMap: 26: Already filled, cameraId(5) driverSensorId(13)
-10-21 11:07:08.109 I/QC_3A   ( 1108):  INFO: AWB: CreateAWBAlgorithm: 697: Internal camera id = 1
-10-21 11:07:08.113 I/QC_3A   ( 1108):  INFO: AWB: CreateAWBAlgorithm: 823: AWB Wrapper is created - InstanceCnt=1, algo=0xb400007b5508fb80, wrapper data=0xb400007b74ffae50, curCameraID 1
-10-21 11:07:08.113 I/QC_3A   ( 1108):  INFO: AWB: QcAwbSetSingleParamToAlgo: 61: [AWB-WARMSTART] Previous CameraID: FRONT(1) Current CameraID: FRONT(1)
-10-21 11:07:08.124 I/QC_3A   ( 1108):  INFO:  AF: CreateAFAlgorithm: 615: StaticAF algo create: camera open mask 32 
-10-21 11:07:08.124 I/QC_3A   ( 1108):  INFO:  AF: CreateAFAlgorithm: 543: Given Camera role=0, camera id=5
-10-21 11:07:08.124 I/QC_3A   ( 1108):  INFO:  AF: QcWrapperCommonFillSensorIdMap: 26: Already filled, cameraId(5) driverSensorId(13)
-10-21 11:07:08.124 I/QC_3A   ( 1108):  INFO:  AF: CreateAFAlgorithm: 651: Internal camera id = 1
-10-21 11:07:08.127 I/QC_3A   ( 1108):  INFO:  AF: CreateAFAlgorithm: 778: AEC Wrapper is created - InstanceCnt=1, algo=0xb400007b55074ab0, wrapper data=0xb400007b75007bd0, curCameraID=1
-10-21 11:07:08.137 E/CamX    ( 1108): [ERROR][HAL    ] camxhal3.cpp:1699 configure_streams()             stream_type  : 00000000, CAMERA3_STREAM_OUTPUT
-10-21 11:07:08.137 E/CamX    ( 1108): [ERROR][HAL    ] camxhal3.cpp:1706 configure_streams()             rotation     : 00000000, CAMERA3_STREAM_ROTATION_0
-10-21 11:07:08.137 I/SehCamDevSession@5.0-impl( 1108): [CAMKPI] camera3->configure_streams : X
-10-21 11:07:08.138 D/HidlCamera3-Device( 1449): configureStreams : stream[0] : format = 0x23(YUV_420_888), data_space = 146931712, color_space = -1 usage flag = 0x20003 max_buffers = 8, physical_camera_id = 
-10-21 11:07:08.138 D/Camera3-Device( 1449): CameraPerf: Connect Streams E
-10-21 11:07:08.138 I/Camera3-Status( 1449): addComponent: Adding new component 2 - streamId = 0, format = 0x23(YUV_420_888), width = 640, height = 480, option = 0x0, type = OUTPUT
-10-21 11:07:08.140 D/Camera3-OutputStream( 1449): configureConsumerQueueLocked: Consumer wants 2 buffers, HAL wants 8
-10-21 11:07:08.147 D/Camera3-Device( 1449): CameraPerf: Connect Streams X (9ms)
-10-21 11:07:08.148 D/Camera3-Device( 1449): Set real time priority for request queue thread (tid 8326)
-10-21 11:07:08.148 D/Camera3-Device( 1449): CameraPerf: configureStreamsLocked: Camera 1: Stream configuration X (123ms)
-10-21 11:07:08.150 D/Camera3-Device( 1449): setStreamingRequestList: Enter: calling submitRequestsHelper: repeating = true
-10-21 11:07:08.150 D/Camera3-Device( 1449): submitRequestsHelper: mInterfaceLock.lock()
-10-21 11:07:08.150 I/EDMNativeHelperService( 1407): isCameraEnabled
-10-21 11:07:08.150 D/EDMNativeHelper( 1407): isCameraEnabled
-10-21 11:07:08.151 I/Camera3-Device( 1449): Submit request type: 0x1, repeating(true), burst(false)
-10-21 11:07:08.151 D/Camera3-Device( 1449): setRepeatingRequests: lastFrameNumber 0.
-10-21 11:07:08.151 I/Camera3-Status( 1449): markComponent: Component 1 is now active - RequestThread
-10-21 11:07:08.152 D/Camera3-Device( 1449): CameraPerf: PrepareHALRequests E
-10-21 11:07:08.152 I/CameraService( 1449): startCameraStreamingOps: Start camera streaming ops, package name = ir.mouj, client UID = 10372
-10-21 11:07:08.152 D/EDMNativeHelper( 1407): checking for camera in EnterpriseDeviceManagerService
-10-21 11:07:08.152 D/EnterpriseDeviceManagerService( 1407): isCameraEnabledNative
-10-21 11:07:08.152 D/EnterpriseDeviceManagerService( 1407): checking for camera in restriction policy
-10-21 11:07:08.153 D/RestrictionPolicy( 1407): isCameraEnabled ret(true) userId(0) cxtInfo.mCallerUid(10372) cxtInfo.mContainerId(0)
-10-21 11:07:08.153 D/Camera3-Device( 1449): submitRequestsHelper: mInterfaceLock.unlock()
-10-21 11:07:08.153 I/Camera3-Status( 1449): markComponent: Component 2 is now active - streamId = 0, format = 0x23(YUV_420_888), width = 640, height = 480, option = 0x0, type = OUTPUT
-10-21 11:07:08.153 I/Camera3-Status( 1449): markComponent: Component 0 is now active - InflightRequests
-10-21 11:07:08.153 D/Camera3-Device( 1449): CameraPerf: PrepareHALRequests X (1ms)
-10-21 11:07:08.153 D/Camera3-Device( 1449): CameraPerf: sendRequestsBatch E
-10-21 11:07:08.154 I/SehCamDevSession@5.0-impl( 1108): [CAMKPI] camera3->process_capture_request : E
-10-21 11:07:08.154 I/CameraServiceProxyWrapper( 1449): updateProxyDeviceState: notifyCameraState for Camera ID 1, newState 1, facing 1, clientName ir.mouj, apiLevel 2
-10-21 11:07:08.154 E/CHIUSECASE( 1108): [ERROR  ] chxadvancedcamerausecase.cpp:6617 SetPriorityMetadata() [3rd party DBG][ISO] ERROR, Check, please(37)
-10-21 11:07:08.155 I/CameraService_proxy( 1407): wmi.addRefreshRateRangeForPackage minFPS = 30.000002, maxFPS = 60.0, clientName = ir.mouj
-10-21 11:07:08.155 I/CameraManagerGlobal( 2806): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:08.155 I/CameraManagerGlobal( 5245): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:08.155 I/SehCamDevSession@5.0-impl( 1108): [CAMKPI] camera3->process_capture_request : X
-10-21 11:07:08.155 I/CameraManagerGlobal(14831): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:08.155 D/Camera3-Device( 1449): CameraPerf: sendRequestsBatch X (2ms)
-10-21 11:07:08.155 I/CameraManagerGlobal( 4699): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:08.155 I/CameraManagerGlobal( 2562): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:08.155 I/CameraManagerGlobal( 4699): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:08.155 I/CameraManagerGlobal( 4699): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:08.156 I/CameraManagerGlobal(10793): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:08.156 I/CameraManagerGlobal(18970): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:08.156 D/CameraAvailabilityListener( 2562): onCameraDeviceStateChanged: id=1, facing=1, state=CAMERA_STATE_ACTIVE, client=ir.mouj
-10-21 11:07:08.156 I/CameraManagerGlobal( 6368): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:08.156 I/CameraManagerGlobal( 8100): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:08.156 I/CameraManagerGlobal( 1407): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:08.157 I/CameraManagerGlobal( 1407): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:08.157 I/CameraManagerGlobal( 1407): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:08.157 I/CameraManagerGlobal( 6629): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:08.160 I/lmkd    (  629): check finished camerakillboostmode
-10-21 11:07:08.162 W/CameraService_proxy( 1407): Unknown extension type: -1
-10-21 11:07:08.162 E/CHIUSECASE( 1108): [ERROR  ] chxadvancedcamerausecase.cpp:6617 SetPriorityMetadata() [3rd party DBG][ISO] ERROR, Check, please(37)
-10-21 11:07:08.179 E/CHIUSECASE( 1108): [ERROR  ] chxadvancedcamerausecase.cpp:6617 SetPriorityMetadata() [3rd party DBG][ISO] ERROR, Check, please(37)
-10-21 11:07:08.183 E/CHIUSECASE( 1108): [ERROR  ] chxadvancedcamerausecase.cpp:6617 SetPriorityMetadata() [3rd party DBG][ISO] ERROR, Check, please(37)
-10-21 11:07:08.186 E/CHIUSECASE( 1108): [ERROR  ] chxadvancedcamerausecase.cpp:6617 SetPriorityMetadata() [3rd party DBG][ISO] ERROR, Check, please(37)
-10-21 11:07:08.191 E/CHIUSECASE( 1108): [ERROR  ] chxadvancedcamerausecase.cpp:6617 SetPriorityMetadata() [3rd party DBG][ISO] ERROR, Check, please(37)
-10-21 11:07:08.203 E/CHIUSECASE( 1108): [ERROR  ] chxadvancedcamerausecase.cpp:6617 SetPriorityMetadata() [3rd party DBG][ISO] ERROR, Check, please(37)
-10-21 11:07:08.208 E/CHIUSECASE( 1108): [ERROR  ] chxadvancedcamerausecase.cpp:6617 SetPriorityMetadata() [3rd party DBG][ISO] ERROR, Check, please(37)
-10-21 11:07:08.263 W/CameraService_proxy( 1407): Unknown extension type: -1
-10-21 11:07:08.357 I/SehCamDevSession@5.0-impl( 1108): [CAMKPI] camera3->process_capture_result : E
-10-21 11:07:08.359 I/SehCamDevSession@5.0-impl( 1108): [CAMKPI] camera3->process_capture_result : X
-10-21 11:07:08.363 W/CameraService_proxy( 1407): Unknown extension type: -1
-10-21 11:07:08.371 D/Camera3-OutputStream( 1449): returnBufferCheckedLocked: First frame for stream 0, width 640, height 480, format 35
-10-21 11:07:08.374 E/Camera3-Stream( 1449): [VSync] getBuffer: Stream 0: wait for max dequeued buffer exceeds 30000us (164945)us
-10-21 11:07:08.380 E/CHIUSECASE( 1108): [ERROR  ] chxadvancedcamerausecase.cpp:6617 SetPriorityMetadata() [3rd party DBG][ISO] ERROR, Check, please(37)
-10-21 11:07:08.400 E/CHIUSECASE( 1108): [ERROR  ] chxadvancedcamerausecase.cpp:6617 SetPriorityMetadata() [3rd party DBG][ISO] ERROR, Check, please(37)
-10-21 11:07:08.433 I/Camera2ClientBase( 1449): Creating CameraServiceWatchDog for disconnect with cycles=80, cycleLength=100ms, timer=8000ms
-10-21 11:07:08.433 I/Camera2ClientBase( 1449): CameraServiceWatchDog::watchThread for disconnect with cycles=80, cycleLength=100ms, timer=8000ms
-10-21 11:07:08.433 D/Camera2ClientBase( 1449): Camera 1: start to disconnect
-10-21 11:07:08.433 D/Camera2ClientBase( 1449): Camera 1: serializationLock acquired
-10-21 11:07:08.433 D/Camera2ClientBase( 1449): Camera 1: Shutting down
-10-21 11:07:08.433 D/Camera2ClientBase( 1449): Camera 1: start to cacheDump
-10-21 11:07:08.434 E/Camera3-Stream( 1449): [VSync] getBuffer: Stream 0: wait for max dequeued buffer exceeds 30000us (33298)us
-10-21 11:07:08.437 E/CHIUSECASE( 1108): [ERROR  ] chxadvancedcamerausecase.cpp:6617 SetPriorityMetadata() [3rd party DBG][ISO] ERROR, Check, please(37)
-10-21 11:07:08.438 E/Camera2-FrameProcessorBase( 1449): removeListener: 
-10-21 11:07:08.443 D/Camera3-Device( 1449): flush: mInterfaceLock.lock()
-10-21 11:07:08.443 I/Camera3-Device( 1449): Creating CameraServiceWatchDog for flush with cycles=80, cycleLength=100ms, timer=8000ms
-10-21 11:07:08.444 I/Camera3-Device( 1449): CameraServiceWatchDog::watchThread for flush with cycles=80, cycleLength=100ms, timer=8000ms
-10-21 11:07:08.444 D/HidlCamera3-Device( 1449): CameraPerf: flush E
-10-21 11:07:08.444 I/Unihal  ( 1108): CameraHalUnit.cpp: Flush: 545: HAL flush - Start
-10-21 11:07:08.467 E/CameraDeviceClient( 1449): notifyError: pid=8100, errorCode=4, errorStreamId=0, frameNumber=9
-10-21 11:07:08.467 E/CameraDeviceClient( 1449): notifyError: pid=8100, skipClientNotification=false
-10-21 11:07:08.468 E/CameraDeviceClient( 1449): notifyError: pid=8100, errorCode=4, errorStreamId=0, frameNumber=10
-10-21 11:07:08.468 E/CameraDeviceClient( 1449): notifyError: pid=8100, skipClientNotification=false
-10-21 11:07:08.469 E/CameraDeviceClient( 1449): notifyError: pid=8100, errorCode=3, errorStreamId=0, frameNumber=11
-10-21 11:07:08.469 E/CameraDeviceClient( 1449): notifyError: pid=8100, skipClientNotification=false
-10-21 11:07:08.470 E/Camera3-OutputStream( 1449): returnBufferCheckedLocked: A frame is dropped for stream 0 frame 11 , due to buffer error.
-10-21 11:07:08.471 I/Camera3-Status( 1449): markComponent: Component 1 is now idle - RequestThread
-10-21 11:07:08.474 E/CameraDeviceClient( 1449): notifyError: pid=8100, errorCode=4, errorStreamId=0, frameNumber=6
-10-21 11:07:08.474 E/CameraDeviceClient( 1449): notifyError: pid=8100, skipClientNotification=false
-10-21 11:07:08.475 E/CameraDeviceClient( 1449): notifyError: pid=8100, errorCode=4, errorStreamId=0, frameNumber=5
-10-21 11:07:08.475 E/CameraDeviceClient( 1449): notifyError: pid=8100, skipClientNotification=false
-10-21 11:07:08.475 E/CameraDeviceClient( 1449): notifyError: pid=8100, errorCode=4, errorStreamId=0, frameNumber=4
-10-21 11:07:08.475 E/CameraDeviceClient( 1449): notifyError: pid=8100, skipClientNotification=false
-10-21 11:07:08.476 E/CameraDeviceClient( 1449): notifyError: pid=8100, errorCode=5, errorStreamId=0, frameNumber=4
-10-21 11:07:08.476 E/CameraDeviceClient( 1449): notifyError: pid=8100, skipClientNotification=false
-10-21 11:07:08.476 E/Camera3-OutputStream( 1449): returnBufferCheckedLocked: A frame is dropped for stream 0 frame 4 , due to buffer error.
-10-21 11:07:08.481 E/CameraDeviceClient( 1449): notifyError: pid=8100, errorCode=5, errorStreamId=0, frameNumber=5
-10-21 11:07:08.481 E/CameraDeviceClient( 1449): notifyError: pid=8100, skipClientNotification=false
-10-21 11:07:08.481 E/Camera3-OutputStream( 1449): returnBufferCheckedLocked: A frame is dropped for stream 0 frame 5 , due to buffer error.
-10-21 11:07:08.482 E/CameraDeviceClient( 1449): notifyError: pid=8100, errorCode=5, errorStreamId=0, frameNumber=6
-10-21 11:07:08.482 E/CameraDeviceClient( 1449): notifyError: pid=8100, skipClientNotification=false
-10-21 11:07:08.482 E/Camera3-OutputStream( 1449): returnBufferCheckedLocked: A frame is dropped for stream 0 frame 6 , due to buffer error.
-10-21 11:07:08.484 E/CameraDeviceClient( 1449): notifyError: pid=8100, errorCode=4, errorStreamId=0, frameNumber=8
-10-21 11:07:08.484 E/CameraDeviceClient( 1449): notifyError: pid=8100, skipClientNotification=false
-10-21 11:07:08.485 E/CameraDeviceClient( 1449): notifyError: pid=8100, errorCode=4, errorStreamId=0, frameNumber=7
-10-21 11:07:08.485 E/CameraDeviceClient( 1449): notifyError: pid=8100, skipClientNotification=false
-10-21 11:07:08.486 E/CameraDeviceClient( 1449): notifyError: pid=8100, errorCode=5, errorStreamId=0, frameNumber=7
-10-21 11:07:08.486 E/CameraDeviceClient( 1449): notifyError: pid=8100, skipClientNotification=false
-10-21 11:07:08.486 E/Camera3-OutputStream( 1449): returnBufferCheckedLocked: A frame is dropped for stream 0 frame 7 , due to buffer error.
-10-21 11:07:08.487 E/CameraDeviceClient( 1449): notifyError: pid=8100, errorCode=5, errorStreamId=0, frameNumber=8
-10-21 11:07:08.487 E/CameraDeviceClient( 1449): notifyError: pid=8100, skipClientNotification=false
-10-21 11:07:08.487 E/Camera3-OutputStream( 1449): returnBufferCheckedLocked: A frame is dropped for stream 0 frame 8 , due to buffer error.
-10-21 11:07:08.488 E/CameraDeviceClient( 1449): notifyError: pid=8100, errorCode=5, errorStreamId=0, frameNumber=9
-10-21 11:07:08.488 E/CameraDeviceClient( 1449): notifyError: pid=8100, skipClientNotification=false
-10-21 11:07:08.488 E/Camera3-OutputStream( 1449): returnBufferCheckedLocked: A frame is dropped for stream 0 frame 9 , due to buffer error.
-10-21 11:07:08.489 E/CameraDeviceClient( 1449): notifyError: pid=8100, errorCode=5, errorStreamId=0, frameNumber=10
-10-21 11:07:08.489 E/CameraDeviceClient( 1449): notifyError: pid=8100, skipClientNotification=false
-10-21 11:07:08.489 E/Camera3-OutputStream( 1449): returnBufferCheckedLocked: A frame is dropped for stream 0 frame 10 , due to buffer error.
-10-21 11:07:08.489 I/Camera3-Status( 1449): markComponent: Component 2 is now idle - streamId = 0, format = 0x23(YUV_420_888), width = 640, height = 480, option = 0x0, type = OUTPUT
-10-21 11:07:08.489 I/Camera3-IOStreamBase( 1449): FpsStats: stream 0, requested=12, received=12, valid=4, invalid=8
-10-21 11:07:08.489 I/Camera3-Status( 1449): markComponent: Component 0 is now idle - InflightRequests
-10-21 11:07:08.490 I/CameraService( 1449): finishCameraStreamingOps: finish camera streaming ops, package name = ir.mouj, client UID = 10372
-10-21 11:07:08.491 I/CameraServiceProxyWrapper( 1449): updateProxyDeviceState: notifyCameraState for Camera ID 1, newState 2, facing 1, clientName ir.mouj, apiLevel 2
-10-21 11:07:08.491 I/CameraManagerGlobal( 1407): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:08.491 I/CameraService_proxy( 1407): wmi.removeRefreshRateRangeForPackage clientName = ir.mouj
-10-21 11:07:08.491 I/CameraManagerGlobal( 1407): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:08.491 I/CameraManagerGlobal( 1407): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:08.491 I/CameraManagerGlobal(14831): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:08.491 I/CameraManagerGlobal(10793): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:08.491 I/CameraManagerGlobal( 6629): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:08.492 I/CameraManagerGlobal(18970): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:08.492 I/CameraManagerGlobal( 6368): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:08.492 I/CameraManagerGlobal( 2806): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:08.492 I/CameraManagerGlobal( 2562): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:08.492 I/CameraManagerGlobal( 4699): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:08.492 I/CameraManagerGlobal( 4699): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:08.492 I/CameraManagerGlobal( 5245): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:08.492 I/CameraManagerGlobal( 4699): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:08.493 D/CameraAvailabilityListener( 2562): onCameraDeviceStateChanged: id=1, facing=1, state=CAMERA_STATE_IDLE, client=ir.mouj
-10-21 11:07:08.494 I/lmkd    (  629): check finished camerakillboostmode
-10-21 11:07:08.494 I/CameraManagerGlobal( 8100): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:08.498 I/Unihal  ( 1108): CameraHalUnit.cpp: Flush: 549: HAL flush - End
-10-21 11:07:08.499 D/HidlCamera3-Device( 1449): CameraPerf: flush X (55ms)
-10-21 11:07:08.499 D/Camera3-Device( 1449): waitUntilDrainedLocked: Camera 1: Waiting until idle (5000000000ns)
-10-21 11:07:08.499 D/Camera3-Device( 1449): waitUntilDrained: mInterfaceLock.unlock()
-10-21 11:07:08.500 I/Camera3-Device( 1449): disconnectImpl: E
-10-21 11:07:08.500 I/CameraLatencyHistogram( 1449): ProcessCaptureRequest latency histogram (12) samples:
-10-21 11:07:08.500 I/CameraLatencyHistogram( 1449):        20     40     60     80    100    120    140    160    180    inf (max ms)
-10-21 11:07:08.500 I/CameraLatencyHistogram( 1449):      100.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00 (%)
-10-21 11:07:08.500 I/Camera3-Device( 1449): CameraServiceWatchDog::watchThread for disconnectImpl with cycles=100, cycleLength=100ms, timer=10000ms
-10-21 11:07:08.500 D/HidlCamera3-Device( 1449): CameraPerf: close E
-10-21 11:07:08.500 I/Unihal  ( 1108): UniHal3InterfaceEntry.cpp: uni_close_camera_hardware: 479: E
-10-21 11:07:08.500 I/Unihal  ( 1108): CameraHalManager.cpp: CloseCamera: 275: HAL close - Start
-10-21 11:07:08.503 E/CamX    ( 1108): [ERROR][HAL    ] camxhal3.cpp:1319 close() after process camera close
-10-21 11:07:08.503 E/CamX    ( 1108): [ERROR][HAL    ] camxhal3.cpp:1331 close() Close: overrideCameraClose is 47 , overrideCameraOpen is 0 
-10-21 11:07:08.556 I/QC_3A   ( 1108):  INFO: AEC: AECDestroy: 457: Received Camera close mask 0x2f
-10-21 11:07:08.556 I/QC_3A   ( 1108):  INFO: AEC: AECDestroy: 465: Received CameraID: 5  Internal CameraID : 1
-10-21 11:07:08.557 I/QC_3A   ( 1108):  INFO: AEC: AECDestroy: 487: isCameraClose: 1
-10-21 11:07:08.564 I/QC_3A   ( 1108):  INFO: AWB: AWBDestroy: 333: Received Camera close mask 0x2f
-10-21 11:07:08.565 I/QC_3A   ( 1108):  INFO: AWB: AWBDestroy: 341: Received CameraID: 5  Internal CameraID : 1
-10-21 11:07:08.565 I/QC_3A   ( 1108):  INFO: AWB: AWBDestroy: 359: isCameraClose: 1
-10-21 11:07:08.566 I/QC_3A   ( 1108):  INFO:  AF: AFDestroy: 258: Received Camera close mask 0x2f
-10-21 11:07:08.566 I/QC_3A   ( 1108):  INFO:  AF: AFDestroy: 266: Received CameraID: 5  Internal CameraID : 1
-10-21 11:07:08.566 I/QC_3A   ( 1108):  INFO:  AF: AFDestroy: 276: isCameraClose: 1
-10-21 11:07:08.616 I/CameraProviderManager( 1449): Camera device device@3.5/legacy/1 torch status is now AVAILABLE_OFF
-10-21 11:07:08.616 I/CameraService( 1449): onTorchStatusChangedLocked: Torch status changed for cameraId=1, newStatus=1
-10-21 11:07:08.616 E/CameraService( 1449): onTorchStatusChangedLocked: cannot get torch status of camera 1: No such file or directory (-2)
-10-21 11:07:08.616 E/CamX    ( 1108): [ERROR][HAL    ] camxhal3.cpp:1335 close() Close done on cameraId 3
-10-21 11:07:08.616 I/Unihal  ( 1108): CameraHalManager.cpp: CloseCamera: 279: HAL close - End
-10-21 11:07:08.616 I/Unihal  ( 1108): UniHal3InterfaceEntry.cpp: uni_close_camera_hardware: 493: X (0)
-10-21 11:07:08.616 D/HidlCamera3-Device( 1449): CameraPerf: close X (116ms)
-10-21 11:07:08.616 D/Camera3-OutputStream( 1449): disconnectLocked: disconnecting stream 0 from native window
-10-21 11:07:08.619 I/CameraLatencyHistogram( 1449): Stream 0 dequeueBuffer latency histogram (12) samples:
-10-21 11:07:08.619 I/CameraLatencyHistogram( 1449):         5     10     15     20     25     30     35     40     45    inf (max ms)
-10-21 11:07:08.619 I/CameraLatencyHistogram( 1449):      83.33   8.33   8.33   0.00   0.00   0.00   0.00   0.00   0.00   0.00 (%)
-10-21 11:07:08.619 I/CameraLatencyHistogram( 1449): Stream 0 enqueueBuffer latency histogram (4) samples:
-10-21 11:07:08.619 I/CameraLatencyHistogram( 1449):         5     10     15     20     25     30     35     40     45    inf (max ms)
-10-21 11:07:08.619 I/CameraLatencyHistogram( 1449):      100.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00 (%)
-10-21 11:07:08.619 I/Camera3-Device( 1449): disconnectImpl: X
-10-21 11:07:08.619 I/CameraServiceProxyWrapper( 1449): updateProxyDeviceState: notifyCameraState for Camera ID 1, newState 3, facing 1, clientName ir.mouj, apiLevel 2
-10-21 11:07:08.620 I/Camera3-Device( 1449): setDeviceInjector
-10-21 11:07:08.620 D/CameraService( 1449): BasicClient::disconnect E
-10-21 11:07:08.620 I/CameraService_proxy( 1407): Notify nfc service : camera open was(true) -> now(false) = polling(true)
-10-21 11:07:08.622 I/CameraService( 1449): finishCameraOps: Finish camera ops, package name = ir.mouj, client UID = 10372
-10-21 11:07:08.622 I/CameraService( 1449): decreaseCamConnRef: ref=0
-10-21 11:07:08.623 D/BatteryExternalStatsWorker( 1407): update stats : camera-off (64)
-10-21 11:07:08.624 I/CameraService( 1449): decreaseCamConnRef: service.camera.running set to 0
-10-21 11:07:08.625 I/CameraManagerGlobal( 2806): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0
-10-21 11:07:08.625 I/CameraManagerGlobal( 6368): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0
-10-21 11:07:08.625 I/CameraManagerGlobal( 4699): postSingleUpdate device: camera id 1 status STATUS_PRESENT
-10-21 11:07:08.625 I/CameraManagerGlobal( 6629): postSingleUpdate device: camera id 1 status STATUS_PRESENT
-10-21 11:07:08.625 I/CameraManagerGlobal( 8100): postSingleUpdate device: camera id 1 status STATUS_PRESENT
-10-21 11:07:08.625 I/CameraManagerGlobal( 4699): postSingleUpdate device: camera id 1 status STATUS_PRESENT
-10-21 11:07:08.625 I/CameraManagerGlobal( 4699): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0
-10-21 11:07:08.625 I/CameraManagerGlobal( 4699): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:08.625 I/CameraManagerGlobal( 4699): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:08.625 I/CameraManagerGlobal(14831): postSingleUpdate device: camera id 1 status STATUS_PRESENT
-10-21 11:07:08.625 I/CameraManagerGlobal( 6629): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0
-10-21 11:07:08.625 I/IC_Service[1.2.93]( 6629): onCameraAvailable(1)
-10-21 11:07:08.625 I/CameraManagerGlobal( 5245): postSingleUpdate device: camera id 1 status STATUS_PRESENT
-10-21 11:07:08.626 I/CameraManagerGlobal( 5245): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0
-10-21 11:07:08.626 I/CameraManagerGlobal(14831): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0
-10-21 11:07:08.626 I/HBD     ( 5245): k Camera is available, camId = 1 
-10-21 11:07:08.626 I/CameraManagerGlobal( 8100): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0
-10-21 11:07:08.626 I/CameraManagerGlobal(18970): postSingleUpdate device: camera id 1 status STATUS_PRESENT
-10-21 11:07:08.626 I/HBD     ( 5245): k All camera is available, so, ExtractText will be enabled 
-10-21 11:07:08.626 I/CameraManagerGlobal(18970): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0
-10-21 11:07:08.626 I/CameraManagerGlobal(10793): postSingleUpdate device: camera id 1 status STATUS_PRESENT
-10-21 11:07:08.626 I/CameraManagerGlobal(10793): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0
-10-21 11:07:08.626 I/CameraManagerGlobal( 1407): postSingleUpdate device: camera id 1 status STATUS_PRESENT
-10-21 11:07:08.627 I/CameraManagerGlobal( 1407): postSingleUpdate device: camera id 1 status STATUS_PRESENT
-10-21 11:07:08.627 I/CameraManagerGlobal( 2562): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0
-10-21 11:07:08.627 I/CameraManagerGlobal( 1407): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0
-10-21 11:07:08.627 D/NfcService( 2807): setReaderMode: uid=1000, packageName: com.samsung.android.cameraxservice, flags: 0
-10-21 11:07:08.627 I/CameraManagerGlobal( 1407): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:08.627 I/CameraManagerGlobal( 1407): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:08.627 D/CameraAvailabilityListener( 2562): onCameraDeviceStateChanged: id=1, facing=1, state=CAMERA_STATE_CLOSED, client=ir.mouj
-10-21 11:07:08.628 I/lmkd    (  629): check finished camerakillboostmode
-10-21 11:07:08.629 I/CameraService_worker( 1407): DeviceInjector, onSemCameraDeviceRawStatus 1 1
-10-21 11:07:08.629 I/RequestInjectorService( 1407): Camera is closed. cameraId(1), state(█│)
-10-21 11:07:08.631 I/CameraFlashlight( 1449): deviceClosed: device 1 is closed
-10-21 11:07:08.631 I/CameraService( 1449): disconnect: Disconnected client for camera 1 for PID 8100
-10-21 11:07:08.632 D/cameraserver( 1449): FGS Logger Transaction failed
-10-21 11:07:08.632 D/cameraserver( 1449): -129
-10-21 11:07:08.632 D/CameraService( 1449): BasicClient::disconnect X
-10-21 11:07:08.633 I/VSET/ObserveCameraStateService( 6368): onStartCommand : unihal 3.01
-10-21 11:07:08.633 I/VSET/ObserveCameraStateService( 6368): initAppRepository is created already
-10-21 11:07:08.633 I/VSET/ObserveCameraStateService( 6368): onStartCommand: true
-10-21 11:07:08.634 D/PackageManager( 1407): setEnabledSetting : userId = 0 packageName = com.samsung.android.vtcamerasettings cmp = com.samsung.android.vtcamerasettings.settings.SettingsActivity newState = 1 callingPackage = 
-com.samsung.android.vtcamerasettings
-10-21 11:07:08.637 D/ApplicationPolicy( 1407): getApplicationStateEnabled : pkg = com.samsung.android.vtcamerasettings userId : 0
-10-21 11:07:08.637 D/ApplicationPolicy( 1407): getApplicationComponentState : pkg = com.samsung.android.vtcamerasettings userId : 0
-10-21 11:07:08.639 I/VSET/ObserveCameraStateService( 6368): onStartCommand: update SALogging status
-10-21 11:07:08.640 I/VSET/ObserveCameraStateService( 6368): processDeviceInjectorIntent: not supported device injector
-10-21 11:07:08.643 E/ScreenDecorations( 2562): CutoutView not initialized hideCameraProtection
-10-21 11:07:08.643 I/VSET/ObserveCameraStateService( 6368): updateAppInfoRepository: E 
-10-21 11:07:08.644 I/VSET/ObserveCameraStateService( 6368): initAppRepository is created already
-10-21 11:07:08.646 I/VSET/ObserveCameraStateService( 6368): requestStopService
-10-21 11:07:08.866 W/CameraService_proxy( 1407): Unknown extension type: -1
-10-21 11:07:09.468 W/CameraService_proxy( 1407): Unknown extension type: -1
-10-21 11:07:10.693 I/EDMNativeHelperService( 1407): isCameraEnabled
-10-21 11:07:10.693 D/EDMNativeHelper( 1407): isCameraEnabled
-10-21 11:07:10.693 D/EDMNativeHelper( 1407): checking for camera in EnterpriseDeviceManagerService
-10-21 11:07:10.693 D/EnterpriseDeviceManagerService( 1407): isCameraEnabledNative
-10-21 11:07:10.693 D/EnterpriseDeviceManagerService( 1407): checking for camera in restriction policy
-10-21 11:07:10.693 D/RestrictionPolicy( 1407): isCameraEnabled ret(true) userId(0) cxtInfo.mCallerUid(10372) cxtInfo.mContainerId(0)
-10-21 11:07:11.166 I/EDMNativeHelperService( 1407): isCameraEnabled
-10-21 11:07:11.166 D/EDMNativeHelper( 1407): isCameraEnabled
-10-21 11:07:11.166 D/EDMNativeHelper( 1407): checking for camera in EnterpriseDeviceManagerService
-10-21 11:07:11.166 D/EnterpriseDeviceManagerService( 1407): isCameraEnabledNative
-10-21 11:07:11.166 D/EnterpriseDeviceManagerService( 1407): checking for camera in restriction policy
-10-21 11:07:11.166 D/RestrictionPolicy( 1407): isCameraEnabled ret(true) userId(0) cxtInfo.mCallerUid(10372) cxtInfo.mContainerId(0)
-10-21 11:07:13.694 I/EDMNativeHelperService( 1407): isCameraEnabled
-10-21 11:07:13.695 D/EDMNativeHelper( 1407): isCameraEnabled
-10-21 11:07:13.695 D/EDMNativeHelper( 1407): checking for camera in EnterpriseDeviceManagerService
-10-21 11:07:13.695 D/EnterpriseDeviceManagerService( 1407): isCameraEnabledNative
-10-21 11:07:13.695 D/EnterpriseDeviceManagerService( 1407): checking for camera in restriction policy
-10-21 11:07:13.695 D/RestrictionPolicy( 1407): isCameraEnabled ret(true) userId(0) cxtInfo.mCallerUid(10372) cxtInfo.mContainerId(0)
-10-21 11:07:13.947 I/CameraService( 1449): CameraService::connect call (PID 8100 "ir.mouj", camera ID 1) and Camera API version 2
-10-21 11:07:13.949 I/CameraService( 1449): isUidActiveLocked E: uid 10372, callingPackage ir.mouj, isRegistered true
-10-21 11:07:13.949 I/CameraService( 1449): isUidActiveLocked X: uid 10372, callingPackage ir.mouj, isActive true.
-10-21 11:07:13.949 I/EDMNativeHelperService( 1407): isCameraEnabled
-10-21 11:07:13.949 D/EDMNativeHelper( 1407): isCameraEnabled
-10-21 11:07:13.949 D/EDMNativeHelper( 1407): checking for camera in EnterpriseDeviceManagerService
-10-21 11:07:13.949 D/EnterpriseDeviceManagerService( 1407): isCameraEnabledNative
-10-21 11:07:13.949 D/EnterpriseDeviceManagerService( 1407): checking for camera in restriction policy
-10-21 11:07:13.949 D/RestrictionPolicy( 1407): isCameraEnabled ret(true) userId(0) cxtInfo.mCallerUid(10372) cxtInfo.mContainerId(0)
-10-21 11:07:13.950 I/CameraService( 1449): CameraService::validateClientPermissionsLocked is ok : calling pid 8100, calling uid 10372, client ir.mouj , cameraservice pid=1449, device user 0, currently allowed device users: 0
-10-21 11:07:13.950 I/CameraService( 1449): CameraService::handleEvictionsLocked
-10-21 11:07:13.950 I/CameraService( 1449): wouldEvictLocked: [incoming client] owner = 8100, priority-score=0, cost=100, returnIncompatibleClients=false
-10-21 11:07:13.950 I/CameraService( 1449): wouldEvictLocked: [cost info] current cost=0, adding cost=100, total cost=100, max cost=100
-10-21 11:07:13.950 I/CameraService( 1449): wouldEvictLocked: [highestPriority] owner=8100, score=0
-10-21 11:07:13.950 I/CameraFlashlight( 1449): prepareDeviceOpen: prepare for device open(cameraId=1)
-10-21 11:07:13.950 I/Camera2ClientBase( 1449): Camera 1: Opened. Client: ir.mouj (PID 8100, UID 10372)
-10-21 11:07:13.950 I/CameraDeviceClient( 1449): CameraDeviceClient 1: Opened
-10-21 11:07:13.950 I/CameraService( 1449): isNoSALoggingPackage: ir.mouj is a third party package.
-10-21 11:07:13.950 I/CameraService( 1449): makeClient: Camera2 API, override to portrait 0
-10-21 11:07:13.951 I/CameraService( 1449): service.camera.client set to ir.mouj
-10-21 11:07:13.951 I/CameraManagerGlobal( 1407): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0
-10-21 11:07:13.951 I/CameraManagerGlobal( 5245): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0
-10-21 11:07:13.952 I/CameraManagerGlobal( 1407): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:13.952 I/CameraManagerGlobal( 1407): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:13.952 I/CameraManagerGlobal( 2562): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0
-10-21 11:07:13.952 I/CameraManagerGlobal(18970): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0
-10-21 11:07:13.953 I/CameraManagerGlobal( 4699): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0
-10-21 11:07:13.953 I/CameraManagerGlobal( 4699): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:13.953 I/CameraManagerGlobal( 4699): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:13.953 I/RequestInjectorService( 1407): Camera is opening. Start VT Camera Setting. cameraId(1), displayId(█░)
-10-21 11:07:13.953 I/CameraManagerGlobal( 2806): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0
-10-21 11:07:13.953 I/CameraManagerGlobal( 8100): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0
-10-21 11:07:13.953 I/CameraManagerGlobal(14831): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0
-10-21 11:07:13.953 I/CameraManagerGlobal( 6629): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0
-10-21 11:07:13.954 I/CameraManagerGlobal( 6368): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0
-10-21 11:07:13.953 I/CameraManagerGlobal(10793): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0
-10-21 11:07:13.954 I/VSET/ObserveCameraStateService( 6368): onStartCommand : unihal 3.01
-10-21 11:07:13.955 I/Camera2ClientBase( 1449): initializeImpl: Initializing client for camera 1
-10-21 11:07:13.955 I/VSET/ObserveCameraStateService( 6368): initAppRepository is created already
-10-21 11:07:13.955 D/ijt/Camera3-RequestInjector( 1449): RequestInjector[1] Mapper created
-10-21 11:07:13.955 I/Camera3-Device( 1449): Camera3Device: Created device for camera 1
-10-21 11:07:13.955 D/HidlCamera3-Device( 1449): CameraPerf: initialize E
-10-21 11:07:13.955 D/HidlCamera3-Device( 1449): initialize: mInterfaceLock.lock()
-10-21 11:07:13.955 I/CameraProviderManager( 1449): openHidlSession, using trampoline for v5.0
-10-21 11:07:13.955 D/CameraProviderManager( 1449): CameraPerf: openHidlSession E
-10-21 11:07:13.955 I/SehCamDev@5.0-impl( 1108): [CAMKPI] camera3->open : E
-10-21 11:07:13.955 I/Unihal  ( 1108): UniHal3InterfaceEntry.cpp: uni_open_camera_hardware: 550: E cameraName: 1
-10-21 11:07:13.955 I/Unihal  ( 1108): UniHal3InterfaceEntry.cpp: uni_open_camera_hardware: 552: UNIHAL_VERSION = "2.15"
-10-21 11:07:13.955 I/Unihal  ( 1108): CameraDevice.cpp: OpenCameraHardware_v3: 401: name : 1 camera id : 1
-10-21 11:07:13.955 I/CameraProviderManager( 1449): Camera device device@3.5/legacy/1 torch status is now NOT_AVAILABLE
-10-21 11:07:13.955 I/CameraService( 1449): onTorchStatusChangedLocked: Torch status changed for cameraId=1, newStatus=0
-10-21 11:07:13.955 E/CameraService( 1449): onTorchStatusChangedLocked: cannot get torch status of camera 1: No such file or directory (-2)
-10-21 11:07:13.956 I/VSET/ObserveCameraStateService( 6368): onStartCommand: true
-10-21 11:07:13.958 D/PackageManager( 1407): setEnabledSetting : userId = 0 packageName = com.samsung.android.vtcamerasettings cmp = com.samsung.android.vtcamerasettings.settings.SettingsActivity newState = 1 callingPackage = 
-com.samsung.android.vtcamerasettings
-10-21 11:07:13.959 D/ApplicationPolicy( 1407): getApplicationStateEnabled : pkg = com.samsung.android.vtcamerasettings userId : 0
-10-21 11:07:13.959 D/ApplicationPolicy( 1407): getApplicationComponentState : pkg = com.samsung.android.vtcamerasettings userId : 0
-10-21 11:07:13.961 I/VSET/ObserveCameraStateService( 6368): onStartCommand: update SALogging status
-10-21 11:07:13.961 I/VSET/ObserveCameraStateService( 6368): processDeviceInjectorIntent: not supported device injector
-10-21 11:07:13.963 I/VSET/ObserveCameraStateService( 6368): updateAppInfoRepository: E 
-10-21 11:07:13.963 I/VSET/ObserveCameraStateService( 6368): initAppRepository is created already
-10-21 11:07:13.964 I/VSET/ObserveCameraStateService( 6368): requestStopService
-10-21 11:07:13.969 I/Unihal  ( 1108): ParameterManager.cpp: SetCameraCharacteristics: 116: Registered camera characteristics successfully. : cameraId=1, characteristics=0xb400007c150dd560
-10-21 11:07:13.969 I/Unihal  ( 1108): UniHal3InterfaceEntry.cpp: uni_open_camera_hardware: 578: X (0)
-10-21 11:07:13.969 I/SehCamDev@5.0-impl( 1108): [CAMKPI] camera3->open : X
-10-21 11:07:13.972 D/CameraProviderManager( 1449): CameraPerf: openHidlSession X (17ms)
-10-21 11:07:13.974 D/HidlCamera3-Device( 1449): CameraPerf: initialize X (19ms)
-10-21 11:07:13.974 D/Camera3-Device( 1449): CameraPerf: initializeCommonLocked: E
-10-21 11:07:13.975 I/Camera3-Status( 1449): addComponent: Adding new component 0 - InflightRequests
-10-21 11:07:13.975 I/Camera3-Status( 1449): addComponent: Adding new component 1 - RequestThread
-10-21 11:07:13.975 D/Camera3-Device( 1449): initializeCommonLocked mTimestampOffset = 1155765056712737ns.
-10-21 11:07:13.976 D/Camera3-Device( 1449): CameraPerf: initializeCommonLocked: X (1ms)
-10-21 11:07:13.976 I/CameraService( 1449): startCameraOps: Start camera ops, package name = ir.mouj, client UID = 10372
-10-21 11:07:13.982 I/CameraService( 1449): increaseCamConnRef: ref=1
-10-21 11:07:13.982 I/CameraService( 1449): increaseCamConnRef: service.camera.running set to 1
-10-21 11:07:13.983 I/CameraManagerGlobal( 4699): postSingleUpdate device: camera id 1 status STATUS_NOT_AVAILABLE
-10-21 11:07:13.983 I/CameraManagerGlobal(10793): postSingleUpdate device: camera id 1 status STATUS_NOT_AVAILABLE
-10-21 11:07:13.983 I/CameraManagerGlobal(14831): postSingleUpdate device: camera id 1 status STATUS_NOT_AVAILABLE
-10-21 11:07:13.983 I/CameraManagerGlobal( 4699): postSingleUpdate device: camera id 1 status STATUS_NOT_AVAILABLE
-10-21 11:07:13.983 I/CameraManagerGlobal( 8100): postSingleUpdate device: camera id 1 status STATUS_NOT_AVAILABLE
-10-21 11:07:13.983 E/Camera2-FrameProcessorBase( 1449): FrameProcessorBase: created
-10-21 11:07:13.983 I/CameraManagerGlobal(18970): postSingleUpdate device: camera id 1 status STATUS_NOT_AVAILABLE
-10-21 11:07:13.983 I/CameraManagerGlobal( 6629): postSingleUpdate device: camera id 1 status STATUS_NOT_AVAILABLE
-10-21 11:07:13.983 E/Camera2-FrameProcessorBase( 1449): registerListener: Registering listener for frame id range 0 - 2147483647
-10-21 11:07:13.983 I/CameraService( 1449): connectHelper: overrideCameraMuteMode = false, isCameraPrivacyEnabled = false
-10-21 11:07:13.983 I/Camera3-Device( 1449): setCameraMute, enabled = false, supported = true
-10-21 11:07:13.983 I/CameraService( 1449): CameraService::finishConnectLocked E
-10-21 11:07:13.983 I/CameraService( 1449): wouldEvictLocked: [incoming client] owner = 8100, priority-score=0, cost=100, returnIncompatibleClients=false
-10-21 11:07:13.983 I/CameraService( 1449): wouldEvictLocked: [cost info] current cost=0, adding cost=100, total cost=100, max cost=100
-10-21 11:07:13.983 I/CameraService( 1449): wouldEvictLocked: [highestPriority] owner=8100, score=0
-10-21 11:07:13.984 I/CameraManagerGlobal( 5245): postSingleUpdate device: camera id 1 status STATUS_NOT_AVAILABLE
-10-21 11:07:13.984 I/CameraService( 1449): addAndEvict: push the client(owner 8100, priorityScore 0, state 2) to mClients
-10-21 11:07:13.984 I/HBD     ( 5245): k Camera is used by another app, camId = 1 
-10-21 11:07:13.984 I/CameraService( 1449): CameraService::finishConnectLocked X
-10-21 11:07:13.984 I/IC_Service[1.2.93]( 6629): onCameraUnavailable(1)
-10-21 11:07:13.984 I/CameraDeviceClient( 1449): notifyAppPackageName
-10-21 11:07:13.984 D/HidlCamera3-Device( 1449): CameraPerf: setParameters E
-10-21 11:07:13.984 D/HidlCamera3-Device( 1449): CameraPerf: setParameters X (0ms)
-10-21 11:07:13.984 D/BatteryExternalStatsWorker( 1407): update stats : camera-on (64)
-10-21 11:07:13.984 I/CameraService( 1449): Notified package name to HAL.
-10-21 11:07:13.984 I/CameraService( 1449): connectHelper: Skip Request Injector ExtraRequests to new client(ir.mouj)
-10-21 11:07:13.985 I/CameraServiceProxyWrapper( 1449): updateProxyDeviceState: notifyCameraState for Camera ID 1, newState 0, facing 1, clientName ir.mouj, apiLevel 2
-10-21 11:07:13.985 I/CameraManagerGlobal( 1407): postSingleUpdate device: camera id 1 status STATUS_NOT_AVAILABLE
-10-21 11:07:13.985 I/CameraManagerGlobal( 1407): postSingleUpdate device: camera id 1 status STATUS_NOT_AVAILABLE
-10-21 11:07:13.985 I/CameraManagerGlobal( 1407): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0
-10-21 11:07:13.985 I/CameraManagerGlobal( 1407): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:13.985 I/CameraManagerGlobal( 1407): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:13.985 I/CameraService_worker( 1407): DeviceInjector, onSemCameraDeviceRawStatus 1 -2
-10-21 11:07:13.986 I/CameraManagerGlobal(18970): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0
-10-21 11:07:13.986 I/CameraManagerGlobal(14831): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0
-10-21 11:07:13.986 I/CameraManagerGlobal(10793): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0
-10-21 11:07:13.987 I/CameraManagerGlobal( 2806): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0
-10-21 11:07:13.987 I/CameraService( 1449): isNoSALoggingPackage: ir.mouj is a third party package.
-10-21 11:07:13.987 D/cameraserver( 1449): FGS Logger Transaction failed
-10-21 11:07:13.987 I/lmkd    (  629): check CAMERA OPEN -31568, memlimit: 112781, other_free: 27993, saved_ion_idle_camera: 0, cameraprocsize: 65997, kgsl: 100498, vmallocapi: 59309, diff_available: 23380 
-10-21 11:07:13.987 D/cameraserver( 1449): -129
-10-21 11:07:13.987 I/lmkd    (  629): check finished camerakillboostmode
-10-21 11:07:13.987 I/CameraManagerGlobal( 2562): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0
-10-21 11:07:13.987 I/CameraManagerGlobal( 5245): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0
-10-21 11:07:13.987 I/CameraManagerGlobal( 6368): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0
-10-21 11:07:13.987 D/CameraAvailabilityListener( 2562): onCameraDeviceStateChanged: id=1, facing=1, state=CAMERA_STATE_OPEN, client=ir.mouj
-10-21 11:07:13.987 I/CameraManagerGlobal( 4699): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0
-10-21 11:07:13.987 I/CameraManagerGlobal( 4699): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:13.987 I/CameraManagerGlobal( 4699): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:13.988 I/AudioManager( 1407): setParameters keyValuePairs = cameraFacing=front
-10-21 11:07:13.988 I/CameraManagerGlobal( 8100): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0
-10-21 11:07:13.988 E/cr_VideoCapture( 8100): CameraDevice.StateCallback onOpened
-10-21 11:07:13.989 I/CameraManagerGlobal( 6629): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0
-10-21 11:07:13.989 D/audio_hw_primary( 1075): adev_set_parameters: enter: cameraFacing=front
-10-21 11:07:13.989 D/HidlCamera3-Device( 1449): CameraPerf: constructDefaultRequestSettings templateId: 1 E
-10-21 11:07:13.989 D/HidlCamera3-Device( 1449): CameraPerf: constructDefaultRequestSettings X (0ms)
-10-21 11:07:13.990 I/CameraService_proxy( 1407): Notify nfc service : camera open was(false) -> now(true) = polling(false)
-10-21 11:07:13.991 D/NfcService( 2807): setReaderMode: uid=1000, packageName: com.samsung.android.cameraxservice, flags: 4096
-10-21 11:07:13.995 I/WindowManager( 2562): WindowManagerGlobal#addView, ty=2024, view=com.android.systemui.RegionInterceptingFrameLayout{cdf4f23 V.E...... ......I. 0,0-0,0}, caller=android.view.WindowManagerImpl.addView:150 
-com.android.systemui.ScreenDecorations.setupDecorations:804 com.android.systemui.ScreenDecorations$1.onApplyCameraProtection:54 
-10-21 11:07:14.004 D/Camera3-Device( 1449): waitUntilDrained: mInterfaceLock.unlock()
-10-21 11:07:14.008 D/CameraDeviceClient( 1449): createStream E
-10-21 11:07:14.008 D/SessionConfigUtils( 1449): createSurfaceFromGbp E: logicalCameraId=1, isStreamInfoValid=0, useCase=0, option=0x0, mirrorMode=0
-10-21 11:07:14.019 D/Camera3-Device( 1449): createStream: mInterfaceLock.lock()
-10-21 11:07:14.019 D/Camera3-Device( 1449): createStream: Camera 1: Creating new stream 0: 640 x 480, format 0x23(YUV_420_888), dataspace 146931712 rotation 0 consumer usage 0, isShared 0, physicalCameraId , isMultiResolution 
-0 dynamicRangeProfile 0x1, streamUseCase 0, option 0x0, timestampBase 0, mirrorMode 0, colorSpace -1, useReadoutTimestamp 0
-10-21 11:07:14.028 D/Camera3-Device( 1449): createStream: mInterfaceLock.unlock()
-10-21 11:07:14.028 D/CameraDeviceClient( 1449): createStream: Camera 1: Successfully created a new stream ID 0 for output surface (640 x 480) with format 0x23.
-10-21 11:07:14.028 D/Camera3-Device( 1449): setStreamTransform: mInterfaceLock.lock()
-10-21 11:07:14.028 D/CameraDeviceClient( 1449): createStream X
-10-21 11:07:14.030 D/Camera3-Device( 1449): filterParamsAndConfigureLocked : operatingMode=0
-10-21 11:07:14.030 D/Camera3-Device( 1449): CameraPerf: configureStreamsLocked: Camera 1: Stream configuration E
-10-21 11:07:14.030 I/HidlCamera3-Device( 1449): configureStreams Before configuration Stream[0] : [640 x 480], usage: 0x3
-10-21 11:07:14.031 I/SehCamDevSession@5.0-impl( 1108): [CAMKPI] camera3->configure_streams : E
-10-21 11:07:14.031 I/Unihal  ( 1108): CameraHalUnit.cpp: ConfigureStreams: 232: cameraId=1, GetIsAlreadyCreated=0
-10-21 11:07:14.031 I/Unihal  ( 1108): ScenarioManager.cpp: FindScenarioInfo: 2072: Current shootingMode=0x0001000c(UNI_SHOOTING_MODE_3RD_PARTY_BYPASS), cameraId=1(UNI_FWK_CAMERA_ID_FRONT)
-10-21 11:07:14.031 I/Unihal  ( 1108): ScenarioManager.cpp: CheckEnableCondition: 2222: Unihal is disabled. : isSamsungCamera=false, isFactoryTest=false, isGalaxyRaw = false, isAllowed3rdParty=true, foundScenario=false, 
-isValidStreamConfiguration=false, isSamsungVdisEnabled=false, isTestPatternMode=false, shootingMode=UNI_SHOOTING_MODE_3RD_PARTY_BYPASS
-10-21 11:07:14.031 I/Unihal  ( 1108): CameraHalUnit.cpp: ConfigureStreams: 260: Unihal is bypass mode in current scenario.
-10-21 11:07:14.031 E/CamX    ( 1108): [ERROR][HAL    ] camxhal3.cpp:1535 configure_streams() HalOp: Begin CONFIG: 0xb400007ac39e2730, logicalCameraId: 3, cameraId: 1
-10-21 11:07:14.031 E/CamX    ( 1108): [ERROR][HAL    ] camxhal3.cpp:1568 configure_streams()             stream_type  : 00000000, CAMERA3_STREAM_OUTPUT
-10-21 11:07:14.031 E/CamX    ( 1108): [ERROR][HAL    ] camxhal3.cpp:1575 configure_streams()             rotation     : 00000000, CAMERA3_STREAM_ROTATION_0
-10-21 11:07:14.031 E/CamX    ( 1108): [ERROR][HAL    ] camxhal3.cpp:1583 configure_streams()        physical_camera_id         : 
-10-21 11:07:14.031 I/CHIUSECASE( 1108): [CONFIG ] chxextensionmodule.cpp:1187 SetHALOps() SetHALOps being set for CameraID:3
-10-21 11:07:14.040 E/CHIUSECASE( 1108): [ERROR  ] chxsensorselectmode_a52s.cpp:864 FindBestSensorMode() Selected Usecase: 8, cameraId:5 sensorId:13, SelectedMode W=3264, H=2448, FPS:30, NumBatchedFrames:1, modeIndex:2
-10-21 11:07:14.046 W/CHIUSECASE( 1108): [WARN   ] chifeature2graphmanager.cpp:345 LoadFeatureGraphSelectorOps() No graph selector library files found in the path /vendor/lib64/camera/components/feature2/oem
-10-21 11:07:14.058 E/CHIUSECASE( 1108): [ERROR  ] chxsensorselectmode_a52s.cpp:864 FindBestSensorMode() Selected Usecase: 8, cameraId:5 sensorId:13, SelectedMode W=3264, H=2448, FPS:30, NumBatchedFrames:1, modeIndex:2
-10-21 11:07:14.058 E/CHIUSECASE( 1108): [ERROR  ] chxsensorselectmode_a52s.cpp:864 FindBestSensorMode() Selected Usecase: 8, cameraId:5 sensorId:13, SelectedMode W=3264, H=2448, FPS:30, NumBatchedFrames:1, modeIndex:2
-10-21 11:07:14.058 E/CHIUSECASE( 1108): [ERROR  ] chxsensorselectmode_a52s.cpp:864 FindBestSensorMode() Selected Usecase: 8, cameraId:5 sensorId:13, SelectedMode W=3264, H=2448, FPS:30, NumBatchedFrames:1, modeIndex:2
-10-21 11:07:14.059 E/CHIUSECASE( 1108): [ERROR  ] chxsensorselectmode_a52s.cpp:864 FindBestSensorMode() Selected Usecase: 8, cameraId:5 sensorId:13, SelectedMode W=3264, H=2448, FPS:30, NumBatchedFrames:1, modeIndex:2
-10-21 11:07:14.063 E/CHIUSECASE( 1108): [ERROR  ] chxsensorselectmode_a52s.cpp:864 FindBestSensorMode() Selected Usecase: 8, cameraId:5 sensorId:13, SelectedMode W=3264, H=2448, FPS:30, NumBatchedFrames:1, modeIndex:2
-10-21 11:07:14.066 E/CHIUSECASE( 1108): [ERROR  ] chxsensorselectmode_a52s.cpp:864 FindBestSensorMode() Selected Usecase: 8, cameraId:5 sensorId:13, SelectedMode W=3264, H=2448, FPS:30, NumBatchedFrames:1, modeIndex:2
-10-21 11:07:14.070 E/CHIUSECASE( 1108): [ERROR  ] chxsensorselectmode_a52s.cpp:864 FindBestSensorMode() Selected Usecase: 8, cameraId:5 sensorId:13, SelectedMode W=3264, H=2448, FPS:30, NumBatchedFrames:1, modeIndex:2
-10-21 11:07:14.072 E/CHIUSECASE( 1108): [ERROR  ] chxsensorselectmode_a52s.cpp:864 FindBestSensorMode() Selected Usecase: 8, cameraId:5 sensorId:13, SelectedMode W=3264, H=2448, FPS:30, NumBatchedFrames:1, modeIndex:2
-10-21 11:07:14.085 E/CHIUSECASE( 1108): [ERROR  ] chxsensorselectmode_a52s.cpp:864 FindBestSensorMode() Selected Usecase: 8, cameraId:5 sensorId:13, SelectedMode W=3264, H=2448, FPS:30, NumBatchedFrames:1, modeIndex:2
-10-21 11:07:14.086 W/CHIUSECASE( 1108): [WARN   ] chxsession.cpp:154 Initialize() flags.flags.u.FASTAEC = 0 , isFastAECState = 0 (logicalCameraId 12)
-10-21 11:07:14.113 I/QC_3A   ( 1108):  INFO: AEC: CreateAECAlgorithm: 948: StaticAEC algo create: camera open mask 32 
-10-21 11:07:14.113 I/QC_3A   ( 1108):  INFO: AEC: CreateAECAlgorithm: 841: Given Camera role=0, camera id=5
-10-21 11:07:14.113 I/QC_3A   ( 1108):  INFO: AEC: CreateAECAlgorithm: 958: CameraOpenIndicator : 1
-10-21 11:07:14.113 I/QC_3A   ( 1108):  INFO: AEC: QcWrapperCommonFillSensorIdMap: 26: Already filled, cameraId(5) driverSensorId(13)
-10-21 11:07:14.113 I/QC_3A   ( 1108):  INFO: AEC: CreateAECAlgorithm: 978: Internal camera id = 1
-10-21 11:07:14.120 I/QC_3A   ( 1108):  INFO: AEC: QcAecLoadTuningParamsFromDAT: 73: /data/vendor/camera/QcAecWrapperTuned_Front.dat : No such file or directory
-10-21 11:07:14.120 E/QC_3A   ( 1108): ERROR: AEC: QcAecWrapperInitData: 660: Motion Library loading error: dlopen failed: library "/vendor/lib64/camera/components/libMOTION.so" not found
-10-21 11:07:14.120 I/QC_3A   ( 1108):  INFO: AEC: CreateAECAlgorithm: 1101: AEC Wrapper is created - InstanceCnt=1, algo=0xb400007b750786d0, wrapper data=0xb400007b7502f7d0, curCameraID=1
-10-21 11:07:14.121 I/QC_3A   ( 1108):  INFO: AEC: QcAecGetParamFillOutputPointers: 337: AECAlgoGetParamStartExposure - reqID: 0, cameraId: 1
-10-21 11:07:14.133 I/QC_3A   ( 1108):  INFO: AWB: CreateAWBAlgorithm: 602: StaticAWB algo create: camera open mask 32 
-10-21 11:07:14.133 I/QC_3A   ( 1108):  INFO: AWB: CreateAWBAlgorithm: 530: Given Camera role=0, camera id=5
-10-21 11:07:14.133 I/QC_3A   ( 1108):  INFO: AWB: CreateAWBAlgorithm: 677: CameraOpenIndicator : 1
-10-21 11:07:14.133 I/QC_3A   ( 1108):  INFO: AWB: QcWrapperCommonFillSensorIdMap: 26: Already filled, cameraId(5) driverSensorId(13)
-10-21 11:07:14.133 I/QC_3A   ( 1108):  INFO: AWB: CreateAWBAlgorithm: 697: Internal camera id = 1
-10-21 11:07:14.139 E/CamX    ( 1108): [ERROR][HAL    ] camxhal3.cpp:1699 configure_streams()             stream_type  : 00000000, CAMERA3_STREAM_OUTPUT
-10-21 11:07:14.139 E/CamX    ( 1108): [ERROR][HAL    ] camxhal3.cpp:1706 configure_streams()             rotation     : 00000000, CAMERA3_STREAM_ROTATION_0
-10-21 11:07:14.140 I/SehCamDevSession@5.0-impl( 1108): [CAMKPI] camera3->configure_streams : X
-10-21 11:07:14.140 D/HidlCamera3-Device( 1449): configureStreams : stream[0] : format = 0x23(YUV_420_888), data_space = 146931712, color_space = -1 usage flag = 0x20003 max_buffers = 8, physical_camera_id = 
-10-21 11:07:14.140 D/Camera3-Device( 1449): CameraPerf: Connect Streams E
-10-21 11:07:14.140 I/Camera3-Status( 1449): addComponent: Adding new component 2 - streamId = 0, format = 0x23(YUV_420_888), width = 640, height = 480, option = 0x0, type = OUTPUT
-10-21 11:07:14.141 I/QC_3A   ( 1108):  INFO: AWB: CreateAWBAlgorithm: 823: AWB Wrapper is created - InstanceCnt=1, algo=0xb400007b5508a310, wrapper data=0xb400007b75025a50, curCameraID 1
-10-21 11:07:14.141 I/QC_3A   ( 1108):  INFO: AWB: QcAwbSetSingleParamToAlgo: 61: [AWB-WARMSTART] Previous CameraID: FRONT(1) Current CameraID: FRONT(1)
-10-21 11:07:14.142 D/Camera3-OutputStream( 1449): configureConsumerQueueLocked: Consumer wants 2 buffers, HAL wants 8
-10-21 11:07:14.146 I/QC_3A   ( 1108):  INFO:  AF: CreateAFAlgorithm: 615: StaticAF algo create: camera open mask 32 
-10-21 11:07:14.146 I/QC_3A   ( 1108):  INFO:  AF: CreateAFAlgorithm: 543: Given Camera role=0, camera id=5
-10-21 11:07:14.146 I/QC_3A   ( 1108):  INFO:  AF: QcWrapperCommonFillSensorIdMap: 26: Already filled, cameraId(5) driverSensorId(13)
-10-21 11:07:14.146 I/QC_3A   ( 1108):  INFO:  AF: CreateAFAlgorithm: 651: Internal camera id = 1
-10-21 11:07:14.146 D/Camera3-Device( 1449): CameraPerf: Connect Streams X (5ms)
-10-21 11:07:14.147 D/Camera3-Device( 1449): Set real time priority for request queue thread (tid 8432)
-10-21 11:07:14.147 D/Camera3-Device( 1449): CameraPerf: configureStreamsLocked: Camera 1: Stream configuration X (117ms)
-10-21 11:07:14.148 I/QC_3A   ( 1108):  INFO:  AF: CreateAFAlgorithm: 778: AEC Wrapper is created - InstanceCnt=1, algo=0xb400007b550aad40, wrapper data=0xb400007b75025030, curCameraID=1
-10-21 11:07:14.150 D/Camera3-Device( 1449): setStreamingRequestList: Enter: calling submitRequestsHelper: repeating = true
-10-21 11:07:14.150 D/Camera3-Device( 1449): submitRequestsHelper: mInterfaceLock.lock()
-10-21 11:07:14.150 I/Camera3-Device( 1449): Submit request type: 0x1, repeating(true), burst(false)
-10-21 11:07:14.150 D/Camera3-Device( 1449): setRepeatingRequests: lastFrameNumber 0.
-10-21 11:07:14.150 I/Camera3-Status( 1449): markComponent: Component 1 is now active - RequestThread
-10-21 11:07:14.150 I/CameraService( 1449): startCameraStreamingOps: Start camera streaming ops, package name = ir.mouj, client UID = 10372
-10-21 11:07:14.150 D/Camera3-Device( 1449): CameraPerf: PrepareHALRequests E
-10-21 11:07:14.151 I/EDMNativeHelperService( 1407): isCameraEnabled
-10-21 11:07:14.151 D/EDMNativeHelper( 1407): isCameraEnabled
-10-21 11:07:14.152 D/Camera3-Device( 1449): submitRequestsHelper: mInterfaceLock.unlock()
-10-21 11:07:14.152 I/Camera3-Status( 1449): markComponent: Component 2 is now active - streamId = 0, format = 0x23(YUV_420_888), width = 640, height = 480, option = 0x0, type = OUTPUT
-10-21 11:07:14.152 D/EDMNativeHelper( 1407): checking for camera in EnterpriseDeviceManagerService
-10-21 11:07:14.152 I/CameraServiceProxyWrapper( 1449): updateProxyDeviceState: notifyCameraState for Camera ID 1, newState 1, facing 1, clientName ir.mouj, apiLevel 2
-10-21 11:07:14.152 I/Camera3-Status( 1449): markComponent: Component 0 is now active - InflightRequests
-10-21 11:07:14.152 D/EnterpriseDeviceManagerService( 1407): isCameraEnabledNative
-10-21 11:07:14.152 D/Camera3-Device( 1449): CameraPerf: PrepareHALRequests X (1ms)
-10-21 11:07:14.152 D/Camera3-Device( 1449): CameraPerf: sendRequestsBatch E
-10-21 11:07:14.153 I/CameraManagerGlobal( 1407): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:14.153 I/CameraManagerGlobal( 2806): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:14.153 I/CameraManagerGlobal( 1407): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:14.153 I/CameraManagerGlobal( 4699): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:14.153 I/CameraManagerGlobal( 4699): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:14.153 I/CameraManagerGlobal( 1407): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:14.153 I/CameraManagerGlobal( 4699): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:14.153 I/CameraManagerGlobal( 2562): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:14.153 I/CameraService_proxy( 1407): wmi.addRefreshRateRangeForPackage minFPS = 30.000002, maxFPS = 60.0, clientName = ir.mouj
-10-21 11:07:14.153 I/CameraManagerGlobal( 5245): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:14.153 I/CameraManagerGlobal(14831): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:14.152 D/EnterpriseDeviceManagerService( 1407): checking for camera in restriction policy
-10-21 11:07:14.154 I/SehCamDevSession@5.0-impl( 1108): [CAMKPI] camera3->process_capture_request : E
-10-21 11:07:14.154 E/CHIUSECASE( 1108): [ERROR  ] chxadvancedcamerausecase.cpp:6617 SetPriorityMetadata() [3rd party DBG][ISO] ERROR, Check, please(37)
-10-21 11:07:14.155 I/CameraManagerGlobal(10793): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:14.155 D/CameraAvailabilityListener( 2562): onCameraDeviceStateChanged: id=1, facing=1, state=CAMERA_STATE_ACTIVE, client=ir.mouj
-10-21 11:07:14.155 I/SehCamDevSession@5.0-impl( 1108): [CAMKPI] camera3->process_capture_request : X
-10-21 11:07:14.155 D/RestrictionPolicy( 1407): isCameraEnabled ret(true) userId(0) cxtInfo.mCallerUid(10372) cxtInfo.mContainerId(0)
-10-21 11:07:14.155 D/Camera3-Device( 1449): CameraPerf: sendRequestsBatch X (3ms)
-10-21 11:07:14.156 I/CameraManagerGlobal( 8100): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:14.156 I/CameraManagerGlobal(18970): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:14.156 I/CameraManagerGlobal( 6629): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:14.157 I/lmkd    (  629): check finished camerakillboostmode
-10-21 11:07:14.158 I/CameraManagerGlobal( 6368): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:14.160 E/CHIUSECASE( 1108): [ERROR  ] chxadvancedcamerausecase.cpp:6617 SetPriorityMetadata() [3rd party DBG][ISO] ERROR, Check, please(37)
-10-21 11:07:14.166 I/Camera2ClientBase( 1449): Creating CameraServiceWatchDog for disconnect with cycles=80, cycleLength=100ms, timer=8000ms
-10-21 11:07:14.166 I/Camera2ClientBase( 1449): CameraServiceWatchDog::watchThread for disconnect with cycles=80, cycleLength=100ms, timer=8000ms
-10-21 11:07:14.166 D/Camera2ClientBase( 1449): Camera 1: start to disconnect
-10-21 11:07:14.166 D/Camera2ClientBase( 1449): Camera 1: serializationLock acquired
-10-21 11:07:14.166 D/Camera2ClientBase( 1449): Camera 1: Shutting down
-10-21 11:07:14.166 D/Camera2ClientBase( 1449): Camera 1: start to cacheDump
-10-21 11:07:14.166 E/camera_metadata( 1449): validate_camera_metadata_structure: metadata is null!
-10-21 11:07:14.166 E/Camera2-Metadata( 1449): acquire: Failed to validate metadata structure 0x0
-10-21 11:07:14.166 E/CHIUSECASE( 1108): [ERROR  ] chxadvancedcamerausecase.cpp:6617 SetPriorityMetadata() [3rd party DBG][ISO] ERROR, Check, please(37)
-10-21 11:07:14.168 I/EDMNativeHelperService( 1407): isCameraEnabled
-10-21 11:07:14.168 D/EDMNativeHelper( 1407): isCameraEnabled
-10-21 11:07:14.169 D/EDMNativeHelper( 1407): checking for camera in EnterpriseDeviceManagerService
-10-21 11:07:14.169 D/EnterpriseDeviceManagerService( 1407): isCameraEnabledNative
-10-21 11:07:14.169 D/EnterpriseDeviceManagerService( 1407): checking for camera in restriction policy
-10-21 11:07:14.169 D/RestrictionPolicy( 1407): isCameraEnabled ret(true) userId(0) cxtInfo.mCallerUid(10372) cxtInfo.mContainerId(0)
-10-21 11:07:14.172 E/CHIUSECASE( 1108): [ERROR  ] chxadvancedcamerausecase.cpp:6617 SetPriorityMetadata() [3rd party DBG][ISO] ERROR, Check, please(37)
-10-21 11:07:14.178 E/CHIUSECASE( 1108): [ERROR  ] chxadvancedcamerausecase.cpp:6617 SetPriorityMetadata() [3rd party DBG][ISO] ERROR, Check, please(37)
-10-21 11:07:14.180 E/Camera2-FrameProcessorBase( 1449): removeListener: 
-10-21 11:07:14.182 D/Camera3-Device( 1449): flush: mInterfaceLock.lock()
-10-21 11:07:14.182 I/Camera3-Device( 1449): Creating CameraServiceWatchDog for flush with cycles=80, cycleLength=100ms, timer=8000ms
-10-21 11:07:14.182 I/Camera3-Device( 1449): CameraServiceWatchDog::watchThread for flush with cycles=80, cycleLength=100ms, timer=8000ms
-10-21 11:07:14.182 D/HidlCamera3-Device( 1449): CameraPerf: flush E
-10-21 11:07:14.182 I/Unihal  ( 1108): CameraHalUnit.cpp: Flush: 545: HAL flush - Start
-10-21 11:07:14.183 E/CameraDeviceClient( 1449): notifyError: pid=8100, errorCode=3, errorStreamId=0, frameNumber=5
-10-21 11:07:14.183 E/CameraDeviceClient( 1449): notifyError: pid=8100, skipClientNotification=false
-10-21 11:07:14.183 E/Camera3-OutputStream( 1449): returnBufferCheckedLocked: A frame is dropped for stream 0 frame 5 , due to buffer error.
-10-21 11:07:14.184 I/Camera3-Status( 1449): markComponent: Component 1 is now idle - RequestThread
-10-21 11:07:14.203 E/CameraDeviceClient( 1449): notifyError: pid=8100, errorCode=4, errorStreamId=0, frameNumber=0
-10-21 11:07:14.203 E/CameraDeviceClient( 1449): notifyError: pid=8100, skipClientNotification=false
-10-21 11:07:14.204 E/CameraDeviceClient( 1449): notifyError: pid=8100, errorCode=5, errorStreamId=0, frameNumber=0
-10-21 11:07:14.204 E/CameraDeviceClient( 1449): notifyError: pid=8100, skipClientNotification=false
-10-21 11:07:14.205 E/CameraDeviceClient( 1449): notifyError: pid=8100, errorCode=4, errorStreamId=0, frameNumber=1
-10-21 11:07:14.205 E/CameraDeviceClient( 1449): notifyError: pid=8100, skipClientNotification=false
-10-21 11:07:14.205 E/CameraDeviceClient( 1449): notifyError: pid=8100, errorCode=5, errorStreamId=0, frameNumber=1
-10-21 11:07:14.205 E/CameraDeviceClient( 1449): notifyError: pid=8100, skipClientNotification=false
-10-21 11:07:14.205 E/Camera3-OutputStream( 1449): returnBufferCheckedLocked: A frame is dropped for stream 0 frame 1 , due to buffer error.
-10-21 11:07:14.206 E/CameraDeviceClient( 1449): notifyError: pid=8100, errorCode=4, errorStreamId=0, frameNumber=2
-10-21 11:07:14.206 E/CameraDeviceClient( 1449): notifyError: pid=8100, skipClientNotification=false
-10-21 11:07:14.206 E/CameraDeviceClient( 1449): notifyError: pid=8100, errorCode=5, errorStreamId=0, frameNumber=2
-10-21 11:07:14.206 E/CameraDeviceClient( 1449): notifyError: pid=8100, skipClientNotification=false
-10-21 11:07:14.207 E/Camera3-OutputStream( 1449): returnBufferCheckedLocked: A frame is dropped for stream 0 frame 2 , due to buffer error.
-10-21 11:07:14.207 E/CameraDeviceClient( 1449): notifyError: pid=8100, errorCode=4, errorStreamId=0, frameNumber=3
-10-21 11:07:14.207 E/CameraDeviceClient( 1449): notifyError: pid=8100, skipClientNotification=false
-10-21 11:07:14.208 E/CameraDeviceClient( 1449): notifyError: pid=8100, errorCode=5, errorStreamId=0, frameNumber=3
-10-21 11:07:14.208 E/CameraDeviceClient( 1449): notifyError: pid=8100, skipClientNotification=false
-10-21 11:07:14.208 E/Camera3-OutputStream( 1449): returnBufferCheckedLocked: A frame is dropped for stream 0 frame 3 , due to buffer error.
-10-21 11:07:14.210 E/CameraDeviceClient( 1449): notifyError: pid=8100, errorCode=4, errorStreamId=0, frameNumber=4
-10-21 11:07:14.210 E/CameraDeviceClient( 1449): notifyError: pid=8100, skipClientNotification=false
-10-21 11:07:14.212 E/CameraDeviceClient( 1449): notifyError: pid=8100, errorCode=5, errorStreamId=0, frameNumber=4
-10-21 11:07:14.212 E/CameraDeviceClient( 1449): notifyError: pid=8100, skipClientNotification=false
-10-21 11:07:14.212 E/Camera3-OutputStream( 1449): returnBufferCheckedLocked: A frame is dropped for stream 0 frame 4 , due to buffer error.
-10-21 11:07:14.212 I/Camera3-Status( 1449): markComponent: Component 2 is now idle - streamId = 0, format = 0x23(YUV_420_888), width = 640, height = 480, option = 0x0, type = OUTPUT
-10-21 11:07:14.212 I/Camera3-IOStreamBase( 1449): FpsStats: stream 0, requested=6, received=6, valid=0, invalid=6
-10-21 11:07:14.212 I/Camera3-Status( 1449): markComponent: Component 0 is now idle - InflightRequests
-10-21 11:07:14.213 I/CameraService( 1449): finishCameraStreamingOps: finish camera streaming ops, package name = ir.mouj, client UID = 10372
-10-21 11:07:14.214 I/CameraServiceProxyWrapper( 1449): updateProxyDeviceState: notifyCameraState for Camera ID 1, newState 2, facing 1, clientName ir.mouj, apiLevel 2
-10-21 11:07:14.214 I/Unihal  ( 1108): CameraHalUnit.cpp: Flush: 549: HAL flush - End
-10-21 11:07:14.214 D/HidlCamera3-Device( 1449): CameraPerf: flush X (32ms)
-10-21 11:07:14.214 D/Camera3-Device( 1449): waitUntilDrainedLocked: Camera 1: Waiting until idle (5000000000ns)
-10-21 11:07:14.214 D/Camera3-Device( 1449): waitUntilDrained: mInterfaceLock.unlock()
-10-21 11:07:14.214 I/Camera3-Device( 1449): disconnectImpl: E
-10-21 11:07:14.215 I/CameraLatencyHistogram( 1449): ProcessCaptureRequest latency histogram (6) samples:
-10-21 11:07:14.215 I/CameraLatencyHistogram( 1449):        20     40     60     80    100    120    140    160    180    inf (max ms)
-10-21 11:07:14.215 I/CameraLatencyHistogram( 1449):      100.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00 (%)
-10-21 11:07:14.215 I/CameraManagerGlobal( 2806): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:14.215 I/CameraManagerGlobal( 1407): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:14.215 I/CameraManagerGlobal( 4699): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:14.215 I/CameraManagerGlobal( 4699): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:14.215 I/CameraManagerGlobal( 1407): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:14.215 I/CameraManagerGlobal( 1407): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:14.215 I/CameraManagerGlobal( 4699): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:14.215 I/CameraService_proxy( 1407): wmi.removeRefreshRateRangeForPackage clientName = ir.mouj
-10-21 11:07:14.216 I/lmkd    (  629): check finished camerakillboostmode
-10-21 11:07:14.216 I/CameraManagerGlobal( 2562): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:14.216 D/CameraAvailabilityListener( 2562): onCameraDeviceStateChanged: id=1, facing=1, state=CAMERA_STATE_IDLE, client=ir.mouj
-10-21 11:07:14.216 I/CameraManagerGlobal( 5245): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:14.217 I/CameraManagerGlobal(14831): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:14.217 I/CameraManagerGlobal(18970): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:14.217 I/CameraManagerGlobal( 8100): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:14.217 I/Camera3-Device( 1449): CameraServiceWatchDog::watchThread for disconnectImpl with cycles=100, cycleLength=100ms, timer=10000ms
-10-21 11:07:14.217 D/HidlCamera3-Device( 1449): CameraPerf: close E
-10-21 11:07:14.217 I/CameraManagerGlobal(10793): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:14.217 I/Unihal  ( 1108): UniHal3InterfaceEntry.cpp: uni_close_camera_hardware: 479: E
-10-21 11:07:14.217 I/Unihal  ( 1108): CameraHalManager.cpp: CloseCamera: 275: HAL close - Start
-10-21 11:07:14.217 I/CameraManagerGlobal( 6368): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:14.218 I/CameraManagerGlobal( 6629): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0
-10-21 11:07:14.221 E/CamX    ( 1108): [ERROR][HAL    ] camxhal3.cpp:1319 close() after process camera close
-10-21 11:07:14.222 E/CamX    ( 1108): [ERROR][HAL    ] camxhal3.cpp:1331 close() Close: overrideCameraClose is 47 , overrideCameraOpen is 0 
-10-21 11:07:14.283 I/QC_3A   ( 1108):  INFO: AEC: AECDestroy: 457: Received Camera close mask 0x2f
-10-21 11:07:14.283 I/QC_3A   ( 1108):  INFO: AEC: AECDestroy: 465: Received CameraID: 5  Internal CameraID : 1
-10-21 11:07:14.284 I/QC_3A   ( 1108):  INFO: AEC: AECDestroy: 487: isCameraClose: 1
-10-21 11:07:14.288 I/QC_3A   ( 1108):  INFO: AWB: AWBDestroy: 333: Received Camera close mask 0x2f
-10-21 11:07:14.289 I/QC_3A   ( 1108):  INFO: AWB: AWBDestroy: 341: Received CameraID: 5  Internal CameraID : 1
-10-21 11:07:14.289 I/QC_3A   ( 1108):  INFO: AWB: AWBDestroy: 359: isCameraClose: 1
-10-21 11:07:14.295 I/QC_3A   ( 1108):  INFO:  AF: AFDestroy: 258: Received Camera close mask 0x2f
-10-21 11:07:14.295 I/QC_3A   ( 1108):  INFO:  AF: AFDestroy: 266: Received CameraID: 5  Internal CameraID : 1
-10-21 11:07:14.295 I/QC_3A   ( 1108):  INFO:  AF: AFDestroy: 276: isCameraClose: 1
-10-21 11:07:14.352 I/CameraProviderManager( 1449): Camera device device@3.5/legacy/1 torch status is now AVAILABLE_OFF
-10-21 11:07:14.352 I/CameraService( 1449): onTorchStatusChangedLocked: Torch status changed for cameraId=1, newStatus=1
-10-21 11:07:14.352 E/CameraService( 1449): onTorchStatusChangedLocked: cannot get torch status of camera 1: No such file or directory (-2)
-10-21 11:07:14.352 E/CamX    ( 1108): [ERROR][HAL    ] camxhal3.cpp:1335 close() Close done on cameraId 3
-10-21 11:07:14.352 I/Unihal  ( 1108): CameraHalManager.cpp: CloseCamera: 279: HAL close - End
-10-21 11:07:14.353 I/Unihal  ( 1108): UniHal3InterfaceEntry.cpp: uni_close_camera_hardware: 493: X (0)
-10-21 11:07:14.353 D/HidlCamera3-Device( 1449): CameraPerf: close X (135ms)
-10-21 11:07:14.353 D/Camera3-OutputStream( 1449): disconnectLocked: disconnecting stream 0 from native window
-10-21 11:07:14.354 I/CameraLatencyHistogram( 1449): Stream 0 dequeueBuffer latency histogram (6) samples:
-10-21 11:07:14.355 I/CameraLatencyHistogram( 1449):         5     10     15     20     25     30     35     40     45    inf (max ms)
-10-21 11:07:14.355 I/CameraLatencyHistogram( 1449):      100.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00   0.00 (%)
-10-21 11:07:14.355 I/Camera3-Device( 1449): disconnectImpl: X
-10-21 11:07:14.355 I/CameraServiceProxyWrapper( 1449): updateProxyDeviceState: notifyCameraState for Camera ID 1, newState 3, facing 1, clientName ir.mouj, apiLevel 2
-10-21 11:07:14.355 I/Camera3-Device( 1449): setDeviceInjector
-10-21 11:07:14.355 D/CameraService( 1449): BasicClient::disconnect E
-10-21 11:07:14.355 I/CameraService_proxy( 1407): Notify nfc service : camera open was(true) -> now(false) = polling(true)
-10-21 11:07:14.356 D/NfcService( 2807): setReaderMode: uid=1000, packageName: com.samsung.android.cameraxservice, flags: 0
-10-21 11:07:14.358 I/CameraService( 1449): finishCameraOps: Finish camera ops, package name = ir.mouj, client UID = 10372
-10-21 11:07:14.358 I/CameraService( 1449): decreaseCamConnRef: ref=0
-10-21 11:07:14.358 D/BatteryExternalStatsWorker( 1407): update stats : camera-off (64)
-10-21 11:07:14.359 I/CameraService( 1449): decreaseCamConnRef: service.camera.running set to 0
-10-21 11:07:14.360 I/CameraManagerGlobal( 4699): postSingleUpdate device: camera id 1 status STATUS_PRESENT
-10-21 11:07:14.360 I/CameraManagerGlobal( 4699): postSingleUpdate device: camera id 1 status STATUS_PRESENT
-10-21 11:07:14.361 I/CameraManagerGlobal( 1407): postSingleUpdate device: camera id 1 status STATUS_PRESENT
-10-21 11:07:14.361 I/CameraManagerGlobal( 1407): postSingleUpdate device: camera id 1 status STATUS_PRESENT
-10-21 11:07:14.361 I/CameraService_worker( 1407): DeviceInjector, onSemCameraDeviceRawStatus 1 1
-10-21 11:07:14.361 I/CameraManagerGlobal( 5245): postSingleUpdate device: camera id 1 status STATUS_PRESENT
-10-21 11:07:14.361 I/CameraManagerGlobal(14831): postSingleUpdate device: camera id 1 status STATUS_PRESENT
-10-21 11:07:14.362 I/CameraManagerGlobal( 2806): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0
-10-21 11:07:14.362 I/CameraManagerGlobal( 6629): postSingleUpdate device: camera id 1 status STATUS_PRESENT
-10-21 11:07:14.362 I/CameraManagerGlobal(10793): postSingleUpdate device: camera id 1 status STATUS_PRESENT
-10-21 11:07:14.362 I/CameraManagerGlobal( 8100): postSingleUpdate device: camera id 1 status STATUS_PRESENT
-10-21 11:07:14.362 I/IC_Service[1.2.93]( 6629): onCameraAvailable(1)
-10-21 11:07:14.362 I/CameraManagerGlobal( 2562): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0
-10-21 11:07:14.362 D/CameraAvailabilityListener( 2562): onCameraDeviceStateChanged: id=1, facing=1, state=CAMERA_STATE_CLOSED, client=ir.mouj
-10-21 11:07:14.362 I/CameraManagerGlobal(14831): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0
-10-21 11:07:14.363 I/CameraManagerGlobal(10793): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0
-10-21 11:07:14.363 I/CameraManagerGlobal( 1407): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0
-10-21 11:07:14.363 I/CameraManagerGlobal( 1407): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:14.363 I/CameraManagerGlobal( 1407): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:14.364 I/RequestInjectorService( 1407): Camera is closed. cameraId(1), state(█│)
-10-21 11:07:14.364 I/CameraManagerGlobal( 8100): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0
-10-21 11:07:14.364 I/CameraManagerGlobal( 6629): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0
-10-21 11:07:14.364 I/CameraManagerGlobal( 6368): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0
-10-21 11:07:14.364 I/lmkd    (  629): check finished camerakillboostmode
-10-21 11:07:14.365 I/CameraManagerGlobal( 5245): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0
-10-21 11:07:14.365 I/HBD     ( 5245): k Camera is available, camId = 1 
-10-21 11:07:14.365 I/HBD     ( 5245): k All camera is available, so, ExtractText will be enabled 
-10-21 11:07:14.362 I/CameraManagerGlobal(18970): postSingleUpdate device: camera id 1 status STATUS_PRESENT
-10-21 11:07:14.365 I/VSET/ObserveCameraStateService( 6368): onStartCommand : unihal 3.01
-10-21 11:07:14.365 I/CameraManagerGlobal(18970): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0
-10-21 11:07:14.365 I/VSET/ObserveCameraStateService( 6368): initAppRepository is created already
-10-21 11:07:14.365 I/CameraManagerGlobal( 4699): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0
-10-21 11:07:14.365 I/CameraManagerGlobal( 4699): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:14.365 I/CameraManagerGlobal( 4699): onCameraDeviceStateChangedLocked: post device state update
-10-21 11:07:14.366 I/CameraFlashlight( 1449): deviceClosed: device 1 is closed
-10-21 11:07:14.366 I/CameraService( 1449): disconnect: Disconnected client for camera 1 for PID 8100
-10-21 11:07:14.366 D/cameraserver( 1449): FGS Logger Transaction failed
-10-21 11:07:14.366 D/cameraserver( 1449): -129
-10-21 11:07:14.366 D/CameraService( 1449): BasicClient::disconnect X
-10-21 11:07:14.366 I/VSET/ObserveCameraStateService( 6368): onStartCommand: true
-10-21 11:07:14.367 W/ir.mouj ( 8100): Long monitor contention with owner VideoCaptureCamera2_CameraThread (8427) at void android.hardware.camera2.impl.CameraDeviceImpl.close()(CameraDeviceImpl.java:1492) waiters=0 in void 
-android.hardware.camera2.impl.CameraDeviceImpl.onDeviceError(int, android.hardware.camera2.impl.CaptureResultExtras) for 180ms
-10-21 11:07:14.369 D/PackageManager( 1407): setEnabledSetting : userId = 0 packageName = com.samsung.android.vtcamerasettings cmp = com.samsung.android.vtcamerasettings.settings.SettingsActivity newState = 1 callingPackage = 
-com.samsung.android.vtcamerasettings
-10-21 11:07:14.371 D/ApplicationPolicy( 1407): getApplicationStateEnabled : pkg = com.samsung.android.vtcamerasettings userId : 0
-10-21 11:07:14.374 D/ApplicationPolicy( 1407): getApplicationComponentState : pkg = com.samsung.android.vtcamerasettings userId : 0
-10-21 11:07:14.376 I/VSET/ObserveCameraStateService( 6368): onStartCommand: update SALogging status
-10-21 11:07:14.376 I/VSET/ObserveCameraStateService( 6368): processDeviceInjectorIntent: not supported device injector
-10-21 11:07:14.376 E/ScreenDecorations( 2562): CutoutView not initialized hideCameraProtection
-10-21 11:07:14.377 I/VSET/ObserveCameraStateService( 6368): updateAppInfoRepository: E 
-10-21 11:07:14.377 I/VSET/ObserveCameraStateService( 6368): initAppRepository is created already
-10-21 11:07:14.378 I/VSET/ObserveCameraStateService( 6368): requestStopService
-10-21 11:07:16.520 D/CameraDeviceClient( 1449): ~CameraDeviceClient:stop IT Policy checking thread
-10-21 11:07:16.520 D/CameraDeviceClient( 1449): ~CameraDeviceClient:stop IT Policy checking thread
-10-21 11:07:16.521 I/Camera2ClientBase( 1449): Creating CameraServiceWatchDog for disconnect with cycles=80, cycleLength=100ms, timer=8000ms
-10-21 11:07:16.521 I/Camera2ClientBase( 1449): Creating CameraServiceWatchDog for disconnect with cycles=80, cycleLength=100ms, timer=8000ms
-10-21 11:07:16.522 D/CameraDeviceClient( 1449): ~CameraDeviceClient:stop IT Policy checking thread
-10-21 11:07:16.522 I/Camera2ClientBase( 1449): Creating CameraServiceWatchDog for disconnect with cycles=80, cycleLength=100ms, timer=8000ms
-10-21 11:07:16.522 I/Camera2ClientBase( 1449): CameraServiceWatchDog::watchThread for disconnect with cycles=80, cycleLength=100ms, timer=8000ms
-10-21 11:07:16.522 D/Camera2ClientBase( 1449): Camera 1: start to disconnect
-10-21 11:07:16.522 D/Camera2ClientBase( 1449): Camera 1: serializationLock acquired
-10-21 11:07:16.522 D/Camera2ClientBase( 1449): Camera 1: Shutting down
-10-21 11:07:16.522 I/Camera3-Device( 1449): disconnectImpl: E
-10-21 11:07:16.522 D/Camera3-Device( 1449): disconnectImpl: mInterfaceLock.unlock()
-10-21 11:07:16.522 I/Camera3-Device( 1449): setDeviceInjector
-10-21 11:07:16.522 D/CameraService( 1449): BasicClient::disconnect E
-10-21 11:07:16.522 D/CameraService( 1449): BasicClient::disconnect X - already disconnected
-10-21 11:07:16.522 I/Camera2ClientBase( 1449): CameraServiceWatchDog::watchThread for disconnect with cycles=80, cycleLength=100ms, timer=8000ms
-10-21 11:07:16.522 I/Camera2ClientBase( 1449): CameraServiceWatchDog::watchThread for disconnect with cycles=80, cycleLength=100ms, timer=8000ms
-10-21 11:07:16.522 D/Camera2ClientBase( 1449): Camera 1: start to disconnect
-10-21 11:07:16.522 D/Camera2ClientBase( 1449): Camera 1: serializationLock acquired
-10-21 11:07:16.522 I/Camera2ClientBase( 1449): ~Camera2ClientBase: Client object's dtor for Camera Id 1 completed. Client was: ir.mouj (PID 8100, UID 10372)
-10-21 11:07:16.522 D/Camera2ClientBase( 1449): Camera 1: Shutting down
-10-21 11:07:16.522 D/Camera2ClientBase( 1449): Camera 1: start to disconnect
-10-21 11:07:16.522 I/Camera3-Device( 1449): disconnectImpl: E
-10-21 11:07:16.522 D/Camera3-Device( 1449): disconnectImpl: mInterfaceLock.unlock()
-10-21 11:07:16.522 D/Camera2ClientBase( 1449): Camera 1: serializationLock acquired
-10-21 11:07:16.522 I/Camera3-Device( 1449): setDeviceInjector
-10-21 11:07:16.522 D/CameraService( 1449): BasicClient::disconnect E
-10-21 11:07:16.522 D/CameraService( 1449): BasicClient::disconnect X - already disconnected
-10-21 11:07:16.522 D/Camera2ClientBase( 1449): Camera 1: Shutting down
-10-21 11:07:16.522 I/Camera3-Device( 1449): disconnectImpl: E
-10-21 11:07:16.522 D/Camera3-Device( 1449): disconnectImpl: mInterfaceLock.unlock()
-10-21 11:07:16.522 I/Camera3-Device( 1449): disconnectImpl: E
-10-21 11:07:16.522 D/Camera3-Device( 1449): disconnectImpl: mInterfaceLock.unlock()
-10-21 11:07:16.522 I/Camera3-Device( 1449): setDeviceInjector
-10-21 11:07:16.522 D/ijt/Camera3-RequestInjector( 1449): RequestInjector[1] Mapper destroyed
-10-21 11:07:16.522 I/Camera2ClientBase( 1449): ~Camera2ClientBase: Client object's dtor for Camera Id 1 completed. Client was: ir.mouj (PID 8100, UID 10372)
-10-21 11:07:16.522 D/CameraService( 1449): BasicClient::disconnect E
-10-21 11:07:16.522 I/Camera3DeviceInjectionMethods( 1449): injectionDisconnectImpl: Injection camera disconnect
-10-21 11:07:16.522 I/Camera3-Device( 1449): disconnectImpl: E
-10-21 11:07:16.522 D/Camera3-Device( 1449): disconnectImpl: mInterfaceLock.unlock()
-10-21 11:07:16.522 D/ijt/Camera3-RequestInjector( 1449): RequestInjector[1] Mapper destroyed
-10-21 11:07:16.522 I/Camera3DeviceInjectionMethods( 1449): injectionDisconnectImpl: Injection camera disconnect
-10-21 11:07:16.522 D/CameraService( 1449): BasicClient::disconnect X - already disconnected
-10-21 11:07:16.522 I/Camera2ClientBase( 1449): ~Camera2ClientBase: Client object's dtor for Camera Id 1 completed. Client was: ir.mouj (PID 8100, UID 10372)
-10-21 11:07:16.523 I/Camera3-Device( 1449): disconnectImpl: E
-10-21 11:07:16.523 D/Camera3-Device( 1449): disconnectImpl: mInterfaceLock.unlock()
-10-21 11:07:16.523 D/ijt/Camera3-RequestInjector( 1449): RequestInjector[1] Mapper destroyed
-10-21 11:07:16.524 I/Camera3DeviceInjectionMethods( 1449): injectionDisconnectImpl: Injection camera disconnect
-PS D:\Mouj> 
+if ($_SERVER['REQUEST_METHOD'] !== 'POST' && $_SERVER['REQUEST_METHOD'] !== 'GET') {
+    json_out(['ok' => false, 'error' => 'method_not_allowed'], 405);
+}
+
+$in = array_merge($_GET, $_POST, input_json());
+$action = (string)($in['action'] ?? '');
+
+function auth_user(): array {
+    $t = trim((string)($_SERVER['HTTP_AUTHORIZATION'] ?? ''));
+    if (stripos($t, 'Bearer ') === 0) $t = trim(substr($t, 7));
+    if (!$t) $t = trim((string)($_COOKIE['mouj_session'] ?? ''));
+    if (!$t) json_out(['ok' => false, 'error' => 'unauthorized'], 401);
+    $h = hash('sha256', $t);
+    $q = db()->prepare('SELECT u.* FROM auth_sessions s JOIN users u ON u.id = s.user_id WHERE s.token_hash = ? AND s.expires_at > NOW() LIMIT 1');
+    $q->execute([$h]);
+    $u = $q->fetch();
+    if (!$u) json_out(['ok' => false, 'error' => 'unauthorized'], 401);
+    if (!empty($u['deleted_at'])) {
+        db()->prepare('DELETE FROM auth_sessions WHERE token_hash = ?')->execute([$h]);
+        json_out(['ok' => false, 'error' => 'account_deleted'], 401);
+    }
+    db()->prepare('UPDATE auth_sessions SET last_seen = NOW() WHERE token_hash = ?')->execute([$h]);
+    db()->prepare('UPDATE users SET last_seen = NOW() WHERE id = ?')->execute([$u['id']]);
+    return $u;
+}
+
+function user_json(array $u, bool $hidePhone = false): array {
+    $out = [
+        'id' => (int)$u['id'],
+        'username' => $u['username'] ?? null,
+        'first_name' => $u['first_name'] ?? null,
+        'last_name' => $u['last_name'] ?? null,
+        'avatar_path' => absolute_url($u['avatar_path'] ?? null),
+        'last_seen' => $u['last_seen'] ?? null,
+        'online' => empty($u['deleted_at']) && !empty($u['last_seen']) && (time() - strtotime($u['last_seen']) <= 45),
+        'deleted' => !empty($u['deleted_at']),
+    ];
+    if (!empty($u['deleted_at'])) {
+        $out['first_name'] = 'این اکانت حذف شده';
+        $out['last_name'] = null;
+        $out['username'] = null;
+        $out['avatar_path'] = null;
+    }
+    if (!$hidePhone && !empty($u['phone'])) {
+        $out['phone'] = $u['phone'];
+    }
+    return $out;
+}
+
+
+function parse_device_label(?string $ua): string {
+    $ua = (string)$ua;
+    if ($ua === '') return 'دستگاه ناشناس';
+    $os = 'نامشخص';
+    if (preg_match('/iPhone|iPad/i', $ua)) $os = 'iOS';
+    elseif (preg_match('/Android/i', $ua)) $os = 'Android';
+    elseif (preg_match('/Windows/i', $ua)) $os = 'Windows';
+    elseif (preg_match('/Mac OS|Macintosh/i', $ua)) $os = 'macOS';
+    elseif (preg_match('/Linux/i', $ua)) $os = 'Linux';
+    $browser = 'مرورگر';
+    if (preg_match('/Edg\//i', $ua)) $browser = 'Edge';
+    elseif (preg_match('/Chrome\//i', $ua) && !preg_match('/Edg\//i', $ua)) $browser = 'Chrome';
+    elseif (preg_match('/Safari\//i', $ua) && !preg_match('/Chrome\//i', $ua)) $browser = 'Safari';
+    elseif (preg_match('/Firefox\//i', $ua)) $browser = 'Firefox';
+    return $browser . ' · ' . $os;
+}
+
+function norm_phone(string $p): string {
+    $d = preg_replace('/\D/', '', $p);
+    if (strlen($d) === 10 && $d[0] === '9') $d = '0' . $d;
+    if (strlen($d) === 12 && str_starts_with($d, '98')) $d = '0' . substr($d, 2);
+    return $d;
+}
+
+// Message encryption at rest: the database stores authenticated ciphertext, not plaintext.
+// This is intentionally server-side at-rest encryption (not E2EE); without E2EE key distribution,
+// a one-way hash would make it impossible to display the original message again.
+function message_crypto_key(): string {
+    static $key = null;
+    if ($key !== null) return $key;
+    $configured = trim((string)(getenv('MOUJ_ENCRYPTION_KEY') ?: ''));
+    $seed = $configured !== '' ? $configured : (DB_PASS . '|' . APP_BASE_URL . '|mouj-message-v1');
+    $key = hash('sha256', $seed, true);
+    return $key;
+}
+function encrypt_message_body(string $plain): string {
+    if ($plain === '' || str_starts_with($plain, 'MOUJ1:')) return $plain;
+    try {
+        $iv = random_bytes(12);
+        $tag = '';
+        $ct = openssl_encrypt($plain, 'aes-256-gcm', message_crypto_key(), OPENSSL_RAW_DATA, $iv, $tag, '', 16);
+        if ($ct === false) return $plain;
+        return 'MOUJ1:' . base64_encode($iv . $tag . $ct);
+    } catch (Throwable $e) {
+        error_log('message encryption failed: '.$e->getMessage());
+        return $plain;
+    }
+}
+function decrypt_message_body(string $stored): string {
+    if (!str_starts_with($stored, 'MOUJ1:')) return $stored;
+    try {
+        $raw = base64_decode(substr($stored, 6), true);
+        if ($raw === false || strlen($raw) < 29) return '🔒 پیام رمزنگاری‌شده';
+        $iv = substr($raw, 0, 12); $tag = substr($raw, 12, 16); $ct = substr($raw, 28);
+        $plain = openssl_decrypt($ct, 'aes-256-gcm', message_crypto_key(), OPENSSL_RAW_DATA, $iv, $tag, '');
+        return $plain === false ? '🔒 پیام رمزنگاری‌شده' : $plain;
+    } catch (Throwable $e) { return '🔒 پیام رمزنگاری‌شده'; }
+}
+
+
+// --- Firebase Cloud Messaging (Android push) ---
+// Put the service-account JSON OUTSIDE the public web root and set
+// MOUJ_FIREBASE_SERVICE_ACCOUNT to its absolute server path in the hosting environment.
+function mouj_fcm_ensure_table(): void {
+    static $done = false;
+    if ($done) return;
+    db()->exec("CREATE TABLE IF NOT EXISTS mouj_fcm_tokens (
+        fcm_token VARCHAR(512) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+        user_id INT NOT NULL,
+        platform VARCHAR(20) NOT NULL DEFAULT 'android',
+        created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        PRIMARY KEY (fcm_token),
+        KEY idx_mouj_fcm_user (user_id)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
+    $done = true;
+}
+
+function mouj_b64url(string $value): string {
+    return rtrim(strtr(base64_encode($value), '+/', '-_'), '=');
+}
+
+function mouj_fcm_service_account(): ?array {
+    $path = trim((string)(getenv('MOUJ_FIREBASE_SERVICE_ACCOUNT') ?: '/home/radmehr3/mouj-private/mouj-firebase-new.json'));
+    if ($path === '' || !is_file($path) || !is_readable($path)) {
+        error_log('Mouj FCM: service account file is not configured/readable');
+        return null;
+    }
+    $raw = file_get_contents($path);
+    $cfg = is_string($raw) ? json_decode($raw, true) : null;
+    if (!is_array($cfg) || empty($cfg['project_id']) || empty($cfg['client_email']) || empty($cfg['private_key'])) {
+        error_log('Mouj FCM: service account JSON is invalid');
+        return null;
+    }
+    return $cfg;
+}
+
+function mouj_fcm_access_token(array $cfg): ?string {
+    if (!function_exists('curl_init') || !function_exists('openssl_sign')) {
+        error_log('Mouj FCM: PHP cURL/OpenSSL extension is unavailable');
+        return null;
+    }
+    $now = time();
+    $header = mouj_b64url(json_encode(['alg' => 'RS256', 'typ' => 'JWT'], JSON_UNESCAPED_SLASHES));
+    $claims = mouj_b64url(json_encode([
+        'iss' => $cfg['client_email'],
+        'scope' => 'https://www.googleapis.com/auth/firebase.messaging',
+        'aud' => 'https://oauth2.googleapis.com/token',
+        'iat' => $now,
+        'exp' => $now + 3600
+    ], JSON_UNESCAPED_SLASHES));
+    $unsigned = $header . '.' . $claims;
+    $signature = '';
+    if (!openssl_sign($unsigned, $signature, $cfg['private_key'], OPENSSL_ALGO_SHA256)) {
+        error_log('Mouj FCM: JWT signing failed');
+        return null;
+    }
+    $jwt = $unsigned . '.' . mouj_b64url($signature);
+    $ch = curl_init('https://oauth2.googleapis.com/token');
+    curl_setopt_array($ch, [
+        CURLOPT_POST => true,
+        CURLOPT_POSTFIELDS => http_build_query([
+            'grant_type' => 'urn:ietf:params:oauth:grant-type:jwt-bearer',
+            'assertion' => $jwt
+        ]),
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_CONNECTTIMEOUT => 8,
+        CURLOPT_TIMEOUT => 15,
+        CURLOPT_HTTPHEADER => ['Content-Type: application/x-www-form-urlencoded']
+    ]);
+    $response = curl_exec($ch);
+    $status = (int)curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    if ($response === false) error_log('Mouj FCM OAuth cURL error: ' . curl_error($ch));
+    curl_close($ch);
+    $decoded = is_string($response) ? json_decode($response, true) : null;
+    if ($status < 200 || $status >= 300 || !is_array($decoded) || empty($decoded['access_token'])) {
+        error_log('Mouj FCM OAuth failed; HTTP ' . $status);
+        return null;
+    }
+    return (string)$decoded['access_token'];
+}
+
+function mouj_fcm_send_to_tokens(array $tokens, string $title, string $body, array $data = []): void {
+    if (!$tokens) return;
+    $cfg = mouj_fcm_service_account();
+    if (!$cfg) return;
+    $accessToken = mouj_fcm_access_token($cfg);
+    if (!$accessToken) return;
+    $url = 'https://fcm.googleapis.com/v1/projects/' . rawurlencode((string)$cfg['project_id']) . '/messages:send';
+    $safeData = [];
+    foreach ($data as $key => $value) $safeData[(string)$key] = (string)$value;
+
+    foreach (array_unique($tokens) as $deviceToken) {
+        $payload = ['message' => [
+            'token' => $deviceToken,
+            'notification' => ['title' => $title, 'body' => $body],
+            'data' => $safeData,
+            'android' => [
+                'priority' => 'HIGH',
+                'notification' => ['channel_id' => 'mouj_messages']
+            ]
+        ]];
+        $ch = curl_init($url);
+        curl_setopt_array($ch, [
+            CURLOPT_POST => true,
+            CURLOPT_POSTFIELDS => json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_CONNECTTIMEOUT => 8,
+            CURLOPT_TIMEOUT => 12,
+            CURLOPT_HTTPHEADER => [
+                'Authorization: Bearer ' . $accessToken,
+                'Content-Type: application/json'
+            ]
+        ]);
+        $response = curl_exec($ch);
+        $status = (int)curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        if ($response === false) {
+            error_log('Mouj FCM send cURL error: ' . curl_error($ch));
+        } elseif ($status < 200 || $status >= 300) {
+            error_log('Mouj FCM send failed; HTTP ' . $status . '; response=' . substr((string)$response, 0, 500));
+            $err = json_decode((string)$response, true);
+            $errCode = (string)($err['error']['details'][0]['errorCode'] ?? '');
+            if ($status === 404 || $errCode === 'UNREGISTERED') {
+                try { db()->prepare('DELETE FROM mouj_fcm_tokens WHERE fcm_token = ?')->execute([$deviceToken]); } catch (Throwable $e) {}
+            }
+        }
+        curl_close($ch);
+    }
+}
+
+function mouj_notify_message_recipients(int $conversationId, int $senderId, int $messageId, string $msgType): void {
+    mouj_fcm_ensure_table();
+    $q = db()->prepare('SELECT c.type, c.title, u.first_name, u.last_name, u.username
+        FROM conversations c JOIN users u ON u.id = ? WHERE c.id = ? LIMIT 1');
+    $q->execute([$senderId, $conversationId]);
+    $meta = $q->fetch();
+    if (!$meta) return;
+
+    $senderName = trim((string)($meta['first_name'] ?? '') . ' ' . (string)($meta['last_name'] ?? ''));
+    if ($senderName === '') $senderName = trim((string)($meta['username'] ?? '')) ?: 'کاربر موج';
+    $convType = (string)$meta['type'];
+    $convTitle = trim((string)($meta['title'] ?? ''));
+    if ($convType === 'private') {
+        $title = $senderName;
+        $body = match ($msgType) {
+            'image' => 'یک عکس فرستاد',
+            'video', 'video_message' => 'یک ویدئو فرستاد',
+            'voice' => 'یک پیام صوتی فرستاد',
+            'file' => 'یک فایل فرستاد',
+            'sticker' => 'یک استیکر فرستاد',
+            default => 'پیام جدید'
+        };
+    } else {
+        $title = $convTitle !== '' ? $convTitle : ($convType === 'channel' ? 'کانال موج' : 'گروه موج');
+        $body = $senderName . ': ' . match ($msgType) {
+            'image' => 'عکس جدید',
+            'video', 'video_message' => 'ویدئوی جدید',
+            'voice' => 'پیام صوتی جدید',
+            'file' => 'فایل جدید',
+            'sticker' => 'استیکر جدید',
+            default => 'پیام جدید'
+        };
+    }
+
+    $q = db()->prepare('SELECT t.fcm_token
+        FROM mouj_fcm_tokens t
+        JOIN conversation_members cm ON cm.user_id = t.user_id
+        JOIN users u ON u.id = t.user_id
+        WHERE cm.conversation_id = ? AND cm.user_id <> ? AND u.deleted_at IS NULL');
+    $q->execute([$conversationId, $senderId]);
+    $tokens = array_map('strval', $q->fetchAll(PDO::FETCH_COLUMN));
+    mouj_fcm_send_to_tokens($tokens, $title, $body, [
+        'type' => 'chat_message',
+        'conversation_id' => (string)$conversationId,
+        'message_id' => (string)$messageId
+    ]);
+}
+
+// Call actions are handled before the normal action router below, so authenticate here first.
+// Without this, $uid was undefined when call_create/call_list/etc. ran.
+$u = null;
+$uid = 0;
+if (strpos($action, 'call_') === 0) {
+    $u = auth_user();
+    $uid = (int)$u['id'];
+}
+
+// --- WebRTC voice calls: private + group ---
+function call_member(int $cid, int $userId): bool {
+    $q = db()->prepare('SELECT 1 FROM conversation_members WHERE conversation_id = ? AND user_id = ? LIMIT 1');
+    $q->execute([$cid, $userId]);
+    return (bool)$q->fetchColumn();
+}
+function call_user_ids(int $callId, bool $activeOnly = true): array {
+    $sql = 'SELECT user_id FROM call_participants WHERE call_id = ?' . ($activeOnly ? " AND state = 'joined'" : '') . ' ORDER BY user_id';
+    $q = db()->prepare($sql); $q->execute([$callId]);
+    return array_map('intval', $q->fetchAll(PDO::FETCH_COLUMN));
+}
+
+if ($action === 'call_create') {
+    ensure_call_tables();
+    $cid = (int)($in['conversation_id'] ?? 0);
+    if ($cid < 1 || !call_member($cid, $uid)) json_out(['ok'=>false,'error'=>'forbidden'],403);
+    $q = db()->prepare("SELECT c.type,c.title FROM conversations c WHERE c.id=? LIMIT 1"); $q->execute([$cid]); $conv=$q->fetch();
+    if (!$conv || !in_array($conv['type'], ['private','group'], true)) json_out(['ok'=>false,'error'=>'invalid_conversation'],422);
+    $q = db()->prepare("SELECT id FROM call_sessions WHERE conversation_id=? AND status IN ('ringing','active') ORDER BY id DESC LIMIT 1"); $q->execute([$cid]);
+    if ($old=$q->fetch()) {
+        $oldId=(int)$old['id'];
+        $q2=db()->prepare("SELECT u.id,u.last_seen FROM conversation_members cm JOIN users u ON u.id=cm.user_id WHERE cm.conversation_id=? AND cm.user_id<>? LIMIT 1"); $q2->execute([$cid,$uid]); $peer=$q2->fetch();
+        $online=$peer && !empty($peer['last_seen']) && (time()-strtotime($peer['last_seen'])<=45);
+        json_out(['ok'=>true,'call_id'=>$oldId,'existing'=>true,'peer_online'=>$online]);
+    }
+    db()->beginTransaction();
+    try {
+        db()->prepare("INSERT INTO call_sessions(conversation_id,created_by,status) VALUES(?,?, 'ringing')")->execute([$cid,$uid]);
+        $callId=(int)db()->lastInsertId();
+        $mq=db()->prepare("SELECT user_id FROM conversation_members WHERE conversation_id=?"); $mq->execute([$cid]);
+        foreach($mq->fetchAll(PDO::FETCH_COLUMN) as $memberId){
+            $memberId=(int)$memberId;
+            db()->prepare("INSERT INTO call_participants(call_id,user_id,state,joined_at,left_at) VALUES(?,?,?,CASE WHEN ?=? THEN NOW() ELSE NULL END,NULL)")->execute([$callId,$memberId,$memberId===$uid?'joined':'invited',$memberId,$uid]);
+        }
+        db()->commit();
+        $online=false;
+        if($conv['type']==='private'){
+            $q2=db()->prepare("SELECT u.last_seen FROM conversation_members cm JOIN users u ON u.id=cm.user_id WHERE cm.conversation_id=? AND cm.user_id<>? LIMIT 1"); $q2->execute([$cid,$uid]); $peer=$q2->fetch();
+            $online=$peer && !empty($peer['last_seen']) && (time()-strtotime($peer['last_seen'])<=45);
+        }
+        json_out(['ok'=>true,'call_id'=>$callId,'existing'=>false,'peer_online'=>$online]);
+    } catch(Throwable $e) { if(db()->inTransaction()) db()->rollBack(); error_log('call_create: '.$e->getMessage()); json_out(['ok'=>false,'error'=>'call_create_failed','detail'=>$e->getMessage()],500); }
+}
+
+if ($action === 'call_list') {
+    ensure_call_tables();
+    $sql="SELECT cs.id,cs.conversation_id,cs.created_by,cs.status,cs.created_at,cs.started_at,cs.ended_at,
+                  c.type,c.title,
+                  u.first_name AS creator_first,u.last_name AS creator_last
+           FROM call_sessions cs
+           JOIN conversations c ON c.id=cs.conversation_id
+           JOIN users u ON u.id=cs.created_by
+           JOIN conversation_members cm ON cm.conversation_id=cs.conversation_id AND cm.user_id=?
+           WHERE (
+             (cs.status IN ('ringing','active') AND NOT EXISTS(SELECT 1 FROM call_participants x WHERE x.call_id=cs.id AND x.user_id=? AND x.state='left'))
+             OR EXISTS(SELECT 1 FROM call_participants cp2 WHERE cp2.call_id=cs.id AND cp2.user_id=? AND cp2.state='joined')
+           )
+           ORDER BY cs.id DESC LIMIT 50";
+    $q=db()->prepare($sql); $q->execute([$uid,$uid,$uid]); $rows=$q->fetchAll(); $out=[];
+    foreach($rows as $r){
+        $parts=call_user_ids((int)$r['id'], $r['status'] !== 'ended');
+        $out[]=['id'=>(int)$r['id'],'conversation_id'=>(int)$r['conversation_id'],'created_by'=>(int)$r['created_by'],'status'=>$r['status'],'created_at'=>$r['created_at'],'started_at'=>$r['started_at'],'ended_at'=>$r['ended_at'],'type'=>$r['type'],'title'=>$r['title'],'creator_name'=>trim($r['creator_first'].' '.$r['creator_last']),'participants'=>$parts,'mine'=>in_array($uid,$parts,true)];
+    }
+    json_out(['ok'=>true,'calls'=>$out]);
+}
+
+if ($action === 'call_info') {
+    ensure_call_tables();
+    $callId=(int)($in['call_id']??0);
+    $q=db()->prepare("SELECT cs.*,c.conversation_id,c.type,c.title FROM call_sessions cs JOIN conversations c ON c.id=cs.conversation_id WHERE cs.id=? LIMIT 1");
+    $q->execute([$callId]); $call=$q->fetch();
+    if(!$call) json_out(['ok'=>false,'error'=>'call_not_found'],404);
+    if(!call_member((int)$call['conversation_id'],$uid)) json_out(['ok'=>false,'error'=>'forbidden'],403);
+    $users=[]; $q=db()->prepare("SELECT cp.user_id,cp.state,u.first_name,u.last_name,u.avatar_path FROM call_participants cp JOIN users u ON u.id=cp.user_id WHERE cp.call_id=? AND cp.state='joined' ORDER BY cp.user_id"); $q->execute([$callId]);
+    foreach($q as $r) $users[]=['id'=>(int)$r['user_id'],'first_name'=>$r['first_name'],'last_name'=>$r['last_name'],'avatar_path'=>absolute_url($r['avatar_path']??null)];
+    json_out(['ok'=>true,'call'=>['id'=>(int)$call['id'],'conversation_id'=>(int)$call['conversation_id'],'type'=>$call['type'],'title'=>$call['title'],'created_by'=>(int)$call['created_by'],'status'=>$call['status'],'created_at'=>$call['created_at'],'started_at'=>$call['started_at'],'ended_at'=>$call['ended_at'],'participants'=>$users]]);
+}
+
+if ($action === 'call_join') {
+    ensure_call_tables();
+    $callId=(int)($in['call_id']??0);
+    $q=db()->prepare('SELECT cs.*,c.conversation_id,c.type FROM call_sessions cs JOIN conversations c ON c.id=cs.conversation_id WHERE cs.id=? LIMIT 1'); $q->execute([$callId]); $call=$q->fetch();
+    if(!$call) json_out(['ok'=>false,'error'=>'call_not_found'],404);
+    if(!call_member((int)$call['conversation_id'],$uid)) json_out(['ok'=>false,'error'=>'forbidden'],403);
+    if($call['status']==='ended') json_out(['ok'=>false,'error'=>'call_ended'],409);
+    db()->prepare("INSERT INTO call_participants(call_id,user_id,state,joined_at,left_at) VALUES(?,?, 'joined', NOW(), NULL) ON DUPLICATE KEY UPDATE state='joined', joined_at=NOW(), left_at=NULL")->execute([$callId,$uid]);
+    db()->prepare("UPDATE call_sessions SET status='active', started_at=COALESCE(started_at,NOW()) WHERE id=?")->execute([$callId]);
+    json_out(['ok'=>true]);
+}
+
+if ($action === 'call_signal') {
+    ensure_call_tables();
+    $callId=(int)($in['call_id']??0); $to=(int)($in['to_user_id']??0); $type=trim((string)($in['signal_type']??'')); $payload=$in['payload']??null;
+    if($callId<1||$to<1||!in_array($type,['offer','answer','candidate'],true)||$payload===null) json_out(['ok'=>false,'error'=>'invalid_input'],422);
+    $q=db()->prepare("SELECT cs.conversation_id FROM call_sessions cs JOIN call_participants cp ON cp.call_id=cs.id AND cp.user_id=? AND cp.state='joined' WHERE cs.id=? AND cs.status IN ('ringing','active') LIMIT 1"); $q->execute([$uid,$callId]); $call=$q->fetch();
+    if(!$call || !call_member((int)$call['conversation_id'],$to)) json_out(['ok'=>false,'error'=>'forbidden'],403);
+    $q=db()->prepare("SELECT 1 FROM call_participants WHERE call_id=? AND user_id=? AND state='joined'"); $q->execute([$callId,$to]); if(!$q->fetch()) json_out(['ok'=>false,'error'=>'recipient_not_joined'],409);
+    $raw=is_string($payload)?$payload:json_encode($payload,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+    if(strlen($raw)>200000) json_out(['ok'=>false,'error'=>'payload_too_large'],413);
+    db()->prepare('INSERT INTO call_signals(call_id,from_user_id,to_user_id,signal_type,payload) VALUES(?,?,?,?,?)')->execute([$callId,$uid,$to,$type,$raw]);
+    json_out(['ok'=>true,'id'=>(int)db()->lastInsertId()]);
+}
+
+if ($action === 'call_signals') {
+    ensure_call_tables();
+    $callId=(int)($in['call_id']??0); $after=(int)($in['after_id']??0);
+    $q=db()->prepare("SELECT cs.conversation_id FROM call_sessions cs JOIN call_participants cp ON cp.call_id=cs.id AND cp.user_id=? AND cp.state='joined' WHERE cs.id=? LIMIT 1"); $q->execute([$uid,$callId]); $call=$q->fetch();
+    if(!$call) json_out(['ok'=>false,'error'=>'forbidden'],403);
+    $q=db()->prepare('SELECT id,from_user_id,signal_type,payload,created_at FROM call_signals WHERE call_id=? AND to_user_id=? AND id>? ORDER BY id ASC LIMIT 100'); $q->execute([$callId,$uid,$after]); $out=[];
+    foreach($q as $r){ $pl=json_decode($r['payload'],true); $out[]=['id'=>(int)$r['id'],'from_user_id'=>(int)$r['from_user_id'],'signal_type'=>$r['signal_type'],'payload'=>$pl??$r['payload'],'created_at'=>$r['created_at']]; }
+    json_out(['ok'=>true,'signals'=>$out]);
+}
+
+if ($action === 'call_decline') {
+    ensure_call_tables();
+    $callId=(int)($in['call_id']??0);
+    $q=db()->prepare("SELECT cs.conversation_id,cs.status FROM call_sessions cs WHERE cs.id=? LIMIT 1"); $q->execute([$callId]); $call=$q->fetch();
+    if(!$call) json_out(['ok'=>false,'error'=>'call_not_found'],404);
+    if(!call_member((int)$call['conversation_id'],$uid)) json_out(['ok'=>false,'error'=>'forbidden'],403);
+    db()->prepare("INSERT INTO call_participants(call_id,user_id,state,joined_at,left_at) VALUES(?,?, 'left',NULL,NOW()) ON DUPLICATE KEY UPDATE state='left',left_at=NOW()")->execute([$callId,$uid]);
+    json_out(['ok'=>true]);
+}
+
+if ($action === 'call_leave') {
+    ensure_call_tables();
+    $callId=(int)($in['call_id']??0);
+    $q=db()->prepare("SELECT cs.conversation_id FROM call_sessions cs JOIN call_participants cp ON cp.call_id=cs.id AND cp.user_id=? WHERE cs.id=? LIMIT 1"); $q->execute([$uid,$callId]); if(!$q->fetch()) json_out(['ok'=>false,'error'=>'forbidden'],403);
+    db()->prepare("UPDATE call_participants SET state='left',left_at=NOW() WHERE call_id=? AND user_id=?")->execute([$callId,$uid]);
+    $q=db()->prepare("SELECT COUNT(*) FROM call_participants WHERE call_id=? AND state='joined'"); $q->execute([$callId]); if((int)$q->fetchColumn()===0) db()->prepare("UPDATE call_sessions SET status='ended',ended_at=NOW() WHERE id=?")->execute([$callId]);
+    json_out(['ok'=>true]);
+}
+
+if ($action === 'call_end') {
+    ensure_call_tables();
+    $callId=(int)($in['call_id']??0);
+    $q=db()->prepare("SELECT cs.conversation_id FROM call_sessions cs JOIN call_participants cp ON cp.call_id=cs.id AND cp.user_id=? WHERE cs.id=? LIMIT 1"); $q->execute([$uid,$callId]); if(!$q->fetch()) json_out(['ok'=>false,'error'=>'forbidden'],403);
+    db()->prepare("UPDATE call_sessions SET status='ended',ended_at=NOW() WHERE id=?")->execute([$callId]);
+    db()->prepare("UPDATE call_participants SET state='left',left_at=COALESCE(left_at,NOW()) WHERE call_id=? AND state='joined'")->execute([$callId]);
+    json_out(['ok'=>true]);
+}
+
+if ($action === 'me') {
+    $u = auth_user();
+    json_out(['ok' => true, 'user' => user_json($u)]);
+}
+
+if ($action === 'logout') {
+    $t = trim((string)($_SERVER['HTTP_AUTHORIZATION'] ?? ''));
+    $t = preg_replace('/^Bearer\s+/i', '', $t);
+    if ($t) db()->prepare('DELETE FROM auth_sessions WHERE token_hash = ?')->execute([hash('sha256', $t)]);
+    json_out(['ok' => true]);
+}
+
+// --- Public group/channel preview (works before membership/auth) ---
+if ($action === 'public_conversation') {
+    $slug = strtolower(trim((string)($in['slug'] ?? '')));
+    if (!preg_match('/^[a-z0-9_]{3,32}$/', $slug)) json_out(['ok'=>false,'error'=>'invalid_slug'],422);
+    $st = db()->prepare("SELECT c.id,c.type,c.title,c.slug,c.description,c.avatar_path,c.is_public,c.created_by FROM conversations c WHERE c.slug=? AND c.type IN ('group','channel') LIMIT 1");
+    $st->execute([$slug]); $c=$st->fetch();
+    if (!$c || !(int)$c['is_public']) json_out(['ok'=>false,'error'=>'not_found'],404);
+    $mc=db()->prepare('SELECT COUNT(*) FROM conversation_members WHERE conversation_id=?'); $mc->execute([(int)$c['id']]);
+    $mm=db()->prepare("SELECT m.id,m.body,m.msg_type,m.file_path,m.file_mime,m.file_name,m.file_size,m.created_at,m.sender_id,u.first_name,u.last_name,u.deleted_at FROM messages m JOIN users u ON u.id=m.sender_id WHERE m.conversation_id=? AND m.deleted_at IS NULL ORDER BY m.id ASC LIMIT 200"); $mm->execute([(int)$c['id']]);
+    $msgs=[]; foreach($mm as $m){ $msgs[]=['id'=>(int)$m['id'],'body'=>decrypt_message_body((string)$m['body']),'msg_type'=>$m['msg_type']??'text','file_path'=>absolute_url($m['file_path']??null),'file_mime'=>$m['file_mime']??null,'file_name'=>$m['file_name']??null,'file_size'=>$m['file_size']!==null?(int)$m['file_size']:null,'created_at'=>$m['created_at'],'sender_id'=>(int)$m['sender_id'],'first_name'=>!empty($m['deleted_at'])?'این اکانت حذف شده':$m['first_name'],'last_name'=>!empty($m['deleted_at'])?'':$m['last_name'],'deleted_account'=>!empty($m['deleted_at'])]; }
+    json_out(['ok'=>true,'conversation'=>['conversation_id'=>(int)$c['id'],'type'=>$c['type'],'title'=>$c['title'],'slug'=>$c['slug'],'description'=>$c['description'],'is_public'=>true,'avatar_path'=>absolute_url($c['avatar_path']??null),'member_count'=>(int)$mc->fetchColumn(),'link'=>rtrim(APP_BASE_URL,'/').'/mouj-messenger.html#c/'.$c['slug']], 'messages'=>$msgs]);
+}
+
+$u = auth_user();
+$uid = (int)$u['id'];
+
+// Create call tables automatically on first use (migration file is also provided).
+function ensure_call_tables(): void {
+    static $done = false; if ($done) return;
+    $pdo = db();
+    $pdo->exec("CREATE TABLE IF NOT EXISTS call_sessions (
+      id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY, conversation_id BIGINT NOT NULL, created_by INT NOT NULL,
+      status ENUM('ringing','active','ended') NOT NULL DEFAULT 'ringing', created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      started_at DATETIME DEFAULT NULL, ended_at DATETIME DEFAULT NULL,
+      INDEX idx_call_conv_status(conversation_id,status), INDEX idx_call_created(created_by)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
+    $pdo->exec("CREATE TABLE IF NOT EXISTS call_participants (
+      call_id BIGINT NOT NULL, user_id INT NOT NULL, state ENUM('invited','joined','left') NOT NULL DEFAULT 'invited',
+      joined_at DATETIME DEFAULT NULL, left_at DATETIME DEFAULT NULL, PRIMARY KEY(call_id,user_id), INDEX idx_call_participant_user(user_id)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
+    $pdo->exec("CREATE TABLE IF NOT EXISTS call_signals (
+      id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY, call_id BIGINT NOT NULL, from_user_id INT NOT NULL, to_user_id INT NOT NULL,
+      signal_type VARCHAR(20) NOT NULL, payload LONGTEXT NOT NULL, created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      INDEX idx_signal_recipient(to_user_id,call_id,id), INDEX idx_signal_call(call_id,id)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
+    // Repair tables that may have been partially created by an older migration.
+    $cols = function(string $table) use ($pdo): array {
+        $q = $pdo->query("SHOW COLUMNS FROM `$table`");
+        return array_fill_keys($q->fetchAll(PDO::FETCH_COLUMN), true);
+    };
+    // Normalize legacy status columns from older call migrations.
+    try { $pdo->exec("ALTER TABLE call_sessions MODIFY status VARCHAR(16) NOT NULL DEFAULT 'ringing'"); } catch (Throwable $e) {}
+    $c = $cols('call_sessions');
+    if (!isset($c['conversation_id'])) $pdo->exec("ALTER TABLE call_sessions ADD conversation_id BIGINT NOT NULL");
+    if (!isset($c['created_by'])) $pdo->exec("ALTER TABLE call_sessions ADD created_by INT NOT NULL");
+    if (!isset($c['status'])) $pdo->exec("ALTER TABLE call_sessions ADD status VARCHAR(16) NOT NULL DEFAULT 'ringing'");
+    if (!isset($c['created_at'])) $pdo->exec("ALTER TABLE call_sessions ADD created_at DATETIME DEFAULT CURRENT_TIMESTAMP");
+    if (!isset($c['started_at'])) $pdo->exec("ALTER TABLE call_sessions ADD started_at DATETIME DEFAULT NULL");
+    if (!isset($c['ended_at'])) $pdo->exec("ALTER TABLE call_sessions ADD ended_at DATETIME DEFAULT NULL");
+    $c = $cols('call_participants');
+    if (!isset($c['state'])) $pdo->exec("ALTER TABLE call_participants ADD state VARCHAR(16) NOT NULL DEFAULT 'invited'");
+    if (!isset($c['joined_at'])) $pdo->exec("ALTER TABLE call_participants ADD joined_at DATETIME DEFAULT NULL");
+    if (!isset($c['left_at'])) $pdo->exec("ALTER TABLE call_participants ADD left_at DATETIME DEFAULT NULL");
+    $c = $cols('call_signals');
+    if (!isset($c['signal_type'])) $pdo->exec("ALTER TABLE call_signals ADD signal_type VARCHAR(20) NOT NULL");
+    if (!isset($c['payload'])) $pdo->exec("ALTER TABLE call_signals ADD payload LONGTEXT NOT NULL");
+    if (!isset($c['created_at'])) $pdo->exec("ALTER TABLE call_signals ADD created_at DATETIME DEFAULT CURRENT_TIMESTAMP");
+    $done = true;
+}
+if (strpos($action, 'call_') === 0) {
+    try { ensure_call_tables(); } catch (Throwable $e) { json_out(['ok'=>false,'error'=>'call_database_setup_failed'],500); }
+}
+
+// --- match phone book contacts against registered users ---
+if ($action === 'match_contacts') {
+    $phones = $in['phones'] ?? [];
+    if (!is_array($phones)) $phones = [];
+    $normed = [];
+    foreach ($phones as $p) {
+        $n = norm_phone((string)$p);
+        if (preg_match('/^09\d{9}$/', $n)) $normed[$n] = true;
+    }
+    $normed = array_keys($normed);
+    if (!$normed) json_out(['ok' => true, 'matched' => [], 'unmatched' => []]);
+
+    $placeholders = implode(',', array_fill(0, count($normed), '?'));
+    $st = db()->prepare("SELECT id, phone, username, first_name, last_name, avatar_path, last_seen FROM users WHERE phone IN ($placeholders) AND id <> ?");
+    $st->execute([...$normed, $uid]);
+    $matched = [];
+    $foundPhones = [];
+    foreach ($st->fetchAll() as $row) {
+        $matched[] = user_json($row);
+        $foundPhones[$row['phone']] = true;
+    }
+    $unmatched = array_values(array_filter($normed, fn($p) => empty($foundPhones[$p])));
+    json_out(['ok' => true, 'matched' => $matched, 'unmatched' => $unmatched]);
+}
+
+// --- search users (by username / name) — phone hidden for privacy ---
+
+if ($action === 'user_by_username') {
+    $username = strtolower(trim((string)($in['username'] ?? '')));
+    $username = ltrim($username, '@');
+    if (!preg_match('/^[a-z0-9_]{3,32}$/', $username)) json_out(['ok' => false, 'error' => 'invalid_username'], 422);
+    $st = db()->prepare('SELECT id, phone, username, first_name, last_name, avatar_path, last_seen, created_at FROM users WHERE username = ? LIMIT 1');
+    $st->execute([$username]);
+    $row = $st->fetch();
+    if (!$row) json_out(['ok' => false, 'error' => 'user_not_found'], 404);
+    json_out(['ok' => true, 'user' => user_json($row, true)]);
+}
+
+if ($action === 'search_users') {
+    $q = trim((string)($in['q'] ?? ''));
+    if (mb_strlen($q) < 2) json_out(['ok' => true, 'users' => []]);
+    $like = '%' . $q . '%';
+    // اگر با 09 شروع شد → جستجوی شماره (فقط برای صاحب شماره یا مخاطب)
+    if (preg_match('/^09\d{0,9}$/', preg_replace('/\D/', '', $q)) || preg_match('/^\+?98/', $q)) {
+        $phone = norm_phone($q);
+        $st = db()->prepare('SELECT id, phone, username, first_name, last_name, avatar_path, last_seen FROM users WHERE phone = ? AND id <> ? LIMIT 5');
+        $st->execute([$phone, $uid]);
+        $rows = array_map(fn($r) => user_json($r, false), $st->fetchAll());
+        json_out(['ok' => true, 'users' => $rows]);
+    }
+    // جستجو با نام یا یوزرنیم — شماره مخفی
+    $st = db()->prepare("SELECT id, username, first_name, last_name, avatar_path, last_seen FROM users WHERE id <> ? AND (username LIKE ? OR first_name LIKE ? OR last_name LIKE ? OR CONCAT(first_name,' ',IFNULL(last_name,'')) LIKE ?) ORDER BY username LIMIT 30");
+    $st->execute([$uid, $like, $like, $like, $like]);
+    $rows = array_map(fn($r) => user_json($r, true), $st->fetchAll());
+    json_out(['ok' => true, 'users' => $rows]);
+}
+
+if ($action === 'contacts') {
+    $q = trim((string)($in['q'] ?? ''));
+    $like = '%' . $q . '%';
+    $st = db()->prepare("SELECT u.id,u.phone,u.username,u.first_name,u.last_name,u.avatar_path,u.deleted_at,u.last_seen FROM contacts ct JOIN users u ON u.id=ct.contact_user_id WHERE ct.user_id=? AND (u.first_name LIKE ? OR u.last_name LIKE ? OR u.username LIKE ? OR u.phone LIKE ?) ORDER BY u.first_name,u.last_name LIMIT 100");
+    $st->execute([$uid,$like,$like,$like,$like]);
+    $rows = array_map(fn($r) => user_json($r), $st->fetchAll());
+    json_out(['ok'=>true,'contacts'=>$rows]);
+}
+
+if ($action === 'add_contact') {
+    $phone = norm_phone((string)($in['phone'] ?? ''));
+    if (!preg_match('/^09\d{9}$/',$phone)) json_out(['ok'=>false,'error'=>'invalid_phone'],422);
+    $st=db()->prepare('SELECT id,phone,username,first_name,last_name,avatar_path,last_seen FROM users WHERE phone=? AND id<>? LIMIT 1');
+    $st->execute([$phone,$uid]); $target=$st->fetch();
+    if (!$target) json_out(['ok'=>false,'error'=>'user_not_found'],404);
+    db()->prepare('INSERT IGNORE INTO contacts(user_id,contact_user_id) VALUES(?,?)')->execute([$uid,(int)$target['id']]);
+    json_out(['ok'=>true,'contact'=>user_json($target)]);
+}
+
+if ($action === 'user_profile') {
+    $id = (int)($in['user_id'] ?? 0);
+    if ($id < 1) json_out(['ok' => false, 'error' => 'invalid_user'], 422);
+    $st = db()->prepare('SELECT id, phone, username, first_name, last_name, avatar_path, last_seen, created_at FROM users WHERE id = ?');
+    $st->execute([$id]);
+    $row = $st->fetch();
+    if (!$row) json_out(['ok' => false, 'error' => 'user_not_found'], 404);
+    // شماره فقط اگر خود کاربر باشه یا در مخاطبین باشه نمایش داده می‌شه — فعلاً ساده: همیشه برای پروفایل کامل
+    json_out(['ok' => true, 'user' => user_json($row, false)]);
+}
+
+
+
+if ($action === 'peek_user') {
+    $other = (int)($in['user_id'] ?? 0);
+    if ($other < 1 || $other === $uid) json_out(['ok'=>false,'error'=>'invalid_user'],422);
+    $uq = db()->prepare('SELECT id, phone, username, first_name, last_name, avatar_path, last_seen, deleted_at FROM users WHERE id=? LIMIT 1');
+    $uq->execute([$other]);
+    $ou = $uq->fetch();
+    if (!$ou) json_out(['ok'=>false,'error'=>'user_not_found'],404);
+
+    // Find the private conversation without changing read state.
+    $cq = db()->prepare("SELECT c.id FROM conversations c
+        JOIN conversation_members a ON a.conversation_id=c.id AND a.user_id=?
+        JOIN conversation_members b ON b.conversation_id=c.id AND b.user_id=?
+        WHERE c.type='private' LIMIT 1");
+    $cq->execute([$uid,$other]);
+    $conv = $cq->fetch();
+    $messages = [];
+    if ($conv) {
+        $mq = db()->prepare("SELECT m.id,m.body,m.msg_type,m.file_path,m.file_mime,m.file_name,m.file_size,m.created_at,m.sender_id
+            FROM messages m WHERE m.conversation_id=? AND m.deleted_at IS NULL
+            ORDER BY m.id DESC LIMIT 20");
+        $mq->execute([(int)$conv['id']]);
+        $tmp = $mq->fetchAll();
+        $tmp = array_reverse($tmp);
+        foreach ($tmp as $m) {
+            $messages[] = [
+                'id'=>(int)$m['id'],
+                'body'=>decrypt_message_body((string)($m['body']??'')),
+                'msg_type'=>$m['msg_type']??'text',
+                'file_path'=>absolute_url($m['file_path']??null),
+                'file_mime'=>$m['file_mime']??null,
+                'file_name'=>$m['file_name']??null,
+                'file_size'=>$m['file_size']!==null?(int)$m['file_size']:null,
+                'created_at'=>$m['created_at'],
+                'sender_id'=>(int)$m['sender_id']
+            ];
+        }
+    }
+    json_out(['ok'=>true,'user'=>user_json($ou,false),'conversation_id'=>$conv?(int)$conv['id']:null,'messages'=>$messages]);
+}
+
+if ($action === 'chats') {
+    $q = trim((string)($in['q'] ?? ''));
+    $st = db()->prepare("
+        SELECT c.id, c.updated_at, c.type, c.title, c.slug, c.avatar_path, c.description, c.is_public,
+               cm.role, cm.pinned_at,
+               (SELECT COUNT(*) FROM conversation_members zcm WHERE zcm.conversation_id = c.id) AS member_count,
+               (SELECT COUNT(*) FROM messages um
+                WHERE um.conversation_id = c.id AND um.id > COALESCE(cm.last_read_message_id, 0)
+                  AND um.sender_id <> ? AND um.deleted_at IS NULL) AS unread_count,
+               m.id message_id, m.body, m.created_at, m.sender_id,
+               x.id other_id, x.phone other_phone, x.username other_username,
+               x.first_name other_first, x.last_name other_last,
+               x.avatar_path other_avatar, x.last_seen other_last_seen
+        FROM conversations c
+        JOIN conversation_members cm ON cm.conversation_id = c.id AND cm.user_id = ?
+        LEFT JOIN conversation_members cm2 ON cm2.conversation_id = c.id AND cm2.user_id <> ? AND c.type = 'private'
+        LEFT JOIN users x ON x.id = cm2.user_id
+        LEFT JOIN messages m ON m.id = (
+            SELECT MAX(m2.id) FROM messages m2
+            WHERE m2.conversation_id = c.id AND m2.deleted_at IS NULL
+        )
+        ORDER BY CASE WHEN c.type = 'saved' THEN 0 ELSE 1 END, (cm.pinned_at IS NULL) ASC, cm.pinned_at DESC, c.updated_at DESC
+    ");
+    $st->execute([$uid, $uid, $uid]);
+    $rows = [];
+    foreach ($st as $r) {
+        $item = [
+            'conversation_id' => (int)$r['id'],
+            'type' => $r['type'],
+            'title' => $r['title'],
+            'slug' => $r['slug'],
+            'description' => $r['description'],
+            'is_public' => (bool)$r['is_public'],
+            'avatar_path' => absolute_url($r['avatar_path'] ?? null),
+            'member_count' => isset($r['member_count']) ? (int)$r['member_count'] : null,
+            'unread_count' => isset($r['unread_count']) ? (int)$r['unread_count'] : 0,
+            'role' => $r['role'],
+            'pinned' => !empty($r['pinned_at']),
+            'last_message' => $r['message_id'] ? [
+                'id' => (int)$r['message_id'],
+                'body' => decrypt_message_body((string)$r['body']),
+                'created_at' => $r['created_at'],
+                'sender_id' => (int)$r['sender_id'],
+            ] : null,
+        ];
+        if ($r['type'] === 'private' && $r['other_id']) {
+            $item['user'] = user_json([
+                'id' => $r['other_id'],
+                'phone' => $r['other_phone'],
+                'username' => $r['other_username'],
+                'first_name' => $r['other_first'],
+                'last_name' => $r['other_last'],
+                'avatar_path' => $r['other_avatar'],
+                'last_seen' => $r['other_last_seen'],
+            ]);
+        }
+        if ($q !== '') {
+            $hay = mb_strtolower(
+                ($item['user']['first_name'] ?? '') . ' ' .
+                ($item['user']['last_name'] ?? '') . ' ' .
+                ($item['user']['username'] ?? '') . ' ' .
+                ($item['title'] ?? '') . ' ' .
+                ($item['slug'] ?? '')
+            );
+            if (mb_strpos($hay, mb_strtolower($q)) === false) continue;
+        }
+        $rows[] = $item;
+    }
+    json_out(['ok' => true, 'chats' => $rows]);
+}
+
+if ($action === 'open_chat') {
+    $other = (int)($in['user_id'] ?? 0);
+    if ($other < 1 || $other === $uid) json_out(['ok' => false, 'error' => 'invalid_user'], 422);
+    $q = db()->prepare('SELECT id, phone, username, first_name, last_name, avatar_path, last_seen FROM users WHERE id = ?');
+    $q->execute([$other]);
+    $ou = $q->fetch();
+    if (!$ou) json_out(['ok' => false, 'error' => 'user_not_found'], 404);
+
+    $pdo = db();
+    $pdo->beginTransaction();
+    $q = $pdo->prepare("
+        SELECT c.id FROM conversations c
+        JOIN conversation_members a ON a.conversation_id = c.id AND a.user_id = ?
+        JOIN conversation_members b ON b.conversation_id = c.id AND b.user_id = ?
+        WHERE c.type = 'private' LIMIT 1
+    ");
+    $q->execute([$uid, $other]);
+    $c = $q->fetch();
+    if (!$c) {
+        $pdo->prepare("INSERT INTO conversations(type, updated_at) VALUES('private', NOW())")->execute();
+        $cid = (int)$pdo->lastInsertId();
+        $pdo->prepare('INSERT INTO conversation_members(conversation_id, user_id) VALUES(?, ?), (?, ?)')
+            ->execute([$cid, $uid, $cid, $other]);
+    } else {
+        $cid = (int)$c['id'];
+    }
+    $pdo->commit();
+    json_out(['ok' => true, 'conversation_id' => $cid, 'user' => user_json($ou)]);
+}
+
+
+if ($action === 'create_group' || $action === 'create_channel') {
+    $title = trim((string)($in['title'] ?? ''));
+    $slug = strtolower(trim((string)($in['slug'] ?? '')));
+    $description = trim((string)($in['description'] ?? ''));
+    $isPublic = !empty($in['is_public']) ? 1 : 0;
+    $memberIds = $in['member_ids'] ?? [];
+    if ($title === '' || mb_strlen($title) > 120) json_out(['ok' => false, 'error' => 'invalid_title'], 422);
+    if ($slug === '' || !preg_match('/^[a-z0-9_]{3,32}$/', $slug)) json_out(['ok' => false, 'error' => 'invalid_slug'], 422);
+    if (mb_strlen($description) > 500) json_out(['ok' => false, 'error' => 'invalid_description'], 422);
+    if (!is_array($memberIds)) $memberIds = [];
+    $memberIds = array_unique(array_filter(array_map('intval', $memberIds), fn($id) => $id > 0 && $id !== $uid));
+
+    $type = $action === 'create_channel' ? 'channel' : 'group';
+
+    // slug unique
+    $q = db()->prepare('SELECT id FROM conversations WHERE slug = ? LIMIT 1');
+    $q->execute([$slug]);
+    if ($q->fetch()) json_out(['ok' => false, 'error' => 'slug_taken'], 422);
+
+    $avatar = null;
+    if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] === UPLOAD_ERR_OK) {
+        if ($_FILES['avatar']['size'] > 3 * 1024 * 1024) json_out(['ok' => false, 'error' => 'avatar_too_large'], 422);
+        $mime = (new finfo(FILEINFO_MIME_TYPE))->file($_FILES['avatar']['tmp_name']);
+        $allowed = ['image/jpeg' => 'jpg', 'image/png' => 'png', 'image/webp' => 'webp'];
+        if (!isset($allowed[$mime])) json_out(['ok' => false, 'error' => 'invalid_avatar'], 422);
+        if (!is_dir(__DIR__ . '/uploads')) mkdir(__DIR__ . '/uploads', 0755, true);
+        $name = bin2hex(random_bytes(12)) . '.' . $allowed[$mime];
+        if (!move_uploaded_file($_FILES['avatar']['tmp_name'], __DIR__ . '/uploads/' . $name)) {
+            json_out(['ok' => false, 'error' => 'avatar_upload_failed'], 500);
+        }
+        $avatar = 'uploads/' . $name;
+    }
+
+    $pdo = db();
+    $pdo->beginTransaction();
+    $pdo->prepare("INSERT INTO conversations(type, title, slug, avatar_path, description, is_public, created_by, updated_at) VALUES(?,?,?,?,?,?,?,NOW())")
+        ->execute([$type, $title, $slug, $avatar, $description ?: null, $isPublic, $uid]);
+    $cid = (int)$pdo->lastInsertId();
+    // creator = owner
+    $pdo->prepare("INSERT INTO conversation_members(conversation_id, user_id, role) VALUES(?, ?, 'owner')")->execute([$cid, $uid]);
+    $ins = $pdo->prepare("INSERT INTO conversation_members(conversation_id, user_id, role) VALUES(?, ?, 'member')");
+    foreach ($memberIds as $mid) {
+        $ins->execute([$cid, $mid]);
+    }
+    $pdo->commit();
+    json_out([
+        'ok' => true,
+        'conversation_id' => $cid,
+        'title' => $title,
+        'slug' => $slug,
+        'type' => $type,
+        'is_public' => (bool)$isPublic,
+        'avatar_path' => absolute_url($avatar),
+        'link' => rtrim(APP_BASE_URL, '/') . '/mouj-messenger.html#c/' . $slug,
+    ]);
+}
+
+if ($action === 'edit_conversation') {
+    $cid = (int)($in['conversation_id'] ?? 0);
+    $title = trim((string)($in['title'] ?? ''));
+    $description = trim((string)($in['description'] ?? ''));
+    $isPublic = array_key_exists('is_public', $in) ? (!empty($in['is_public']) ? 1 : 0) : null;
+
+    $q = db()->prepare('SELECT c.*, cm.role FROM conversations c JOIN conversation_members cm ON cm.conversation_id = c.id AND cm.user_id = ? WHERE c.id = ?');
+    $q->execute([$uid, $cid]);
+    $conv = $q->fetch();
+    if (!$conv) json_out(['ok' => false, 'error' => 'not_found'], 404);
+    $role = $conv['role'] ?: 'member';
+    if ($role === 'member' && !empty($conv['created_by']) && (int)$conv['created_by'] === $uid) {
+        $role = 'owner';
+        try { db()->prepare("UPDATE conversation_members SET role = 'owner' WHERE conversation_id = ? AND user_id = ?")->execute([$cid, $uid]); } catch (Throwable $e) {}
+    }
+    if (!in_array($role, ['owner', 'admin'], true)) json_out(['ok' => false, 'error' => 'forbidden'], 403);
+    if (!in_array($conv['type'], ['group', 'channel'], true)) json_out(['ok' => false, 'error' => 'invalid_type'], 422);
+
+    if ($title === '' || mb_strlen($title) > 120) json_out(['ok' => false, 'error' => 'invalid_title'], 422);
+    if (mb_strlen($description) > 500) json_out(['ok' => false, 'error' => 'invalid_description'], 422);
+
+    $avatar = null;
+    if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] === UPLOAD_ERR_OK) {
+        if ($_FILES['avatar']['size'] > 3 * 1024 * 1024) json_out(['ok' => false, 'error' => 'avatar_too_large'], 422);
+        $mime = (new finfo(FILEINFO_MIME_TYPE))->file($_FILES['avatar']['tmp_name']);
+        $allowed = ['image/jpeg' => 'jpg', 'image/png' => 'png', 'image/webp' => 'webp'];
+        if (!isset($allowed[$mime])) json_out(['ok' => false, 'error' => 'invalid_avatar'], 422);
+        if (!is_dir(__DIR__ . '/uploads')) mkdir(__DIR__ . '/uploads', 0755, true);
+        $name = bin2hex(random_bytes(12)) . '.' . $allowed[$mime];
+        if (!move_uploaded_file($_FILES['avatar']['tmp_name'], __DIR__ . '/uploads/' . $name)) {
+            json_out(['ok' => false, 'error' => 'avatar_upload_failed'], 500);
+        }
+        $avatar = 'uploads/' . $name;
+    }
+
+    $sets = ['title = ?', 'description = ?', 'updated_at = NOW()'];
+    $args = [$title, $description ?: null];
+    if ($isPublic !== null) {
+        $sets[] = 'is_public = ?';
+        $args[] = $isPublic;
+    }
+    if ($avatar) {
+        $sets[] = 'avatar_path = ?';
+        $args[] = $avatar;
+    }
+    $args[] = $cid;
+    db()->prepare('UPDATE conversations SET ' . implode(', ', $sets) . ' WHERE id = ?')->execute($args);
+
+    $q = db()->prepare('SELECT * FROM conversations WHERE id = ?');
+    $q->execute([$cid]);
+    $c = $q->fetch();
+    json_out([
+        'ok' => true,
+        'conversation' => [
+            'conversation_id' => (int)$c['id'],
+            'type' => $c['type'],
+            'title' => $c['title'],
+            'slug' => $c['slug'],
+            'description' => $c['description'],
+            'is_public' => (bool)$c['is_public'],
+            'avatar_path' => absolute_url($c['avatar_path'] ?? null),
+            'link' => $c['slug'] ? (rtrim(APP_BASE_URL, '/') . '/mouj-messenger.html#c/' . $c['slug']) : null,
+        ],
+    ]);
+}
+
+if ($action === 'delete_conversation') {
+    $cid = (int)($in['conversation_id'] ?? 0);
+    if ($cid < 1) json_out(['ok' => false, 'error' => 'invalid_conversation'], 422);
+    $q = db()->prepare('SELECT c.*, cm.role FROM conversations c JOIN conversation_members cm ON cm.conversation_id = c.id AND cm.user_id = ? WHERE c.id = ? LIMIT 1');
+    $q->execute([$uid, $cid]);
+    $conv = $q->fetch();
+    if (!$conv) json_out(['ok' => false, 'error' => 'not_found'], 404);
+    if (!in_array($conv['type'], ['group','channel'], true)) json_out(['ok' => false, 'error' => 'invalid_type'], 422);
+    $role = $conv['role'] ?: 'member';
+    if ($role === 'member' && !empty($conv['created_by']) && (int)$conv['created_by'] === $uid) $role = 'owner';
+    if ($role !== 'owner' || (int)$conv['created_by'] !== $uid) json_out(['ok' => false, 'error' => 'only_creator_can_delete'], 403);
+    $pdo = db();
+    try {
+        $pdo->beginTransaction();
+        $pdo->prepare('DELETE FROM conversations WHERE id = ?')->execute([$cid]);
+        $pdo->commit();
+    } catch (Throwable $e) {
+        if ($pdo->inTransaction()) $pdo->rollBack();
+        json_out(['ok' => false, 'error' => 'delete_failed'], 500);
+    }
+    json_out(['ok' => true, 'conversation_id' => $cid]);
+}
+
+if ($action === 'delete_account') {
+    $pdo = db();
+    try {
+        $pdo->beginTransaction();
+        // Soft delete: پیام‌ها و عضویت‌های قبلی حفظ می‌شوند تا «این اکانت حذف شده» برای دیگران نمایش داده شود.
+        $pdo->prepare("UPDATE users SET deleted_at = NOW(), first_name = 'این اکانت حذف شده', last_name = NULL, username = CONCAT('deleted_', id) WHERE id = ?")->execute([$uid]);
+        $pdo->prepare('DELETE FROM auth_sessions WHERE user_id = ?')->execute([$uid]);
+        $pdo->commit();
+    } catch (Throwable $e) {
+        if ($pdo->inTransaction()) $pdo->rollBack();
+        json_out(['ok' => false, 'error' => 'delete_account_failed'], 500);
+    }
+    json_out(['ok' => true]);
+}
+
+if ($action === 'add_members') {
+    $cid = (int)($in['conversation_id'] ?? 0);
+    $memberIds = $in['member_ids'] ?? [];
+    if (!is_array($memberIds)) $memberIds = [$memberIds];
+    $memberIds = array_values(array_unique(array_filter(array_map('intval', $memberIds), fn($id) => $id > 0 && $id !== $uid)));
+
+    $q = db()->prepare('SELECT c.*, cm.role FROM conversations c JOIN conversation_members cm ON cm.conversation_id = c.id AND cm.user_id = ? WHERE c.id = ?');
+    $q->execute([$uid, $cid]);
+    $conv = $q->fetch();
+    if (!$conv) json_out(['ok' => false, 'error' => 'not_found'], 404);
+    if (!in_array($conv['type'], ['group', 'channel'], true)) json_out(['ok' => false, 'error' => 'invalid_type'], 422);
+
+    $role = $conv['role'] ?: 'member';
+    if ($role === 'member' && !empty($conv['created_by']) && (int)$conv['created_by'] === $uid) {
+        $role = 'owner';
+        try { db()->prepare("UPDATE conversation_members SET role = 'owner' WHERE conversation_id = ? AND user_id = ?")->execute([$cid, $uid]); } catch (Throwable $e) {}
+    }
+    if (!in_array($role, ['owner', 'admin'], true)) json_out(['ok' => false, 'error' => 'forbidden'], 403);
+    if (!$memberIds) json_out(['ok' => false, 'error' => 'no_members'], 422);
+
+    // فقط کاربرهای معتبر
+    $in_ph = implode(',', array_fill(0, count($memberIds), '?'));
+    $vq = db()->prepare("SELECT id FROM users WHERE id IN ($in_ph)");
+    $vq->execute($memberIds);
+    $validIds = array_map('intval', $vq->fetchAll(PDO::FETCH_COLUMN));
+
+    $existQ = db()->prepare('SELECT user_id FROM conversation_members WHERE conversation_id = ?');
+    $existQ->execute([$cid]);
+    $existing = array_map('intval', $existQ->fetchAll(PDO::FETCH_COLUMN));
+    $toAdd = array_diff($validIds, $existing);
+
+    $ins = db()->prepare("INSERT INTO conversation_members(conversation_id, user_id, role) VALUES(?, ?, 'member')");
+    $added = 0;
+    foreach ($toAdd as $mid) {
+        try { $ins->execute([$cid, $mid]); $added++; } catch (Throwable $e) {}
+    }
+    if ($added > 0) {
+        db()->prepare('UPDATE conversations SET updated_at = NOW() WHERE id = ?')->execute([$cid]);
+    }
+    json_out(['ok' => true, 'added' => $added]);
+}
+
+if ($action === 'join_by_slug') {
+    $slug = strtolower(trim((string)($in['slug'] ?? '')));
+    if ($slug === '' || !preg_match('/^[a-z0-9_]{3,32}$/', $slug)) json_out(['ok' => false, 'error' => 'invalid_slug'], 422);
+
+    $q = db()->prepare("SELECT * FROM conversations WHERE slug = ? AND type IN ('group','channel') LIMIT 1");
+    $q->execute([$slug]);
+    $c = $q->fetch();
+    if (!$c) json_out(['ok' => false, 'error' => 'not_found'], 404);
+
+    // private: only if already member or public
+    $q = db()->prepare('SELECT role FROM conversation_members WHERE conversation_id = ? AND user_id = ?');
+    $q->execute([$c['id'], $uid]);
+    $mem = $q->fetch();
+    if (!$mem) {
+        if (!(int)$c['is_public']) json_out(['ok' => false, 'error' => 'private_channel'], 403);
+        db()->prepare("INSERT INTO conversation_members(conversation_id, user_id, role) VALUES(?, ?, 'member')")->execute([(int)$c['id'], $uid]);
+        $role = 'member';
+    } else {
+        $role = $mem['role'];
+    }
+
+    json_out([
+        'ok' => true,
+        'conversation_id' => (int)$c['id'],
+        'type' => $c['type'],
+        'title' => $c['title'],
+        'slug' => $c['slug'],
+        'description' => $c['description'],
+        'is_public' => (bool)$c['is_public'],
+        'avatar_path' => absolute_url($c['avatar_path'] ?? null),
+        'role' => $role,
+        'link' => rtrim(APP_BASE_URL, '/') . '/mouj-messenger.html#c/' . $c['slug'],
+    ]);
+}
+
+if ($action === 'search_public') {
+    $qstr = trim((string)($in['q'] ?? ''));
+    if (mb_strlen($qstr) < 2) json_out(['ok' => true, 'results' => []]);
+    $like = '%' . $qstr . '%';
+    $st = db()->prepare("
+        SELECT c.id, c.type, c.title, c.slug, c.description, c.avatar_path, c.is_public
+        FROM conversations c
+        WHERE c.type IN ('group','channel') AND c.is_public = 1
+          AND (c.slug LIKE ? OR c.title LIKE ?)
+        ORDER BY c.title ASC
+        LIMIT 30
+    ");
+    $st->execute([$like, $like]);
+    $out = [];
+    foreach ($st as $r) {
+        $out[] = [
+            'conversation_id' => (int)$r['id'],
+            'type' => $r['type'],
+            'title' => $r['title'],
+            'slug' => $r['slug'],
+            'description' => $r['description'],
+            'avatar_path' => absolute_url($r['avatar_path'] ?? null),
+            'member_count' => null,
+            'is_public' => true,
+        ];
+    }
+    json_out(['ok' => true, 'results' => $out]);
+}
+
+if ($action === 'saved_messages') {
+    // get or create personal saved messages
+    $q = db()->prepare("SELECT c.id FROM conversations c JOIN conversation_members cm ON cm.conversation_id = c.id AND cm.user_id = ? WHERE c.type = 'saved' LIMIT 1");
+    $q->execute([$uid]);
+    $row = $q->fetch();
+    if ($row) {
+        $cid = (int)$row['id'];
+    } else {
+        $pdo = db();
+        $pdo->beginTransaction();
+        $pdo->prepare("INSERT INTO conversations(type, title, created_by, updated_at) VALUES('saved', 'پیام‌های ذخیره‌شده', ?, NOW())")->execute([$uid]);
+        $cid = (int)$pdo->lastInsertId();
+        $pdo->prepare("INSERT INTO conversation_members(conversation_id, user_id, role) VALUES(?, ?, 'owner')")->execute([$cid, $uid]);
+        $pdo->commit();
+    }
+    json_out(['ok' => true, 'conversation_id' => $cid, 'title' => 'پیام‌های ذخیره‌شده', 'type' => 'saved']);
+}
+
+if ($action === 'conversation_info') {
+    $cid = (int)($in['conversation_id'] ?? 0);
+    $q = db()->prepare('SELECT c.*, cm.role FROM conversations c JOIN conversation_members cm ON cm.conversation_id = c.id AND cm.user_id = ? WHERE c.id = ?');
+    $q->execute([$uid, $cid]);
+    $c = $q->fetch();
+    if (!$c) json_out(['ok' => false, 'error' => 'not_found'], 404);
+
+    $role = $c['role'] ?: 'member';
+    // اگر سازنده گروه/کانال است ولی role هنوز member است، ارتقا به owner
+    if ($role === 'member' && !empty($c['created_by']) && (int)$c['created_by'] === $uid && in_array($c['type'], ['group', 'channel'], true)) {
+        try {
+            db()->prepare("UPDATE conversation_members SET role = 'owner' WHERE conversation_id = ? AND user_id = ?")->execute([$cid, $uid]);
+            $role = 'owner';
+        } catch (Throwable $e) {}
+    }
+    $isStaff = in_array($role, ['owner', 'admin'], true);
+    $memberCount = 1; try { $mq=db()->prepare('SELECT COUNT(*) FROM conversation_members WHERE conversation_id=?'); $mq->execute([$cid]); $memberCount=(int)$mq->fetchColumn(); } catch(Throwable $e) {}
+    $deletedAccount = false;
+    if ($c['type'] === 'private') {
+        try {
+            $dq = db()->prepare('SELECT u.deleted_at FROM conversation_members cm JOIN users u ON u.id=cm.user_id WHERE cm.conversation_id=? AND cm.user_id<>? LIMIT 1');
+            $dq->execute([$cid, $uid]);
+            $du = $dq->fetchColumn();
+            $deletedAccount = !empty($du);
+        } catch (Throwable $e) {}
+    }
+    json_out([
+        'ok' => true,
+        'conversation' => [
+            'conversation_id' => (int)$c['id'],
+            'type' => $c['type'],
+            'title' => $c['title'],
+            'slug' => $c['slug'],
+            'description' => $c['description'],
+            'is_public' => (bool)($c['is_public'] ?? 0),
+            'member_count' => $memberCount,
+            'avatar_path' => absolute_url($c['avatar_path'] ?? null),
+            'role' => $role,
+            'link' => !empty($c['slug']) ? (rtrim(APP_BASE_URL, '/') . '/mouj-messenger.html#c/' . $c['slug']) : null,
+            'can_post' => ($c['type'] !== 'channel') || $isStaff,
+            'can_edit' => $isStaff && in_array($c['type'], ['group', 'channel'], true),
+            'deleted_account' => $deletedAccount,
+        ],
+    ]);
+}
+
+
+
+if ($action === 'messages') {
+    $cid = (int)($in['conversation_id'] ?? 0);
+    $after = (int)($in['after_id'] ?? 0);
+    $q = db()->prepare('SELECT 1 FROM conversation_members WHERE conversation_id = ? AND user_id = ?');
+    $q->execute([$cid, $uid]);
+    if (!$q->fetch()) json_out(['ok' => false, 'error' => 'forbidden'], 403);
+
+    // سازگاری با دیتابیس بدون ستون‌های media
+    $hasMediaCols = true;
+    try {
+        db()->query('SELECT msg_type, file_path FROM messages LIMIT 0');
+    } catch (Throwable $e) {
+        $hasMediaCols = false;
+    }
+
+    if ($hasMediaCols) {
+        $sql = 'SELECT m.id, m.body, m.msg_type, m.file_path, m.file_mime, m.file_name, m.file_size,
+                       m.created_at, m.edited_at, m.sender_id, m.reply_to_id, u.first_name, u.last_name
+                FROM messages m JOIN users u ON u.id = m.sender_id
+                WHERE m.conversation_id = ? AND m.deleted_at IS NULL AND m.id > ?
+                ORDER BY m.id ASC LIMIT 200';
+    } else {
+        $sql = 'SELECT m.id, m.body, m.created_at, m.sender_id, u.first_name, u.last_name
+                FROM messages m JOIN users u ON u.id = m.sender_id
+                WHERE m.conversation_id = ? AND m.deleted_at IS NULL AND m.id > ?
+                ORDER BY m.id ASC LIMIT 200';
+    }
+    $q = db()->prepare($sql);
+    $q->execute([$cid, $after]);
+    $rows = $q->fetchAll();
+
+    $otherRead = 0;
+    try {
+        $q2 = db()->prepare('SELECT MAX(last_read_message_id) AS mx FROM conversation_members WHERE conversation_id = ? AND user_id <> ?');
+        $q2->execute([$cid, $uid]);
+        $or = $q2->fetch();
+        $otherRead = $or && $or['mx'] !== null ? (int)$or['mx'] : 0;
+    } catch (Throwable $e) {}
+
+    $out = [];
+    foreach ($rows as $r) {
+        $item = [
+            'id' => (int)$r['id'],
+            'body' => decrypt_message_body((string)$r['body']),
+            'msg_type' => $hasMediaCols ? ($r['msg_type'] ?: 'text') : 'text',
+            'file_path' => $hasMediaCols ? absolute_url($r['file_path'] ?? null) : null,
+            'file_mime' => $hasMediaCols ? ($r['file_mime'] ?? null) : null,
+            'file_name' => $hasMediaCols ? ($r['file_name'] ?? null) : null,
+            'file_size' => ($hasMediaCols && $r['file_size'] !== null) ? (int)$r['file_size'] : null,
+            'created_at' => $r['created_at'],
+            'edited_at' => $r['edited_at'] ?? null,
+            'sender_id' => (int)$r['sender_id'],
+            'reply_to_id' => isset($r['reply_to_id']) && $r['reply_to_id'] ? (int)$r['reply_to_id'] : null,
+            'first_name' => $r['first_name'],
+            'last_name' => $r['last_name'],
+        ];
+        if ((int)$r['sender_id'] === $uid) {
+            $item['status'] = ((int)$r['id'] <= $otherRead) ? 'seen' : 'sent';
+        }
+        $out[] = $item;
+    }
+
+    try {
+        db()->prepare('UPDATE conversation_members SET last_read_message_id = (SELECT COALESCE(MAX(id), 0) FROM messages WHERE conversation_id = ?) WHERE conversation_id = ? AND user_id = ?')
+            ->execute([$cid, $cid, $uid]);
+    } catch (Throwable $e) {}
+
+    $typing = [];
+    try {
+        $tq = db()->prepare('SELECT t.user_id, u.first_name FROM typing_status t JOIN users u ON u.id = t.user_id WHERE t.conversation_id = ? AND t.user_id <> ? AND t.updated_at > DATE_SUB(NOW(), INTERVAL 5 SECOND)');
+        $tq->execute([$cid, $uid]);
+        foreach ($tq as $tr) {
+            $typing[] = ['user_id' => (int)$tr['user_id'], 'first_name' => $tr['first_name']];
+        }
+    } catch (Throwable $e) {}
+
+    json_out(['ok' => true, 'messages' => $out, 'typing' => $typing]);
+}
+
+
+if ($action === 'send_message') {
+    $cid = (int)($in['conversation_id'] ?? 0);
+    $body = trim((string)($in['body'] ?? ''));
+    $msgType = trim((string)($in['msg_type'] ?? 'text'));
+    $replyTo = (int)($in['reply_to_id'] ?? 0) ?: null;
+    if (!in_array($msgType, ['text', 'image', 'video', 'voice', 'video_message', 'file', 'sticker'], true)) $msgType = 'text';
+    if ($cid < 1) json_out(['ok' => false, 'error' => 'invalid_input'], 422);
+
+    // بلاک دوطرفه در چت خصوصی
+    try {
+        $bq = db()->prepare("SELECT c.type FROM conversations c WHERE c.id = ?");
+        $bq->execute([$cid]);
+        $bc = $bq->fetch();
+        if ($bc && $bc['type'] === 'private') {
+            $oq = db()->prepare('SELECT user_id FROM conversation_members WHERE conversation_id = ? AND user_id <> ? LIMIT 1');
+            $oq->execute([$cid, $uid]);
+            $other = $oq->fetch();
+            if ($other) {
+                $bl = db()->prepare('SELECT 1 FROM blocked_users WHERE (blocker_id = ? AND blocked_id = ?) OR (blocker_id = ? AND blocked_id = ?) LIMIT 1');
+                $bl->execute([$uid, $other['user_id'], $other['user_id'], $uid]);
+                if ($bl->fetch()) json_out(['ok' => false, 'error' => 'blocked'], 403);
+            }
+        }
+    } catch (Throwable $e) {}
+
+    $q = db()->prepare('SELECT cm.role, c.type FROM conversation_members cm JOIN conversations c ON c.id = cm.conversation_id WHERE cm.conversation_id = ? AND cm.user_id = ?');
+    $q->execute([$cid, $uid]);
+    $mem = $q->fetch();
+    if (!$mem) json_out(['ok' => false, 'error' => 'forbidden'], 403);
+    if ($mem['type'] === 'channel' && !in_array($mem['role'], ['owner', 'admin'], true)) {
+        json_out(['ok' => false, 'error' => 'only_admin_can_post'], 403);
+    }
+
+    $hasMediaCols = true;
+    try {
+        db()->query('SELECT msg_type, file_path FROM messages LIMIT 0');
+    } catch (Throwable $e) {
+        $hasMediaCols = false;
+    }
+
+    $filePath = null;
+    $fileMime = null;
+    $fileName = null;
+    $fileSize = null;
+
+    if (isset($_FILES['file']) && is_array($_FILES['file'])) {
+        $err = (int)($_FILES['file']['error'] ?? UPLOAD_ERR_NO_FILE);
+        if ($err !== UPLOAD_ERR_OK) {
+            $map = [
+                UPLOAD_ERR_INI_SIZE => 'file_too_large',
+                UPLOAD_ERR_FORM_SIZE => 'file_too_large',
+                UPLOAD_ERR_PARTIAL => 'upload_partial',
+                UPLOAD_ERR_NO_FILE => 'no_file',
+                UPLOAD_ERR_NO_TMP_DIR => 'server_upload_config',
+                UPLOAD_ERR_CANT_WRITE => 'server_upload_config',
+            ];
+            json_out(['ok' => false, 'error' => $map[$err] ?? 'upload_failed', 'php_upload_error' => $err], 422);
+        }
+        if (!$hasMediaCols) {
+            json_out(['ok' => false, 'error' => 'migration_required', 'hint' => 'migrate_v3.sql را اجرا کنید'], 500);
+        }
+        $f = $_FILES['file'];
+        if ($f['size'] > 25 * 1024 * 1024) json_out(['ok' => false, 'error' => 'file_too_large'], 422);
+
+        $mime = 'application/octet-stream';
+        if (class_exists('finfo')) {
+            $mime = (new finfo(FILEINFO_MIME_TYPE))->file($f['tmp_name']) ?: $mime;
+        } elseif (function_exists('mime_content_type')) {
+            $mime = mime_content_type($f['tmp_name']) ?: $mime;
+        }
+        // بعضی آیفون‌ها type را خالی یا اشتباه می‌فرستند
+        $clientType = (string)($f['type'] ?? '');
+        if ($mime === 'application/octet-stream' && $clientType) $mime = $clientType;
+
+        $allowedImg = [
+            'image/jpeg' => 'jpg', 'image/png' => 'png', 'image/webp' => 'webp', 'image/gif' => 'gif',
+            'image/heic' => 'heic', 'image/heif' => 'heif', 'image/heic-sequence' => 'heic',
+        ];
+        $allowedVid = ['video/mp4' => 'mp4', 'video/webm' => 'webm', 'video/quicktime' => 'mov', 'video/3gpp' => '3gp'];
+        $allowedFile = [
+            'application/pdf' => 'pdf', 'application/zip' => 'zip', 'application/msword' => 'doc',
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document' => 'docx',
+            'audio/mpeg' => 'mp3', 'audio/ogg' => 'ogg', 'audio/webm' => 'webm', 'audio/mp4' => 'm4a', 'video/webm' => 'webm', 'text/plain' => 'txt',
+            'application/octet-stream' => 'bin',
+        ];
+        $ext = null;
+        if (isset($allowedImg[$mime]) || str_starts_with($mime, 'image/')) {
+            $ext = $allowedImg[$mime] ?? 'jpg';
+            if ($msgType === 'text' || $msgType === 'file') $msgType = 'image';
+        } elseif (isset($allowedVid[$mime]) || str_starts_with($mime, 'video/')) {
+            $ext = $allowedVid[$mime] ?? 'mp4';
+            if ($msgType === 'text' || $msgType === 'file') $msgType = 'video';
+            if ($msgType === 'video_message') $msgType = 'video_message';
+        } elseif (str_starts_with($mime, 'audio/')) {
+            $ext = $allowedFile[$mime] ?? 'webm';
+            $msgType = ($msgType === 'voice') ? 'voice' : 'file';
+        } elseif (isset($allowedFile[$mime])) {
+            $ext = $allowedFile[$mime];
+            if ($msgType === 'voice') $msgType = 'voice'; elseif ($msgType === 'text') $msgType = 'file';
+        } elseif ($msgType === 'sticker' && str_starts_with($mime, 'image/')) {
+            $ext = 'png';
+        } else {
+            // از روی پسوند فایل حدس بزن
+            $orig = strtolower((string)($f['name'] ?? ''));
+            if (preg_match('/\.(jpe?g|png|gif|webp|heic|heif)$/', $orig, $m)) {
+                $ext = $m[1] === 'jpeg' ? 'jpg' : $m[1];
+                $msgType = 'image';
+            } elseif (preg_match('/\.(mp4|webm|mov|3gp)$/', $orig, $m)) {
+                $ext = $m[1];
+                $msgType = 'video';
+            } else {
+                json_out(['ok' => false, 'error' => 'invalid_file_type', 'mime' => $mime], 422);
+            }
+        }
+
+        $uploadDir = __DIR__ . '/uploads';
+        if (!is_dir($uploadDir)) {
+            if (!@mkdir($uploadDir, 0755, true)) {
+                json_out(['ok' => false, 'error' => 'upload_dir_failed'], 500);
+            }
+        }
+        if (!is_writable($uploadDir)) {
+            json_out(['ok' => false, 'error' => 'upload_dir_not_writable'], 500);
+        }
+        $name = bin2hex(random_bytes(12)) . '.' . $ext;
+        if (!move_uploaded_file($f['tmp_name'], $uploadDir . '/' . $name)) {
+            json_out(['ok' => false, 'error' => 'upload_failed'], 500);
+        }
+        $filePath = 'uploads/' . $name;
+        $fileMime = $mime;
+        $fileName = basename((string)($f['name'] ?? $name));
+        $fileSize = (int)$f['size'];
+        if ($body === '') {
+            $body = $msgType === 'image' ? '📷 عکس' : ($msgType === 'video' ? '🎬 ویدیو' : ($msgType === 'voice' ? '🎤 ویس' : ($msgType === 'video_message' ? '🎥 پیام ویدیویی' : ($msgType === 'sticker' ? 'استیکر' : '📎 فایل'))));
+        }
+    } else {
+        if ($body === '') json_out(['ok' => false, 'error' => 'invalid_input'], 422);
+        if (mb_strlen($body) > 4000) json_out(['ok' => false, 'error' => 'message_too_long'], 422);
+        // استیکرهای SVG داخلی بدون فایل آپلودی — فقط کلید در body
+        if ($msgType !== 'sticker') {
+            $msgType = 'text';
+        }
+    }
+
+    // Encrypt the message body before storing it.
+    // Previous build accidentally defined $bodyForDb inside open_chat,
+    // so send_message could reach INSERT with an undefined variable and fail.
+    $bodyForDb = encrypt_message_body($body);
+
+    $pdo = db();
+    $pdo->beginTransaction();
+    try {
+        $hasReplyCol = true;
+        try { db()->query('SELECT reply_to_id FROM messages LIMIT 0'); } catch (Throwable $e) { $hasReplyCol = false; }
+        if ($hasMediaCols && $hasReplyCol) {
+            $pdo->prepare('INSERT INTO messages(conversation_id, sender_id, body, msg_type, file_path, file_mime, file_name, file_size, reply_to_id) VALUES(?,?,?,?,?,?,?,?,?)')
+                ->execute([$cid, $uid, $bodyForDb, $msgType, $filePath, $fileMime, $fileName, $fileSize, $replyTo]);
+        } elseif ($hasMediaCols) {
+            $pdo->prepare('INSERT INTO messages(conversation_id, sender_id, body, msg_type, file_path, file_mime, file_name, file_size) VALUES(?,?,?,?,?,?,?,?)')
+                ->execute([$cid, $uid, $bodyForDb, $msgType, $filePath, $fileMime, $fileName, $fileSize]);
+        } elseif ($hasReplyCol) {
+            $pdo->prepare('INSERT INTO messages(conversation_id, sender_id, body, reply_to_id) VALUES(?,?,?,?)')
+                ->execute([$cid, $uid, $bodyForDb, $replyTo]);
+        } else {
+            $pdo->prepare('INSERT INTO messages(conversation_id, sender_id, body) VALUES(?,?,?)')
+                ->execute([$cid, $uid, $bodyForDb]);
+        }
+        $mid = (int)$pdo->lastInsertId();
+        $pdo->prepare('UPDATE conversations SET updated_at = NOW() WHERE id = ?')->execute([$cid]);
+        try {
+            $pdo->prepare('DELETE FROM typing_status WHERE conversation_id = ? AND user_id = ?')->execute([$cid, $uid]);
+        } catch (Throwable $e) {}
+        $pdo->commit();
+    } catch (Throwable $e) {
+        if ($pdo->inTransaction()) $pdo->rollBack();
+        error_log('send_message: ' . $e->getMessage());
+        json_out(['ok' => false, 'error' => 'server_error', 'detail' => $e->getMessage()], 500);
+    }
+
+    if ($hasMediaCols) {
+        $q = $pdo->prepare('SELECT id, body, msg_type, file_path, file_mime, file_name, file_size, created_at, edited_at, sender_id FROM messages WHERE id = ?');
+    } else {
+        $q = $pdo->prepare('SELECT id, body, created_at, sender_id FROM messages WHERE id = ?');
+    }
+    $q->execute([$mid]);
+    $msg = $q->fetch();
+    if ($hasMediaCols) {
+        $msg['file_path'] = absolute_url($msg['file_path'] ?? null);
+    } else {
+        $msg['msg_type'] = 'text';
+        $msg['file_path'] = null;
+    }
+    $msg['status'] = 'sent';
+    try {
+        mouj_notify_message_recipients($cid, $uid, $mid, (string)($msg['msg_type'] ?? $msgType));
+    } catch (Throwable $e) {
+        // Push failures must never make a successfully stored message appear to fail.
+        error_log('Mouj push notification failed: ' . $e->getMessage());
+    }
+    json_out(['ok' => true, 'message' => $msg]);
+}
+
+if ($action === 'typing') {
+    $cid = (int)($in['conversation_id'] ?? 0);
+    if ($cid < 1) json_out(['ok' => false, 'error' => 'invalid_input'], 422);
+    $q = db()->prepare('SELECT 1 FROM conversation_members WHERE conversation_id = ? AND user_id = ?');
+    $q->execute([$cid, $uid]);
+    if (!$q->fetch()) json_out(['ok' => false, 'error' => 'forbidden'], 403);
+    db()->prepare('INSERT INTO typing_status(conversation_id, user_id, updated_at) VALUES(?,?,NOW()) ON DUPLICATE KEY UPDATE updated_at = NOW()')
+        ->execute([$cid, $uid]);
+    json_out(['ok' => true]);
+}
+
+
+if ($action === 'my_sessions') {
+    $t = trim((string)($_SERVER['HTTP_AUTHORIZATION'] ?? ''));
+    if (stripos($t, 'Bearer ') === 0) $t = trim(substr($t, 7));
+    $curHash = $t ? hash('sha256', $t) : '';
+
+    $list = [];
+    try {
+        $st = db()->prepare('SELECT id, user_agent, device_label, ip, created_at, last_seen, token_hash FROM auth_sessions WHERE user_id = ? AND expires_at > NOW() ORDER BY last_seen DESC');
+        $st->execute([$uid]);
+        foreach ($st as $r) {
+            $list[] = [
+                'id' => (int)$r['id'],
+                'device_label' => ($r['device_label'] ?: parse_device_label($r['user_agent'] ?? '')),
+                'user_agent' => $r['user_agent'],
+                'ip' => $r['ip'],
+                'created_at' => $r['created_at'],
+                'last_seen' => $r['last_seen'],
+                'is_current' => ($r['token_hash'] === $curHash),
+            ];
+        }
+    } catch (Throwable $e) {
+        // ستون‌های user_agent/ip هنوز ساخته نشده‌اند — نسخه ساده
+        try {
+            $st = db()->prepare('SELECT id, created_at, last_seen, token_hash FROM auth_sessions WHERE user_id = ? AND expires_at > NOW() ORDER BY last_seen DESC');
+            $st->execute([$uid]);
+            foreach ($st as $r) {
+                $list[] = [
+                    'id' => (int)$r['id'],
+                    'device_label' => ($r['token_hash'] === $curHash) ? 'همین دستگاه' : 'دستگاه دیگر',
+                    'user_agent' => null,
+                    'ip' => null,
+                    'created_at' => $r['created_at'],
+                    'last_seen' => $r['last_seen'],
+                    'is_current' => ($r['token_hash'] === $curHash),
+                ];
+            }
+        } catch (Throwable $e2) {
+            error_log('my_sessions: ' . $e2->getMessage());
+            json_out(['ok' => false, 'error' => 'server_error', 'detail' => $e2->getMessage()], 500);
+        }
+    }
+    json_out(['ok' => true, 'sessions' => $list]);
+}
+
+if ($action === 'revoke_session') {
+    $sid = (int)($in['session_id'] ?? 0);
+    if ($sid < 1) json_out(['ok' => false, 'error' => 'invalid_input'], 422);
+    $t = trim((string)($_SERVER['HTTP_AUTHORIZATION'] ?? ''));
+    if (stripos($t, 'Bearer ') === 0) $t = trim(substr($t, 7));
+    $curHash = $t ? hash('sha256', $t) : '';
+    $q = db()->prepare('SELECT id, token_hash FROM auth_sessions WHERE id = ? AND user_id = ?');
+    $q->execute([$sid, $uid]);
+    $row = $q->fetch();
+    if (!$row) json_out(['ok' => false, 'error' => 'not_found'], 404);
+    if ($row['token_hash'] === $curHash) json_out(['ok' => false, 'error' => 'cannot_revoke_current'], 422);
+    db()->prepare('DELETE FROM auth_sessions WHERE id = ?')->execute([$sid]);
+    json_out(['ok' => true]);
+}
+
+if ($action === 'update_profile') {
+    $first = trim((string)($in['first_name'] ?? ''));
+    $last = trim((string)($in['last_name'] ?? ''));
+    $username = strtolower(trim((string)($in['username'] ?? '')));
+
+    if ($first === '' || !preg_match('/^[a-zA-Z0-9_]{3,32}$/', $username)) {
+        json_out(['ok' => false, 'error' => 'invalid_input'], 422);
+    }
+
+    $q = db()->prepare('SELECT id FROM users WHERE username = ? AND id <> ?');
+    $q->execute([$username, $uid]);
+    if ($q->fetch()) json_out(['ok' => false, 'error' => 'username_taken'], 422);
+
+    $avatar = null;
+    if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] === UPLOAD_ERR_OK) {
+        if ($_FILES['avatar']['size'] > 3 * 1024 * 1024) {
+            json_out(['ok' => false, 'error' => 'avatar_too_large'], 422);
+        }
+        $mime = (new finfo(FILEINFO_MIME_TYPE))->file($_FILES['avatar']['tmp_name']);
+        $allowed = ['image/jpeg' => 'jpg', 'image/png' => 'png', 'image/webp' => 'webp'];
+        if (!isset($allowed[$mime])) {
+            json_out(['ok' => false, 'error' => 'invalid_avatar'], 422);
+        }
+        if (!is_dir(__DIR__ . '/uploads')) {
+            mkdir(__DIR__ . '/uploads', 0755, true);
+        }
+        $name = bin2hex(random_bytes(12)) . '.' . $allowed[$mime];
+        if (!move_uploaded_file($_FILES['avatar']['tmp_name'], __DIR__ . '/uploads/' . $name)) {
+            json_out(['ok' => false, 'error' => 'avatar_upload_failed'], 500);
+        }
+        $avatar = 'uploads/' . $name;
+    }
+
+    if ($avatar) {
+        db()->prepare('UPDATE users SET first_name = ?, last_name = ?, username = ?, avatar_path = ?, last_seen = NOW() WHERE id = ?')
+            ->execute([$first, $last ?: null, $username, $avatar, $uid]);
+    } else {
+        db()->prepare('UPDATE users SET first_name = ?, last_name = ?, username = ?, last_seen = NOW() WHERE id = ?')
+            ->execute([$first, $last ?: null, $username, $uid]);
+    }
+
+    $q = db()->prepare('SELECT id, phone, username, first_name, last_name, avatar_path, last_seen FROM users WHERE id = ?');
+    $q->execute([$uid]);
+    $user = $q->fetch();
+    json_out(['ok' => true, 'user' => user_json($user)]);
+}
+
+if ($action === 'mark_read') {
+    $cid = (int)($in['conversation_id'] ?? 0);
+    $mid = (int)($in['message_id'] ?? 0);
+    db()->prepare('UPDATE conversation_members SET last_read_message_id = ? WHERE conversation_id = ? AND user_id = ?')
+        ->execute([$mid, $cid, $uid]);
+    json_out(['ok' => true]);
+}
+
+
+if ($action === 'edit_message') {
+    $mid = (int)($in['message_id'] ?? 0);
+    $body = trim((string)($in['body'] ?? ''));
+    if ($mid < 1 || $body === '') json_out(['ok'=>false,'error'=>'invalid_input'],422);
+    if (mb_strlen($body) > 4000) json_out(['ok'=>false,'error'=>'message_too_long'],422);
+
+    $q = db()->prepare('SELECT id, conversation_id, sender_id, body, msg_type, deleted_at FROM messages WHERE id = ? LIMIT 1');
+    $q->execute([$mid]);
+    $m = $q->fetch();
+    if (!$m) json_out(['ok'=>false,'error'=>'message_not_found'],404);
+    if ((int)$m['sender_id'] !== $uid) json_out(['ok'=>false,'error'=>'forbidden'],403);
+    if (!empty($m['deleted_at'])) json_out(['ok'=>false,'error'=>'message_deleted'],422);
+    if (($m['msg_type'] ?? 'text') !== 'text') json_out(['ok'=>false,'error'=>'only_text_can_be_edited'],422);
+
+    db()->prepare('UPDATE messages SET body = ?, edited_at = NOW() WHERE id = ? AND sender_id = ?')
+       ->execute([encrypt_message_body($body), $mid, $uid]);
+    $q = db()->prepare('SELECT id, conversation_id, sender_id, body, msg_type, created_at, edited_at FROM messages WHERE id = ?');
+    $q->execute([$mid]);
+    $out = $q->fetch();
+    json_out(['ok'=>true,'message'=>array_merge($out ?: [], ['body'=>decrypt_message_body((string)($out['body'] ?? ''))])]);
+}
+
+if ($action === 'delete_message') {
+    $mid = (int)($in['message_id'] ?? 0);
+    $scope = (string)($in['scope'] ?? 'me'); // me | everyone
+    if ($mid < 1) json_out(['ok' => false, 'error' => 'invalid_input'], 422);
+    $q = db()->prepare('SELECT m.*, cm.user_id FROM messages m JOIN conversation_members cm ON cm.conversation_id = m.conversation_id AND cm.user_id = ? WHERE m.id = ?');
+    $q->execute([$uid, $mid]);
+    $m = $q->fetch();
+    if (!$m) json_out(['ok' => false, 'error' => 'not_found'], 404);
+    if ($scope === 'everyone') {
+        if ((int)$m['sender_id'] !== $uid) json_out(['ok' => false, 'error' => 'forbidden'], 403);
+        db()->prepare('UPDATE messages SET deleted_at = NOW(), body = ? WHERE id = ?')->execute(['این پیام حذف شد', $mid]);
+    } else {
+        // حذف برای خود: فعلاً همان soft delete فقط اگر فرستنده است؛ برای دیگران hide سمت کلاینت
+        if ((int)$m['sender_id'] === $uid) {
+            db()->prepare('UPDATE messages SET deleted_at = NOW(), body = ? WHERE id = ?')->execute(['این پیام حذف شد', $mid]);
+        }
+    }
+    json_out(['ok' => true, 'message_id' => $mid, 'scope' => $scope]);
+}
+
+if ($action === 'pin_chat') {
+    $cid = (int)($in['conversation_id'] ?? 0);
+    $pin = !empty($in['pin']);
+    $q = db()->prepare('SELECT 1 FROM conversation_members WHERE conversation_id = ? AND user_id = ?');
+    $q->execute([$cid, $uid]);
+    if (!$q->fetch()) json_out(['ok' => false, 'error' => 'forbidden'], 403);
+    try {
+        if ($pin) {
+            db()->prepare('UPDATE conversation_members SET pinned_at = NOW() WHERE conversation_id = ? AND user_id = ?')->execute([$cid, $uid]);
+        } else {
+            db()->prepare('UPDATE conversation_members SET pinned_at = NULL WHERE conversation_id = ? AND user_id = ?')->execute([$cid, $uid]);
+        }
+    } catch (Throwable $e) {
+        json_out(['ok' => false, 'error' => 'migration_required'], 500);
+    }
+    json_out(['ok' => true, 'pinned' => $pin]);
+}
+
+if ($action === 'block_user') {
+    $tid = (int)($in['user_id'] ?? 0);
+    if ($tid < 1 || $tid === $uid) json_out(['ok' => false, 'error' => 'invalid_input'], 422);
+    try {
+        db()->prepare('INSERT IGNORE INTO blocked_users(blocker_id, blocked_id) VALUES(?, ?)')->execute([$uid, $tid]);
+    } catch (Throwable $e) {
+        json_out(['ok' => false, 'error' => 'migration_required'], 500);
+    }
+    json_out(['ok' => true]);
+}
+
+if ($action === 'unblock_user') {
+    $tid = (int)($in['user_id'] ?? 0);
+    db()->prepare('DELETE FROM blocked_users WHERE blocker_id = ? AND blocked_id = ?')->execute([$uid, $tid]);
+    json_out(['ok' => true]);
+}
+
+if ($action === 'blocked_list') {
+    try {
+        $st = db()->prepare('SELECT u.id, u.username, u.first_name, u.last_name, u.avatar_path FROM blocked_users b JOIN users u ON u.id = b.blocked_id WHERE b.blocker_id = ? ORDER BY b.created_at DESC');
+        $st->execute([$uid]);
+        $list = [];
+        foreach ($st as $r) $list[] = user_json($r);
+        json_out(['ok' => true, 'users' => $list]);
+    } catch (Throwable $e) {
+        json_out(['ok' => true, 'users' => []]);
+    }
+}
+
+if ($action === 'register_fcm_token') {
+    $fcmToken = trim((string)($in['fcm_token'] ?? $in['token'] ?? ''));
+    $platform = trim((string)($in['platform'] ?? 'android'));
+    if (strlen($fcmToken) < 50 || strlen($fcmToken) > 512 || preg_match('/[\x00-\x20]/', $fcmToken)) {
+        json_out(['ok' => false, 'error' => 'invalid_fcm_token'], 422);
+    }
+    if (!in_array($platform, ['android', 'ios', 'web'], true)) $platform = 'android';
+    try {
+        mouj_fcm_ensure_table();
+        db()->prepare('INSERT INTO mouj_fcm_tokens(user_id, fcm_token, platform) VALUES(?,?,?)
+            ON DUPLICATE KEY UPDATE user_id=VALUES(user_id), platform=VALUES(platform), updated_at=NOW()')
+            ->execute([$uid, $fcmToken, $platform]);
+        json_out(['ok' => true]);
+    } catch (Throwable $e) {
+        error_log('register_fcm_token: ' . $e->getMessage());
+        json_out(['ok' => false, 'error' => 'fcm_token_save_failed'], 500);
+    }
+}
+
+if ($action === 'unregister_fcm_token') {
+    $fcmToken = trim((string)($in['fcm_token'] ?? $in['token'] ?? ''));
+    if ($fcmToken !== '') {
+        try {
+            mouj_fcm_ensure_table();
+            db()->prepare('DELETE FROM mouj_fcm_tokens WHERE user_id=? AND fcm_token=?')->execute([$uid, $fcmToken]);
+        } catch (Throwable $e) {
+            error_log('unregister_fcm_token: ' . $e->getMessage());
+        }
+    }
+    json_out(['ok' => true]);
+}
+
+if ($action === 'save_push_subscription') {
+    $endpoint = trim((string)($in['endpoint'] ?? ''));
+    $p256dh = trim((string)($in['keys']['p256dh'] ?? $in['p256dh'] ?? ''));
+    $auth = trim((string)($in['keys']['auth'] ?? $in['auth'] ?? ''));
+    if ($endpoint === '' || $p256dh === '' || $auth === '') json_out(['ok' => false, 'error' => 'invalid_input'], 422);
+    $ua = substr((string)($_SERVER['HTTP_USER_AGENT'] ?? ''), 0, 500);
+    try {
+        db()->prepare('INSERT INTO push_subscriptions(user_id, endpoint, p256dh, auth, user_agent) VALUES(?,?,?,?,?)
+            ON DUPLICATE KEY UPDATE user_id = VALUES(user_id), p256dh = VALUES(p256dh), auth = VALUES(auth), user_agent = VALUES(user_agent)')
+            ->execute([$uid, $endpoint, $p256dh, $auth, $ua ?: null]);
+        json_out(['ok' => true]);
+    } catch (Throwable $e) {
+        json_out(['ok' => false, 'error' => 'migration_required', 'detail' => $e->getMessage()], 500);
+    }
+}
+
+if ($action === 'search_in_chat') {
+    $cid = (int)($in['conversation_id'] ?? 0);
+    $qstr = trim((string)($in['q'] ?? ''));
+    if ($cid < 1 || mb_strlen($qstr) < 1) json_out(['ok' => true, 'messages' => []]);
+    $q = db()->prepare('SELECT 1 FROM conversation_members WHERE conversation_id = ? AND user_id = ?');
+    $q->execute([$cid, $uid]);
+    if (!$q->fetch()) json_out(['ok' => false, 'error' => 'forbidden'], 403);
+    $st = db()->prepare('SELECT m.id, m.body, m.created_at, m.sender_id FROM messages m WHERE m.conversation_id = ? AND m.deleted_at IS NULL ORDER BY m.id DESC LIMIT 500');
+    $st->execute([$cid]);
+    $out = [];
+    foreach ($st as $r) {
+        $plain = decrypt_message_body((string)$r['body']);
+        if (mb_stripos($plain, $qstr) === false) continue;
+        $out[] = ['id' => (int)$r['id'], 'body' => $plain, 'created_at' => $r['created_at'], 'sender_id' => (int)$r['sender_id']];
+        if (count($out) >= 50) break;
+    }
+    json_out(['ok' => true, 'messages' => $out]);
+}
+
+
+
+if ($action === 'get_message') {
+    $mid = (int)($in['message_id'] ?? 0);
+    if ($mid < 1) json_out(['ok' => false, 'error' => 'invalid_input'], 422);
+    $q = db()->prepare('SELECT m.*, c.type AS conv_type, c.title AS conv_title FROM messages m JOIN conversations c ON c.id = m.conversation_id WHERE m.id = ? AND m.deleted_at IS NULL');
+    $q->execute([$mid]);
+    $m = $q->fetch();
+    if (!$m) json_out(['ok' => false, 'error' => 'not_found'], 404);
+    $q = db()->prepare('SELECT 1 FROM conversation_members WHERE conversation_id = ? AND user_id = ?');
+    $q->execute([(int)$m['conversation_id'], $uid]);
+    if (!$q->fetch()) json_out(['ok' => false, 'error' => 'forbidden'], 403);
+    $uq = db()->prepare('SELECT first_name, last_name, username FROM users WHERE id = ?');
+    $uq->execute([(int)$m['sender_id']]);
+    $sender = $uq->fetch() ?: [];
+    json_out([
+        'ok' => true,
+        'message' => [
+            'id' => (int)$m['id'],
+            'conversation_id' => (int)$m['conversation_id'],
+            'body' => decrypt_message_body((string)$m['body']),
+            'msg_type' => $m['msg_type'] ?? 'text',
+            'file_path' => absolute_url($m['file_path'] ?? null),
+            'file_name' => $m['file_name'] ?? null,
+            'created_at' => $m['created_at'],
+            'sender_id' => (int)$m['sender_id'],
+            'sender_name' => trim(($sender['first_name'] ?? '') . ' ' . ($sender['last_name'] ?? '')),
+            'sender_username' => $sender['username'] ?? null,
+        ],
+        'conversation' => [
+            'id' => (int)$m['conversation_id'],
+            'type' => $m['conv_type'],
+            'title' => $m['conv_title'],
+        ],
+    ]);
+}
+
+if ($action === 'forward_message') {
+    $mid = (int)($in['message_id'] ?? 0);
+    $targetCid = (int)($in['target_conversation_id'] ?? 0);
+    $targetUid = (int)($in['target_user_id'] ?? 0);
+    if ($mid < 1) json_out(['ok' => false, 'error' => 'invalid_input'], 422);
+
+    $q = db()->prepare('SELECT m.* FROM messages m WHERE m.id = ? AND m.deleted_at IS NULL');
+    $q->execute([$mid]);
+    $m = $q->fetch();
+    if (!$m) json_out(['ok' => false, 'error' => 'not_found'], 404);
+
+    // must be member of source
+    $q = db()->prepare('SELECT 1 FROM conversation_members WHERE conversation_id = ? AND user_id = ?');
+    $q->execute([(int)$m['conversation_id'], $uid]);
+    if (!$q->fetch()) json_out(['ok' => false, 'error' => 'forbidden'], 403);
+
+    $pdo = db();
+    if ($targetCid < 1 && $targetUid > 0) {
+        // open/create private chat
+        $q = $pdo->prepare("
+            SELECT c.id FROM conversations c
+            JOIN conversation_members a ON a.conversation_id = c.id AND a.user_id = ?
+            JOIN conversation_members b ON b.conversation_id = c.id AND b.user_id = ?
+            WHERE c.type = 'private' LIMIT 1
+        ");
+        $q->execute([$uid, $targetUid]);
+        $c = $q->fetch();
+        if ($c) {
+            $targetCid = (int)$c['id'];
+        } else {
+            $pdo->prepare("INSERT INTO conversations(type, updated_at) VALUES('private', NOW())")->execute();
+            $targetCid = (int)$pdo->lastInsertId();
+            $pdo->prepare('INSERT INTO conversation_members(conversation_id, user_id) VALUES(?, ?), (?, ?)')
+                ->execute([$targetCid, $uid, $targetCid, $targetUid]);
+        }
+    }
+    if ($targetCid < 1) json_out(['ok' => false, 'error' => 'invalid_target'], 422);
+
+    $q = $pdo->prepare('SELECT cm.role, c.type FROM conversation_members cm JOIN conversations c ON c.id = cm.conversation_id WHERE cm.conversation_id = ? AND cm.user_id = ?');
+    $q->execute([$targetCid, $uid]);
+    $mem = $q->fetch();
+    if (!$mem) json_out(['ok' => false, 'error' => 'forbidden'], 403);
+    if ($mem['type'] === 'channel' && !in_array($mem['role'], ['owner', 'admin'], true)) {
+        json_out(['ok' => false, 'error' => 'only_admin_can_post'], 403);
+    }
+
+    $body = decrypt_message_body((string)($m['body'] ?? ''));
+    $msgType = $m['msg_type'] ?? 'text';
+    $filePath = $m['file_path'] ?? null;
+    $fileMime = $m['file_mime'] ?? null;
+    $fileName = $m['file_name'] ?? null;
+    $fileSize = $m['file_size'] ?? null;
+    // prefix forward marker in body for text clarity
+    if ($msgType === 'text' || !$filePath) {
+        if ($body !== '' && !str_starts_with($body, '↪ ')) {
+            $body = '↪ ' . $body;
+        }
+    }
+
+    try {
+        $hasMedia = true;
+        try { $pdo->query('SELECT msg_type FROM messages LIMIT 0'); } catch (Throwable $e) { $hasMedia = false; }
+        if ($hasMedia) {
+            $pdo->prepare('INSERT INTO messages(conversation_id, sender_id, body, msg_type, file_path, file_mime, file_name, file_size) VALUES(?,?,?,?,?,?,?,?)')
+                ->execute([$targetCid, $uid, encrypt_message_body($body), $msgType, $filePath, $fileMime, $fileName, $fileSize]);
+        } else {
+            $pdo->prepare('INSERT INTO messages(conversation_id, sender_id, body) VALUES(?,?,?)')
+                ->execute([$targetCid, $uid, encrypt_message_body($body)]);
+        }
+        $newId = (int)$pdo->lastInsertId();
+        $pdo->prepare('UPDATE conversations SET updated_at = NOW() WHERE id = ?')->execute([$targetCid]);
+        json_out(['ok' => true, 'message_id' => $newId, 'conversation_id' => $targetCid]);
+    } catch (Throwable $e) {
+        json_out(['ok' => false, 'error' => 'server_error', 'detail' => $e->getMessage()], 500);
+    }
+}
+
+// ---- E2E crypto public keys ----
+if ($action === 'set_crypto_key') {
+    $pub = trim((string)($in['public_key'] ?? ''));
+    if ($pub === '' || strlen($pub) > 2000) json_out(['ok' => false, 'error' => 'invalid_key'], 422);
+    try {
+        db()->prepare('UPDATE users SET crypto_public_key = ? WHERE id = ?')->execute([$pub, $uid]);
+        json_out(['ok' => true]);
+    } catch (Throwable $e) {
+        // ستون هنوز ساخته نشده
+        try {
+            db()->exec('ALTER TABLE users ADD COLUMN crypto_public_key TEXT DEFAULT NULL');
+            db()->prepare('UPDATE users SET crypto_public_key = ? WHERE id = ?')->execute([$pub, $uid]);
+            json_out(['ok' => true]);
+        } catch (Throwable $e2) {
+            json_out(['ok' => false, 'error' => 'migration_required', 'detail' => $e2->getMessage()], 500);
+        }
+    }
+}
+
+if ($action === 'get_crypto_keys') {
+    $ids = $in['user_ids'] ?? [];
+    if (!is_array($ids)) $ids = [];
+    $ids = array_values(array_unique(array_filter(array_map('intval', $ids), fn($x) => $x > 0)));
+    if (!$ids) json_out(['ok' => true, 'keys' => new stdClass()]);
+    $ph = implode(',', array_fill(0, count($ids), '?'));
+    try {
+        $st = db()->prepare("SELECT id, crypto_public_key FROM users WHERE id IN ($ph)");
+        $st->execute($ids);
+        $keys = [];
+        foreach ($st as $r) {
+            if (!empty($r['crypto_public_key'])) $keys[(string)$r['id']] = $r['crypto_public_key'];
+        }
+        json_out(['ok' => true, 'keys' => $keys]);
+    } catch (Throwable $e) {
+        json_out(['ok' => true, 'keys' => new stdClass()]);
+    }
+}
+
+json_out(['ok' => false, 'error' => 'unknown_action'], 400);
