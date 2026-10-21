@@ -37,7 +37,7 @@ jobs:
           import subprocess
           import tempfile
           html = Path("mouj-messenger-fcm.html").read_text(encoding="utf-8")
-          scripts = re.findall(r"<script\\b[^>]*>([\\s\\S]*?)</script\\s*>", html, re.I)
+          scripts = re.findall(r"<script\b[^>]*>([\s\S]*?)</script\s*>", html, re.I)
           if not scripts:
               raise SystemExit("No inline script blocks found")
           failures = []
@@ -50,9 +50,9 @@ jobs:
               result = subprocess.run(["node", "--check", name], text=True, capture_output=True)
               Path(name).unlink(missing_ok=True)
               if result.returncode:
-                  failures.append(f"Inline script {i}:\\n{result.stderr}")
+                  failures.append(f"Inline script {i}:\n{result.stderr}")
           if failures:
-              print("\\n".join(failures))
+              print("\n".join(failures))
               raise SystemExit(1)
           print(f"Syntax OK: checked {len(scripts)} inline script blocks")
           PY
