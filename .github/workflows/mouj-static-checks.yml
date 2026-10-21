@@ -21,7 +21,7 @@ jobs:
 
       - name: PHP syntax checks
         run: |
-          php -l api-fcm.php
+          php -l api.php
           php -l config.php
 
       - name: Set up Node.js
