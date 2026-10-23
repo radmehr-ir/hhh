@@ -1,477 +1,657 @@
-PS D:\Mouj> \
+PS D:\Mouj> (Get-Content ".\app\src\main\java\ir\mouj\MainActivity.kt")[58..70]\
+\
+class MainActivity : ComponentActivity() {\
+\
+&#x20;   companion object {\
+&#x20;       private const val HOME_URL =\
+&#x20;           "https\://chat.radmehrweb.ir/mouj-messenger-test.html"\
+\
+&#x20;       private const val SITE_HOST = "chat.radmehrweb.ir"\
+&#x20;       private const val DOWNLOAD_CHANNEL_ID = "mouj_downloads"\
+&#x20;       private const val DOWNLOAD_CHANNEL_NAME = "دانلودهای موج"\
+\
+&#x20;       private const val TAG_PAGE = "MoujPageDebug"\
+&#x20;       private const val TAG_CONSOLE = "MoujWebConsole"\
 PS D:\Mouj> $adb = "D:\sdkk\platform-tools\adb.exe"\
 PS D:\Mouj> \
 PS D:\Mouj> & $adb logcat -c\
-PS D:\Mouj> \
-PS D:\Mouj> & $adb logcat -v time > "$env:USERPROFILE\Desktop\mouj-video-log.txt"\
-PS D:\Mouj> \
-PS D:\Mouj> Select-String \`\
-\>>   -Path "$env:USERPROFILE\Desktop\mouj-video-log.txt" \`\
-\>>   -Pattern "412|MoujWebConsole|MoujPageDebug|chromium|MediaPlayer|MediaCodec|ExoPlayer|ERR\_|video|MEDIA" \`\
-\>>   -Context 2,3 |\
-\>>   Select-Object -Last 100\
+PS D:\Mouj> & $adb logcat -d -v time |\
+\>>   Select-String -Pattern "MOUJ|WebView|chromium|Console|PAGE_STARTED|PAGE_FINISHED|PAGE_ERROR|HEIGHT_FIX|DOM_REPORT|Uncaught|ERR\_"                                                                                               \
 \
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33278:10-21 11:21:39.444 W/BufferQueueProducer(14505): [MediaCodec.release]\(id:38a900000007,api:3,p:14505,c:14505) detachBuffer: slot 39 is not owned by the producer (state = FREE)\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33279:10-21 11:21:39.444 W/BufferQueueProducer(14505): [MediaCodec.release]\(id:38a900000007,api:3,p:14505,c:14505) detachBuffer: slot 40 is not owned by the producer (state = FREE)\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33280:10-21 11:21:39.444 W/BufferQueueProducer(14505): [MediaCodec.release]\(id:38a900000007,api:3,p:14505,c:14505) detachBuffer: slot 41 is not owned by the producer (state = FREE)\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33281:10-21 11:21:39.445 W/BufferQueueProducer(14505): [MediaCodec.release]\(id:38a900000007,api:3,p:14505,c:14505) detachBuffer: slot 42 is not owned by the producer (state = FREE)\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33282:10-21 11:21:39.445 W/BufferQueueProducer(14505): [MediaCodec.release]\(id:38a900000007,api:3,p:14505,c:14505) detachBuffer: slot 43 is not owned by the producer (state = FREE)\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33283:10-21 11:21:39.445 W/BufferQueueProducer(14505): [MediaCodec.release]\(id:38a900000007,api:3,p:14505,c:14505) detachBuffer: slot 44 is not owned by the producer (state = FREE)\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33284:10-21 11:21:39.445 W/BufferQueueProducer(14505): [MediaCodec.release]\(id:38a900000007,api:3,p:14505,c:14505) detachBuffer: slot 45 is not owned by the producer (state = FREE)\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33285:10-21 11:21:39.445 W/BufferQueueProducer(14505): [MediaCodec.release]\(id:38a900000007,api:3,p:14505,c:14505) detachBuffer: slot 46 is not owned by the producer (state = FREE)\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33286:10-21 11:21:39.445 W/BufferQueueProducer(14505): [MediaCodec.release]\(id:38a900000007,api:3,p:14505,c:14505) detachBuffer: slot 47 is not owned by the producer (state = FREE)\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33287:10-21 11:21:39.445 W/BufferQueueProducer(14505): [MediaCodec.release]\(id:38a900000007,api:3,p:14505,c:14505) detachBuffer: slot 48 is not owned by the producer (state = FREE)\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33288:10-21 11:21:39.445 W/BufferQueueProducer(14505): [MediaCodec.release]\(id:38a900000007,api:3,p:14505,c:14505) detachBuffer: slot 49 is not owned by the producer (state = FREE)\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33289:10-21 11:21:39.446 W/BufferQueueProducer(14505): [MediaCodec.release]\(id:38a900000007,api:3,p:14505,c:14505) detachBuffer: slot 50 is not owned by the producer (state = FREE)\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33290:10-21 11:21:39.446 W/BufferQueueProducer(14505): [MediaCodec.release]\(id:38a900000007,api:3,p:14505,c:14505) detachBuffer: slot 51 is not owned by the producer (state = FREE)\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33291:10-21 11:21:39.446 W/BufferQueueProducer(14505): [MediaCodec.release]\(id:38a900000007,api:3,p:14505,c:14505) detachBuffer: slot 52 is not owned by the producer (state = FREE)\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33292:10-21 11:21:39.446 W/BufferQueueProducer(14505): [MediaCodec.release]\(id:38a900000007,api:3,p:14505,c:14505) detachBuffer: slot 53 is not owned by the producer (state = FREE)\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33293:10-21 11:21:39.446 W/BufferQueueProducer(14505): [MediaCodec.release]\(id:38a900000007,api:3,p:14505,c:14505) detachBuffer: slot 54 is not owned by the producer (state = FREE)\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33294:10-21 11:21:39.446 W/BufferQueueProducer(14505): [MediaCodec.release]\(id:38a900000007,api:3,p:14505,c:14505) detachBuffer: slot 55 is not owned by the producer (state = FREE)\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33295:10-21 11:21:39.446 W/BufferQueueProducer(14505): [MediaCodec.release]\(id:38a900000007,api:3,p:14505,c:14505) detachBuffer: slot 56 is not owned by the producer (state = FREE)\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33296:10-21 11:21:39.446 W/BufferQueueProducer(14505): [MediaCodec.release]\(id:38a900000007,api:3,p:14505,c:14505) detachBuffer: slot 57 is not owned by the producer (state = FREE)\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33297:10-21 11:21:39.447 W/BufferQueueProducer(14505): [MediaCodec.release]\(id:38a900000007,api:3,p:14505,c:14505) detachBuffer: slot 58 is not owned by the producer (state = FREE)\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33298:10-21 11:21:39.447 W/BufferQueueProducer(14505): [MediaCodec.release]\(id:38a900000007,api:3,p:14505,c:14505) detachBuffer: slot 59 is not owned by the producer (state = FREE)\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33299:10-21 11:21:39.447 W/BufferQueueProducer(14505): [MediaCodec.release]\(id:38a900000007,api:3,p:14505,c:14505) detachBuffer: slot 60 is not owned by the producer (state = FREE)\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33300:10-21 11:21:39.447 W/BufferQueueProducer(14505): [MediaCodec.release]\(id:38a900000007,api:3,p:14505,c:14505) detachBuffer: slot 61 is not owned by the producer (state = FREE)\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33301:10-21 11:21:39.447 W/BufferQueueProducer(14505): [MediaCodec.release]\(id:38a900000007,api:3,p:14505,c:14505) detachBuffer: slot 62 is not owned by the producer (state = FREE)\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33302:10-21 11:21:39.447 W/BufferQueueProducer(14505): [MediaCodec.release]\(id:38a900000007,api:3,p:14505,c:14505) detachBuffer: slot 63 is not owned by the producer (state = FREE)\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33303:10-21 11:21:39.447 W/C2BqBuffer( 1107): invalid producer producer(0), generation(0)\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33304:10-21 11:21:39.448 I/CCodec  (14505): [c2.qti.avc.decoder] state->set(RELEASED)\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33305:10-21 11:21:39.448 D/SurfaceUtils(14505): disconnecting from surface 0xb4000074f536a8d0, reason disconnectFromSurface\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33307:10-21 11:21:39.449 D/BufferPoolAccessor2.0(14505): bufferpool2 0xb400007405327448 : 0(0 size) total buffers - 0(0 size) used buffers - 58/64 (recycle/alloc) - 10/57 \
-(fetch/transfer)\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33308:10-21 11:21:39.449 I/QC2CompStore( 1107): Deleting component(c2.qti.avc.decoder) id(3668)\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33309:10-21 11:21:39.449 I/MediaCodec(14505): Codec shutdown complete\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33310:10-21 11:21:39.449 I/QC2Comp ( 1107): [avcD_3668] Deallocated component c2.qti.avc.decoder [id=3668]\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33311:10-21 11:21:39.450 I/ResourceManagerService( 1480): removeResourceInfo pid 14505, removed 230400 (width 480 height 480), isLowPriority 0, remained hw codec count 0\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33312:10-21 11:21:39.450 E/ANDR-PERF-TP( 1107): \~PerfThreadPool() 388: \~PerfThreadPool \
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33313:10-21 11:21:39.451 V/ResourceManagerHelper-JNI(27719): JNIMediaResourceHelper::notify eventType : 2, ext1 : 0, ext2 : 0\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33314:10-21 11:21:39.451 V/ResourceManagerHelper-JNI(27719): notify eventType : 2, ext1 : 0, ext2 : 0\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33315:10-21 11:21:39.451 V/ResourceManagerHelper-JNI( 1407): JNIMediaResourceHelper::notify eventType : 2, ext1 : 0, ext2 : 0\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33316:10-21 11:21:39.451 I/SemMediaResourceHelper(27719): onRemove\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33317:10-21 11:21:39.452 I/SemMediaResourceHelper( 4699): onRemove\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33318:10-21 11:21:39.451 V/ResourceManagerHelper-JNI( 1407): notify eventType : 2, ext1 : 0, ext2 : 0\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33319:10-21 11:21:39.452 I/SemDvfsHyPerManager( 4699): acquire hyper - BaseTABoost/4699@17, type = 1090523139\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33320:10-21 11:21:39.452 I/HYPER-HAL( 1091): [RequestManager.cpp]acquire(): Acquired ID : 11122703  [4699 / 17]    HINT :      list : [TABoost / 1] \
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33321:10-21 11:21:39.452 D/MediaCodec(14505): flushMediametrics\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33322:10-21 11:21:39.453 I/SemMediaResourceHelper( 1407): onRemove\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33323:10-21 11:21:39.454 D/MediaCodec(14505): flushMediametrics\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33324:10-21 11:21:39.454 W/MediaCodec(14505): no metrics handle found\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33325:10-21 11:21:39.502 D/MdnieScenarioControlService( 1407):  packageName : com.sec.android.app.launcher    className : com.sec.android.app.launcher.Launcher\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33326:10-21 11:21:39.502 D/SemInputDeviceManager( 1407): setProperty: (0) CMD,GRIP_DATA,1,45,7,24,720\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33327:10-21 11:21:39.503 D/TspStateManager( 1407): wrote command: cmd=1,45,7,24,720, type=1\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33738:10-21 11:21:39.707 D/SurfaceFlinger( 1169): GPIS:: requestGPISForClientComposition\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33739:10-21 11:21:39.708 V/WindowManager( 1407): Schedule remove starting ActivityRecord{b113ca4 u0 ir.mouj/.MainActivity t19718} startingWindow=Window{1e55bfd u0 \
-SnapshotStartingWindow for taskId=19718} animate=false Callers=com.android.server.wm.ActivityRecord.removeStartingWindow:3488 com.android.server.wm.ActivityRecord.onFirstWindowDrawn:7932 \
-com.android.server.wm.WindowState.performShowLocked:5346 com.android.server.wm.WindowStateAnimator.commitFinishDrawingLocked:281 com.android.server.wm.DisplayContent.lambda$new$8:1294 \
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33740:10-21 11:21:39.708 D/ShellTaskOrganizer( 2562): removeStartingWindow, removalInfo=StartingWindowRemovalInfo{taskId=19718 frame=null playRevealAnimation=false \
-roundedCornerRadius=0.0 deferRemoveForImeMode=0 windowlessSurface=false removeImmediately=false}\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33741:10-21 11:21:39.708 I/SemDvfsHyPerManager( 1407): acquire hyper - AMS_RESUME_TAIL/1407@21, type = -999\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33742:10-21 11:21:39.709 I/SemDvfsHyPerManager( 1407): acquire hyper - AMS_ACT_LAZY/1407@22, type = -999\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33743:10-21 11:21:39.709 D/ActivityManagerPerformance( 1407): AMP_acquire() TAIL\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33936:10-21 11:21:39.766 I/HBD     ( 5245): m0 EBD si S 0 \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33937:10-21 11:21:39.766 I/HBD     ( 5245): m updateContactDBLanguage : 65537 \
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33938:10-21 11:21:39.767 I/HBD     ( 5245): g isCoverDisplay : false, cached selected json info : SelectedLanguageInfo(languageVersion=4.1, currentLanguageOrder=1, \
-selectedLanguageList=[SelectedLanguage(id=4784128, isUsed=true, engName=Farsi, inputType=qwerty, activeOptionList=[auto_replace, auto_spacing]), SelectedLanguage(id=65537, isUsed=true, engName=English, inputType=qwerty, \
-activeOptionList=[auto_replace, auto_spacing, writing_assistant])]) \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33939:10-21 11:21:39.767 I/HBD     ( 5245): g updateSelectedLanguageCache is succeeded. English \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33940:10-21 11:21:39.767 I/InsetsSourceConsumer(14505): applyRequestedVisibilityToControl: visible=false, type=ime, host=ir.mouj/ir.mouj.MainActivity\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33941:10-21 11:21:39.768 I/HBD     ( 5245): l writeToFile path : /data/user/0/com.samsung.android.honeyboard/files/selected.json \
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33942:10-21 11:21:39.768 I/HBD     ( 5245): l writeToFile json : {"version":"4.1","currentLanguageOrder":1,"selected":[{"activeOptionList":["auto_replace","auto_spacing"],"engName":"F\
-arsi","id":4784128,"inputType":"qwerty","isUsed":true},{"activeOptionList":["auto_replace","auto_spacing","writing_assistant"],"engName":"English","id":65537,"inputType":"qwerty","isUsed":true}]} \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33943:10-21 11:21:39.768 I/Layer   ( 1169): id=299315 Destroyed Surface(name=4fcb19 InputMethod)/@0x23d26db - animation-leash of insets_animation#299315\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33944:10-21 11:21:39.769 I/HoneySpace.AppLaunchAnimationDelegate( 2853): window alpha : 1.0, current rect : RectF(17.939186, 566.5747, 860.77625, 2253.8096), crop rect : Rect(0, 184 \
-\- 1080, 2346)\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33945:10-21 11:21:39.770 I/HBD     ( 5245): l writeToFile complete \
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33946:10-21 11:21:39.771 I/HBD     ( 5245): g isCoverDisplay : false, cached selected json info : SelectedLanguageInfo(languageVersion=4.1, currentLanguageOrder=1, \
-selectedLanguageList=[SelectedLanguage(id=4784128, isUsed=true, engName=Farsi, inputType=qwerty, activeOptionList=[auto_replace, auto_spacing]), SelectedLanguage(id=65537, isUsed=true, engName=English, inputType=qwerty, \
-activeOptionList=[auto_replace, auto_spacing, writing_assistant])]) \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33947:10-21 11:21:39.771 I/HBD     ( 5245): n updateActionOptionFromPreference  \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33948:10-21 11:21:39.771 I/HBD     ( 5245): n before lang.activeOptionList =  [Ljava.lang.String;@4693e4f \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33949:10-21 11:21:39.771 I/HBD     ( 5245): n after lang.activeOptionList = [Ljava.lang.String;@d024612 \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33950:10-21 11:21:39.772 D/InputMethodManagerService( 1407): isImeSwitcherDisabledPackage : false\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33951:10-21 11:21:39.773 I/HBD     ( 5245): l writeToFile path : /data/user/0/com.samsung.android.honeyboard/files/selected.json \
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33952:10-21 11:21:39.773 I/HBD     ( 5245): l writeToFile json : {"version":"4.1","currentLanguageOrder":1,"selected":[{"activeOptionList":["auto_replace","auto_spacing"],"engName":"F\
-arsi","id":4784128,"inputType":"qwerty","isUsed":true},{"activeOptionList":["auto_replace","auto_spacing","writing_assistant"],"engName":"English","id":65537,"inputType":"qwerty","isUsed":true}]} \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33953:10-21 11:21:39.775 I/ViewRootImpl@1d9188a[LauncherActivity]\( 2853): mWNT: t=0xb40000756535d5d0 mBlastBufferQueue=0xb4000075553eeb10 fn= 45 mRenderHdrSdrRatio=1.0 caller= \
-com.android.systemui.shared.launcher.ViewRootImplCompat.mergeWithNextTransaction:4 com.honeyspace.transition.utils.SurfaceTransactionApplier.scheduleApply$lambda$1:26 \
-com.honeyspace.transition.utils.SurfaceTransactionApplier.c:0 \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33954:10-21 11:21:39.776 I/HoneySpace.AppLaunchAnimationDelegate( 2853): window alpha : 1.0, current rect : RectF(15.232536, 375.432, 893.8526, 2305.9556), crop rect : Rect(0, 20 - \
-1080, 2393)\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33955:10-21 11:21:39.776 I/HBD     ( 5245): l writeToFile complete \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33956:10-21 11:21:39.777 I/HBD     ( 5245): m normal : updateLanguage : English \
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33957:10-21 11:21:39.777 I/HBD     ( 5245): g isCoverDisplay : false, cached selected json info : SelectedLanguageInfo(languageVersion=4.1, currentLanguageOrder=1, \
-selectedLanguageList=[SelectedLanguage(id=4784128, isUsed=true, engName=Farsi, inputType=qwerty, activeOptionList=[auto_replace, auto_spacing]), SelectedLanguage(id=65537, isUsed=true, engName=English, inputType=qwerty, \
-activeOptionList=[auto_replace, auto_spacing, writing_assistant])]) \
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33958:10-21 11:21:39.777 I/HBD     ( 5245): g isCoverDisplay : false, cached selected json info : SelectedLanguageInfo(languageVersion=4.1, currentLanguageOrder=1, \
-selectedLanguageList=[SelectedLanguage(id=4784128, isUsed=true, engName=Farsi, inputType=qwerty, activeOptionList=[auto_replace, auto_spacing]), SelectedLanguage(id=65537, isUsed=true, engName=English, inputType=qwerty, \
-activeOptionList=[auto_replace, auto_spacing, writing_assistant])]) \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33959:10-21 11:21:39.777 I/HBD     ( 5245): n updateActionOptionFromPreference  \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33960:10-21 11:21:39.777 I/HBD     ( 5245): n before lang.activeOptionList =  [Ljava.lang.String;@d024612 \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33961:10-21 11:21:39.777 I/HBD     ( 5245): n after lang.activeOptionList = [Ljava.lang.String;@355a7e0 \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33962:10-21 11:21:39.778 I/HBD     ( 5245): l writeToFile path : /data/user/0/com.samsung.android.honeyboard/files/selected.json \
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33963:10-21 11:21:39.778 I/HBD     ( 5245): l writeToFile json : {"version":"4.1","currentLanguageOrder":1,"selected":[{"activeOptionList":["auto_replace","auto_spacing"],"engName":"F\
-arsi","id":4784128,"inputType":"qwerty","isUsed":true},{"activeOptionList":["auto_replace","auto_spacing","writing_assistant"],"engName":"English","id":65537,"inputType":"qwerty","isUsed":true}]} \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33964:10-21 11:21:39.779 I/HBD     ( 5245): l writeToFile complete \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33965:10-21 11:21:39.780 I/HBD     ( 5245): m normal : updateLanguage : English \
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33966:10-21 11:21:39.781 I/HBD     ( 5245): g isCoverDisplay : false, cached selected json info : SelectedLanguageInfo(languageVersion=4.1, currentLanguageOrder=1, \
-selectedLanguageList=[SelectedLanguage(id=4784128, isUsed=true, engName=Farsi, inputType=qwerty, activeOptionList=[auto_replace, auto_spacing]), SelectedLanguage(id=65537, isUsed=true, engName=English, inputType=qwerty, \
-activeOptionList=[auto_replace, auto_spacing, writing_assistant])]) \
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33967:10-21 11:21:39.781 I/HBD     ( 5245): g isCoverDisplay : false, cached selected json info : SelectedLanguageInfo(languageVersion=4.1, currentLanguageOrder=1, \
-selectedLanguageList=[SelectedLanguage(id=4784128, isUsed=true, engName=Farsi, inputType=qwerty, activeOptionList=[auto_replace, auto_spacing]), SelectedLanguage(id=65537, isUsed=true, engName=English, inputType=qwerty, \
-activeOptionList=[auto_replace, auto_spacing, writing_assistant])]) \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33968:10-21 11:21:39.781 I/HBD     ( 5245): g updateSelectedLanguageCache is succeeded. English \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33969:10-21 11:21:39.781 I/HBD     ( 5245): l writeToFile path : /data/user/0/com.samsung.android.honeyboard/files/selected.json \
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33970:10-21 11:21:39.781 I/HBD     ( 5245): l writeToFile json : {"version":"4.1","currentLanguageOrder":1,"selected":[{"activeOptionList":["auto_replace","auto_spacing"],"engName":"F\
-arsi","id":4784128,"inputType":"qwerty","isUsed":true},{"activeOptionList":["auto_replace","auto_spacing","writing_assistant"],"engName":"English","id":65537,"inputType":"qwerty","isUsed":true}]} \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33971:10-21 11:21:39.782 I/sensors-hal( 1086): handle_indication_realtime:471,  SCHED_FIFO(10) for qmi_cbk\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33972:10-21 11:21:39.782 I/ViewRootImpl@1d9188a[LauncherActivity]\( 2853): mWNT: t=0xb4000075653d86d0 mBlastBufferQueue=0xb4000075553eeb10 fn= 46 mRenderHdrSdrRatio=1.0 caller= \
-com.android.systemui.shared.launcher.ViewRootImplCompat.mergeWithNextTransaction:4 com.honeyspace.transition.utils.SurfaceTransactionApplier.scheduleApply$lambda$1:26 \
-com.honeyspace.transition.utils.SurfaceTransactionApplier.c:0 \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33973:10-21 11:21:39.782 I/sensors-hal( 1086): set_config:67, sample_period_ns is adjusted to 16666000 based on min/max delay_ns\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33977:10-21 11:21:39.784 I/sensors-hal( 1086): activate:259, android.sensor.gyroscope/41 en=1\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33978:10-21 11:21:39.784 I/sensors-hal( 1086): get_qmi_debug_flag:241, support_qmi_debug : false\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33979:10-21 11:21:39.785 I/HBD     ( 5245): g isCoverDisplay : false, cached selected json info : SelectedLanguageInfo(languageVersion=4.1, currentLanguageOrder=1, \
-selectedLanguageList=[SelectedLanguage(id=4784128, isUsed=true, engName=Farsi, inputType=qwerty, activeOptionList=[auto_replace, auto_spacing]), SelectedLanguage(id=65537, isUsed=true, engName=English, inputType=qwerty, \
-activeOptionList=[auto_replace, auto_spacing, writing_assistant])]) \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33980:10-21 11:21:39.785 I/HBD     ( 5245): g updateSelectedLanguageCache is succeeded. English \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33981:10-21 11:21:39.785 D/KNOX_MDM_SettingsProvider( 1407): isChangeAllowed() : name = enabled_input_methods\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33982:10-21 11:21:39.785 D/KNOX_MDM_SettingsProvider( 1407): edmUri: content://com.sec.knox.provider/RestrictionPolicy3\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33989:10-21 11:21:39.786 D/KNOX_MDM_SettingsProvider( 1407): ret = 1\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33990:10-21 11:21:39.786 I/HBD     ( 5245): l writeToFile path : /data/user/0/com.samsung.android.honeyboard/files/selected.json \
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:33991:10-21 11:21:39.786 I/HBD     ( 5245): l writeToFile json : {"version":"4.1","currentLanguageOrder":1,"selected":[{"activeOptionList":["auto_replace","auto_spacing"],"engName":"F\
-arsi","id":4784128,"inputType":"qwerty","isUsed":true},{"activeOptionList":["auto_replace","auto_spacing","writing_assistant"],"engName":"English","id":65537,"inputType":"qwerty","isUsed":true}]} \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33992:10-21 11:21:39.786 D/KNOX_MDM_SettingsProvider( 1407): isChangeAllowed() : name = default_input_method\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33993:10-21 11:21:39.787 D/KNOX_MDM_SettingsProvider( 1407): edmUri: content://com.sec.knox.provider/RestrictionPolicy3\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:33994:10-21 11:21:39.787 D/KNOX_MDM_SettingsProvider( 1407): projectionArgs: isSettingsChangesAllowed\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:34003:10-21 11:21:39.788 I/HBD     ( 5245): l Write selected lang for DE  \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:34004:10-21 11:21:39.788 I/HBD     ( 5245): l writeToFile path : /data/user_de/0/com.samsung.android.honeyboard/files/selected.json \
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:34005:10-21 11:21:39.788 I/HBD     ( 5245): l writeToFile json : {"version":"4.1","currentLanguageOrder":1,"selected":[{"activeOptionList":["auto_replace","auto_spacing"],"engName":"F\
-arsi","id":4784128,"inputType":"qwerty","isUsed":true},{"activeOptionList":["auto_replace","auto_spacing","writing_assistant"],"engName":"English","id":65537,"inputType":"qwerty","isUsed":true}]} \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:34006:10-21 11:21:39.789 I/HBD     ( 5245): a [UpdatePolicy] [post] a: 32 cl: 65537 kit: [0/0] vt: 0 ir: 1 \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:34007:10-21 11:21:39.790 I/HBD     ( 5245): HoneyBoardService [PF_OP][onStartInput]  49 ms \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:34008:10-21 11:21:39.790 I/InputMethodService( 5245): scheduleImeSurfaceRemoval: removeImeSurface is posted.\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:34029:10-21 11:21:39.792 I/HoneySpace.AppLaunchAnimationDelegate( 2853): window alpha : 1.0, current rect : RectF(10.744095, 253.33032, 948.703, 2337.6836), crop rect : Rect(0, 0 - \
-1080, 2400)\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:34030:10-21 11:21:39.792 I/HBD     ( 5245): l writeToFile path : /data/user_de/0/com.samsung.android.honeyboard/files/selected.json \
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:34031:10-21 11:21:39.793 I/HBD     ( 5245): l writeToFile json : {"version":"4.1","currentLanguageOrder":1,"selected":[{"activeOptionList":["auto_replace","auto_spacing"],"engName":"F\
-arsi","id":4784128,"inputType":"qwerty","isUsed":true},{"activeOptionList":["auto_replace","auto_spacing","writing_assistant"],"engName":"English","id":65537,"inputType":"qwerty","isUsed":true}]} \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:34032:10-21 11:21:39.793 I/HBD     ( 5245): p updated Sub Types. English \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:34033:10-21 11:21:39.793 I/HBD     ( 5245): l Write selected lang for DE  \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:34034:10-21 11:21:39.794 I/HBD     ( 5245): l writeToFile path : /data/user_de/0/com.samsung.android.honeyboard/files/selected.json \
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:34035:10-21 11:21:39.794 I/HBD     ( 5245): l writeToFile json : {"version":"4.1","currentLanguageOrder":1,"selected":[{"activeOptionList":["auto_replace","auto_spacing"],"engName":"F\
-arsi","id":4784128,"inputType":"qwerty","isUsed":true},{"activeOptionList":["auto_replace","auto_spacing","writing_assistant"],"engName":"English","id":65537,"inputType":"qwerty","isUsed":true}]} \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:34036:10-21 11:21:39.794 I/ViewRootImpl@f48eb57[StatusBar]\( 2562): handleResized, msg = 4 frames=ClientWindowFrames{frame=[0,0][1080,88] display=[0,0][1080,2400] \
-parentFrame=[0,0][0,0]} forceNextWindowRelayout=false displayId=0 dragResizing=false compatScale=1.0 frameChanged=false attachedFrameChanged=false configChanged=false displayChanged=false compatScaleChanged=false\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:34037:10-21 11:21:39.794 I/ViewRootImpl@1df3ed1[NavigationBar0]\( 2562): handleResized, msg = 4 frames=ClientWindowFrames{frame=[0,2256][1080,2400] display=[0,0][1080,2400] \
-parentFrame=[0,0][0,0]} forceNextWindowRelayout=false displayId=0 dragResizing=false compatScale=1.0 frameChanged=false attachedFrameChanged=false configChanged=false displayChanged=false compatScaleChanged=false\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:34038:10-21 11:21:39.794 I/HBD     ( 5245): l Write selected lang for DE  \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:34039:10-21 11:21:39.795 I/HBD     ( 5245): l writeToFile path : /data/user_de/0/com.samsung.android.honeyboard/files/selected.json \
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:34040:10-21 11:21:39.795 I/HBD     ( 5245): l writeToFile json : {"version":"4.1","currentLanguageOrder":1,"selected":[{"activeOptionList":["auto_replace","auto_spacing"],"engName":"F\
-arsi","id":4784128,"inputType":"qwerty","isUsed":true},{"activeOptionList":["auto_replace","auto_spacing","writing_assistant"],"engName":"English","id":65537,"inputType":"qwerty","isUsed":true}]} \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:34041:10-21 11:21:39.795 I/HBD     ( 5245): l Write selected lang for DE  \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:34042:10-21 11:21:39.796 I/HBD     ( 5245): l writeToFile path : /data/user_de/0/com.samsung.android.honeyboard/files/selected.json \
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:34043:10-21 11:21:39.796 I/HBD     ( 5245): l writeToFile json : {"version":"4.1","currentLanguageOrder":1,"selected":[{"activeOptionList":["auto_replace","auto_spacing"],"engName":"F\
-arsi","id":4784128,"inputType":"qwerty","isUsed":true},{"activeOptionList":["auto_replace","auto_spacing","writing_assistant"],"engName":"English","id":65537,"inputType":"qwerty","isUsed":true}]} \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:34044:10-21 11:21:39.800 E/AtomicFile( 5245): Failed to rename /data/user_de/0/com.samsung.android.honeyboard/files/selected.json.new to \
-/data/user_de/0/com.samsung.android.honeyboard/files/selected.json\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:34045:10-21 11:21:39.800 I/HBD     ( 5245): l writeToFile complete \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:34046:10-21 11:21:39.800 E/AtomicFile( 5245): Failed to rename /data/user_de/0/com.samsung.android.honeyboard/files/selected.json.new to \
-/data/user_de/0/com.samsung.android.honeyboard/files/selected.json\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:34439:10-21 11:21:40.741 D/QSButtonsContainer( 2562): action:android.intent.action.CLOSE_SYSTEM_DIALOGS\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:34440:10-21 11:21:40.741 I/SemDvfsHyPerManager( 4699): acquire hyper - APP_START_HOME/4699@13, type = -999\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:34441:10-21 11:21:40.741 D/SecVolume.VolumePanelStore( 2562): dispatch [ACTION_DISMISS_REQUESTED with [STATE_NO_DISPATCH], currentAction={isFromOutside : true}, \
-currentState={activeStream=3, stream=3, isMediaDefaultEnabled : true, isHasVibrator : true, isSetupWizardComplete : true, isVoiceCapable : true, cutoutHeight : 56, timeOutControls : 0, stream : 3, ringerModeInternal : 2, \
-timeOut : 3000, earProtectLevel : 909, activeStream : 3, iconTargetState : 2, timeOutControlsText : 0, pinDevice : 0, iconCurrentState : 2, systemTimeNow : 625782977}\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:34442:10-21 11:21:40.741 D/SecVolume.VolumePanelStore( 2562):   > New State : [STATE_NO_DISPATCH]\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:34443:10-21 11:21:40.742 I/HYPER-HAL( 1091): [ResourceManager.cpp]updateResource(): [CPUMinFreq] UpdateResource Request ID : 1037553    Value : 2400000\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:34444:10-21 11:21:40.742 V/WindowManagerShell( 2562): Do not update drop target window visibility: window is already set to 4.\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35072:10-21 11:21:40.910 I/HBD     ( 5245): m0 EBD si S 0 \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35073:10-21 11:21:40.911 I/HBD     ( 5245): m updateContactDBLanguage : 65537 \
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:35074:10-21 11:21:40.911 I/HBD     ( 5245): g isCoverDisplay : false, cached selected json info : SelectedLanguageInfo(languageVersion=4.1, currentLanguageOrder=1, \
-selectedLanguageList=[SelectedLanguage(id=4784128, isUsed=true, engName=Farsi, inputType=qwerty, activeOptionList=[auto_replace, auto_spacing]), SelectedLanguage(id=65537, isUsed=true, engName=English, inputType=qwerty, \
-activeOptionList=[auto_replace, auto_spacing, writing_assistant])]) \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35075:10-21 11:21:40.911 I/HBD     ( 5245): g updateSelectedLanguageCache is succeeded. English \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35076:10-21 11:21:40.911 I/WallpaperService( 2562): resized: system, syncSeqId=-1\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35077:10-21 11:21:40.912 D/WindowManager( 1407): interceptKeyTi keyCode=187 down=true repeatCount=0 keyguardOn=false canceled=false\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35078:10-21 11:21:40.912 D/PhoneWindowManagerExt( 1407): interceptKeyTi code=187 down=true repeatCount=0 displayId=0 interactive=true\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35079:10-21 11:21:40.912 I/HBD     ( 5245): l writeToFile path : /data/user/0/com.samsung.android.honeyboard/files/selected.json \
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:35080:10-21 11:21:40.912 I/HBD     ( 5245): l writeToFile json : {"version":"4.1","currentLanguageOrder":1,"selected":[{"activeOptionList":["auto_replace","auto_spacing"],"engName":"F\
-arsi","id":4784128,"inputType":"qwerty","isUsed":true},{"activeOptionList":["auto_replace","auto_spacing","writing_assistant"],"engName":"English","id":65537,"inputType":"qwerty","isUsed":true}]} \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35081:10-21 11:21:40.912 I/ViewRootImpl@60499e0[CocktailBarService]\( 2853): Resizing android.view\.ViewRootImpl@b829a7a: frame = [1013,420][1080,762] reportDraw = false forceLayout = \
-false syncSeqId = -1\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35082:10-21 11:21:40.913 I/ViewRootImpl@60499e0[CocktailBarService]\( 2853): handleResized, msg = 4 frames=ClientWindowFrames{frame=[1013,420][1080,762] display=[0,0][1080,2256] \
-parentFrame=[0,0][0,0]} forceNextWindowRelayout=false displayId=0 dragResizing=false compatScale=1.0 frameChanged=false attachedFrameChanged=false configChanged=false displayChanged=false compatScaleChanged=false\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35083:10-21 11:21:40.913 I/WallpaperService( 2562): handleResized: which=5, reportDraw=false\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35095:10-21 11:21:40.914 I/HBD     ( 5245): l writeToFile complete \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35096:10-21 11:21:40.915 D/ConnectivityService( 1407): releasing NetworkRequest [ REQUEST id=66694, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10239 \
-RequestorUid: 10239 RequestorPkg: com.google.android.apps.tachyon UnderlyingNetworks: Null] ] (release request)\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:35097:10-21 11:21:40.915 I/HBD     ( 5245): g isCoverDisplay : false, cached selected json info : SelectedLanguageInfo(languageVersion=4.1, currentLanguageOrder=1, \
-selectedLanguageList=[SelectedLanguage(id=4784128, isUsed=true, engName=Farsi, inputType=qwerty, activeOptionList=[auto_replace, auto_spacing]), SelectedLanguage(id=65537, isUsed=true, engName=English, inputType=qwerty, \
-activeOptionList=[auto_replace, auto_spacing, writing_assistant])]) \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35098:10-21 11:21:40.915 I/HBD     ( 5245): n updateActionOptionFromPreference  \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35099:10-21 11:21:40.915 I/HBD     ( 5245): n before lang.activeOptionList =  [Ljava.lang.String;@355a7e0 \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35100:10-21 11:21:40.915 I/HBD     ( 5245): n after lang.activeOptionList = [Ljava.lang.String;@e2be6a4 \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35107:10-21 11:21:40.916 I/adbd    (24727): Remote process closed the socket (on MSG_PEEK)\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35108:10-21 11:21:40.916 I/HBD     ( 5245): l writeToFile path : /data/user/0/com.samsung.android.honeyboard/files/selected.json \
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:35109:10-21 11:21:40.916 I/HBD     ( 5245): l writeToFile json : {"version":"4.1","currentLanguageOrder":1,"selected":[{"activeOptionList":["auto_replace","auto_spacing"],"engName":"F\
-arsi","id":4784128,"inputType":"qwerty","isUsed":true},{"activeOptionList":["auto_replace","auto_spacing","writing_assistant"],"engName":"English","id":65537,"inputType":"qwerty","isUsed":true}]} \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35110:10-21 11:21:40.916 I/Zygote  (  973): Process 4546 exited due to signal 9 (Killed)\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35111:10-21 11:21:40.917 I/HBD     ( 5245): l Write selected lang for DE  \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35112:10-21 11:21:40.917 I/BLASTBufferQueue_Java( 2562): update, w= 2400 h= 2400 mName = Wallpaper mNativeObject= 0xb400007555321390 sc.mNativeObject= 0xb400007475309050 format= 2 \
-caller= android.service.wallpaper.WallpaperService$Engine.getOrCreateBLASTSurface:2827 android.service.wallpaper.WallpaperService$Engine.updateSurface:1623 \
-android.service.wallpaper.WallpaperService$IWallpaperEngineWrapper.handleResized:3323 android.service.wallpaper.WallpaperService$IWallpaperEngineWrapper.executeMessage:3242 \
-com.android.internal.os.HandlerCaller$MyHandler.handleMessage:44 android.os.Handler.dispatchMessage:106 \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35114:10-21 11:21:40.917 I/HBD     ( 5245): l writeToFile complete \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35115:10-21 11:21:40.918 I/HBD     ( 5245): m normal : updateLanguage : English \
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:35116:10-21 11:21:40.918 I/HBD     ( 5245): g isCoverDisplay : false, cached selected json info : SelectedLanguageInfo(languageVersion=4.1, currentLanguageOrder=1, \
-selectedLanguageList=[SelectedLanguage(id=4784128, isUsed=true, engName=Farsi, inputType=qwerty, activeOptionList=[auto_replace, auto_spacing]), SelectedLanguage(id=65537, isUsed=true, engName=English, inputType=qwerty, \
-activeOptionList=[auto_replace, auto_spacing, writing_assistant])]) \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35117:10-21 11:21:40.918 I/Layer   ( 1169): id=299325 Destroyed Surface(name=4fcb19 InputMethod)/@0x23d26db - animation-leash of insets_animation#299325\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:35118:10-21 11:21:40.918 I/HBD     ( 5245): g isCoverDisplay : false, cached selected json info : SelectedLanguageInfo(languageVersion=4.1, currentLanguageOrder=1, \
-selectedLanguageList=[SelectedLanguage(id=4784128, isUsed=true, engName=Farsi, inputType=qwerty, activeOptionList=[auto_replace, auto_spacing]), SelectedLanguage(id=65537, isUsed=true, engName=English, inputType=qwerty, \
-activeOptionList=[auto_replace, auto_spacing, writing_assistant])]) \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35119:10-21 11:21:40.918 I/HBD     ( 5245): n updateActionOptionFromPreference  \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35120:10-21 11:21:40.918 I/HBD     ( 5245): n before lang.activeOptionList =  [Ljava.lang.String;@e2be6a4 \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35121:10-21 11:21:40.918 I/HBD     ( 5245): n after lang.activeOptionList = [Ljava.lang.String;@86457c2 \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35122:10-21 11:21:40.917 I/HBD     ( 5245): l writeToFile path : /data/user_de/0/com.samsung.android.honeyboard/files/selected.json \
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:35123:10-21 11:21:40.918 I/HBD     ( 5245): l writeToFile json : {"version":"4.1","currentLanguageOrder":1,"selected":[{"activeOptionList":["auto_replace","auto_spacing"],"engName":"F\
-arsi","id":4784128,"inputType":"qwerty","isUsed":true},{"activeOptionList":["auto_replace","auto_spacing","writing_assistant"],"engName":"English","id":65537,"inputType":"qwerty","isUsed":true}]} \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35124:10-21 11:21:40.919 I/HBD     ( 5245): l writeToFile path : /data/user/0/com.samsung.android.honeyboard/files/selected.json \
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:35125:10-21 11:21:40.919 I/HBD     ( 5245): l writeToFile json : {"version":"4.1","currentLanguageOrder":1,"selected":[{"activeOptionList":["auto_replace","auto_spacing"],"engName":"F\
-arsi","id":4784128,"inputType":"qwerty","isUsed":true},{"activeOptionList":["auto_replace","auto_spacing","writing_assistant"],"engName":"English","id":65537,"inputType":"qwerty","isUsed":true}]} \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35126:10-21 11:21:40.920 I/HBD     ( 5245): l Write selected lang for DE  \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35127:10-21 11:21:40.920 I/HBD     ( 5245): l writeToFile complete \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35128:10-21 11:21:40.920 I/ViewRootImpl@1d9188a[LauncherActivity]\( 2853): mWNT: t=0xb40000756538cf90 mBlastBufferQueue=0xb4000075553b0c70 fn= 8 mRenderHdrSdrRatio=1.0 caller= \
-com.android.systemui.shared.launcher.ViewRootImplCompat.mergeWithNextTransaction:4 com.honeyspace.transition.utils.SurfaceTransactionApplier.scheduleApply$lambda$1:26 \
-com.honeyspace.transition.utils.SurfaceTransactionApplier.c:0 \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35129:10-21 11:21:40.920 I/HBD     ( 5245): l writeToFile path : /data/user_de/0/com.samsung.android.honeyboard/files/selected.json \
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:35130:10-21 11:21:40.921 I/HBD     ( 5245): l writeToFile json : {"version":"4.1","currentLanguageOrder":1,"selected":[{"activeOptionList":["auto_replace","auto_spacing"],"engName":"F\
-arsi","id":4784128,"inputType":"qwerty","isUsed":true},{"activeOptionList":["auto_replace","auto_spacing","writing_assistant"],"engName":"English","id":65537,"inputType":"qwerty","isUsed":true}]} \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35131:10-21 11:21:40.921 D/MdnieScenarioControlService( 1407):  packageName : com.sec.android.app.launcher    className : com.sec.android.app.launcher.Launcher\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35132:10-21 11:21:40.921 I/HBD     ( 5245): l Write selected lang for DE  \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35133:10-21 11:21:40.921 I/HBD     ( 5245): m normal : updateLanguage : English \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35134:10-21 11:21:40.921 I/HBD     ( 5245): l writeToFile path : /data/user_de/0/com.samsung.android.honeyboard/files/selected.json \
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:35135:10-21 11:21:40.921 I/HBD     ( 5245): l writeToFile json : {"version":"4.1","currentLanguageOrder":1,"selected":[{"activeOptionList":["auto_replace","auto_spacing"],"engName":"F\
-arsi","id":4784128,"inputType":"qwerty","isUsed":true},{"activeOptionList":["auto_replace","auto_spacing","writing_assistant"],"engName":"English","id":65537,"inputType":"qwerty","isUsed":true}]} \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35136:10-21 11:21:40.921 D/ActivityManager( 1407): proc ProcessRecord{6fc1abb 10755:com.android.vending:background/u0a234} already removed. so we skip next process.\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35137:10-21 11:21:40.921 I/libprocessgroup( 1407): Successfully killed process cgroup uid 10234 pid 10755 in 0ms\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:35138:10-21 11:21:40.921 I/HBD     ( 5245): g isCoverDisplay : false, cached selected json info : SelectedLanguageInfo(languageVersion=4.1, currentLanguageOrder=1, \
-selectedLanguageList=[SelectedLanguage(id=4784128, isUsed=true, engName=Farsi, inputType=qwerty, activeOptionList=[auto_replace, auto_spacing]), SelectedLanguage(id=65537, isUsed=true, engName=English, inputType=qwerty, \
-activeOptionList=[auto_replace, auto_spacing, writing_assistant])]) \
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:35139:10-21 11:21:40.921 I/HBD     ( 5245): g isCoverDisplay : false, cached selected json info : SelectedLanguageInfo(languageVersion=4.1, currentLanguageOrder=1, \
-selectedLanguageList=[SelectedLanguage(id=4784128, isUsed=true, engName=Farsi, inputType=qwerty, activeOptionList=[auto_replace, auto_spacing]), SelectedLanguage(id=65537, isUsed=true, engName=English, inputType=qwerty, \
-activeOptionList=[auto_replace, auto_spacing, writing_assistant])]) \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35140:10-21 11:21:40.922 I/HBD     ( 5245): g updateSelectedLanguageCache is succeeded. English \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35141:10-21 11:21:40.922 V/MdnieScenarioControlService( 1407): setUIMode from UI function(3)\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35142:10-21 11:21:40.921 I/HBD     ( 5245): l writeToFile complete \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35143:10-21 11:21:40.922 I/HBD     ( 5245): l writeToFile path : /data/user/0/com.samsung.android.honeyboard/files/selected.json \
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:35144:10-21 11:21:40.922 I/HBD     ( 5245): l writeToFile json : {"version":"4.1","currentLanguageOrder":1,"selected":[{"activeOptionList":["auto_replace","auto_spacing"],"engName":"F\
-arsi","id":4784128,"inputType":"qwerty","isUsed":true},{"activeOptionList":["auto_replace","auto_spacing","writing_assistant"],"engName":"English","id":65537,"inputType":"qwerty","isUsed":true}]} \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35145:10-21 11:21:40.923 I/HBD     ( 5245): l writeToFile complete \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35146:10-21 11:21:40.923 I/HBD     ( 5245): l writeToFile complete \
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:35147:10-21 11:21:40.924 I/HBD     ( 5245): g isCoverDisplay : false, cached selected json info : SelectedLanguageInfo(languageVersion=4.1, currentLanguageOrder=1, \
-selectedLanguageList=[SelectedLanguage(id=4784128, isUsed=true, engName=Farsi, inputType=qwerty, activeOptionList=[auto_replace, auto_spacing]), SelectedLanguage(id=65537, isUsed=true, engName=English, inputType=qwerty, \
-activeOptionList=[auto_replace, auto_spacing, writing_assistant])]) \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35148:10-21 11:21:40.924 I/HBD     ( 5245): g updateSelectedLanguageCache is succeeded. English \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35149:10-21 11:21:40.925 D/KNOX_MDM_SettingsProvider( 1407): isChangeAllowed() : name = enabled_input_methods\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35150:10-21 11:21:40.925 D/KNOX_MDM_SettingsProvider( 1407): edmUri: content://com.sec.knox.provider/RestrictionPolicy3\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35157:10-21 11:21:40.925 I/HBD     ( 5245): l writeToFile path : /data/user/0/com.samsung.android.honeyboard/files/selected.json \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35158:10-21 11:21:40.925 D/KNOX_MDM_SettingsProvider( 1407): ret = 1\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:35159:10-21 11:21:40.925 I/HBD     ( 5245): l writeToFile json : {"version":"4.1","currentLanguageOrder":1,"selected":[{"activeOptionList":["auto_replace","auto_spacing"],"engName":"F\
-arsi","id":4784128,"inputType":"qwerty","isUsed":true},{"activeOptionList":["auto_replace","auto_spacing","writing_assistant"],"engName":"English","id":65537,"inputType":"qwerty","isUsed":true}]} \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35160:10-21 11:21:40.926 D/KNOX_MDM_SettingsProvider( 1407): isChangeAllowed() : name = default_input_method\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35161:10-21 11:21:40.926 D/KNOX_MDM_SettingsProvider( 1407): edmUri: content://com.sec.knox.provider/RestrictionPolicy3\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35162:10-21 11:21:40.926 D/KNOX_MDM_SettingsProvider( 1407): projectionArgs: isSettingsChangesAllowed\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35177:10-21 11:21:40.926 D/SurfaceFlinger( 1169): \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35178:10-21 11:21:40.926 I/HBD     ( 5245): l writeToFile path : /data/user_de/0/com.samsung.android.honeyboard/files/selected.json \
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:35179:10-21 11:21:40.926 I/HBD     ( 5245): l writeToFile json : {"version":"4.1","currentLanguageOrder":1,"selected":[{"activeOptionList":["auto_replace","auto_spacing"],"engName":"F\
-arsi","id":4784128,"inputType":"qwerty","isUsed":true},{"activeOptionList":["auto_replace","auto_spacing","writing_assistant"],"engName":"English","id":65537,"inputType":"qwerty","isUsed":true}]} \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35180:10-21 11:21:40.926 I/HBD     ( 5245): p updated Sub Types. English \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35181:10-21 11:21:40.927 D/NativeSemDvfsManager( 1169): acquire:: timeout = 2000 mIsAcquired = 1  mTagName : SurfaceFlinger \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35182:10-21 11:21:40.927 D/SurfaceFlinger( 1169): GPIS:: requestGPISForClientComposition\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35286:10-21 11:21:40.968 I/HoneySpace.GestureEventController( 2853): prepareToggleRecentsView\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35287:10-21 11:21:40.968 I/HBD     ( 5245): l writeToFile path : /data/user_de/0/com.samsung.android.honeyboard/files/selected.json \
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:35288:10-21 11:21:40.968 I/HBD     ( 5245): l writeToFile json : {"version":"4.1","currentLanguageOrder":1,"selected":[{"activeOptionList":["auto_replace","auto_spacing"],"engName":"F\
-arsi","id":4784128,"inputType":"qwerty","isUsed":true},{"activeOptionList":["auto_replace","auto_spacing","writing_assistant"],"engName":"English","id":65537,"inputType":"qwerty","isUsed":true}]} \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35289:10-21 11:21:40.969 I/HoneySpace.TaskListViewModel( 2853): openRecents : true\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35290:10-21 11:21:40.969 V/ShellRecents( 2562): RecentsTransitionHandler.startRecentsTransition\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35291:10-21 11:21:40.969 I/HoneySpace.SALoggingUtils( 2853): SA Logging screenID: 500 eventId: 5160 detail: {det=OneUIHome} value: -1\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35678:10-21 11:21:41.064 D/PopupUI.PopupUI( 2562): PopupUIReceiver.onReceive() action : android.intent.action.CLOSE_SYSTEM_DIALOGS\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35679:10-21 11:21:41.064 D/SimTrayProtectionViewModel( 2562): dismiss : isFoldedState()falseisRemoveSimtray() : true\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:35680:10-21 11:21:41.064 D/SecVolume.VolumePanelStore( 2562): dispatch [ACTION_DISMISS_REQUESTED with [STATE_NO_DISPATCH], currentAction={isFromOutside : true}, \
-currentState={activeStream=3, stream=3, isMediaDefaultEnabled : true, isHasVibrator : true, isSetupWizardComplete : true, isVoiceCapable : true, cutoutHeight : 56, timeOutControls : 0, stream : 3, ringerModeInternal : 2, \
-timeOut : 3000, earProtectLevel : 909, activeStream : 3, iconTargetState : 2, timeOutControlsText : 0, pinDevice : 0, iconCurrentState : 2, systemTimeNow : 625782977}\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35681:10-21 11:21:41.064 D/SecVolume.VolumePanelStore( 2562):   > New State : [STATE_NO_DISPATCH]\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35682:10-21 11:21:41.064 V/WindowManagerShell( 2562): Receive android.intent.action.CLOSE_SYSTEM_DIALOGS\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35683:10-21 11:21:41.064 D/LocationControllerImpl( 2562): onReceive() = android.intent.action.CLOSE_SYSTEM_DIALOGS\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35686:10-21 11:21:41.065 D/SimTrayProtectionViewModel( 2562): dismiss : isFoldedState()falseisRemoveSimtray() : true\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35687:10-21 11:21:41.065 V/WindowManagerShell( 2562): Do not update drop target window visibility: window is already set to 4.\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:35688:10-21 11:21:41.065 D/SecVolume.VolumePanelStore( 2562): dispatch [ACTION_DISMISS_REQUESTED with [STATE_NO_DISPATCH], currentAction={isFromOutside : true}, \
-currentState={activeStream=3, stream=3, isMediaDefaultEnabled : true, isHasVibrator : true, isSetupWizardComplete : true, isVoiceCapable : true, cutoutHeight : 56, timeOutControls : 0, stream : 3, ringerModeInternal : 2, \
-timeOut : 3000, earProtectLevel : 909, activeStream : 3, iconTargetState : 2, timeOutControlsText : 0, pinDevice : 0, iconCurrentState : 2, systemTimeNow : 625782977}\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35689:10-21 11:21:41.065 D/SecVolume.VolumePanelStore( 2562):   > New State : [STATE_NO_DISPATCH]\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35690:10-21 11:21:41.067 I/HoneySpace.ListTaskViewHolder( 2853): loadThumbnail: tasks = [[id=19670 windowingMode=1 user=0 lastActiveTime=1780996393] null], \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35691:10-21 11:21:41.067 I/HoneySpace.ListTaskViewHolder( 2853):  position = 1, taskView = 66f285c, currentIds: [19670], requestedIds: [19670]\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35750:10-21 11:21:41.080 I/HoneySpace.RecentStyler( 2853): context = android.window\.WindowContext@43cdd2e, styleData = RecentStyleData(windowBounds=WindowBounds width=1080 \
-height=2400, bounds=Rect(0, 0 - 1080, 2400) insets=Insets{left=0, top=88, right=0, bottom=144}, systemInsets=Insets{left=0, top=88, right=0, bottom=144}cutout=Rect(0, 88 - 0, 0), gestureInsets=Insets{left=0, top=124, right=0, \
-bottom=144}, gestureActionInsets=Insets{left=0, top=124, right=0, bottom=144}, insetsIgnoreCutout=Insets{left=0, top=88, right=0, bottom=144}, baseScreenSize=Point(1080, 2256)screenSizeInGesture=Point(1080, 2256), \
-screenSizeIncludeCutout: Point(1080, 2256), iconSize=175, iconGravity=1, iconStarMargin=0, sceneScale=PointF(0.6, 0.6), sceneCoordinate=RectF(216.0, 386.4, 864.0, 1687.2001), sceneTopMargin=87, taskViewCoordinate=RectF(216.0, \
-299.4, 864.0, 1687.2001), sceneFullyScale=PointF(1.6666666, 1.8450184), gridExtraGap=0.0, sceneRadius=45.0, deviceRadius=-32.0, mwRadius=(30.0, 51.0), curveEffectScale=0.135, pageSpacing=16, pageSideMargin=0, \
-sceneStartMargin=0, circularListGap=0, topTaskCount=0, bottomTaskCount=0, taskLockIconSize=168, listSceneScale=PointF(0.6, 0.6), listSceneSize=RectF(0.0, 0.0, 648.0, 1300.8), listSceneRadius=45.0)\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35751:10-21 11:21:41.080 I/HoneySpace.MultiStateCallback( 2853): [123328640] Adding [STATE_RECENT_APPEARED (32768)] to [STATE_START_RECENTS_TRANSITION, \
-STATE_GESTURE_START_RECENTS_SCREEN, STATE_GESTURE_START_BYKEY (16644)]\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:35752:10-21 11:21:41.080 I/HoneySpace.MultiStateCallback( 2853): [123328640] Adding [STATE_RECENTS_ANIMATION_STARTED (16)] to [STATE_START_RECENTS_TRANSITION, \
-STATE_GESTURE_START_RECENTS_SCREEN, STATE_GESTURE_START_BYKEY, STATE_RECENT_APPEARED (49412)]\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35753:10-21 11:21:41.080 I/HoneySpace.RecentsAnimationManager( 2853): startRecentEntering\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35754:10-21 11:21:41.080 I/HoneySpace.RecentsAnimationController( 2853): enableInputConsumer\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:35755:10-21 11:21:41.080 I/HoneySpace.NotificationListener( 2853): onNotificationRemoved com.thecat.messenger: 0|com.thecat.messenger|36|null|10332: 0\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:36177:10-21 11:21:41.410 I/ActivityManager( 1407): Changes in 10372 2 to 15, 63 to 0\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:36178:10-21 11:21:41.410 I/CameraService( 1449): onUidStateChanged: uid=10372, procState is changed. (2 -> 15)\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:36179:10-21 11:21:41.412 V/WindowManager( 1407): Relayout Window{dcb8ca u0 GoogleDiscoverWindow}: viewVisibility=8 req=1080x2400 ty=4 d0\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:36180:10-21 11:21:41.413 I/ViewRootImpl@1d9188a[LauncherActivity]\( 2853): Relayout returned: old=(0,0,1080,2400) new=(0,0,1080,2400) relayoutAsync=false req=(1080,2400)8 dur=5 \
-res=0x402 s={false 0x0} ch=true seqId=6925\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:36181:10-21 11:21:41.414 W/JobScheduler.JobStatus( 1407): Exempted app com.android.vending considered buggy\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:36182:10-21 11:21:41.414 W/JobScheduler.JobStatus( 1407): Exempted app com.android.vending considered buggy\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:36338:10-21 11:21:41.596 I/GestureDetector( 1407): obtain mCurrentMotionEventRaw. action: 2 id: 4620089\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:36339:10-21 11:21:41.596 I/CameraService( 1449): onUidStateChanged: uid=10372, procState is changed. (15 -> 19)\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:36340:10-21 11:21:41.597 I/ActivityManager( 1407): Killing 14557:com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0/u0a372i362 (adj \
-905\): remove task\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:36341:10-21 11:21:41.598 I/ActivityManager( 1407): Killing 14505:ir.mouj/u0a372 (adj 850): remove task\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:36342:10-21 11:21:41.599 D/ActivityManager( 1407): [SD] user menu kill listen remove action name:ir.mouj uid:10372\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:36343:10-21 11:21:41.599 D/ActivityManager( 1407): [SD] user menu kill listen remove action name:ir.mouj uid:10372\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:36361:10-21 11:21:41.625 V/MdnieScenarioControlService( 1407): setUIMode from UI function(3)\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:36362:10-21 11:21:41.640 I/sensors-hal( 1086): handle_sns_std_sensor_event:231, [SSC_LIGHT] P: \
-981(862),als:1635,green:353,ir:103,delta_avg:0,delta_max:114,stdev:1,stdev_per_4sample:1,magig_code or itime:384\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:36363:10-21 11:21:41.656 W/ActivityManager( 1407): Scheduling restart of crashed service ir.mouj/org.chromium.content.app.SandboxedProcessService0:0 in 10361ms for connection\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:36364:10-21 11:21:41.658 I/Zygote  (15751): Process 14557 exited due to signal 9 (Killed)\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:36365:10-21 11:21:41.660 D/DisplayManagerService( 1407): Drop pending events for gone uid 99362\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:36366:10-21 11:21:41.660 D/BatteryExternalStatsWorker( 1407): update stats : remove-uid (1)\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:36403:10-21 11:21:41.691 D/SimTrayProtectionViewModel( 2562): dismiss : isFoldedState()falseisRemoveSimtray() : true\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:36404:10-21 11:21:41.691 D/QSButtonsContainer( 2562): action:android.intent.action.CLOSE_SYSTEM_DIALOGS\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:36405:10-21 11:21:41.691 D/SecVolume.VolumePanelStore( 2562): dispatch [ACTION_DISMISS_REQUESTED with [STATE_NO_DISPATCH], currentAction={isFromOutside : true}, \
-currentState={activeStream=3, stream=3, isMediaDefaultEnabled : true, isHasVibrator : true, isSetupWizardComplete : true, isVoiceCapable : true, cutoutHeight : 56, timeOutControls : 0, stream : 3, ringerModeInternal : 2, \
-timeOut : 3000, earProtectLevel : 909, activeStream : 3, iconTargetState : 2, timeOutControlsText : 0, pinDevice : 0, iconCurrentState : 2, systemTimeNow : 625782977}\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:36406:10-21 11:21:41.691 D/ActivityTaskManager( 1407): scheduleTopResumedActivityChanged, onTop=false, r=ActivityRecord{135160b u0 \
-com.sec.android.app.launcher/com.android.quickstep.RecentsActivity t17516}, caller=com.android.server.wm.ActivityTaskSupervisor.updateTopResumedActivityIfNeeded:2826 \
-com.android.server.wm.TaskDisplayArea.positionChildTaskAt:567 com.android.server.wm.TaskDisplayArea.positionChildAt:483 com.android.server.wm.WindowContainer.positionChildAt:989 com.android.server.wm.Task.positionChildAt:3318 \
-com.android.server.wm.Task.moveToFront:6077 \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:36407:10-21 11:21:41.691 D/SecVolume.VolumePanelStore( 2562):   > New State : [STATE_NO_DISPATCH]\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:36408:10-21 11:21:41.692 D/SGM:FgCheckThread( 1407): TaskStackListener.onTaskFocusChanged(), taskId=17516, focused=false\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:36697:10-21 11:21:41.743 D/WindowManager( 1407): finishDrawingWindow: Window{dcb8ca u0 GoogleDiscoverWindow} mDrawState=DRAW_PENDING seqId=0\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:36698:10-21 11:21:41.744 I/SurfaceFlinger( 1169): id=299285 Removed b5309a8 ir.mouj/ir.mouj.MainActivity#299285 (172)\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:36699:10-21 11:21:41.745 I/ResourceManagerMetrics( 1480): pushConcurrentUsageReport: Concurrent Codec Usage Report for the Process[pid(14505): uid(10372)] is Peak { VideoDec[ HW: 3 ] \
-} Peak Pixels: 691200\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:36700:10-21 11:21:41.745 D/DisplayManagerService( 1407): Drop pending events for gone uid 10372\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:36701:10-21 11:21:41.746 V/APM_AudioPolicyManager( 1142): checkAndSetVolume: output 53, stream 3, index 15, devices 0x10000, volume 1.000000\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:36702:10-21 11:21:41.746 D/NavigationModeController( 2562): getCurrentUserContext: contextUser=0 currentUser=0\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:36746:10-21 11:21:41.754 I/MicModeManager( 1407): setCommunicationDevice() deviceType: 1\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:36747:10-21 11:21:41.754 I/MicModeManager( 1407): updateAudioDevice() audioMode: 0, curDevice: 1\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:36748:10-21 11:21:41.754 I/MicModeManager( 1407): isMicModeSupported() MicModeType: 0, audioMode: 0, curDevice: 1, translationState: false, dexState: false, smartViewState: false, \
-gameChatState: false, wifiCallState: false, videoCallState: false\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:36749:10-21 11:21:41.754 I/MicModeManager( 1407): updateMicModeSettings() disable\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:36750:10-21 11:21:41.756 I/Layer   ( 1169): Layer::reparent [Task=19718#299348] newParent : DefaultTaskDisplayArea_d0#12 , isRemovedFromCurrentState : 0 -------------------------\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:36751:10-21 11:21:41.756 D/WindowManager( 1407): SyncGroup 17563:  Unfinished container: ActivityRecord{462a246 u0 com.sec.android.app.launcher/.activities.LauncherActivity t17515} \
-mSyncState=2\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:36923:10-21 11:21:41.781 D/SimTrayProtectionViewModel( 2562): dismiss : isFoldedState()falseisRemoveSimtray() : true\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:36924:10-21 11:21:41.781 D/QSButtonsContainer( 2562): action:android.intent.action.CLOSE_SYSTEM_DIALOGS\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:36925:10-21 11:21:41.781 D/SecVolume.VolumePanelStore( 2562): dispatch [ACTION_DISMISS_REQUESTED with [STATE_NO_DISPATCH], currentAction={isFromOutside : true}, \
-currentState={activeStream=3, stream=3, isMediaDefaultEnabled : true, isHasVibrator : true, isSetupWizardComplete : true, isVoiceCapable : true, cutoutHeight : 56, timeOutControls : 0, stream : 3, ringerModeInternal : 2, \
-timeOut : 3000, earProtectLevel : 909, activeStream : 3, iconTargetState : 2, timeOutControlsText : 0, pinDevice : 0, iconCurrentState : 2, systemTimeNow : 625782977}\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:36926:10-21 11:21:41.783 D/SecVolume.VolumePanelStore( 2562):   > New State : [STATE_NO_DISPATCH]\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:36927:10-21 11:21:41.789 I/CameraService( 1449): onUidStateChanged: uid=10046, procState is changed. (1 -> 0)\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:36928:10-21 11:21:41.793 V/APM_AudioPolicyManager( 1142): setForceUse() usage 7, config 0, mPhoneState 0\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37104:10-21 11:21:41.988 I/HoneySpace.AppscreenPot( 2853): show() honeyState: com.honeyspace.sdk.AppScreen$Normal@bbdad9c, r8.n.gotoScreenWithAnimation(SourceFile:397)\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37105:10-21 11:21:41.988 I/HoneySpace.BackgroundViewAlphaUpdater( 2853): setAlpha: 0.60071045\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:37106:10-21 11:21:41.995 I/SDHMS:C ( 4699): SIOP:: AP:450 BAT:355 USB:0 CHG:419 PA:417 WIFI:412 BLK:0 SUBBAT:0 SKIN:386 SKINF:378 SKINB:386 LRP:386 LRF:378 LRB:386 \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37107:10-21 11:21:41.995 I/SDHMS:C ( 4699): MODEMQ:: MMWTHM:270(270) \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37108:10-21 11:21:41.995 I/HoneySpace.HomeView( 2853): onTouch event = 2, Touch controller: zb.c@d4ec856\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37109:10-21 11:21:41.996 I/HoneySpace.HoneyScreenManagerImpl( 2853): cancel transitionAnimator\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37335:10-21 11:21:42.325 D/CompatibilityChangeReporter( 1407): Compat change id reported: 261072174; UID 10332; state: ENABLED\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37336:10-21 11:21:42.329 V/ActivityThread(15453): Recovering failed rename /storage/emulated/0/Android/data/com.thecat.messenger/cache/000000000_999999_temp.f to \
-/storage/emulated/0/Android/data/com.thecat.messenger/files/The Cat/The Cat Images/000000000_999999.f\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:37337:10-21 11:21:42.355 E/audit   (  930): type=1400 audit(1792569102.352:820422): avc:  denied  { relabelfrom } for  pid=15453 comm="pool-9-thread-1" name="000000000_999999.f" \
-dev="dm-52" ino=403327 scontext=u:r:untrusted_app:s0:c76,c257,c512,c768 tcontext=u:object_r:media_rw_data_file:s0:c76,c257,c512,c768 tclass=file permissive=0 SEPF_SM-A528B_12_0001 audit_filtered\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:37338:10-21 11:21:42.357 V/ActivityThread(15453): Recovering failed rename /storage/emulated/0/Android/data/com.thecat.messenger/cache/000000000_999999_temp.f to \
-/storage/emulated/0/Android/data/com.thecat.messenger/files/The Cat/The Cat Video/000000000_999999.f\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:37339:10-21 11:21:42.357 E/audit   (  930): type=1400 audit(1792569102.352:820423): avc:  denied  { relabelfrom } for  pid=15453 comm="pool-9-thread-1" name="000000000_999999.f" \
-dev="dm-52" ino=389847 scontext=u:r:untrusted_app:s0:c76,c257,c512,c768 tcontext=u:object_r:media_rw_data_file:s0:c76,c257,c512,c768 tclass=file permissive=0 SEPF_SM-A528B_12_0001 audit_filtered\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37340:10-21 11:21:42.358 V/ActivityThread(15453): Recovering failed rename /storage/emulated/0/Android/data/com.thecat.messenger/cache/000000000_999999_temp.f to \
-/storage/emulated/0/Android/data/com.thecat.messenger/files/The Cat/The Cat Audio/000000000_999999.f\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:37341:10-21 11:21:42.359 E/audit   (  930): type=1400 audit(1792569102.356:820424): avc:  denied  { relabelfrom } for  pid=15453 comm="pool-9-thread-1" name="000000000_999999.f" \
-dev="dm-52" ino=389758 scontext=u:r:untrusted_app:s0:c76,c257,c512,c768 tcontext=u:object_r:media_rw_data_file:s0:c76,c257,c512,c768 tclass=file permissive=0 SEPF_SM-A528B_12_0001 audit_filtered\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37342:10-21 11:21:42.361 V/ActivityThread(15453): Recovering failed rename /storage/emulated/0/Android/data/com.thecat.messenger/cache/000000000_999999_temp.f to \
-/storage/emulated/0/Android/data/com.thecat.messenger/files/The Cat/The Cat Documents/000000000_999999.f\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:37343:10-21 11:21:42.361 E/audit   (  930): type=1400 audit(1792569102.356:820425): avc:  denied  { relabelfrom } for  pid=15453 comm="pool-9-thread-1" name="000000000_999999.f" \
-dev="dm-52" ino=413834 scontext=u:r:untrusted_app:s0:c76,c257,c512,c768 tcontext=u:object_r:media_rw_data_file:s0:c76,c257,c512,c768 tclass=file permissive=0 SEPF_SM-A528B_12_0001 audit_filtered\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37344:10-21 11:21:42.363 V/ActivityThread(15453): Recovering failed rename /storage/emulated/0/Android/data/com.thecat.messenger/cache/000000000_999999_temp.f to \
-/storage/emulated/0/Android/data/com.thecat.messenger/files/The Cat/The Cat Files/000000000_999999.f\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:37345:10-21 11:21:42.363 E/audit   (  930): type=1400 audit(1792569102.360:820426): avc:  denied  { relabelfrom } for  pid=15453 comm="pool-9-thread-1" name="000000000_999999.f" \
-dev="dm-52" ino=413976 scontext=u:r:untrusted_app:s0:c76,c257,c512,c768 tcontext=u:object_r:media_rw_data_file:s0:c76,c257,c512,c768 tclass=file permissive=0 SEPF_SM-A528B_12_0001 audit_filtered\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37346:10-21 11:21:42.365 V/ActivityThread(15453): Recovering failed rename /storage/emulated/0/Android/data/com.thecat.messenger/cache/000000000_999999_temp.f to \
-/storage/emulated/0/Android/data/com.thecat.messenger/files/The Cat/The Cat Stories/000000000_999999.f\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:37347:10-21 11:21:42.365 E/audit   (  930): type=1400 audit(1792569102.360:820427): avc:  denied  { relabelfrom } for  pid=15453 comm="pool-9-thread-1" name="000000000_999999.f" \
-dev="dm-52" ino=413738 scontext=u:r:untrusted_app:s0:c76,c257,c512,c768 tcontext=u:object_r:media_rw_data_file:s0:c76,c257,c512,c768 tclass=file permissive=0 SEPF_SM-A528B_12_0001 audit_filtered\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:37348:10-21 11:21:42.367 V/ActivityThread(15453): Recovering failed rename /storage/emulated/0/Android/data/com.thecat.messenger/cache/000000000_999999_temp.f to \
-/storage/emulated/0/Android/media/com.thecat.messenger/The Cat/The Cat Images/000000000_999999.f\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37349:10-21 11:21:42.371 D/CompatibilityChangeReporter( 1407): Compat change id reported: 461429441; UID 10332; state: DISABLED\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:37350:10-21 11:21:42.374 V/MediaProvider( 4479): isAppCloneUserPair failed. Users: 0 and 0\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:37351:10-21 11:21:42.375 W/MediaProvider( 4479): isAppCloneUserPair for user 0: false\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:37352:10-21 11:21:42.379 D/ConnectivityManager(15453): StackLog: [android.net.ConnectivityManager.sendRequestForNetwork(ConnectivityManager.java:4698)] \
+10-23 04:31:07.868 I/Layer   ( 1169): id=332853 removeFromCurrentState ActivityRecord{dd94413 u0 ir.mouj/.MainActivity t20011}#332853 (188)\
+10-23 04:31:07.868 I/Layer   ( 1169): id=332857 removeFromCurrentState 9ff5c4d ActivityRecordInputSink ir.mouj/.MainActivity#332857 (188)\
+10-23 04:31:07.868 I/Layer   ( 1169): id=332863 removeFromCurrentState aaa420b ir.mouj/ir.mouj.MainActivity#332863 (188)\
+10-23 04:31:07.869 I/Layer   ( 1169): id=332853 addToCurrentState ActivityRecord{dd94413 u0 ir.mouj/.MainActivity t20011}#332853 (188)\
+10-23 04:31:07.869 I/Layer   ( 1169): id=332857 addToCurrentState 9ff5c4d ActivityRecordInputSink ir.mouj/.MainActivity#332857 (188)\
+10-23 04:31:07.869 I/Layer   ( 1169): id=332863 addToCurrentState aaa420b ir.mouj/ir.mouj.MainActivity#332863 (188)\
+10-23 04:31:08.454 I/HoneySpace.SuggestedItemsFacade( 2853): DPS items : Mouj, ir.mouj/.MainActivity#UserHandle{0}\
+10-23 04:31:08.454 I/HoneySpace.SuggestedItemsFacade( 2853): filteredItem : ir.mouj/.MainActivity#UserHandle{0}\
+10-23 04:31:08.454 I/HoneySpace.SuggestedItemsFacade( 2853): item removed by filter - ir.mouj\
+10-23 04:31:08.481 I/HoneySpace.TaskListViewModel( 2853):  Task1 : [id=20011 windowingMode=1 user=0 lastActiveTime=1930128678] null, isCoverLauncherTask = false, isLocked = false - ir.mouj]\
+10-23 04:31:08.546 I/HoneySpace.TaskAdapter( 2853): attach [position: 1], taskData size: 17, item: ComponentInfo{ir.mouj/ir.mouj.MainActivity}, animReady: 2, firstBindingComplete: 3, view: 53ea263\
+10-23 04:31:08.547 I/HoneySpace.TaskDataRepositoryImpl( 2853): Request icon and label, id=20011, iconAndLabel: IconAndLabel(icon=android.graphics.Bitmap@b3ef789, label=Mouj), componentKey: ir.mouj/.MainActivity#UserHandle{0}\
+10-23 04:31:10.824 I/ActivityManager( 1407): Killing 18444:com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0/u0a392i457 (adj 920): remove task\
+10-23 04:31:10.825 I/ActivityManager( 1407): Killing 18389:ir.mouj/u0a392 (adj 1001): remove task\
+10-23 04:31:10.825 D/ActivityManager( 1407): [SD] user menu kill listen remove action name:ir.mouj uid:10392\
+10-23 04:31:10.825 D/ActivityManager( 1407): [SD] user menu kill listen remove action name:ir.mouj uid:10392\
+10-23 04:31:10.826 D/FreecessController( 1407): UFZ : ir.mouj(18389)\
+10-23 04:31:10.828 D/FreecessController( 1407): UFZ : ir.mouj(0), reason: Signal\
+10-23 04:31:10.832 D/FreecessController( 1407): ir.mouj(state: Initial -> Freezeable, Reason: Signal)\
+10-23 04:31:10.892 D/ConnectivityService( 1407): releasing NetworkRequest [ REQUEST id=74518, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10392 RequestorUid: 10392 RequestorPkg: ir.mouj \
+UnderlyingNetworks: Null] ] (release request)\
+10-23 04:31:10.892 I/WindowManager( 1407): WIN DEATH: Window{aaa420b u0 ir.mouj/ir.mouj.MainActivity}\
+10-23 04:31:10.892 W/InputManager-JNI( 1407): Input channel object 'aaa420b ir.mouj/ir.mouj.MainActivity (client)' was disposed without first being removed with the input manager!\
+10-23 04:31:10.893 V/WindowManager( 1407): Remove Window{aaa420b u0 ir.mouj/ir.mouj.MainActivity}: mSurfaceController=null mAnimatingExit=false mRemoveOnExit=false mHasSurface=false surfaceShowing=false animating=false \
+app-animation=false mDisplayFrozen=false callers=com.android.server.wm.WindowState$DeathRecipient.binderDied:3695 android.os.IBinder$DeathRecipient.binderDied:325 android.os.BinderProxy.sendDeathNotice:781 \<bottom of call \
+stack> \<bottom of call stack> \<bottom of call stack> \
+10-23 04:31:10.898 I/SurfaceFlinger( 1169): id=332857 Removed 9ff5c4d ActivityRecordInputSink ir.mouj/.MainActivity#332857 (181)\
+10-23 04:31:10.902 I/Layer   ( 1169): Layer::reparent [aaa420b ir.mouj/ir.mouj.MainActivity#332863] newParentHandle : null -------------------------\
+10-23 04:31:10.902 I/Layer   ( 1169): id=332863 removeFromCurrentState aaa420b ir.mouj/ir.mouj.MainActivity#332863 (182)\
+10-23 04:31:10.902 I/Layer   ( 1169): Layer::reparent [aaa420b ir.mouj/ir.mouj.MainActivity#332863] End -------------------------\
+10-23 04:31:10.903 I/SurfaceFlinger( 1169): id=332863 Removed aaa420b ir.mouj/ir.mouj.MainActivity#332863 (182)\
+10-23 04:31:10.910 I/Layer   ( 1169): Layer::reparent [ActivityRecord{dd94413 u0 ir.mouj/.MainActivity t20011}#332853] newParentHandle : null -------------------------\
+10-23 04:31:10.910 I/Layer   ( 1169): id=332853 removeFromCurrentState ActivityRecord{dd94413 u0 ir.mouj/.MainActivity t20011}#332853 (182)\
+10-23 04:31:10.911 I/Layer   ( 1169): id=332857 removeFromCurrentState 9ff5c4d ActivityRecordInputSink ir.mouj/.MainActivity#332857 (182)\
+10-23 04:31:10.911 I/Layer   ( 1169): Layer::reparent [ActivityRecord{dd94413 u0 ir.mouj/.MainActivity t20011}#332853] End -------------------------\
+10-23 04:31:10.911 I/Layer   ( 1169): id=332863 Destroyed aaa420b ir.mouj/ir.mouj.MainActivity#332863\
+10-23 04:31:10.911 I/SurfaceFlinger( 1169): id=332853 Removed ActivityRecord{dd94413 u0 ir.mouj/.MainActivity t20011}#332853 (181)\
+10-23 04:31:10.919 I/Layer   ( 1169): id=332853 Destroyed ActivityRecord{dd94413 u0 ir.mouj/.MainActivity t20011}#332853\
+10-23 04:31:10.919 I/Layer   ( 1169): id=332857 Destroyed 9ff5c4d ActivityRecordInputSink ir.mouj/.MainActivity#332857\
+10-23 04:31:11.057 W/system_server( 1407): ApkAssets: Deleting an ApkAssets object '\<empty> and /data/app/\~\~uaa3HopowzvwUpAUwktjFw==/ir.mouj-Ma1C_grOA7dpWcOTHXol_g==/base.apk' with 1 weak references\
+10-23 04:31:11.689 I/Pageboost( 1407): start alp : ir.mouj\
+10-23 04:31:11.689 I/Pageboost( 1407): alp for : ir.mouj , 0\
+10-23 04:31:11.690 I/ChimeraSystemEventListener( 1407): appLaunchIntent package name is: ir.mouj\
+10-23 04:31:11.690 E/pageboostd( 3449): alp start : app irmouj\
+10-23 04:31:11.691 E/pageboostd( 3449): irmouj, amt 10739712 scnt 1 fcnt 0\
+10-23 04:31:11.706 I/ActivityManager( 1407): Start proc 20843:ir.mouj/u0a392 for activelaunch {ir.mouj/ir.mouj.MainActivity}\
+10-23 04:31:11.706 D/DynamicHiddenApp_BGProtectManager( 1407): [SecIpm] it's a ML_TYPE_EMPTYPROCESS protected process ir.mouj\
+10-23 04:31:11.721 E/pageboostd( 3449): irmouj, amt 30138368 scnt 23 fcnt 46\
+10-23 04:31:11.721 E/pageboostd( 3449): alp end : app irmouj data_amount 40878080\
+10-23 04:31:11.722 I/ir.mouj (20843): Late-enabling -Xcheck:jni\
+10-23 04:31:11.723 D/ShellStartingWindow( 2562): preload Icon ir.mouj\
+10-23 04:31:11.740 I/ir.mouj (20843): Using generational CollectorTypeCC GC.\
+10-23 04:31:11.766 I/ChimeraSystemEventListener( 1407): appLaunchIntent package name is: ir.mouj\
+10-23 04:31:11.766 I/Pageboost( 1407): onAppLaunch : ir.mouj\
+10-23 04:31:11.772 V/WindowManager( 1407): Collecting in transition 19380: ActivityRecord{563bcb9 u0 ir.mouj/.MainActivity, caller=com.android.server.wm.Transition.collect:761 \
+com.android.server.wm.TransitionController.collect:935 com.android.server.wm.ActivityStarter.startActivityUnchecked:2376 com.android.server.wm.ActivityStarter.executeRequest:1953 \
+com.android.server.wm.ActivityStarter.execute:1093 \
+10-23 04:31:11.772 D/ActivityTaskManager( 1407): TaskLaunchParamsModifier:task=null activity=ActivityRecord{563bcb9 u0 ir.mouj/.MainActivity t-1} display-from-option=0 display-id=0 task-display-area-windowing-mode=1 \
+suggested-display-area=DefaultTaskDisplayArea_d0@210277884\
+10-23 04:31:11.773 D/ActivityTaskManager( 1407): TaskLaunchParamsModifier:task=null activity=ActivityRecord{563bcb9 u0 ir.mouj/.MainActivity t-1} display-from-option=0 display-id=0 task-display-area-windowing-mode=1 \
+suggested-display-area=DefaultTaskDisplayArea_d0@210277884 inherit-from-source=fullscreen non-freeform-task-display-area display-area=DefaultTaskDisplayArea_d0@210277884 default-portrait freeform-size-mismatch=Rect(81, 572 - \
+999, 1772)\
+10-23 04:31:11.776 D/ActivityTaskManager( 1407): TaskLaunchParamsModifier:task=Task{f0de8fe #20012 type=standard A=10392:ir.mouj} activity=ActivityRecord{563bcb9 u0 ir.mouj/.MainActivity t-1} display-from-option=0 display-id=0 \
+task-display-area-windowing-mode=1 suggested-display-area=DefaultTaskDisplayArea_d0@210277884 inherit-from-source=fullscreen non-freeform-task-display-area display-area=DefaultTaskDisplayArea_d0@210277884 default-portrait \
+freeform-size-mismatch=Rect(81, 572 - 999, 1772)\
+10-23 04:31:11.777 V/WindowManager( 1407): Collecting in transition 19380: Task{f0de8fe #20012 type=standard A=10392:ir.mouj}, caller=com.android.server.wm.Transition.collect:761 \
+com.android.server.wm.Transition.collectExistenceChange:944 com.android.server.wm.TransitionController.collectExistenceChange:985 com.android.server.wm.ActivityStarter.setNewTask:4727 \
+com.android.server.wm.ActivityStarter.startActivityInner:2944 \
+10-23 04:31:11.778 I/SurfaceFlinger( 1169): id=333040 createSurf, flag=84004, ActivityRecord{563bcb9 u0 ir.mouj/.MainActivity t20012}#333040\
+10-23 04:31:11.781 D/ActivityTaskManager( 1407): Add starting ActivityRecord{563bcb9 u0 ir.mouj/.MainActivity t20012}: typeParam=139 startingData=com.android.server.wm.SplashScreenStartingData@b7572ac\
+10-23 04:31:11.781 V/WindowManager( 1407): Added starting ActivityRecord{563bcb9 u0 ir.mouj/.MainActivity t20012}: startingWindow=null startingView=com.android.server.wm.StartingSurfaceController$StartingSurface@6fa6b75\
+10-23 04:31:11.782 V/WindowManager( 1407): Collecting in transition 19380: ActivityRecord{563bcb9 u0 ir.mouj/.MainActivity t20012}, caller=com.android.server.wm.Transition.collect:761 \
+com.android.server.wm.Transition.collectExistenceChange:944 com.android.server.wm.TransitionController.collectExistenceChange:985 com.android.server.wm.ActivityStarter.handleStartResult:2557 \
+com.android.server.wm.ActivityStarter.startActivityUnchecked:2384 \
+10-23 04:31:11.783 I/ActivityTaskManager( 1407): START u0 {act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=ir.mouj/.MainActivity bnds=[38,1707][289,2067]} with LAUNCH_MULTIPLE from uid \
+10138 (BAL_ALLOW_ALLOWLISTED_COMPONENT) result code=0\
+10-23 04:31:11.785 I/HoneySpace.SuggestedAppsRepositoryImpl( 2853): sendSuggestedAppsLaunchTarget: ComponentInfo{ir.mouj/ir.mouj.MainActivity}\
+10-23 04:31:11.785 V/WindowManagerShell( 2562): Transition requested: android.os.BinderProxy@8b670ab TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=20012 displayId=0 isRunning=true \
+baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=ir.mouj/.MainActivity } baseActivity=ComponentInfo{ir.mouj/ir.mouj.MainActivity} \
+topActivity=ComponentInfo{ir.mouj/ir.mouj.MainActivity} origActivity=null realActivity=ComponentInfo{ir.mouj/ir.mouj.MainActivity} numActivities=1 lastActiveTime=1930211019 supportsMultiWindow=true resizeMode=1 \
+isResizeable=true minWidth=-1 minHeight=-1 maxWidth=-1 maxHeight=-1 defaultMinSize=220 token=WCT{android.window\.IWindowContainerToken$Stub$Proxy@b444308} topActivityType=1 pictureInPictureParams=null \
+shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 88 - 0, 0) topActivityInfo=ActivityInfo{8ad2aa1 ir.mouj.MainActivity} \
+launchCookies=[android.os.BinderProxy@e3e64c6] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isSleeping=false topActivityInSizeCompat=false \
+topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 \
+topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden originallySupportedMultiWindow=true hasWallpaper=false topActivityInFixedAspectRatio=false rootAffinity=10392:ir.mouj \
+topActivityInDisplayCompat=false topActivityInBoundsCompat=false topActivityBounds=null singleTapFromLetterbox=false isTopTaskInStage=false topActivityUiMode=17 CoverLauncherWidgetTask=false CoverScreenTask=false \
+isAllowedSeamlessRotation=false isTopTransparentActivity=false hasPopOver=false}, remoteTransition = RemoteTransition { remoteTransition = android.window\.IRemoteTransition$Stub$Proxy@a696c87, appThread = \
+android.app.IApplicationThread$Stub$Proxy@55e87b4, debugName = QuickstepLaunch }, displayChange = null }\
+10-23 04:31:11.785 D/WindowManager( 1407): prepareSync \<SYNC_STATE_WAITING_FOR_DRAW>, mPrepareSyncSeqId=0, win=Window{f408b7b u0 Splash Screen ir.mouj}\
+10-23 04:31:11.786 I/HoneySpace.SALoggingUtils( 2853): SA Logging screenID: 201 eventId: 1001 detail: {PackageName=ir.mouj, det=3} value: -1\
+10-23 04:31:11.787 I/SurfaceFlinger( 1169): id=333041 createSurf, flag=84004, f408b7b Splash Screen ir.mouj#333041\
+10-23 04:31:11.787 V/WindowManager( 1407): addWindow: ActivityRecord{563bcb9 u0 ir.mouj/.MainActivity t20012} startingWindow=Window{f408b7b u0 Splash Screen ir.mouj}\
+10-23 04:31:11.789 I/InsetsController( 2562): onStateChanged: host=Splash Screen ir.mouj, from=android.view\.ViewRootImpl.setView:1753, state=InsetsState: {mDisplayFrame=Rect(0, 0 - 1080, 2400), \
+mDisplayCutout=DisplayCutout{insets=Rect(0, 88 - 0, 0) waterfall=Insets{left=0, top=0, right=0, bottom=0} boundingRect={Bounds=[Rect(0, 0 - 0, 0), Rect(512, 0 - 568, 88), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0)]} \
+cutoutPathParserInfo={CutoutPathParserInfo{displayWidth=1080 displayHeight=2400 physicalDisplayWidth=1080 physicalDisplayHeight=2400 density={2.8125} cutoutSpec={M 0,0 M 0,11.43427858034597 a \
+9.899054752987353,9.899054752987353 0 1,0 0,19.79810950597471 a 9.899054752987353,9.899054752987353 0 1,0 0,-19.79810950597471 Z @dp} rotation={0} scale={1.0} physicalPixelDisplaySizeRatio={1.0}}}}, \
+mRoundedCorners=RoundedCorners{[RoundedCorner{position=TopLeft, radius=0, center=Point(0, 0)}, RoundedCorner{position=TopRight, radius=0, center=Point(0, 0)}, RoundedCorner{position=BottomRight, radius=0, center=Point(0, 0)}, \
+RoundedCorner{position=BottomLeft, radius=0, center=Point(0, 0)}]}  mRoundedCornerFrame=Rect(0, 0 - 1080, 2400), mPrivacyIndicatorBounds=PrivacyIndicatorBounds {static bounds=Rect(0, 0 - 132, 88) rotation=0}, \
+mDisplayShape=DisplayShape{ spec=-311912193 displayWidth=1080 displayHeight=2400 physicalPixelDisplaySizeRatio=1.0 rotation=0 offsetX=0 offsetY=0 scale=1.0}, mSources= { InsetsSource: {e36b0001 mType=navigationBars \
+mFrame=[0,2256][1080,2400] mVisible=true mFlags=[]}, InsetsSource: {e36b0004 mType=systemGestures mFrame=[0,0][0,0] mVisible=true mFlags=[]}, InsetsSource: {e36b0005 mType=mandatorySystemGestures mFrame=[0,2256][1080,2400] \
+mVisible=true mFlags=[]}, InsetsSource: {e36b0006 mType=tappableElement mFrame=[0,2256][1080,2400] mVisible=true mFlags=[]}, InsetsSource: {e36b0024 mType=systemGestures mFrame=[0,0][0,0] mVisible=true mFlags=[]}, \
+InsetsSource: {27 mType=displayCutout mFrame=[0,0][1080,88] mVisible=true mFlags=[]}, InsetsSource: {5cd60000 mType=statusBars mFrame=[0,0][1080,88] mVisible=true mFlags=[]}, InsetsSource: {5cd60005 \
+mType=mandatorySystemGestures mFrame=[0,0][1080,124] mVisible=true mFlags=[]}, InsetsSource: {5cd60006 mType=tappableElement mFrame=[0,0][1080,88] mVisible=true mFlags=[]} }\
+10-23 04:31:11.789 I/ViewRootImpl@b7212fa[mouj]\( 2562): synced displayState. AttachInfo displayState=2\
+10-23 04:31:11.789 I/ViewRootImpl@b7212fa[mouj]\( 2562): setView = android.widget.FrameLayout@1664a23 TM=true\
+10-23 04:31:11.792 V/WindowManager( 1407): Collecting in transition 19380: ActivityRecord{563bcb9 u0 ir.mouj/.MainActivity t20012}, caller=com.android.server.wm.Transition.collect:761 \
+com.android.server.wm.TransitionController.collect:935 com.android.server.wm.ActivityRecord.setVisibility:6387 com.android.server.wm.ActivityRecord.setVisibility:6339 \
+com.android.server.wm.EnsureActivitiesVisibleHelper.makeVisibleAndRestartIfNeeded:337 \
+10-23 04:31:11.795 V/WindowManager( 1407): Relayout Window{f408b7b u0 Splash Screen ir.mouj}: viewVisibility=0 req=1080x2400 ty=3 d0\
+10-23 04:31:11.798 I/SurfaceFlinger( 1169): id=333042 createSurf, flag=44004, Splash Screen ir.mouj$\_2562#333042\
+10-23 04:31:11.798 D/WindowManager( 1407): makeSurface duration=2 name=Splash Screen ir.mouj$\_2562\
+10-23 04:31:11.800 D/WindowManager( 1407): rotationForOrientation, orientationSource=ActivityRecord{563bcb9 u0 ir.mouj/.MainActivity t20012}\
+10-23 04:31:11.801 D/WindowManager( 1407): rotationForOrientation, orientationSource=ActivityRecord{563bcb9 u0 ir.mouj/.MainActivity t20012}\
+10-23 04:31:11.802 D/WindowManager( 1407): rotationForOrientation, orientationSource=ActivityRecord{563bcb9 u0 ir.mouj/.MainActivity t20012}\
+10-23 04:31:11.802 D/WindowManager( 1407): rotationForOrientation, orientationSource=ActivityRecord{563bcb9 u0 ir.mouj/.MainActivity t20012}\
+10-23 04:31:11.802 D/WindowManager( 1407): rotationForOrientation, orientationSource=ActivityRecord{563bcb9 u0 ir.mouj/.MainActivity t20012}\
+10-23 04:31:11.802 I/InsetsController( 2562): onStateChanged: host=Splash Screen ir.mouj, from=android.view\.ViewRootImpl.relayoutWindow:10072, state=InsetsState: {mDisplayFrame=Rect(0, 0 - 1080, 2400), \
+mDisplayCutout=DisplayCutout{insets=Rect(0, 88 - 0, 0) waterfall=Insets{left=0, top=0, right=0, bottom=0} boundingRect={Bounds=[Rect(0, 0 - 0, 0), Rect(512, 0 - 568, 88), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0)]} \
+cutoutPathParserInfo={CutoutPathParserInfo{displayWidth=1080 displayHeight=2400 physicalDisplayWidth=1080 physicalDisplayHeight=2400 density={2.8125} cutoutSpec={M 0,0 M 0,11.43427858034597 a \
+9.899054752987353,9.899054752987353 0 1,0 0,19.79810950597471 a 9.899054752987353,9.899054752987353 0 1,0 0,-19.79810950597471 Z @dp} rotation={0} scale={1.0} physicalPixelDisplaySizeRatio={1.0}}}}, \
+mRoundedCorners=RoundedCorners{[RoundedCorner{position=TopLeft, radius=0, center=Point(0, 0)}, RoundedCorner{position=TopRight, radius=0, center=Point(0, 0)}, RoundedCorner{position=BottomRight, radius=0, center=Point(0, 0)}, \
+RoundedCorner{position=BottomLeft, radius=0, center=Point(0, 0)}]}  mRoundedCornerFrame=Rect(0, 0 - 1080, 2400), mPrivacyIndicatorBounds=PrivacyIndicatorBounds {static bounds=Rect(0, 0 - 132, 88) rotation=0}, \
+mDisplayShape=DisplayShape{ spec=-311912193 displayWidth=1080 displayHeight=2400 physicalPixelDisplaySizeRatio=1.0 rotation=0 offsetX=0 offsetY=0 scale=1.0}, mSources= { InsetsSource: {e36b0001 mType=navigationBars \
+mFrame=[0,2256][1080,2400] mVisible=true mFlags=[]}, InsetsSource: {e36b0004 mType=systemGestures mFrame=[0,0][0,0] mVisible=true mFlags=[]}, InsetsSource: {e36b0005 mType=mandatorySystemGestures mFrame=[0,2256][1080,2400] \
+mVisible=true mFlags=[]}, InsetsSource: {e36b0006 mType=tappableElement mFrame=[0,2256][1080,2400] mVisible=true mFlags=[]}, InsetsSource: {e36b0024 mType=systemGestures mFrame=[0,0][0,0] mVisible=true mFlags=[]}, \
+InsetsSource: {3 mType=ime mFrame=[0,0][0,0] mVisible=false mFlags=[]}, InsetsSource: {27 mType=displayCutout mFrame=[0,0][1080,88] mVisible=true mFlags=[]}, InsetsSource: {5cd60000 mType=statusBars mFrame=[0,0][1080,88] \
+mVisible=true mFlags=[]}, InsetsSource: {5cd60005 mType=mandatorySystemGestures mFrame=[0,0][1080,124] mVisible=true mFlags=[]}, InsetsSource: {5cd60006 mType=tappableElement mFrame=[0,0][1080,88] mVisible=true mFlags=[]} }\
+10-23 04:31:11.802 V/WindowManager( 1407): Collecting in transition 19380: ActivityRecord{563bcb9 u0 ir.mouj/.MainActivity t20012}, caller=com.android.server.wm.Transition.collect:761 \
+com.android.server.wm.TransitionController.collect:935 com.android.server.wm.ActivityRecord.setVisibility:6387 com.android.server.wm.ActivityRecord.setVisibility:6339 \
+com.android.server.wm.ActivityTaskSupervisor.realStartActivityLocked:941 \
+10-23 04:31:11.803 I/BLASTBufferQueue_Java( 2562): new BLASTBufferQueue, mName= ViewRootImpl@b7212fa[mouj] mNativeObject= 0xb40000755532d550 sc.mNativeObject= 0xb400007475330410 caller= \
+android.view\.ViewRootImpl.updateBlastSurfaceIfNeeded:3028 android.view\.ViewRootImpl.relayoutWindow:10131 android.view\.ViewRootImpl.performTraversals:4110 android.view\.ViewRootImpl.doTraversal:3288 \
+android.view\.ViewRootImpl$TraversalRunnable.run:11344 android.view\.Choreographer$CallbackRecord.run:1689 android.view\.Choreographer$CallbackRecord.run:1698 android.view\.Choreographer.doCallbacks:1153 \
+android.view\.Choreographer.doFrame:1079 android.view\.Choreographer$FrameDisplayEventReceiver.run:1646 \
+10-23 04:31:11.803 I/BLASTBufferQueue_Java( 2562): update, w= 1080 h= 2400 mName = ViewRootImpl@b7212fa[mouj] mNativeObject= 0xb40000755532d550 sc.mNativeObject= 0xb400007475330410 format= -3 caller= \
+android.graphics.BLASTBufferQueue.\<init>:89 android.view\.ViewRootImpl.updateBlastSurfaceIfNeeded:3028 android.view\.ViewRootImpl.relayoutWindow:10131 android.view\.ViewRootImpl.performTraversals:4110 \
+android.view\.ViewRootImpl.doTraversal:3288 android.view\.ViewRootImpl$TraversalRunnable.run:11344 \
+10-23 04:31:11.803 D/SGM:PkgDataHelper( 1407): notifyAppCreate(), pkgName: ir.mouj, userId: 0, sendRet: true\
+10-23 04:31:11.804 I/ViewRootImpl@b7212fa[mouj]\( 2562): Relayout returned: old=(0,0,1080,2400) new=(0,0,1080,2400) relayoutAsync=false req=(1080,2400)0 dur=11 res=0x403 s={true 0xb4000074f5432aa0} ch=true seqId=0\
+10-23 04:31:11.804 D/SGM:FgCheckThread( 1407): onLooperPrepared(), msg: MSG_APP_CREATE, pkgName: ir.mouj, userId: 0\
+10-23 04:31:11.804 D/SGM:FgCheckThread( 1407):   sendRunningComponentFocus(), pkgName: ir.mouj, userId: 0\
+10-23 04:31:11.804 I/ViewRootImpl@b7212fa[mouj]\( 2562): performConfigurationChange setNightDimText nightDimLevel=0\
+10-23 04:31:11.804 D/ViewRootImpl@b7212fa[mouj]\( 2562): mThreadedRenderer.initialize() mSurface={isValid=true 0xb4000074f5432aa0} hwInitialized=true\
+10-23 04:31:11.804 D/SGM:FgCheckThread( 1407): onLooperPrepared(), msg: MSG_TASK_FOCUSED, pkgName: ir.mouj, userId: 0\
+10-23 04:31:11.804 D/SGM:FgCheckThread( 1407):   handleTaskFocused(), pkgName: ir.mouj, userID:0\
+10-23 04:31:11.805 D/InputDispatcher( 1407): Focused application(0): ActivityRecord{563bcb9 u0 ir.mouj/.MainActivity t20012}\
+10-23 04:31:11.805 D/SGM:FgCheckThread( 1407):   handleResume(). pkgName: ir.mouj, userId: 0, isTunableApp: null\
+10-23 04:31:11.805 D/SGM:FgCheckThread( 1407): notifyFocusInOut(). of pkg: ir.mouj, type: 4, isTunableApp: false, userId: 0\
+10-23 04:31:11.805 D/SGM:FgCheckThread( 1407):   sendRunningComponentFocus(), pkgName: ir.mouj, userId: 0\
+10-23 04:31:11.805 D/SGM:FgCheckThread( 1407): onLooperPrepared(), msg: MSG_TASK_FOCUSED, pkgName: ir.mouj, userId: 0\
+10-23 04:31:11.805 D/SGM:FgCheckThread( 1407):   handleTaskFocused(), pkgName: ir.mouj, userID:0\
+10-23 04:31:11.805 D/ActivityTaskManager( 1407): scheduleTopResumedActivityChanged, onTop=true, r=ActivityRecord{563bcb9 u0 ir.mouj/.MainActivity t20012}, \
+caller=com.android.server.wm.ActivityTaskSupervisor.scheduleTopResumedActivityStateIfNeeded:2857 com.android.server.wm.ActivityTaskSupervisor.updateTopResumedActivityIfNeeded:2849 \
+com.android.server.wm.TaskFragment.setResumedActivity:579 com.android.server.wm.TaskFragment.onActivityStateChanged:903 com.android.server.wm.ActivityRecord.setState:6850 \
+com.android.server.wm.Task.minimalResumeActivityLocked:6192 \
+10-23 04:31:11.806 D/SGM:FgCheckThread( 1407):   handleResume(). pkgName: ir.mouj, userId: 0, isTunableApp: null\
+10-23 04:31:11.806 D/SGM:FgCheckThread( 1407): notifyFocusInOut(). of pkg: ir.mouj, type: 4, isTunableApp: false, userId: 0\
+10-23 04:31:11.809 V/WindowManager( 1407): Collecting in transition 19380: ActivityRecord{563bcb9 u0 ir.mouj/.MainActivity t20012}, caller=com.android.server.wm.Transition.collect:761 \
+com.android.server.wm.TransitionController.collect:935 com.android.server.wm.ActivityRecord.setVisibility:6387 com.android.server.wm.ActivityRecord.setVisibility:6339 \
+com.android.server.wm.ActivityRecord.completeResumeLocked:7434 \
+10-23 04:31:11.809 D/WindowManagerServiceExt( 1407): notifyOccludeChangeNotice: cn=ComponentInfo{ir.mouj/ir.mouj.MainActivity} occludesParent=true isInSplitScreenMode=false styleFloating=false \
+caller=com.android.server.wm.ActivityRecord.completeResumeLocked:7491 com.android.server.wm.Task.minimalResumeActivityLocked:6193 com.android.server.wm.ActivityTaskSupervisor.realStartActivityLocked:1158 \
+com.android.server.wm.ActivityTaskSupervisor.startSpecificActivity:1267 com.android.server.wm.TaskFragment.resumeTopActivity:1885 \
+10-23 04:31:11.811 D/WindowManager( 1407): SyncGroup 19380:  Unfinished container: Task{f0de8fe #20012 type=standard A=10392:ir.mouj} mSyncState=2\
+10-23 04:31:11.811 D/CoreBackPreview( 1407): Window{f408b7b u0 Splash Screen ir.mouj}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window\.IOnBackInvokedCallback$Stub$Proxy@dc26457, mPriority=0, \
+mIsAnimationCallback=false}\
+10-23 04:31:11.813 I/HoneySpace.TopTaskUseCase( 2853): topTasks 20012 ComponentInfo{ir.mouj/ir.mouj.MainActivity}\
+10-23 04:31:11.814 D/ViewRootImpl@b7212fa[mouj]\( 2562): reportNextDraw android.view\.ViewRootImpl.performTraversals:4718 android.view\.ViewRootImpl.doTraversal:3288 android.view\.ViewRootImpl$TraversalRunnable.run:11344 \
+android.view\.Choreographer$CallbackRecord.run:1689 android.view\.Choreographer$CallbackRecord.run:1698 \
+10-23 04:31:11.814 I/ViewRootImpl@b7212fa[mouj]\( 2562): Setup new sync=wmsSync-ViewRootImpl@b7212fa[mouj]#0\
+10-23 04:31:11.814 I/ViewRootImpl@b7212fa[mouj]\( 2562): Creating new active sync group ViewRootImpl@b7212fa[mouj]#1\
+10-23 04:31:11.815 I/ViewRootImpl@b7212fa[mouj]\( 2562): registerCallbacksForSync syncBuffer=false\
+10-23 04:31:11.818 I/ViewRootImpl@b7212fa[mouj]\( 2562): Received frameDrawingCallback syncResult=0 frameNum=1.\
+10-23 04:31:11.818 I/ViewRootImpl@b7212fa[mouj]\( 2562): mWNT: t=0xb4000075653fd4b0 mBlastBufferQueue=0xb40000755532d550 fn= 1 mRenderHdrSdrRatio=1.0 caller= android.view\.ViewRootImpl$8.onFrameDraw:13841 \
+android.view\.ThreadedRenderer$1.onFrameDraw:792 \<bottom of call stack> \
+10-23 04:31:11.818 I/ViewRootImpl@b7212fa[mouj]\( 2562): Setting up sync and frameCommitCallback\
+10-23 04:31:11.824 I/BLASTBufferQueue( 2562): [ViewRootImpl@b7212fa[mouj]#14600]\(f:0,a:0,s:0) onFrameAvailable the first frame is available\
+10-23 04:31:11.824 I/ViewRootImpl@b7212fa[mouj]\( 2562): Received frameCommittedCallback lastAttemptedDrawFrameNum=1 didProduceBuffer=true\
+10-23 04:31:11.825 I/ViewRootImpl@b7212fa[mouj]\( 2562): reportDrawFinished seqId=0\
+10-23 04:31:11.828 D/SGM:GameManager( 1407): identifyGamePackage. ir.mouj, mCurrentUserId: 0, callerUserId: 0, callingMethodInfo: com.samsung.android.game.SemGameManager.isGamePackage(SemGameManager.java:109)\
+10-23 04:31:11.828 D/SGM:PkgDataHelper( 1407): getGamePkgData(). ir.mouj\
+10-23 04:31:11.828 D/SGM:SemGameManager( 1407): isGamePackage(), pkgName=ir.mouj, ret=false\
+10-23 04:31:11.830 I/Edge.ActivityUtils( 2853): HomePackage : com.sec.android.app.launcher, resumePackageName : ir.mouj\
+10-23 04:31:11.831 I/GameSDK@LifeCycle( 1407): noteResumeComponent(): package name  : ir.mouj\
+10-23 04:31:11.831 D/SGM:FgCheckThread( 1407): noteResumeComponent(), received pkgName: ir.mouj, userId: 0\
+10-23 04:31:11.831 D/SGM:FgCheckThread( 1407): onLooperPrepared(), msg: MSG_APP_RESUME, pkgName: ir.mouj, userid: 0\
+10-23 04:31:11.831 D/WindowManager( 1407): finishDrawingWindow: Window{f408b7b u0 Splash Screen ir.mouj} mDrawState=DRAW_PENDING seqId=0\
+10-23 04:31:11.831 V/WindowManager( 1407): Finishing drawing window Window{f408b7b u0 Splash Screen ir.mouj}: mDrawState=DRAW_PENDING\
+10-23 04:31:11.831 V/WindowManager( 1407): Draw state now committed in Window{f408b7b u0 Splash Screen ir.mouj}\
+10-23 04:31:11.831 D/SGM:FgCheckThread( 1407):   handleResume(). pkgName: ir.mouj, userId: 0, isTunableApp: null\
+10-23 04:31:11.831 D/SGM:FgCheckThread( 1407): notifyFocusInOut(). of pkg: ir.mouj, type: 4, isTunableApp: false, userId: 0\
+10-23 04:31:11.834 V/WindowManager( 1407): performShowLocked: mDrawState=HAS_DRAWN in Window{f408b7b u0 Splash Screen ir.mouj}\
+10-23 04:31:11.834 V/WindowManager( 1407): Start calculating TransitionInfo based on participants: {WallpaperWindowToken{9d2962 token=android.os.Binder@1f26057}, ActivityRecord{462a246 u0 \
+com.sec.android.app.launcher/.activities.LauncherActivity t17515}, ActivityRecord{563bcb9 u0 ir.mouj/.MainActivity t20012}, Task{f0de8fe #20012 type=standard A=10392:ir.mouj}}\
+10-23 04:31:11.834 V/WindowManager( 1407):   Final targets: [Task{f0de8fe #20012 type=standard A=10392:ir.mouj}, Task{dbae8f5 #1 type=home}]\
+10-23 04:31:11.835 I/SurfaceControl( 1407): show, t=StartTransaction_SyncId<19380>, sc=Surface(name=ActivityRecord{563bcb9 u0 ir.mouj/.MainActivity t20012})/@0xd048dae, \
+caller=com.android.server.wm.Transition.onTransactionReady:2000 com.android.server.wm.BLASTSyncEngine$SyncGroup.finishNow:315 com.android.server.wm.BLASTSyncEngine$SyncGroup.tryFinish:242 \
+com.android.server.wm.BLASTSyncEngine$SyncGroup.-$$Nest$mtryFinish:0 com.android.server.wm.BLASTSyncEngine.onSurfacePlacement:675 com.android.server.wm.RootWindowContainer.performSurfacePlacementNoTrace:990 \
+10-23 04:31:11.835 V/WindowManager( 1407):         {WCT{RemoteToken{13e1be5 Task{f0de8fe #20012 type=standard A=10392:ir.mouj}}} m=OPEN f=NONE leash=Surface(name=Task=20012)/@0xaf874f sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - \
+1080, 2400) d=0 dim=true inset=Rect(0, 88 - 0, 144)},\
+10-23 04:31:11.837 V/WindowManager( 1407): Sent Transition #19380 createdAt=█▒█░-█▓█│ █░█┤:█│█▒:█▒█▒.█╖█╖█▓ via request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=20012 displayId=0 \
+isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=ir.mouj/.MainActivity } baseActivity=ComponentInfo{ir.mouj/ir.mouj.MainActivity} \
+topActivity=ComponentInfo{ir.mouj/ir.mouj.MainActivity} origActivity=null realActivity=ComponentInfo{ir.mouj/ir.mouj.MainActivity} numActivities=1 lastActiveTime=1930211019 supportsMultiWindow=true resizeMode=1 \
+isResizeable=true minWidth=-1 minHeight=-1 maxWidth=-1 maxHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{13e1be5 Task{f0de8fe #20012 type=standard A=10392:ir.mouj}}} topActivityType=1 pictureInPictureParams=null \
+shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 88 - 0, 0) topActivityInfo=ActivityInfo{c0fd6ba ir.mouj.MainActivity} \
+launchCookies=[android.os.BinderProxy@407496b] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isSleeping=false topActivityInSizeCompat=false \
+topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 \
+topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden originallySupportedMultiWindow=true hasWallpaper=false topActivityInFixedAspectRatio=false rootAffinity=10392:ir.mouj \
+topActivityInDisplayCompat=false topActivityInBoundsCompat=false topActivityBounds=null singleTapFromLetterbox=false isTopTaskInStage=false topActivityUiMode=17 CoverLauncherWidgetTask=false CoverScreenTask=false \
+isAllowedSeamlessRotation=false isTopTransparentActivity=false hasPopOver=false}, remoteTransition = RemoteTransition { remoteTransition = android.window\.IRemoteTransition$Stub$Proxy@33b0cc8, appThread = \
+android.app.IApplicationThread$Stub$Proxy@8b99161, debugName = QuickstepLaunch }, displayChange = null }\
+10-23 04:31:11.837 V/WindowManager( 1407):         {WCT{RemoteToken{13e1be5 Task{f0de8fe #20012 type=standard A=10392:ir.mouj}}} m=OPEN f=NONE leash=Surface(name=Task=20012)/@0xaf874f sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - \
+1080, 2400) d=0 dim=true inset=Rect(0, 88 - 0, 144)},\
+10-23 04:31:11.840 I/SurfaceFlinger( 1169): id=333044 createSurf, flag=84000, 4a03f03 ActivityRecordInputSink ir.mouj/.MainActivity#333044\
+10-23 04:31:11.847 I/Layer   ( 1169): Layer [Splash Screen ir.mouj$\_2562#333042] hidden!! flag(0)\
+10-23 04:31:11.847 I/Layer   ( 1169): Layer [f408b7b Splash Screen ir.mouj#333041] hidden!! flag(0)\
+10-23 04:31:11.848 I/Layer   ( 1169): Layer [ActivityRecord{563bcb9 u0 ir.mouj/.MainActivity t20012}#333040] hidden!! flag(0)\
+10-23 04:31:11.879 D/SurfaceFlinger( 1169):      CLIENT | 0xb400007ac1662030 | 0100 | RGBA_8888    |    0.0 1023.0 1080.0 2103.0 |   67 1762  263 1958 | Splash Screen ir.mouj$\_2562#333042\
+10-23 04:31:11.950 D/MdnieScenarioControlService( 1407):  packageName : ir.mouj    className : ir.mouj.MainActivity\
+10-23 04:31:12.114 D/nativeloader(20843): Configuring clns-4 for other apk /data/app/\~\~uaa3HopowzvwUpAUwktjFw==/ir.mouj-Ma1C_grOA7dpWcOTHXol_g==/base.apk. target_sdk_version=36, uses_libraries=, \
+library_path=/data/app/\~\~uaa3HopowzvwUpAUwktjFw==/ir.mouj-Ma1C_grOA7dpWcOTHXol_g==/lib/arm64:/data/app/\~\~uaa3HopowzvwUpAUwktjFw==/ir.mouj-Ma1C_grOA7dpWcOTHXol_g==/base.apk!/lib/arm64-v8a, \
+permitted_path=/data:/mnt/expand:/data/user/0/ir.mouj\
+10-23 04:31:12.120 I/Layer   ( 1169): id=333040 removeFromCurrentState ActivityRecord{563bcb9 u0 ir.mouj/.MainActivity t20012}#333040 (182)\
+10-23 04:31:12.120 I/Layer   ( 1169): id=333044 removeFromCurrentState 4a03f03 ActivityRecordInputSink ir.mouj/.MainActivity#333044 (182)\
+10-23 04:31:12.120 I/Layer   ( 1169): id=333041 removeFromCurrentState f408b7b Splash Screen ir.mouj#333041 (182)\
+10-23 04:31:12.120 I/Layer   ( 1169): id=333042 removeFromCurrentState Splash Screen ir.mouj$\_2562#333042 (182)\
+10-23 04:31:12.120 I/Layer   ( 1169): id=333040 addToCurrentState ActivityRecord{563bcb9 u0 ir.mouj/.MainActivity t20012}#333040 (182)\
+10-23 04:31:12.120 I/Layer   ( 1169): id=333044 addToCurrentState 4a03f03 ActivityRecordInputSink ir.mouj/.MainActivity#333044 (182)\
+10-23 04:31:12.120 I/Layer   ( 1169): id=333041 addToCurrentState f408b7b Splash Screen ir.mouj#333041 (182)\
+10-23 04:31:12.120 I/Layer   ( 1169): id=333042 addToCurrentState Splash Screen ir.mouj$\_2562#333042 (182)\
+10-23 04:31:12.120 D/InsetsSourceProvider( 1407): updateControlForTarget: control=InsetsSourceControl: {5cd60000 mType=statusBars initiallyVisible mSurfacePosition=Point(0, 0) mInsetsHint=Insets{left=0, top=88, right=0, \
+bottom=0}}, target=Window{f408b7b u0 Splash Screen ir.mouj}, from=com.android.server.wm.InsetsStateController.onControlTargetChanged:358 com.android.server.wm.InsetsStateController.onBarControlTargetChanged:324 \
+com.android.server.wm.InsetsPolicy.updateBarControlTarget:173 com.android.server.wm.InsetsPolicy.updateSystemBars:805 com.android.server.wm.DisplayPolicy.updateSystemBarsLw:3429 \
+10-23 04:31:12.121 D/InsetsSourceProvider( 1407): updateControlForTarget: control=InsetsSourceControl: {e36b0001 mType=navigationBars initiallyVisible mSurfacePosition=Point(0, 2256) mInsetsHint=Insets{left=0, top=0, right=0, \
+bottom=144}}, target=Window{f408b7b u0 Splash Screen ir.mouj}, from=com.android.server.wm.InsetsStateController.onControlTargetChanged:358 com.android.server.wm.InsetsStateController.onBarControlTargetChanged:327 \
+com.android.server.wm.InsetsPolicy.updateBarControlTarget:173 com.android.server.wm.InsetsPolicy.updateSystemBars:805 com.android.server.wm.DisplayPolicy.updateSystemBarsLw:3429 \
+10-23 04:31:12.122 D/WindowManager( 1407): updateSystemBarAttributes: displayId=0, win=Window{f408b7b u0 Splash Screen ir.mouj}, navColorWin=Window{f408b7b u0 Splash Screen ir.mouj}, focusedCanBeNavColorWin=false, behavior=1, \
+appearance=24, statusBarAppearanceRegions=[AppearanceRegion{LIGHT_STATUS_BARS bounds=[0,0][1080,2400]}], requestedVisibilities=-9, from=com.android.server.wm.DisplayPolicy.finishPostLayoutPolicyLw:2324 \
+com.android.server.wm.DisplayContent.applySurfaceChangesTransaction:6130 com.android.server.wm.RootWindowContainer.applySurfaceChangesTransaction:1180 \
+10-23 04:31:12.124 D/SamsungLightBarControlHelper( 2562): onStatusBarAppearanceChanged() -  sbModeChanged:false, statusBarMode:0, barState:MODE_TRANSPARENT, isKeyguardShowing:false, navbarColorManagedByIme:false, \
+stackAppearanceChanged:true, (AppearanceRegion{LIGHT_STATUS_BARS bounds=[0,0][1080,2400]}, ), packageName:ir.mouj\
+10-23 04:31:12.124 D/NavigationBar( 2562): onSystemBarAttributesChanged() -  displayId:0, appearance:24, packageName: ir.mouj (APPEARANCE_LIGHT_STATUS_BARS APPEARANCE_LIGHT_NAVIGATION_BARS ), navbarColorManagedByIme:false\
+10-23 04:31:12.124 D/SamsungLightBarControlHelper( 2562): updateNavigationBar (BLACK button) isLightOpaque:false, hasLightNavigationBarFlag:true, packageName:ir.mouj, DirectReplying:false, NavBarColorMangedByIme:false, \
+ForceDarkForScrim:false, QsCustomizing:false, PanelHasWhiteBg:true\
+10-23 04:31:12.125 D/SurfaceFlinger( 1169):      DEVICE | 0xb400007ac1662030 | 0100 | RGBA_8888    |    0.0    0.0 1080.0 2400.0 |    0    0 1080 2400 | Splash Screen ir.mouj$\_2562#333042\
+10-23 04:31:12.126 I/InsetsSourceConsumer( 2562): applyRequestedVisibilityToControl: visible=true, type=statusBars, host=Splash Screen ir.mouj\
+10-23 04:31:12.127 I/InsetsSourceConsumer( 2562): applyRequestedVisibilityToControl: visible=true, type=navigationBars, host=Splash Screen ir.mouj\
+10-23 04:31:12.145 V/GraphicsEnvironment(20843): ANGLE GameManagerService for ir.mouj: false\
+10-23 04:31:12.145 V/GraphicsEnvironment(20843): ir.mouj is not listed in per-application setting\
+10-23 04:31:12.146 D/SamsungLightBarControlHelper( 2562): updateStatusBar (BLACK icon) numStacks:1, StatusBarMode:MODE_TRANSPARENT, lightBarBounds:[Rect(0, 0 - 1080, 2400)], StatusBarState:SHADE, packageName:ir.mouj, \
+isWhiteKeyguardStatusBar:false\
+10-23 04:31:12.361 I/SurfaceFlinger( 1169): id=333050 createSurf, flag=84004, 79316aa ir.mouj/ir.mouj.MainActivity#333050\
+10-23 04:31:12.364 I/InsetsController(20843): onStateChanged: host=ir.mouj/ir.mouj.MainActivity, from=android.view\.ViewRootImpl.setView:1753, state=InsetsState: {mDisplayFrame=Rect(0, 0 - 1080, 2400), \
+mDisplayCutout=DisplayCutout{insets=Rect(0, 88 - 0, 0) waterfall=Insets{left=0, top=0, right=0, bottom=0} boundingRect={Bounds=[Rect(0, 0 - 0, 0), Rect(512, 0 - 568, 88), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0)]} \
+cutoutPathParserInfo={CutoutPathParserInfo{displayWidth=1080 displayHeight=2400 physicalDisplayWidth=1080 physicalDisplayHeight=2400 density={2.8125} cutoutSpec={M 0,0 M 0,11.43427858034597 a \
+9.899054752987353,9.899054752987353 0 1,0 0,19.79810950597471 a 9.899054752987353,9.899054752987353 0 1,0 0,-19.79810950597471 Z @dp} rotation={0} scale={1.0} physicalPixelDisplaySizeRatio={1.0}}}}, \
+mRoundedCorners=RoundedCorners{[RoundedCorner{position=TopLeft, radius=0, center=Point(0, 0)}, RoundedCorner{position=TopRight, radius=0, center=Point(0, 0)}, RoundedCorner{position=BottomRight, radius=0, center=Point(0, 0)}, \
+RoundedCorner{position=BottomLeft, radius=0, center=Point(0, 0)}]}  mRoundedCornerFrame=Rect(0, 0 - 1080, 2400), mPrivacyIndicatorBounds=PrivacyIndicatorBounds {static bounds=Rect(0, 0 - 132, 88) rotation=0}, \
+mDisplayShape=DisplayShape{ spec=-311912193 displayWidth=1080 displayHeight=2400 physicalPixelDisplaySizeRatio=1.0 rotation=0 offsetX=0 offsetY=0 scale=1.0}, mSources= { InsetsSource: {e36b0001 mType=navigationBars \
+mFrame=[0,2256][1080,2400] mVisible=true mFlags=[]}, InsetsSource: {e36b0004 mType=systemGestures mFrame=[0,0][0,0] mVisible=true mFlags=[]}, InsetsSource: {e36b0005 mType=mandatorySystemGestures mFrame=[0,2256][1080,2400] \
+mVisible=true mFlags=[]}, InsetsSource: {e36b0006 mType=tappableElement mFrame=[0,2256][1080,2400] mVisible=true mFlags=[]}, InsetsSource: {e36b0024 mType=systemGestures mFrame=[0,0][0,0] mVisible=true mFlags=[]}, \
+InsetsSource: {27 mType=displayCutout mFrame=[0,0][1080,88] mVisible=true mFlags=[]}, InsetsSource: {5cd60000 mType=statusBars mFrame=[0,0][1080,88] mVisible=true mFlags=[]}, InsetsSource: {5cd60005 \
+mType=mandatorySystemGestures mFrame=[0,0][1080,124] mVisible=true mFlags=[]}, InsetsSource: {5cd60006 mType=tappableElement mFrame=[0,0][1080,88] mVisible=true mFlags=[]} }\
+10-23 04:31:12.370 I/Layer   ( 1169): Layer [79316aa ir.mouj/ir.mouj.MainActivity#333050] hidden!! flag(0)\
+10-23 04:31:12.541 I/WebViewFactory(20843): Loading com.google.android.webview version 155.0.8059.43 (code 805904303)\
+10-23 04:31:12.548 D/nativeloader(20843): Configuring clns-5 for other apk /data/app/\~\~kf2NPmrLJcwf9PWe2r26-A==/com.google.android.webview-TMYs5F1SyPOPmKuyx3HjiA==/base.apk. target_sdk_version=37, uses_libraries=, \
+library_path=/data/app/\~\~kf2NPmrLJcwf9PWe2r26-A==/com.google.android.webview-TMYs5F1SyPOPmKuyx3HjiA==/lib/arm64:/data/app/\~\~kf2NPmrLJcwf9PWe2r26-A==/com.google.android.webview-TMYs5F1SyPOPmKuyx3HjiA==/base.apk!/lib/arm64-v8a, \
+permitted_path=/data:/mnt/expand\
+10-23 04:31:12.583 D/nativeloader(20843): Load /data/app/\~\~kf2NPmrLJcwf9PWe2r26-A==/com.google.android.webview-TMYs5F1SyPOPmKuyx3HjiA==/base.apk!/lib/arm64-v8a/libwebviewchromium.so using class loader ns clns-5 \
+(caller=/data/app/\~\~kf2NPmrLJcwf9PWe2r26-A==/com.google.android.webview-TMYs5F1SyPOPmKuyx3HjiA==/base.apk): ok\
+10-23 04:31:12.585 D/nativeloader(20843): Load /system/lib64/libwebviewchromium_plat_support.so using class loader ns clns-5 \
+(caller=/data/app/\~\~kf2NPmrLJcwf9PWe2r26-A==/com.google.android.webview-TMYs5F1SyPOPmKuyx3HjiA==/base.apk): ok\
+10-23 04:31:12.588 I/chromium(20843): [1023/043112.587958:INFO:android_webview/browser/variations/variations_seed_loader.cc:63] Failed to open file for reading.: No such file or directory (2)\
+10-23 04:31:12.595 D/WindowManager( 1407): rotationForOrientation, orientationSource=ActivityRecord{563bcb9 u0 ir.mouj/.MainActivity t20012}\
+10-23 04:31:12.633 I/ActivityManager( 1407): Start proc 20919:com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0/u0i458 for  \
+{ir.mouj/org.chromium.content.app.SandboxedProcessService0:0}\
+10-23 04:31:12.633 I/DynamicHiddenApp_BGProtectManager( 1407): check webview name : com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0check hostingname webview : \
+{ir.mouj/org.chromium.content.app.SandboxedProcessService0:0}\
+10-23 04:31:12.668 I/cr_WebViewApkApp(20919): version=155.0.8059.43 (805904303) minSdkVersion=29 processName=com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0 splits=\<none>\
+10-23 04:31:12.709 D/ConnectivityManager(20843): StackLog: [android.net.ConnectivityManager.sendRequestForNetwork(ConnectivityManager.java:4698)] \
 [android.net.ConnectivityManager.sendRequestForNetwork(ConnectivityManager.java:4867)] [android.net.ConnectivityManager.registerDefaultNetworkCallbackForUid(ConnectivityManager.java:5427)] \
-[android.net.ConnectivityManager.registerDefaultNetworkCallback(ConnectivityManager.java:5395)] [android.net.ConnectivityManager.registerDefaultNetworkCallback(ConnectivityManager.java:5369)] \
-[com.google.android.exoplayer2.util.Util$$ExternalSyntheticApiModelOutline0.m(D8$$SyntheticClass:0)] [org.telegram.messenger.ApplicationLoader.ensureCurrentNetworkGet(SourceFile:515)] \
-[org.telegram.messenger.ApplicationLoader.isConnectedOrConnectingToWiFi(SourceFile:536)] [org.telegram.messenger.ApplicationLoader.getCurrentNetworkType(SourceFile:608)] \
-[org.telegram.tgnet.ConnectionsManager.init(SourceFile:670)] [org.telegram.tgnet.ConnectionsManager.\<init>(SourceFile:264)] [org.telegram.tgnet.ConnectionsManager.getInstance(SourceFile:195)] \
-[org.telegram.messenger.AccountInstance.getConnectionsManager(SourceFile:54)] [org.telegram.messenger.BaseController.getConnectionsManager(SourceFile:41)] \
-[org.telegram.messenger.MessagesStorage.lambda$loadUnreadMessages$77$org-telegram-messenger-MessagesStorage(SourceFile:3807)] [org.telegram.messenger.MessagesStorage$$ExternalSyntheticLambda108.run(D8$$SyntheticClass:0)]\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37353:10-21 11:21:42.382 D/ConnectivityService( 1407): requestNetwork for uid/pid:10332/15453 activeRequest: null callbackRequest: 66736 [NetworkRequest [ REQUEST id=66737, [ \
-Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10332 RequestorUid: 10332 RequestorPkg: com.thecat.messenger UnderlyingNetworks: Null] ]] callback flags: 0 order: 2147483647 isUidTracked: false \
-declaredMethods: AVAIL|NC\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37354:10-21 11:21:42.382 D/ConnectivityService( 1407):    accepting network in place of null for NetworkRequest [ REQUEST id=66737, [ Capabilities: \
-INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10332 RequestorUid: 10332 RequestorPkg: com.thecat.messenger UnderlyingNetworks: Null] ]\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37355:10-21 11:21:42.383 D/ConnectivityService( 1407): Rematched networks [computed █▒ms] [applied █░ms] [issued █▒]\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37363:10-21 11:21:42.386 E/audit   (  930): type=1400 audit(1792569102.380:820428): avc:  denied  { ioctl } for  pid=18970 comm="lowpool[1495]" \
-path="/data/data/com.google.android.gms/databases/ns.db" dev="dm-52" ino=7183 ioctlcmd=0xf522 scontext=u:r:gmscore_app:s0:c512,c768 tcontext=u:object_r:privapp_data_file:s0:c512,c768 tclass=file permissive=0 \
-SEPF_SM-A528B_12_0001 audit_filtered\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37364:10-21 11:21:42.393 D/CompatibilityChangeReporter( 1407): Compat change id reported: 161145287; UID 10233; state: ENABLED\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:37365:10-21 11:21:42.400 W/SQLiteLog( 4479): (28) walCheckpoint: eMode(0), mxFrame(269), /data/data/com.google.android.providers.media.module/databases/external.db-wal\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37366:10-21 11:21:42.401 D/SyncManager( 1407): userId - 0 auto - true\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:37367:10-21 11:21:42.402 I/MediaProvider( 4479): Deleted 1 0 0 0 0 0 0 items on external_primary due to com.thecat.messenger\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37368:10-21 11:21:42.405 I/ActivityManager( 1407): Changes in 10065 19 to 5, 0 to 56\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:37369:10-21 11:21:42.407 V/ActivityThread(15453): Recovering failed rename /storage/emulated/0/Android/data/com.thecat.messenger/cache/000000000_999999_temp.f to \
-/storage/emulated/0/Android/media/com.thecat.messenger/The Cat/The Cat Video/000000000_999999.f\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37370:10-21 11:21:42.408 W/ExternalStorage(13590): unknown method passed to call(): revoke_uri_permission\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:37371:10-21 11:21:42.414 V/MediaProvider( 4479): isAppCloneUserPair failed. Users: 0 and 0\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:37372:10-21 11:21:42.414 W/MediaProvider( 4479): isAppCloneUserPair for user 0: false\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37373:10-21 11:21:42.414 I/UriTaskContentObserver(18970): (REDACTED) Throttling content uri change event for %s\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37374:10-21 11:21:42.422 I/NetworkScheduler.Stats(18970): (REDACTED) Task %s/%s started execution. cause:%s exec_start_elapsed_seconds: %s\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37375:10-21 11:21:42.428 I/NetworkScheduler.Stats(18970): (REDACTED) Task %s/%s finished executing. cause:%s result: %s elapsed_millis: %s uptime_millis: %s \
-exec_start_elapsed_seconds: %s\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37377:10-21 11:21:42.430 I/UriTaskContentObserver(18970): (REDACTED) Throttling content uri change event for %s\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37378:10-21 11:21:42.439 I/sensors-hal( 1086): handle_sns_std_sensor_event:231, [SSC_LIGHT] P: \
-890(833),als:1323,green:200,ir:75,delta_avg:0,delta_max:116,stdev:14,stdev_per_4sample:17,magig_code or itime:384\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:37379:10-21 11:21:42.450 I/MediaProvider( 4479): Deleted 1 0 0 0 0 0 0 items on external_primary due to com.thecat.messenger\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37380:10-21 11:21:42.450 D/SyncManager( 1407): userId - 0 auto - true\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37381:10-21 11:21:42.454 W/libc    (15453): Access denied finding property "qemu.hw\.mainkeys"\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37382:10-21 11:21:42.454 W/libc    (15453): Access denied finding property "qemu.sf.lcd_density"\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37415:10-21 11:21:42.843 D/FreecessController( 1407): BG freezed, skip OLAF unfreeze for (dev.hexasoftware.v2box, 10297).\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37416:10-21 11:21:42.928 I/HYPER-HAL( 1091): [RequestManager.cpp]releaseLocked(): Released ID : 2354365\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:37417:10-21 11:21:42.970 I/SCS@AiSearch user 0(  782): (ObserverWorker::AOSP_MP) [main] entering in startWork triggered by [content://media/external/file/1000111654, \
-content://media/external/file/1000111656]\():  \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37418:10-21 11:21:42.970 I/SCS@AiSearch user 0(  782): (BaseCollector::AOSP_MP) [main] entering in onChange():  \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37419:10-21 11:21:42.970 I/SCS@AiSearch user 0(  782): (BaseCollector::AOSP_MP) [AOSP_MP-0] entering in collectChanges():  \
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37420:10-21 11:21:42.976 D/PackageManager( 1407): setEnabledSetting : userId = 0 packageName = com.samsung.android.scs cmp = \
-androidx.work.impl.background.systemalarm.RescheduleReceiver newState = 1 callingPackage = com.samsung.android.scs\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37667:10-21 11:21:43.409 I/BadgeCountReceiver(13613): packageName: com.thecat.messenger, className: org.telegram.messenger.DefaultIcon, count: 0\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37668:10-21 11:21:43.409 I/BadgeProvider(13613): query, [selection] : null\
-\> C:\Users\404pc\Desktop\mouj-video-log.txt:37669:10-21 11:21:43.412 I/BadgeProvider(13613): query, [selection] : package=?\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37670:10-21 11:21:43.413 I/BadgeProvider(13613): sendNotify entered. [uri] : content://com.sec.badge/apps\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37671:10-21 11:21:43.413 I/BadgeProvider(13613): sendNotify, [notify] : null\
-&#x20; C:\Users\404pc\Desktop\mouj-video-log.txt:37672:10-21 11:21:43.413 I/BadgeProvider(13613): update, getCallingPackage() : com.sec.android.provider.badge\
+[android.net.ConnectivityManager.registerDefaultNetworkCallback(ConnectivityManager.java:5395)] [WV.qj1.h(chromium-SystemWebViewGoogle6432.aab-stable-805904303:27)] \
+[WV.pj1.f(chromium-SystemWebViewGoogle6432.aab-stable-805904303:84)] [WV.pj1.a(chromium-SystemWebViewGoogle6432.aab-stable-805904303:1)] \
+[org.chromium.android_webview\.AwContentsLifecycleNotifier.onFirstWebViewCreated(chromium-SystemWebViewGoogle6432.aab-stable-805904303:19)] [J.N.JJ(Native Method)] \
+[org.chromium.android_webview\.AwContents.\<init>(chromium-SystemWebViewGoogle6432.aab-stable-805904303:727)] [com.android.webview\.chromium.e.a(chromium-SystemWebViewGoogle6432.aab-stable-805904303:39)] \
+[com.android.webview\.chromium.k.run(chromium-SystemWebViewGoogle6432.aab-stable-805904303:169)] [WV.cz2.run(chromium-SystemWebViewGoogle6432.aab-stable-805904303:13)] \
+[org.chromium.base.task.PostTask.d(chromium-SystemWebViewGoogle6432.aab-stable-805904303:18)] [WV.dz2.a(chromium-SystemWebViewGoogle6432.aab-stable-805904303:18)] \
+[com.android.webview\.chromium.WebViewChromiumFactoryProvider.a(chromium-SystemWebViewGoogle6432.aab-stable-805904303:7)] \
+[com.android.webview\.chromium.WebViewChromium.init(chromium-SystemWebViewGoogle6432.aab-stable-805904303:152)] [android.webkit.WebView.\<init>(WebView\.java:447)] [android.webkit.WebView.\<init>(WebView\.java:367)] \
+[android.webkit.WebView.\<init>(WebView\.java:349)] [android.webkit.WebView.\<init>(WebView\.java:336)] [android.webkit.WebView.\<init>(WebView\.java:326)] [ir.mouj.MainActivity.createWebView(MainActivity.kt:255)] \
+[ir.mouj.MainActivity.onCreate$lambda$30$lambda$29$lambda$25$lambda$24$lambda$15$lambda$14(MainActivity.kt:186)] [ir.mouj.MainActivity.$r8$lambda$NWhMwQ2m8iqMZUqH67xjb36JRC0(MainActivity.kt:0)] \
+[ir.mouj.MainActivity$$ExternalSyntheticLambda0.invoke(D8$$SyntheticClass:0)] [androidx.compose.ui.viewinterop.ViewFactoryHolder.\<init>(AndroidView\.android.kt:344)] \
+[androidx.compose.ui.viewinterop.AndroidView_androidKt$createAndroidViewNodeFactory$1$1.invoke(AndroidView\.android.kt:275)] \
+[androidx.compose.ui.viewinterop.AndroidView_androidKt$createAndroidViewNodeFactory$1$1.invoke(AndroidView\.android.kt:274)] [androidx.compose.runtime.changelist.Operation$InsertNodeFixup.execute(Operation.kt:585)] \
+[androidx.compose.runtime.changelist.Operations.executeAndFlushAllPendingOperations(Operations.kt:310)] [androidx.compose.runtime.changelist.FixupList.executeAndFlushAllPendingFixups(FixupList.kt:50)] \
+[androidx.compose.runtime.changelist.Operation$InsertSlotsWithFixups.execute(Operation.kt:552)] [androidx.compose.runtime.changelist.Operations.executeAndFlushAllPendingOperations(Operations.kt:310)] \
+[androidx.compose.runtime.changelist.ChangeList.executeAndFlushAllPendingChanges(ChangeList.kt:81)] [androidx.compose.runtime.CompositionImpl.applyChangesInLocked(Composition.kt:984)] \
+[androidx.compose.runtime.CompositionImpl.applyChanges(Composition.kt:1013)] [androidx.compose.runtime.Recomposer.composeInitial$runtime_release(Recomposer.kt:1150)] \
+[androidx.compose.runtime.CompositionImpl.composeInitial(Composition.kt:649)] [androidx.compose.runtime.CompositionImpl.setContent(Composition.kt:635)] \
+[androidx.compose.ui.platform.WrappedComposition$setContent$1.invoke(Wrapper.android.kt:133)] [androidx.compose.ui.platform.WrappedComposition$setContent$1.invoke(Wrapper.android.kt:124)] \
+[androidx.compose.ui.platform.AndroidComposeView\.setOnViewTreeOwnersAvailable(AndroidComposeView\.android.kt:1625)] [androidx.compose.ui.platform.WrappedComposition.setContent(Wrapper.android.kt:124)] \
+[androidx.compose.ui.platform.WrappedComposition.onStateChanged(Wrapper.android.kt:180)] [androidx.lifecycle.LifecycleRegistry$ObserverWithState.dispatchEvent(LifecycleRegistry.jvm.kt:320)] \
+[androidx.lifecycle.LifecycleRegistry.addObser\
+10-23 04:31:12.711 D/ConnectivityService( 1407): requestNetwork for uid/pid:10392/20843 activeRequest: null callbackRequest: 74567 [NetworkRequest [ REQUEST id=74568, [ Capabilities: \
+INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10392 RequestorUid: 10392 RequestorPkg: ir.mouj UnderlyingNetworks: Null] ]] callback flags: 0 order: 2147483647 isUidTracked: false declaredMethods: AVAIL|LOST|NC|LP\
+10-23 04:31:12.711 D/ConnectivityService( 1407):    accepting network in place of null for NetworkRequest [ REQUEST id=74568, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10392 RequestorUid: 10392 \
+RequestorPkg: ir.mouj UnderlyingNetworks: Null] ]\
+10-23 04:31:12.713 D/WifiNetworkFactory( 1407): got request NetworkRequest [ REQUEST id=74568, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10392 RequestorUid: 10392 RequestorPkg: ir.mouj \
+UnderlyingNetworks: Null] ]\
+10-23 04:31:12.713 D/UntrustedWifiNetworkFactory( 1407): got request NetworkRequest [ REQUEST id=74568, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10392 RequestorUid: 10392 RequestorPkg: ir.mouj \
+UnderlyingNetworks: Null] ]\
+10-23 04:31:12.713 D/OemPaidWifiNetworkFactory( 1407): got request NetworkRequest [ REQUEST id=74568, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10392 RequestorUid: 10392 RequestorPkg: ir.mouj \
+UnderlyingNetworks: Null] ]\
+10-23 04:31:12.713 D/MultiInternetWifiNetworkFactory( 1407): got request NetworkRequest [ REQUEST id=74568, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10392 RequestorUid: 10392 RequestorPkg: ir.mouj \
+UnderlyingNetworks: Null] ]\
+10-23 04:31:12.715 D/ConnectivityManager(20843): StackLog: [android.net.ConnectivityManager.sendRequestForNetwork(ConnectivityManager.java:4698)] \
+[android.net.ConnectivityManager.sendRequestForNetwork(ConnectivityManager.java:4867)] [android.net.ConnectivityManager.sendRequestForNetwork(ConnectivityManager.java:4873)] \
+[android.net.ConnectivityManager.registerNetworkCallback(ConnectivityManager.java:5288)] [WV.qj1.i(chromium-SystemWebViewGoogle6432.aab-stable-805904303:79)] \
+[WV.pj1.f(chromium-SystemWebViewGoogle6432.aab-stable-805904303:109)] [WV.pj1.a(chromium-SystemWebViewGoogle6432.aab-stable-805904303:1)] \
+[org.chromium.android_webview\.AwContentsLifecycleNotifier.onFirstWebViewCreated(chromium-SystemWebViewGoogle6432.aab-stable-805904303:19)] [J.N.JJ(Native Method)] \
+[org.chromium.android_webview\.AwContents.\<init>(chromium-SystemWebViewGoogle6432.aab-stable-805904303:727)] [com.android.webview\.chromium.e.a(chromium-SystemWebViewGoogle6432.aab-stable-805904303:39)] \
+[com.android.webview\.chromium.k.run(chromium-SystemWebViewGoogle6432.aab-stable-805904303:169)] [WV.cz2.run(chromium-SystemWebViewGoogle6432.aab-stable-805904303:13)] \
+[org.chromium.base.task.PostTask.d(chromium-SystemWebViewGoogle6432.aab-stable-805904303:18)] [WV.dz2.a(chromium-SystemWebViewGoogle6432.aab-stable-805904303:18)] \
+[com.android.webview\.chromium.WebViewChromiumFactoryProvider.a(chromium-SystemWebViewGoogle6432.aab-stable-805904303:7)] \
+[com.android.webview\.chromium.WebViewChromium.init(chromium-SystemWebViewGoogle6432.aab-stable-805904303:152)] [android.webkit.WebView.\<init>(WebView\.java:447)] [android.webkit.WebView.\<init>(WebView\.java:367)] \
+[android.webkit.WebView.\<init>(WebView\.java:349)] [android.webkit.WebView.\<init>(WebView\.java:336)] [android.webkit.WebView.\<init>(WebView\.java:326)] [ir.mouj.MainActivity.createWebView(MainActivity.kt:255)] \
+[ir.mouj.MainActivity.onCreate$lambda$30$lambda$29$lambda$25$lambda$24$lambda$15$lambda$14(MainActivity.kt:186)] [ir.mouj.MainActivity.$r8$lambda$NWhMwQ2m8iqMZUqH67xjb36JRC0(MainActivity.kt:0)] \
+[ir.mouj.MainActivity$$ExternalSyntheticLambda0.invoke(D8$$SyntheticClass:0)] [androidx.compose.ui.viewinterop.ViewFactoryHolder.\<init>(AndroidView\.android.kt:344)] \
+[androidx.compose.ui.viewinterop.AndroidView_androidKt$createAndroidViewNodeFactory$1$1.invoke(AndroidView\.android.kt:275)] \
+[androidx.compose.ui.viewinterop.AndroidView_androidKt$createAndroidViewNodeFactory$1$1.invoke(AndroidView\.android.kt:274)] [androidx.compose.runtime.changelist.Operation$InsertNodeFixup.execute(Operation.kt:585)] \
+[androidx.compose.runtime.changelist.Operations.executeAndFlushAllPendingOperations(Operations.kt:310)] [androidx.compose.runtime.changelist.FixupList.executeAndFlushAllPendingFixups(FixupList.kt:50)] \
+[androidx.compose.runtime.changelist.Operation$InsertSlotsWithFixups.execute(Operation.kt:552)] [androidx.compose.runtime.changelist.Operations.executeAndFlushAllPendingOperations(Operations.kt:310)] \
+[androidx.compose.runtime.changelist.ChangeList.executeAndFlushAllPendingChanges(ChangeList.kt:81)] [androidx.compose.runtime.CompositionImpl.applyChangesInLocked(Composition.kt:984)] \
+[androidx.compose.runtime.CompositionImpl.applyChanges(Composition.kt:1013)] [androidx.compose.runtime.Recomposer.composeInitial$runtime_release(Recomposer.kt:1150)] \
+[androidx.compose.runtime.CompositionImpl.composeInitial(Composition.kt:649)] [androidx.compose.runtime.CompositionImpl.setContent(Composition.kt:635)] \
+[androidx.compose.ui.platform.WrappedComposition$setContent$1.invoke(Wrapper.android.kt:133)] [androidx.compose.ui.platform.WrappedComposition$setContent$1.invoke(Wrapper.android.kt:124)] \
+[androidx.compose.ui.platform.AndroidComposeView\.setOnViewTreeOwnersAvailable(AndroidComposeView\.android.kt:1625)] [androidx.compose.ui.platform.WrappedComposition.setContent(Wrapper.android.kt:124)] \
+[androidx.compose.ui.platform.WrappedComposition.onStateChanged(Wrapper.android.kt:180)] [androidx.lifecycle.LifecycleRegistry$ObserverWithState.dispatchEvent(LifecycleRegistry.jvm.kt:320)] \
+[androidx.lifecycle.LifecycleRegistry.addObserver(LifecycleRegistry\
+10-23 04:31:12.762 W/chromium(20919): [WARNING:content/app/android/content_main_android.cc:82] android_setCpu already initialized\
+10-23 04:31:12.766 D/vulkan  (20843): searching for layers in '/data/app/\~\~uaa3HopowzvwUpAUwktjFw==/ir.mouj-Ma1C_grOA7dpWcOTHXol_g==/lib/arm64'\
+10-23 04:31:12.766 D/vulkan  (20843): searching for layers in '/data/app/\~\~uaa3HopowzvwUpAUwktjFw==/ir.mouj-Ma1C_grOA7dpWcOTHXol_g==/base.apk!/lib/arm64-v8a'\
+10-23 04:31:12.790 W/chromium(20919): [WARNING:content/child/runtime_features.cc:476] Fenced frames cannot be enabled in this configuration. Use --enable-features=FencedFrames instead.\
+10-23 04:31:12.795 D/CoreBackPreview( 1407): Window{79316aa u0 ir.mouj/ir.mouj.MainActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window\.IOnBackInvokedCallback$Stub$Proxy@ad32d72, mPriority=0, \
+mIsAnimationCallback=false}\
+10-23 04:31:12.796 I/chromium(20919): [INFO:third_party/skia/src/ports/SkFontMgr_android_parser.cpp:724] [SkFontMgr Android Parser] '/product/etc/fonts_customization.xml' could not be opened\
+10-23 04:31:12.796 I/chromium(20919): \
+10-23 04:31:12.799 V/WindowManager( 1407): Relayout Window{79316aa u0 ir.mouj/ir.mouj.MainActivity}: viewVisibility=0 req=1080x2400 ty=1 d0\
+10-23 04:31:12.800 I/SurfaceFlinger( 1169): id=333051 createSurf, flag=44004, ir.mouj/ir.mouj.MainActivity$\_20843#333051\
+10-23 04:31:12.800 D/WindowManager( 1407): makeSurface duration=1 name=ir.mouj/ir.mouj.MainActivity$\_20843\
+10-23 04:31:12.804 V/WindowManager( 1407): Changing focus from null to Window{79316aa u0 ir.mouj/ir.mouj.MainActivity} displayId=0 Callers=com.android.server.wm.RootWindowContainer.updateFocusedWindowLocked:578 \
+com.android.server.wm.WindowManagerService.updateFocusedWindowLocked:6881 com.android.server.wm.WindowManagerService.relayoutWindow:2755 com.android.server.wm.Session.relayout:282 \
+10-23 04:31:12.806 D/InsetsSourceProvider( 1407): updateControlForTarget: control=InsetsSourceControl: {5cd60000 mType=statusBars initiallyVisible mSurfacePosition=Point(0, 0) mInsetsHint=Insets{left=0, top=88, right=0, \
+bottom=0}}, target=Window{79316aa u0 ir.mouj/ir.mouj.MainActivity}, from=com.android.server.wm.InsetsStateController.onControlTargetChanged:358 com.android.server.wm.InsetsStateController.onBarControlTargetChanged:324 \
+com.android.server.wm.InsetsPolicy.updateBarControlTarget:173 com.android.server.wm.InsetsPolicy.updateSystemBars:805 com.android.server.wm.DisplayPolicy.updateSystemBarsLw:3429 \
+10-23 04:31:12.808 D/InsetsSourceProvider( 1407): updateControlForTarget: control=InsetsSourceControl: {e36b0001 mType=navigationBars initiallyVisible mSurfacePosition=Point(0, 2256) mInsetsHint=Insets{left=0, top=0, right=0, \
+bottom=144}}, target=Window{79316aa u0 ir.mouj/ir.mouj.MainActivity}, from=com.android.server.wm.InsetsStateController.onControlTargetChanged:358 com.android.server.wm.InsetsStateController.onBarControlTargetChanged:327 \
+com.android.server.wm.InsetsPolicy.updateBarControlTarget:173 com.android.server.wm.InsetsPolicy.updateSystemBars:805 com.android.server.wm.DisplayPolicy.updateSystemBarsLw:3429 \
+10-23 04:31:12.808 D/WindowManager( 1407): updateSystemBarAttributes: displayId=0, win=Window{79316aa u0 ir.mouj/ir.mouj.MainActivity}, navColorWin=Window{f408b7b u0 Splash Screen ir.mouj}, focusedCanBeNavColorWin=false, \
+behavior=1, appearance=16, statusBarAppearanceRegions=[AppearanceRegion{LIGHT_STATUS_BARS bounds=[0,0][1080,2400]}], requestedVisibilities=-9, from=com.android.server.wm.DisplayPolicy.focusChangedLw:2951 \
+com.android.server.wm.DisplayContent.updateFocusedWindowLocked:4894 com.android.server.wm.RootWindowContainer.updateFocusedWindowLocked:578 \
+10-23 04:31:12.811 D/NavigationBar( 2562): onSystemBarAttributesChanged() -  displayId:0, appearance:16, packageName: ir.mouj (APPEARANCE_LIGHT_NAVIGATION_BARS ), navbarColorManagedByIme:false\
+10-23 04:31:12.821 I/InsetsController( 2562): onStateChanged: host=Splash Screen ir.mouj, from=android.view\.ViewRootImpl$ViewRootHandler.handleMessageImpl:7209, state=InsetsState: {mDisplayFrame=Rect(0, 0 - 1080, 2400), \
+mDisplayCutout=DisplayCutout{insets=Rect(0, 88 - 0, 0) waterfall=Insets{left=0, top=0, right=0, bottom=0} boundingRect={Bounds=[Rect(0, 0 - 0, 0), Rect(512, 0 - 568, 88), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0)]} \
+cutoutPathParserInfo={CutoutPathParserInfo{displayWidth=1080 displayHeight=2400 physicalDisplayWidth=1080 physicalDisplayHeight=2400 density={2.8125} cutoutSpec={M 0,0 M 0,11.43427858034597 a \
+9.899054752987353,9.899054752987353 0 1,0 0,19.79810950597471 a 9.899054752987353,9.899054752987353 0 1,0 0,-19.79810950597471 Z @dp} rotation={0} scale={1.0} physicalPixelDisplaySizeRatio={1.0}}}}, \
+mRoundedCorners=RoundedCorners{[RoundedCorner{position=TopLeft, radius=0, center=Point(0, 0)}, RoundedCorner{position=TopRight, radius=0, center=Point(0, 0)}, RoundedCorner{position=BottomRight, radius=0, center=Point(0, 0)}, \
+RoundedCorner{position=BottomLeft, radius=0, center=Point(0, 0)}]}  mRoundedCornerFrame=Rect(0, 0 - 1080, 2400), mPrivacyIndicatorBounds=PrivacyIndicatorBounds {static bounds=Rect(0, 0 - 132, 88) rotation=0}, \
+mDisplayShape=DisplayShape{ spec=-311912193 displayWidth=1080 displayHeight=2400 physicalPixelDisplaySizeRatio=1.0 rotation=0 offsetX=0 offsetY=0 scale=1.0}, mSources= { InsetsSource: {e36b0001 mType=navigationBars \
+mFrame=[0,2256][1080,2400] mVisible=true mFlags=[]}, InsetsSource: {e36b0004 mType=systemGestures mFrame=[0,0][0,0] mVisible=true mFlags=[]}, InsetsSource: {e36b0005 mType=mandatorySystemGestures mFrame=[0,2256][1080,2400] \
+mVisible=true mFlags=[]}, InsetsSource: {e36b0006 mType=tappableElement mFrame=[0,2256][1080,2400] mVisible=true mFlags=[]}, InsetsSource: {e36b0024 mType=systemGestures mFrame=[0,0][0,0] mVisible=true mFlags=[]}, \
+InsetsSource: {27 mType=displayCutout mFrame=[0,0][1080,88] mVisible=true mFlags=[]}, InsetsSource: {5cd60000 mType=statusBars mFrame=[0,0][1080,88] mVisible=true mFlags=[]}, InsetsSource: {5cd60005 \
+mType=mandatorySystemGestures mFrame=[0,0][1080,124] mVisible=true mFlags=[]}, InsetsSource: {5cd60006 mType=tappableElement mFrame=[0,0][1080,88] mVisible=true mFlags=[]} }\
+10-23 04:31:12.829 D/InputDispatcher( 1407): Focus request (0): 79316aa ir.mouj/ir.mouj.MainActivity but waiting because NOT_VISIBLE\
+10-23 04:31:12.857 W/UsageStatsService( 1407): Unexpected activity event reported! (ir.mouj/ir.mouj.MainActivity event : 23 instanceId : 216415566)\
+10-23 04:31:12.864 I/ir.mouj (20843): Compiler allocated 6865KB to compile void android.view\.ViewRootImpl.performTraversals()\
+10-23 04:31:12.881 D/WindowManager( 1407): finishDrawingWindow: Window{79316aa u0 ir.mouj/ir.mouj.MainActivity} mDrawState=DRAW_PENDING seqId=0\
+10-23 04:31:12.881 V/WindowManager( 1407): Finish starting ActivityRecord{563bcb9 u0 ir.mouj/.MainActivity t20012}: first real window is shown, no animation\
+10-23 04:31:12.882 V/WindowManager( 1407): Schedule remove starting ActivityRecord{563bcb9 u0 ir.mouj/.MainActivity t20012} startingWindow=Window{f408b7b u0 Splash Screen ir.mouj} animate=true \
+Callers=com.android.server.wm.ActivityRecord.removeStartingWindow:3488 com.android.server.wm.ActivityRecord.onFirstWindowDrawn:7932 com.android.server.wm.WindowState.performShowLocked:5346 \
+com.android.server.wm.WindowStateAnimator.commitFinishDrawingLocked:281 com.android.server.wm.DisplayContent.lambda$new$8:1294 \
+10-23 04:31:12.882 D/TaskOrganizerController( 1407): applyStartingWindowAnimation, window=Window{79316aa u0 ir.mouj/ir.mouj.MainActivity}, caller=com.android.server.wm.TaskOrganizerController.removeStartingWindow:780 \
+com.android.server.wm.StartingSurfaceController$StartingSurface.remove:292 com.android.server.wm.ActivityRecord.removeStartingWindowAnimation:3570 \
+10-23 04:31:12.882 I/WindowManager( 1407): Reparenting to leash, surface=Surface(name=79316aa ir.mouj/ir.mouj.MainActivity)/@0x76dd722, leashParent=Surface(name=ActivityRecord{563bcb9 u0 ir.mouj/.MainActivity \
+t20012})/@0xd048dae\
+10-23 04:31:12.882 I/SurfaceFlinger( 1169): id=333054 createSurf, flag=24000, Surface(name=79316aa ir.mouj/ir.mouj.MainActivity)/@0x76dd722 - animation-leash of starting_reveal#333054\
+10-23 04:31:12.883 D/WindowManager( 1407): makeSurface duration=1 leash=Surface(name=Surface(name=79316aa ir.mouj/ir.mouj.MainActivity)/@0x76dd722 - animation-leash of starting_reveal)/@0xd443ae9\
+10-23 04:31:12.883 V/WindowManager( 1407): performShowLocked: mDrawState=HAS_DRAWN in Window{79316aa u0 ir.mouj/ir.mouj.MainActivity}\
+10-23 04:31:12.890 I/PkgPredictorService-SecIpmManagerServiceImpl( 1407): reportToNAP uid:10392 ir.mouj/ir.mouj.MainActivity thisTime:1116\
+10-23 04:31:12.891 I/MoujPageDebug(20843): FCM token received\
+10-23 04:31:12.891 I/MoujPageDebug(20843): Firebase token injected into page\
+10-23 04:31:12.892 I/Layer   ( 1169): Layer::reparent [79316aa ir.mouj/ir.mouj.MainActivity#333050] newParent : Surface(name=79316aa ir.mouj/ir.mouj.MainActivity)/@0x76dd722 - animation-leash of starting_reveal#333054 , \
+isRemovedFromCurrentState : 0 -------------------------\
+10-23 04:31:12.892 I/Layer   ( 1169): Layer::reparent [79316aa ir.mouj/ir.mouj.MainActivity#333050] End -------------------------\
+10-23 04:31:12.892 I/Layer   ( 1169): Layer [ir.mouj/ir.mouj.MainActivity$\_20843#333051] hidden!! flag(0)\
+10-23 04:31:12.893 D/InputDispatcher( 1407): Focus entered window (0): 79316aa ir.mouj/ir.mouj.MainActivity\
+10-23 04:31:12.894 V/WindowManager( 1407): Relayout Window{f408b7b u0 Splash Screen ir.mouj}: viewVisibility=0 req=1080x2400 ty=3 d0\
+10-23 04:31:12.895 D/WindowManager( 1407): updateSystemBarAttributes: displayId=0, win=Window{79316aa u0 ir.mouj/ir.mouj.MainActivity}, navColorWin=Window{f408b7b u0 Splash Screen ir.mouj}, focusedCanBeNavColorWin=false, \
+behavior=1, appearance=0, statusBarAppearanceRegions=[AppearanceRegion{ bounds=[0,0][1080,2400]}], requestedVisibilities=-9, from=com.android.server.wm.DisplayPolicy.finishPostLayoutPolicyLw:2324 \
+com.android.server.wm.DisplayContent.applySurfaceChangesTransaction:6130 com.android.server.wm.RootWindowContainer.applySurfaceChangesTransaction:1180 \
+10-23 04:31:12.895 D/SamsungLightBarControlHelper( 2562): onStatusBarAppearanceChanged() -  sbModeChanged:false, statusBarMode:0, barState:MODE_TRANSPARENT, isKeyguardShowing:false, navbarColorManagedByIme:false, \
+stackAppearanceChanged:true, (AppearanceRegion{ bounds=[0,0][1080,2400]}, ), packageName:ir.mouj\
+10-23 04:31:12.895 D/NavigationBar( 2562): onSystemBarAttributesChanged() -  displayId:0, appearance:0, packageName: ir.mouj, navbarColorManagedByIme:false\
+10-23 04:31:12.896 D/SamsungLightBarControlHelper( 2562): updateNavigationBar (WHITE button) isLightOpaque:false, hasLightNavigationBarFlag:false, packageName:ir.mouj, DirectReplying:false, NavBarColorMangedByIme:false, \
+ForceDarkForScrim:false, QsCustomizing:false, PanelHasWhiteBg:true\
+10-23 04:31:12.896 D/SurfaceFlinger( 1169):      DEVICE | 0xb400007ac166cb30 | 0102 | RGBA_8888    |    0.0    0.0 1080.0 2400.0 |    0    0 1080 2400 | ir.mouj/ir.mouj.MainActivity$\_20843#333051\
+10-23 04:31:12.896 D/SurfaceFlinger( 1169):      DEVICE | 0xb400007ac1662030 | 0100 | RGBA_8888    |    0.0    0.0 1080.0 2400.0 |    0    0 1080 2400 | Splash Screen ir.mouj$\_2562#333042\
+10-23 04:31:12.908 D/SamsungLightBarControlHelper( 2562): updateStatusBar (WHITE icon) numStacks:1, StatusBarMode:MODE_TRANSPARENT, lightBarBounds:[], StatusBarState:SHADE, packageName:ir.mouj, isWhiteKeyguardStatusBar:false\
+10-23 04:31:12.913 I/BLASTBufferQueue_Java( 2562): update, w= 1080 h= 2400 mName = ViewRootImpl@b7212fa[mouj] mNativeObject= 0xb40000755532d550 sc.mNativeObject= 0xb40000747533cb90 format= -3 caller= \
+android.view\.ViewRootImpl.updateBlastSurfaceIfNeeded:3017 android.view\.ViewRootImpl.relayoutWindow:10131 android.view\.ViewRootImpl.performTraversals:4110 android.view\.ViewRootImpl.doTraversal:3288 \
+android.view\.ViewRootImpl$TraversalRunnable.run:11344 android.view\.Choreographer$CallbackRecord.run:1689 \
+10-23 04:31:12.913 I/ViewRootImpl@b7212fa[mouj]\( 2562): Relayout returned: old=(0,0,1080,2400) new=(0,0,1080,2400) relayoutAsync=false req=(1080,2400)0 dur=21 res=0x400 s={true 0xb4000074f5432aa0} ch=false seqId=0\
+10-23 04:31:12.913 I/ViewRootImpl@b7212fa[mouj]\( 2562): registerCallbackForPendingTransactions\
+10-23 04:31:12.920 I/ActivityTaskManager( 1407): Displayed ir.mouj/.MainActivity for user 0: +1s116ms\
+10-23 04:31:12.920 I/Pageboost( 1407): Launch time gathered : pid 20843 ir.mouj 1116\
+10-23 04:31:12.921 I/ViewRootImpl@b7212fa[mouj]\( 2562): mWNT: t=0xb4000075653fdfb0 mBlastBufferQueue=0xb40000755532d550 fn= 2 mRenderHdrSdrRatio=1.0 caller= android.view\.SyncRtSurfaceTransactionApplier.applyTransaction:96 \
+android.view\.SyncRtSurfaceTransactionApplier.lambda$scheduleApply$0:69 android.view\.SyncRtSurfaceTransactionApplier.$r8$lambda$SgowXC58rj3PR958kHUfRgLZmvE:0 \
+10-23 04:31:12.921 I/ViewRootImpl@b7212fa[mouj]\( 2562): mWNT: t=0xb400007565392370 mBlastBufferQueue=0xb40000755532d550 fn= 2 mRenderHdrSdrRatio=1.0 caller= android.view\.SyncRtSurfaceTransactionApplier.applyTransaction:96 \
+android.view\.SyncRtSurfaceTransactionApplier.lambda$scheduleApply$0:69 android.view\.SyncRtSurfaceTransactionApplier.$r8$lambda$SgowXC58rj3PR958kHUfRgLZmvE:0 \
+10-23 04:31:12.921 I/ViewRootImpl@b7212fa[mouj]\( 2562): mWNT: t=0xb4000075653a4dd0 mBlastBufferQueue=0xb40000755532d550 fn= 2 mRenderHdrSdrRatio=1.0 caller= android.view\.ViewRootImpl$6.onFrameDraw:5635 \
+android.view\.ViewRootImpl$2.onFrameDraw:2146 android.view\.ThreadedRenderer$1.onFrameDraw:792 \
+10-23 04:31:12.921 I/InsetsSourceConsumer(20843): applyRequestedVisibilityToControl: visible=true, type=statusBars, host=ir.mouj/ir.mouj.MainActivity\
+10-23 04:31:12.922 I/InsetsSourceConsumer(20843): applyRequestedVisibilityToControl: visible=true, type=navigationBars, host=ir.mouj/ir.mouj.MainActivity\
+10-23 04:31:12.930 I/ViewRootImpl@b7212fa[mouj]\( 2562): mWNT: t=0xb4000075654bebd0 mBlastBufferQueue=0xb40000755532d550 fn= 3 mRenderHdrSdrRatio=1.0 caller= android.view\.SyncRtSurfaceTransactionApplier.applyTransaction:96 \
+android.view\.SyncRtSurfaceTransactionApplier.lambda$scheduleApply$0:69 android.view\.SyncRtSurfaceTransactionApplier.$r8$lambda$SgowXC58rj3PR958kHUfRgLZmvE:0 \
+10-23 04:31:12.931 I/ImeTracker( 1407): ir.mouj:bec2aa5d: onRequestHide at ORIGIN_SERVER_HIDE_INPUT reason HIDE_UNSPECIFIED_WINDOW\
+10-23 04:31:12.931 I/ImeTracker( 1407): ir.mouj:bec2aa5d: onCancelled at PHASE_SERVER_SHOULD_HIDE\
+10-23 04:31:12.936 I/ViewRootImpl@b7212fa[mouj]\( 2562): mWNT: t=0xb400007565495d50 mBlastBufferQueue=0xb40000755532d550 fn= 4 mRenderHdrSdrRatio=1.0 caller= android.view\.SyncRtSurfaceTransactionApplier.applyTransaction:96 \
+android.view\.SyncRtSurfaceTransactionApplier.lambda$scheduleApply$0:69 android.view\.SyncRtSurfaceTransactionApplier.$r8$lambda$SgowXC58rj3PR958kHUfRgLZmvE:0 \
+10-23 04:31:12.940 I/ViewRootImpl@b7212fa[mouj]\( 2562): mWNT: t=0xb40000756544f050 mBlastBufferQueue=0xb40000755532d550 fn= 5 mRenderHdrSdrRatio=1.0 caller= android.view\.SyncRtSurfaceTransactionApplier.applyTransaction:96 \
+android.view\.SyncRtSurfaceTransactionApplier.lambda$scheduleApply$0:69 android.view\.SyncRtSurfaceTransactionApplier.$r8$lambda$SgowXC58rj3PR958kHUfRgLZmvE:0 \
+10-23 04:31:12.946 D/InsetsSourceProvider( 1407): updateControlForTarget: control=InsetsSourceControl: {3 mType=ime mSurfacePosition=Point(0, 88) mInsetsHint=Insets{left=0, top=0, right=0, bottom=1026}}, target=Window{79316aa \
+u0 ir.mouj/ir.mouj.MainActivity}, from=com.android.server.wm.ImeInsetsSourceProvider.updateControlForTarget:165 com.android.server.wm.InsetsStateController.onControlTargetChanged:358 \
+com.android.server.wm.InsetsStateController.onImeControlTargetChanged:302 com.android.server.wm.DisplayContent.updateImeControlTarget:5727 com.android.server.wm.DisplayContent.updateImeInputAndControlTarget:5687 \
+10-23 04:31:12.947 I/CameraManagerGlobal(20843): Camera 2 facing CAMERA_FACING_BACK state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:12.950 I/Layer   ( 1169): Layer::reparent [ImeContainer#17] newParent : ActivityRecord{563bcb9 u0 ir.mouj/.MainActivity t20012}#333040 , isRemovedFromCurrentState : 0 -------------------------\
+10-23 04:31:12.953 I/InsetsController(20843): onStateChanged: host=ir.mouj/ir.mouj.MainActivity, from=android.view\.ViewRootImpl$ViewRootHandler.handleMessageImpl:7209, state=InsetsState: {mDisplayFrame=Rect(0, 0 - 1080, 2400), \
+mDisplayCutout=DisplayCutout{insets=Rect(0, 88 - 0, 0) waterfall=Insets{left=0, top=0, right=0, bottom=0} boundingRect={Bounds=[Rect(0, 0 - 0, 0), Rect(512, 0 - 568, 88), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0)]} \
+cutoutPathParserInfo={CutoutPathParserInfo{displayWidth=1080 displayHeight=2400 physicalDisplayWidth=1080 physicalDisplayHeight=2400 density={2.8125} cutoutSpec={M 0,0 M 0,11.43427858034597 a \
+9.899054752987353,9.899054752987353 0 1,0 0,19.79810950597471 a 9.899054752987353,9.899054752987353 0 1,0 0,-19.79810950597471 Z @dp} rotation={0} scale={1.0} physicalPixelDisplaySizeRatio={1.0}}}}, \
+mRoundedCorners=RoundedCorners{[RoundedCorner{position=TopLeft, radius=0, center=Point(0, 0)}, RoundedCorner{position=TopRight, radius=0, center=Point(0, 0)}, RoundedCorner{position=BottomRight, radius=0, center=Point(0, 0)}, \
+RoundedCorner{position=BottomLeft, radius=0, center=Point(0, 0)}]}  mRoundedCornerFrame=Rect(0, 0 - 1080, 2400), mPrivacyIndicatorBounds=PrivacyIndicatorBounds {static bounds=Rect(0, 0 - 132, 88) rotation=0}, \
+mDisplayShape=DisplayShape{ spec=-311912193 displayWidth=1080 displayHeight=2400 physicalPixelDisplaySizeRatio=1.0 rotation=0 offsetX=0 offsetY=0 scale=1.0}, mSources= { InsetsSource: {e36b0001 mType=navigationBars \
+mFrame=[0,2256][1080,2400] mVisible=true mFlags=[]}, InsetsSource: {e36b0004 mType=systemGestures mFrame=[0,0][0,0] mVisible=true mFlags=[]}, InsetsSource: {e36b0005 mType=mandatorySystemGestures mFrame=[0,2256][1080,2400] \
+mVisible=true mFlags=[]}, InsetsSource: {e36b0006 mType=tappableElement mFrame=[0,2256][1080,2400] mVisible=true mFlags=[]}, InsetsSource: {e36b0024 mType=systemGestures mFrame=[0,0][0,0] mVisible=true mFlags=[]}, \
+InsetsSource: {3 mType=ime mFrame=[0,0][0,0] mVisible=false mFlags=[]}, InsetsSource: {27 mType=displayCutout mFrame=[0,0][1080,88] mVisible=true mFlags=[]}, InsetsSource: {5cd60000 mType=statusBars mFrame=[0,0][1080,88] \
+mVisible=true mFlags=[]}, InsetsSource: {5cd60005 mType=mandatorySystemGestures mFrame=[0,0][1080,124] mVisible=true mFlags=[]}, InsetsSource: {5cd60006 mType=tappableElement mFrame=[0,0][1080,88] mVisible=true mFlags=[]} }\
+10-23 04:31:12.954 I/InsetsSourceConsumer(20843): applyRequestedVisibilityToControl: visible=false, type=ime, host=ir.mouj/ir.mouj.MainActivity\
+10-23 04:31:12.956 I/HBD     ( 5245): b [AiWriter] setContact : ir.mouj\
+10-23 04:31:12.966 V/WindowManager( 1407): Relayout Window{f408b7b u0 Splash Screen ir.mouj}: viewVisibility=8 req=1080x2400 ty=3 d0\
+10-23 04:31:12.967 D/WindowManager( 1407): updateSystemBarAttributes: displayId=0, win=Window{79316aa u0 ir.mouj/ir.mouj.MainActivity}, navColorWin=Window{79316aa u0 ir.mouj/ir.mouj.MainActivity}, \
+focusedCanBeNavColorWin=false, behavior=1, appearance=16, statusBarAppearanceRegions=[AppearanceRegion{ bounds=[0,0][1080,2400]}], requestedVisibilities=-9, \
+from=com.android.server.wm.DisplayPolicy.finishPostLayoutPolicyLw:2324 com.android.server.wm.DisplayContent.applySurfaceChangesTransaction:6130 com.android.server.wm.RootWindowContainer.applySurfaceChangesTransaction:1180 \
+10-23 04:31:12.970 I/InsetsController( 2562): onStateChanged: host=Splash Screen ir.mouj, from=android.view\.ViewRootImpl.relayoutWindow:10072, state=InsetsState: {mDisplayFrame=Rect(0, 0 - 1080, 2400), \
+mDisplayCutout=DisplayCutout{insets=Rect(0, 88 - 0, 0) waterfall=Insets{left=0, top=0, right=0, bottom=0} boundingRect={Bounds=[Rect(0, 0 - 0, 0), Rect(512, 0 - 568, 88), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0)]} \
+cutoutPathParserInfo={CutoutPathParserInfo{displayWidth=1080 displayHeight=2400 physicalDisplayWidth=1080 physicalDisplayHeight=2400 density={2.8125} cutoutSpec={M 0,0 M 0,11.43427858034597 a \
+9.899054752987353,9.899054752987353 0 1,0 0,19.79810950597471 a 9.899054752987353,9.899054752987353 0 1,0 0,-19.79810950597471 Z @dp} rotation={0} scale={1.0} physicalPixelDisplaySizeRatio={1.0}}}}, \
+mRoundedCorners=RoundedCorners{[RoundedCorner{position=TopLeft, radius=0, center=Point(0, 0)}, RoundedCorner{position=TopRight, radius=0, center=Point(0, 0)}, RoundedCorner{position=BottomRight, radius=0, center=Point(0, 0)}, \
+RoundedCorner{position=BottomLeft, radius=0, center=Point(0, 0)}]}  mRoundedCornerFrame=Rect(0, 0 - 1080, 2400), mPrivacyIndicatorBounds=PrivacyIndicatorBounds {static bounds=Rect(0, 0 - 132, 88) rotation=0}, \
+mDisplayShape=DisplayShape{ spec=-311912193 displayWidth=1080 displayHeight=2400 physicalPixelDisplaySizeRatio=1.0 rotation=0 offsetX=0 offsetY=0 scale=1.0}, mSources= { InsetsSource: {e36b0001 mType=navigationBars \
+mFrame=[0,2256][1080,2400] mVisible=true mFlags=[]}, InsetsSource: {e36b0004 mType=systemGestures mFrame=[0,0][0,0] mVisible=true mFlags=[]}, InsetsSource: {e36b0005 mType=mandatorySystemGestures mFrame=[0,2256][1080,2400] \
+mVisible=true mFlags=[]}, InsetsSource: {e36b0006 mType=tappableElement mFrame=[0,2256][1080,2400] mVisible=true mFlags=[]}, InsetsSource: {e36b0024 mType=systemGestures mFrame=[0,0][0,0] mVisible=true mFlags=[]}, \
+InsetsSource: {3 mType=ime mFrame=[0,0][0,0] mVisible=false mFlags=[]}, InsetsSource: {27 mType=displayCutout mFrame=[0,0][1080,88] mVisible=true mFlags=[]}, InsetsSource: {5cd60000 mType=statusBars mFrame=[0,0][1080,88] \
+mVisible=true mFlags=[]}, InsetsSource: {5cd60005 mType=mandatorySystemGestures mFrame=[0,0][1080,124] mVisible=true mFlags=[]}, InsetsSource: {5cd60006 mType=tappableElement mFrame=[0,0][1080,88] mVisible=true mFlags=[]} }\
+10-23 04:31:12.970 I/ViewRootImpl@b7212fa[mouj]\( 2562): Relayout returned: old=(0,0,1080,2400) new=(0,0,1080,2400) relayoutAsync=false req=(1080,2400)8 dur=21 res=0x402 s={false 0x0} ch=true seqId=0\
+10-23 04:31:12.970 I/Layer   ( 1169): Layer [Splash Screen ir.mouj$\_2562#333042] hidden!! flag(1)\
+10-23 04:31:12.970 I/ViewRootImpl@b7212fa[mouj]\( 2562): dispatchDetachedFromWindow\
+10-23 04:31:12.970 D/WindowManager( 1407): Starting window removed Window{f408b7b u0 Splash Screen ir.mouj}\
+10-23 04:31:12.970 I/WindowManager( 1407): Cancelling animation restarting=false, leash=Surface(name=Surface(name=79316aa ir.mouj/ir.mouj.MainActivity)/@0x76dd722 - animation-leash of starting_reveal)/@0xd443ae9\
+10-23 04:31:12.970 I/WindowManager( 1407): Reparenting to original parent: Surface(name=ActivityRecord{563bcb9 u0 ir.mouj/.MainActivity t20012})/@0xd048dae, destroy=false, surface=Surface(name=79316aa \
+ir.mouj/ir.mouj.MainActivity)/@0x76dd722\
+10-23 04:31:12.971 W/InputManager-JNI( 1407): Input channel object 'f408b7b Splash Screen ir.mouj (client)' was disposed without first being removed with the input manager!\
+10-23 04:31:12.971 V/WindowManager( 1407): Remove Window{f408b7b u0 Splash Screen ir.mouj}: mSurfaceController=Surface(name=Splash Screen ir.mouj$\_2562)/@0x9b9935c mAnimatingExit=false mRemoveOnExit=false mHasSurface=true \
+surfaceShowing=false animating=false app-animation=false mDisplayFrozen=false callers=com.android.server.wm.WindowManagerService.removeWindow:2148 com.android.server.wm.Session.remove:257 \
+android.view\.IWindowSession$Stub.onTransact:747 com.android.server.wm.Session.onTransact:204 android.os.Binder.execTransactInternal:1380 android.os.Binder.execTransact:1311 \
+10-23 04:31:12.971 I/WindowManager( 1407): Destroying surface Surface(name=Splash Screen ir.mouj$\_2562)/@0x9b9935c called by com.android.server.wm.WindowStateAnimator.destroySurface:804 \
+com.android.server.wm.WindowStateAnimator.destroySurfaceLocked:473 com.android.server.wm.WindowState.removeImmediately:2945 com.android.server.wm.WindowState.removeIfPossible:3216 \
+com.android.server.wm.WindowManagerService.removeWindow:2148 com.android.server.wm.Session.remove:257 android.view\.IWindowSession$Stub.onTransact:747 com.android.server.wm.Session.onTransact:204 \
+10-23 04:31:12.977 D/SurfaceFlinger( 1169):      DEVICE | 0xb400007ac1675110 | 0102 | RGBA_8888    |    0.0    0.0 1080.0 2400.0 |    0    0 1080 2400 | ir.mouj/ir.mouj.MainActivity$\_20843#333051\
+10-23 04:31:12.978 I/Layer   ( 1169): Layer::reparent [79316aa ir.mouj/ir.mouj.MainActivity#333050] newParent : ActivityRecord{563bcb9 u0 ir.mouj/.MainActivity t20012}#333040 , isRemovedFromCurrentState : 0 \
+\-------------------------\
+10-23 04:31:12.978 I/Layer   ( 1169): Layer::reparent [79316aa ir.mouj/ir.mouj.MainActivity#333050] End -------------------------\
+10-23 04:31:12.978 I/Layer   ( 1169): Layer::reparent [f408b7b Splash Screen ir.mouj#333041] newParentHandle : null -------------------------\
+10-23 04:31:12.978 I/Layer   ( 1169): id=333041 removeFromCurrentState f408b7b Splash Screen ir.mouj#333041 (180)\
+10-23 04:31:12.978 I/Layer   ( 1169): id=333042 removeFromCurrentState Splash Screen ir.mouj$\_2562#333042 (180)\
+10-23 04:31:12.979 I/Layer   ( 1169): Layer::reparent [f408b7b Splash Screen ir.mouj#333041] End -------------------------\
+10-23 04:31:12.979 I/Layer   ( 1169): Layer::reparent [Surface(name=79316aa ir.mouj/ir.mouj.MainActivity)/@0x76dd722 - animation-leash of starting_reveal#333054] newParentHandle : null -------------------------\
+10-23 04:31:12.979 I/Layer   ( 1169): id=333054 removeFromCurrentState Surface(name=79316aa ir.mouj/ir.mouj.MainActivity)/@0x76dd722 - animation-leash of starting_reveal#333054 (180)\
+10-23 04:31:12.979 I/Layer   ( 1169): Layer::reparent [Surface(name=79316aa ir.mouj/ir.mouj.MainActivity)/@0x76dd722 - animation-leash of starting_reveal#333054] End -------------------------\
+10-23 04:31:12.979 I/Layer   ( 1169): Layer::reparent [Splash Screen ir.mouj$\_2562#333042] newParentHandle : null -------------------------\
+10-23 04:31:12.979 I/Layer   ( 1169): id=333042 removeFromCurrentState Splash Screen ir.mouj$\_2562#333042 (180)\
+10-23 04:31:12.979 I/Layer   ( 1169): Layer::reparent [Splash Screen ir.mouj$\_2562#333042] End -------------------------\
+10-23 04:31:12.980 I/SurfaceFlinger( 1169): id=333041 Removed f408b7b Splash Screen ir.mouj#333041 (180)\
+10-23 04:31:12.980 I/SurfaceFlinger( 1169): id=333042 Removed Splash Screen ir.mouj$\_2562#333042 (180)\
+10-23 04:31:12.987 I/Layer   ( 1169): id=333042 Destroyed Splash Screen ir.mouj$\_2562#333042\
+10-23 04:31:12.987 I/HBD     ( 5245): g Package : ir.mouj has no meta data. \
+10-23 04:31:12.987 I/Layer   ( 1169): id=333041 Destroyed f408b7b Splash Screen ir.mouj#333041\
+10-23 04:31:13.010 D/ScreenCurtainController( 1407): onForegroundActivitiesChanged: ir.mouj\
+10-23 04:31:13.013 I/ir.mouj (20843): hiddenapi: Accessing hidden field Landroid/content/pm/ApplicationInfo;->primaryCpuAbi:Ljava/lang/String; (runtime_flags=0, domain=platform, api=unsupported) from \
+Lorg/chromium/android_webview/SystemStateUtil; (domain=app, TargetSdkVersion=36) using reflection: allowed\
+10-23 04:31:13.023 D/NavigationBar( 2562): onSystemBarAttributesChanged() -  displayId:0, appearance:16, packageName: ir.mouj (APPEARANCE_LIGHT_NAVIGATION_BARS ), navbarColorManagedByIme:false\
+10-23 04:31:13.023 D/SamsungLightBarControlHelper( 2562): updateNavigationBar (BLACK button) isLightOpaque:false, hasLightNavigationBarFlag:true, packageName:ir.mouj, DirectReplying:false, NavBarColorMangedByIme:false, \
+ForceDarkForScrim:false, QsCustomizing:false, PanelHasWhiteBg:true\
+10-23 04:31:13.137 D/MdnieScenarioControlService( 1407):  packageName : ir.mouj    className : ir.mouj.MainActivity\
+10-23 04:31:13.157 I/MoujPageDebug(20843): PAGE_STARTED url=https\://chat.radmehrweb.ir/mouj-messenger-test.html\
+10-23 04:31:13.240 D/MoujWebConsole(20843): LOG MOUJ_LAYOUT_FIX_REPORT {"innerHeight":722,"docClientHeight":723,"bodyRect":0,"appRect":0,"appDisplay":"flex","appPosition":"fixed","phoneClass":"screen on auth"} at \
+https\://chat.radmehrweb.ir/mouj-messenger-test.html:5411\
+10-23 04:31:13.244 D/MoujWebConsole(20843): LOG MOUJ_LAYOUT_FIX_REPORT {"innerHeight":722,"docClientHeight":723,"bodyRect":0,"appRect":0,"appDisplay":"flex","appPosition":"fixed","phoneClass":"screen on auth"} at \
+https\://chat.radmehrweb.ir/mouj-messenger-test.html:5411\
+10-23 04:31:13.247 I/MoujPageDebug(20843): PAGE_FINISHED url=https\://chat.radmehrweb.ir/mouj-messenger-test.html title=┘à┘ê╪¼ | ┘╛█î╪º┘àΓÇî╪▒╪│╪º┘å\
+10-23 04:31:13.247 I/MoujPageDebug(20843): WEBVIEW_SIZE width=1080 height=2168 measuredWidth=1080 measuredHeight=2168\
+10-23 04:31:13.247 I/MoujPageDebug(20843): Firebase token injected into page\
+10-23 04:31:13.298 I/MoujPageDebug(20843): HEIGHT_FIX_REPORT "{\\"applied\\":true,\\"viewportHeight\\":722,\\"bodyHeight\\":0,\\"rootHeight\\":0}"\
+10-23 04:31:13.300 I/MoujPageDebug(20843): VIEWPORT_REPORT "{\\"innerWidth\\":360,\\"innerHeight\\":722,\\"clientWidth\\":360,\\"clientHeight\\":723,\\"bodyHeight\\":0,\\"bodyCssHeight\\":\\"0px\\",\\"rootHeight\\":0,\\"rootCssHeight\\":\\"0px\\",\
+\\"rootPosition\\":\\"fixed\\",\\"rootDisplay\\":\\"flex\\",\\"visualViewportHeight\\":722.6666870117188}"\
+10-23 04:31:13.301 I/MoujPageDebug(20843): DOM_REPORT \
+"{\\"url\\":\\"https\://chat.radmehrweb.ir/mouj-messenger-test.html\\",\\"readyState\\":\\"complete\\",\\"bodyWidth\\":360,\\"bodyHeight\\":0,\\"documentHeight\\":722,\\"bodyBackground\\":\\"rgb(245, 247, \
+251\)\\",\\"bodyTextLength\\":667,\\"elements\\":{\\"appRoot\\":{\\"width\\":360,\\"height\\":0,\\"display\\":\\"flex\\",\\"visibility\\":\\"visible\\"},\\"phone\\":{\\"width\\":0,\\"height\\":0,\\"display\\":\\"none\\",\\"visibility\\":\\"visible\\"}}}"\
+10-23 04:31:13.446 D/SGM:GameManager( 1407): identifyForegroundApp. ir.mouj, mCurrentUserId: 0, callerUserId: 0\
+10-23 04:31:13.446 D/SGM:PkgDataHelper( 1407): getGamePkgData(). ir.mouj\
+10-23 04:31:13.615 I/CameraService( 1449): CameraService::connect call (PID 20843 "ir.mouj", camera ID 1) and Camera API version 2\
+10-23 04:31:13.615 I/CameraService( 1449): isUidActiveLocked E: uid 10392, callingPackage ir.mouj, isRegistered true\
+10-23 04:31:13.615 I/CameraService( 1449): isUidActiveLocked: start to wait until ir.mouj gets into active.\
+10-23 04:31:13.616 I/CameraService( 1449): isUidActiveLocked X: uid 10392, callingPackage ir.mouj, isActive true.\
+10-23 04:31:13.617 I/CameraService( 1449): CameraService::validateClientPermissionsLocked is ok : calling pid 20843, calling uid 10392, client ir.mouj , cameraservice pid=1449, device user 0, currently allowed device users: 0\
+10-23 04:31:13.617 I/Camera2ClientBase( 1449): Camera 1: Opened. Client: ir.mouj (PID 20843, UID 10392)\
+10-23 04:31:13.617 I/CameraService( 1449): isNoSALoggingPackage: ir.mouj is a third party package.\
+10-23 04:31:13.618 I/CameraService( 1449): service.camera.client set to ir.mouj\
+10-23 04:31:13.618 I/CameraManagerGlobal( 3358): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:13.618 I/CameraManagerGlobal( 5245): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:13.618 I/CameraManagerGlobal( 2562): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:13.618 I/CameraManagerGlobal(20843): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:13.618 I/CameraManagerGlobal( 4699): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:13.618 I/CameraManagerGlobal(32199): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:13.619 I/CameraManagerGlobal( 4378): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:13.618 I/CameraManagerGlobal( 2806): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:13.620 I/CameraManagerGlobal(10826): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:13.620 I/CameraManagerGlobal( 1407): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:13.620 I/CameraManagerGlobal(29558): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPENING for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:13.644 I/CameraService( 1449): startCameraOps: Start camera ops, package name = ir.mouj, client UID = 10392\
+10-23 04:31:13.657 I/Unihal  ( 1108): UniHal3InterfaceEntry.cpp: uni_set_parameters: 428: set_parameters : pkgName=ir.mouj;\
+10-23 04:31:13.658 I/CameraService( 1449): connectHelper: Skip Request Injector ExtraRequests to new client(ir.mouj)\
+10-23 04:31:13.658 I/CameraServiceProxyWrapper( 1449): updateProxyDeviceState: notifyCameraState for Camera ID 1, newState 0, facing 1, clientName ir.mouj, apiLevel 2\
+10-23 04:31:13.658 I/CameraManagerGlobal( 2562): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:13.658 I/CameraManagerGlobal( 1407): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:13.659 I/CameraManagerGlobal( 2806): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:13.659 I/CameraManagerGlobal( 4699): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:13.659 I/CameraManagerGlobal( 4378): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:13.659 I/CameraManagerGlobal( 3358): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:13.659 I/CameraManagerGlobal(32199): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:13.659 D/CameraAvailabilityListener( 2562): onCameraDeviceStateChanged: id=1, facing=1, state=CAMERA_STATE_OPEN, client=ir.mouj\
+10-23 04:31:13.659 I/CameraManagerGlobal(29558): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:13.659 I/CameraManagerGlobal(10826): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:13.661 I/CameraManagerGlobal(20843): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:13.661 I/CameraManagerGlobal( 5245): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_OPEN for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:13.662 I/CameraService( 1449): isNoSALoggingPackage: ir.mouj is a third party package.\
+10-23 04:31:13.685 V/AS.AudioService( 1407): setMode(mode=3, pid=20843, uid=10392, caller=ir.mouj)\
+10-23 04:31:13.703 D/SGM:GameManager( 1407): identifyGamePackage. ir.mouj, mCurrentUserId: 0, callerUserId: 0, callingMethodInfo: com.samsung.android.game.SemGameManager.isGamePackage(SemGameManager.java:109)\
+10-23 04:31:13.703 D/SGM:PkgDataHelper( 1407): getGamePkgData(). ir.mouj\
+10-23 04:31:13.703 D/SGM:SemGameManager( 1407): isGamePackage(), pkgName=ir.mouj, ret=false\
+10-23 04:31:13.706 I/MicModeManager( 1407): updateAudioMode() audioMode=3, caller=ir.mouj, curCallDevice=2\
+10-23 04:31:13.708 D/ir.mouj (20843): PlayerBase::PlayerBase()\
+10-23 04:31:13.750 D/SurfaceFlinger( 1169):      DEVICE | 0xb400007ac1675110 | 0102 | RGBA_8888    |    0.0    0.0 1080.0 2400.0 |    0    0 1080 2400 | ir.mouj/ir.mouj.MainActivity$\_20843#333051\
+10-23 04:31:13.837 I/CameraService( 1449): startCameraStreamingOps: Start camera streaming ops, package name = ir.mouj, client UID = 10392\
+10-23 04:31:13.840 I/CameraServiceProxyWrapper( 1449): updateProxyDeviceState: notifyCameraState for Camera ID 1, newState 1, facing 1, clientName ir.mouj, apiLevel 2\
+10-23 04:31:13.841 I/CameraManagerGlobal( 1407): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:13.841 I/CameraService_proxy( 1407): wmi.addRefreshRateRangeForPackage minFPS = 30.000002, maxFPS = 60.0, clientName = ir.mouj\
+10-23 04:31:13.841 I/CameraManagerGlobal( 2806): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:13.841 I/CameraManagerGlobal( 5245): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:13.841 I/CameraManagerGlobal(29558): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:13.841 I/CameraManagerGlobal( 4699): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:13.841 I/CameraManagerGlobal( 3358): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:13.841 I/CameraManagerGlobal(20843): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:13.842 I/CameraManagerGlobal( 4378): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:13.842 I/CameraManagerGlobal( 2562): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:13.842 I/CameraManagerGlobal(10826): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:13.842 I/CameraManagerGlobal(32199): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_ACTIVE for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:13.842 D/CameraAvailabilityListener( 2562): onCameraDeviceStateChanged: id=1, facing=1, state=CAMERA_STATE_ACTIVE, client=ir.mouj\
+10-23 04:31:13.842 D/SensorPrivacyService( 1407): onOpNoted  ir.mouj  code=26  uid=10392\
+10-23 04:31:13.855 I/LayerHistory( 1169): ir.mouj/ir.mouj.MainActivity$\_20843#333051 voted 0, 0.00 fps\
+10-23 04:31:13.896 D/SensorPrivacyService( 1407): onOpNoted  ir.mouj  code=27  uid=10392\
+10-23 04:31:13.922 V/AudioService.RecordingActivityMonitor( 1407): updateSoundAppPolicy packageName = ir.mouj\
+10-23 04:31:13.922 D/SGM:GameManager( 1407): identifyGamePackage. ir.mouj, mCurrentUserId: 0, callerUserId: 0, callingMethodInfo: com.samsung.android.game.SemGameManager.isGamePackage(SemGameManager.java:109)\
+10-23 04:31:13.922 D/SGM:PkgDataHelper( 1407): getGamePkgData(). ir.mouj\
+10-23 04:31:13.922 D/SGM:SemGameManager( 1407): isGamePackage(), pkgName=ir.mouj, ret=false\
+10-23 04:31:14.091 I/CameraService( 1449): finishCameraStreamingOps: finish camera streaming ops, package name = ir.mouj, client UID = 10392\
+10-23 04:31:14.092 I/CameraServiceProxyWrapper( 1449): updateProxyDeviceState: notifyCameraState for Camera ID 1, newState 2, facing 1, clientName ir.mouj, apiLevel 2\
+10-23 04:31:14.092 I/CameraManagerGlobal( 1407): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:14.092 I/CameraService_proxy( 1407): wmi.removeRefreshRateRangeForPackage clientName = ir.mouj\
+10-23 04:31:14.093 I/CameraManagerGlobal( 5245): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:14.093 I/CameraManagerGlobal( 4378): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:14.093 I/CameraManagerGlobal( 2562): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:14.093 I/CameraManagerGlobal( 3358): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:14.093 I/CameraManagerGlobal( 4699): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:14.093 I/CameraManagerGlobal(29558): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:14.093 I/CameraManagerGlobal( 2806): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:14.093 D/CameraAvailabilityListener( 2562): onCameraDeviceStateChanged: id=1, facing=1, state=CAMERA_STATE_IDLE, client=ir.mouj\
+10-23 04:31:14.093 I/CameraManagerGlobal(32199): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:14.093 I/CameraManagerGlobal(20843): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:14.093 I/CameraManagerGlobal(10826): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_IDLE for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:14.103 I/LayerHistory( 1169): ir.mouj/ir.mouj.MainActivity$\_20843#333051 voted 0, 0.00 fps\
+10-23 04:31:14.173 I/CameraServiceProxyWrapper( 1449): updateProxyDeviceState: notifyCameraState for Camera ID 1, newState 3, facing 1, clientName ir.mouj, apiLevel 2\
+10-23 04:31:14.175 I/CameraService( 1449): finishCameraOps: Finish camera ops, package name = ir.mouj, client UID = 10392\
+10-23 04:31:14.176 I/CameraManagerGlobal( 4699): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:14.176 I/CameraManagerGlobal( 5245): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:14.176 I/CameraManagerGlobal( 2562): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:14.176 I/CameraManagerGlobal(29558): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:14.176 I/CameraManagerGlobal( 4378): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:14.176 D/CameraAvailabilityListener( 2562): onCameraDeviceStateChanged: id=1, facing=1, state=CAMERA_STATE_CLOSED, client=ir.mouj\
+10-23 04:31:14.176 I/CameraManagerGlobal( 3358): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:14.176 I/CameraManagerGlobal(32199): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:14.176 I/CameraManagerGlobal(20843): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:14.176 I/CameraManagerGlobal( 2806): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:14.176 I/CameraManagerGlobal(10826): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:14.177 I/CameraManagerGlobal( 1407): Camera 1 facing CAMERA_FACING_FRONT state now CAMERA_STATE_CLOSED for client ir.mouj API Level 2 User Id 0\
+10-23 04:31:14.197 D/SurfaceFlinger( 1169):      DEVICE | 0xb400007ac1675110 | 0102 | RGBA_8888    |    0.0    0.0 1080.0 2400.0 |    0    0 1080 2400 | ir.mouj/ir.mouj.MainActivity$\_20843#333051\
+10-23 04:31:14.220 V/AudioService.RecordingActivityMonitor( 1407): updateSoundAppPolicy packageName = ir.mouj\
+10-23 04:31:14.221 D/SGM:GameManager( 1407): identifyGamePackage. ir.mouj, mCurrentUserId: 0, callerUserId: 0, callingMethodInfo: com.samsung.android.game.SemGameManager.isGamePackage(SemGameManager.java:109)\
+10-23 04:31:14.221 D/SGM:PkgDataHelper( 1407): getGamePkgData(). ir.mouj\
+10-23 04:31:14.221 D/SGM:SemGameManager( 1407): isGamePackage(), pkgName=ir.mouj, ret=false\
+10-23 04:31:14.225 D/ir.mouj (20843): PlayerBase::\~PlayerBase()\
+10-23 04:31:14.354 D/InsetsSourceProvider( 1407): updateFakeControlTarget: fakeControl=InsetsSourceControl: {5cd60000 mType=statusBars mSurfacePosition=Point(0, 0) mInsetsHint=Insets{left=0, top=0, right=0, bottom=0}}, \
+fakeTarget=Window{79316aa u0 ir.mouj/ir.mouj.MainActivity}\
+10-23 04:31:14.355 I/Telecom ( 1407): SamsungCallAudioRouteStateMachine: isSpeakerPhoneChangedByTelecom - modeOwner : ir.mouj: CARSM.mSPCR@9oo\
+10-23 04:31:14.498 I/Telecom ( 1407): SamsungCallAudioRouteStateMachine: isSpeakerPhoneChangedByTelecom - modeOwner : ir.mouj: CARSM.mSPCR@9os\
+10-23 04:31:14.499 V/AS.AudioService( 1407): setMode(mode=0, pid=20843, uid=10392, caller=ir.mouj)\
+10-23 04:31:14.506 I/MicModeManager( 1407): updateAudioMode() audioMode=0, caller=ir.mouj, curCallDevice=2\
+10-23 04:31:16.474 D/SurfaceFlinger( 1169):      DEVICE | 0xb400007ac1675110 | 0102 | RGBA_8888    |    0.0    0.0 1080.0 2400.0 |    0    0 1080 2400 | ir.mouj/ir.mouj.MainActivity$\_20843#333051\
+10-23 04:31:16.862 D/InsetsSourceProvider( 1407): updateControlForTarget: control=InsetsSourceControl: {5cd60000 mType=statusBars initiallyVisible mSurfacePosition=Point(0, 0) mInsetsHint=Insets{left=0, top=88, right=0, \
+bottom=0}}, target=Window{79316aa u0 ir.mouj/ir.mouj.MainActivity}, from=com.android.server.wm.InsetsStateController.onControlTargetChanged:358 com.android.server.wm.InsetsStateController.onBarControlTargetChanged:324 \
+com.android.server.wm.InsetsPolicy.updateBarControlTarget:173 com.android.server.wm.InsetsPolicy.updateSystemBars:805 com.android.server.wm.DisplayPolicy.updateSystemBarsLw:3429 \
+10-23 04:31:16.866 I/InsetsSourceConsumer(20843): applyRequestedVisibilityToControl: visible=true, type=statusBars, host=ir.mouj/ir.mouj.MainActivity\
+10-23 04:31:17.478 D/ProfileInstaller(20843): Installing profile for ir.mouj\
+10-23 04:31:18.936 D/SurfaceFlinger( 1169):      DEVICE | 0xb400007ac1675110 | 0102 | RGBA_8888    |    0.0    0.0 1080.0 2400.0 |    0    0 1080 2400 | ir.mouj/ir.mouj.MainActivity$\_20843#333051\
 \
 \
-PS D:\Mouj>&#x20;
-
-یک جوریه که باید یک بار از برنامه دربیام تا بتونم فیلم رو نگاه کنم
+PS D:\Mouj>
