@@ -5425,13 +5425,15 @@ body {
 })();
 </script>
 
-</body>
-</html>
+
+<style id="mouj-final-chat-scroll-safety">
 /* Final chat scroll safety override */
 .chat{display:flex!important;flex-direction:column!important;min-height:0!important;height:100%!important;overflow:hidden!important}
 .chat .messages{display:flex!important;flex:1 1 auto!important;min-height:0!important;overflow-y:auto!important;overflow-x:hidden!important;-webkit-overflow-scrolling:touch!important;overscroll-behavior:contain!important}
 .chat .composer{flex:0 0 auto!important}
 
+
+</style>
 
 <!-- Mouj UX polish: Telegram-like message selection, in-chat profile preview, swipe-back and deep links -->
 <style id="mouj-telegram-ux-2026-10-21">
@@ -5580,3 +5582,6 @@ html[data-theme="dark"] .chat-bottom-fab{background:#fff!important;color:#2868d8
   }
 })();
 </script>
+
+</body>
+</html>
